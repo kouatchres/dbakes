@@ -1,0 +1,20 @@
+# #import from "../fragments/CenexasHallFragment.gql"
+# #import from "../fragments/CenterExamSessionFragment.gql"
+
+query AllCenexasHalls {
+  cenexasHalls {
+    ...CenexasHallFragment
+  }
+}
+
+query SingleCenexasHall($id: String!) {
+  cenexasHall(id: $id) {
+    ...CenexasHallFragment
+  }
+}
+
+# query HallsOfACenexas($centerExamSessionId: String!) {
+#   HallsOfACenexas(centerExamSessionId: $centerExamSessionId) {
+#     ...CenexasHallFragment
+#   }
+# }

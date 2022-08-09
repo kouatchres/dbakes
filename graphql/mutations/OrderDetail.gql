@@ -1,0 +1,28 @@
+#import OrderDetailFragment from "../fragments/OrderDetailFragment.gql"
+
+mutation createOrderDetail($data: OrderDetailCreateInput!) {
+  createOneOrderDetail(data: $data) {
+    ...OrderDetailFragment
+  }
+}
+
+mutation createAnOrderDetail($data: OrderDetailCreateInput!) {
+  createOrderDetail(data: $data) {
+    ...OrderDetailFragment
+  }
+}
+
+mutation deleteAnOrderDetail($where: OrderDetailWhereUniqueInput!) {
+  deleteOneOrderDetail(where: $where) {
+    id
+  }
+}
+
+mutation updateAnOrderDetail(
+  $data: OrderDetailUpdateInput!
+  $where: OrderDetailWhereUniqueInput!
+) {
+  updateOneOrderDetail(data: $data, where: $where) {
+    ...OrderDetailFragment
+  }
+}

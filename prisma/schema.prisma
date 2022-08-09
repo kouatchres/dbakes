@@ -1,0 +1,216 @@
+datasource db {
+  provider = "postgresql"
+
+  // url = env("DATABASE_URL")
+  url = "postgresql://postgres:kou19A65tch@localhost:6666/dbakes?schemas=public"
+}
+
+generator client {
+  provider = "prisma-client-js"
+  // previewFeatures = ["transactionApi"]
+  // previewFeatures = "createMany"
+}
+
+model Client {
+  id              String         @id @default(cuid())
+  clientPhoneNumb Int            @unique
+  annClients      AnnualClient[]
+  clientNames     String
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @default(now()) @updatedAt
+}
+
+// model PaymentMethod {
+//   id            String    @id @default(cuid())
+//   paymentMethod String
+//   finances      Finance[]
+//   createdAt     DateTime  @default(now())
+//   updatedAt     DateTime  @default(now()) @updatedAt
+// }
+
+model User {
+  id                 String   @id @default(cuid())
+  email              String   @unique
+  password           String   @default(value: "")
+  resetPasswordToken String   @default(value: "")
+  createdAt          DateTime @default(now()) //@createdAt
+  updatedAt          DateTime @default(now()) @updatedAt
+}
+
+model Bonus {
+  id        String   @id @default(cuid())
+  bonusName String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model Order {
+  id                     String                @id @default(cuid())
+  orderTotal             Int
+  totalPaid              Int
+  orderNumber            String
+  orderDate              DateTime              @default(now())
+  orderDetails           OrderDetail[]
+  finances               Finance[]
+  createdAt              DateTime              @default(now())
+  updatedAt              DateTime              @default(now()) @updatedAt
+  AnnualClient           AnnualClient?         @relation(fields: [annualClientId], references: [id])
+  annualClientId         String?
+  AnnualBranchEmployee   AnnualBranchEmployee? @relation(fields: [annualBranchEmployeeId], references: [id])
+  annualBranchEmployeeId String?
+}
+
+model OrderDetail {
+  id         String   @id @default(cuid())
+  pdtCost    Int
+  qtty       Float
+  salesPrice Int
+  orderDate  DateTime @default(now())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt
+  Order      Order    @relation(fields: [orderId], references: [id])
+  orderId    String
+  Product    Product  @relation(fields: [productId], references: [id])
+  productId  String
+}
+
+model Cart {
+  id         String   @id @default(cuid())
+  qtty       Float
+  pdtCost    Int
+  salesPrice Int
+  orderDate  DateTime @default(now())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt
+
+  Product                Product               @relation(fields: [productId], references: [id])
+  productId              String
+  AnnualClient           AnnualClient?         @relation(fields: [annualClientId], references: [id])
+  annualClientId         String?
+  AnnualBranchEmployee   AnnualBranchEmployee? @relation(fields: [annualBranchEmployeeId], references: [id])
+  annualBranchEmployeeId String?
+}
+
+model Product {
+  id           String        @id @default(cuid())
+  pdtName      String
+  pdtCode      String
+  unitPrice    Int
+  carts        Cart[]
+  orderDetails OrderDetail[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @default(now()) @updatedAt
+  Category     Category?     @relation(fields: [categoryId], references: [id])
+  categoryId   String?
+}
+
+model Category {
+  id           String    @id @default(cuid())
+  categoryName String
+  categoryCode String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @default(now()) @updatedAt
+  products     Product[]
+}
+
+model Employee {
+  id                String           @id @default(cuid())
+  branchEmpls       BranchEmployee[]
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @default(now()) @updatedAt
+  employeeNames     String
+  employeeCode      String           @unique
+  employeePhoneNumb Int              @unique
+}
+
+model Branch {
+  id          String           @id @default(cuid())
+  branchName  String
+  branchCode  String           @unique
+  branchEmpls BranchEmployee[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @default(now()) @updatedAt
+}
+
+model BranchEmployee {
+  id                String                 @id @default(cuid())
+  annBranchEmployee AnnualBranchEmployee[]
+  createdAt         DateTime               @default(now())
+  updatedAt         DateTime               @default(now()) @updatedAt
+  startDate         DateTime               @default(now())
+  endDate           DateTime               @default(now())
+  Employee          Employee               @relation(fields: [employeeId], references: [id])
+  employeeId        String
+  Branch            Branch                 @relation(fields: [branchId], references: [id])
+  branchId          String
+  EmployeeStatus    EmployeeStatus         @relation(fields: [employeeStatusId], references: [id])
+  employeeStatusId  String
+}
+
+model AnnualBranchEmployee {
+  id String @id @default(cuid())
+
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @default(now()) @updatedAt
+  orders           Order[]
+  carts            Cart[]
+  BranchEmployee   BranchEmployee? @relation(fields: [branchEmployeeId], references: [id])
+  branchEmployeeId String?
+  FinancialYear    FinancialYear?  @relation(fields: [financialYearId], references: [id])
+  financialYearId  String?
+}
+
+model Finance {
+  id        String   @id @default(cuid())
+  amtPaid   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  Order   Order  @relation(fields: [orderId], references: [id])
+  orderId String
+}
+
+model Inventory {
+  id String @id @default(cuid())
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt
+  qttyInHand Int
+}
+
+model Sample {
+  id String @id @default(cuid())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model AnnualClient {
+  id        String   @id @default(cuid())
+  orders    Order[]
+  carts     Cart[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  Client          Client?        @relation(fields: [clientId], references: [id])
+  clientId        String?
+  FinancialYear   FinancialYear? @relation(fields: [financialYearId], references: [id])
+  financialYearId String?
+}
+
+model EmployeeStatus {
+  id          String           @id @default(cuid())
+  status      String
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @default(now()) @updatedAt
+  branchEmpls BranchEmployee[]
+}
+
+model FinancialYear {
+  id             String                 @id @default(cuid())
+  annBranchEmpls AnnualBranchEmployee[]
+  annClients     AnnualClient[]
+  yearName       Int
+  createdAt      DateTime               @default(now())
+  updatedAt      DateTime               @default(now()) @updatedAt
+}

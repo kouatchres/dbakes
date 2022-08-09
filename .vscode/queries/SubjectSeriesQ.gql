@@ -1,0 +1,23 @@
+# #import from "../fragments/SubjectSeriesFragment.gql"
+# #import from "../fragments/SubjectFragment.gql"
+
+# query AllSubjectSeriess {
+#   subjectSerieses {
+#     ...SubjectSeriesFragment
+#   }
+# }
+
+# query SingleSubjectSeries($id: String!) {
+#   subjectSeries(id: $id) {
+#     ...SubjectSeriesFragment
+#   }
+# }
+
+# query AllSubjectsSeriesOfASeries($seriesId: String!) {
+#   subjectSeriesOfSeries(seriesId: $seriesId) {
+#     ...SubjectSeriesFragment
+#     Subject {
+#       ...SubjectFragment
+#     }
+#   }
+# }

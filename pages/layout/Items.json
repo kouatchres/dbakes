@@ -1,0 +1,181 @@
+
+
+{
+    name: "administration",
+    label: "Administration",
+    Icon: ReceiptIcon,
+    items: [
+          {
+        
+            name: "Results",
+            label: "Resultats",
+            items: [
+              {
+                url: "../../creates/newCES",
+                name: "centerGenResults",
+                label: "General par centre",
+              },
+              {
+                url: "../../creates/newCESS",
+                name: "candResults",
+                label: "Candidat Individuel",
+              },
+              
+            ],
+          },
+
+          {
+            name: "localization",
+            label: "Localization",
+            items: [
+              {
+                url: "../../show/lists/allRegions",
+                name: "regionList",
+                label: "Info Region",
+              },
+              {
+                              url: "../../show/lists/allDivs",
+                name: "divisionList",
+                label: "Info Departement",
+              },
+              {
+                url: "../../show/lists/allSubDivs",
+                name: "subDivList",
+                label: "Info Arrondissement",
+              },
+              {
+                  url: "../../show/lists/allTown",
+                name: "townList",
+                label: "Info Ville",
+              },
+              {
+                url: "../../show/lists/allCenters",
+                name: "centerList",
+                label: "Info Centre",
+              },
+             
+            ],
+          },
+          {
+            // url: "../../show/results/candCodeResults",
+            name: "SubjSeries",
+            label: "Series & Matières",
+            items: [
+              {
+                url: "../../creates/newEducType",
+                name: "educType",
+                label: "Type d'enseignement",
+              },
+              {
+                  url: "../../creates/newSubject",
+                name: "specialty",
+                label: "Series",
+              },
+              {
+               url: "../../creates/newSubject",
+                name: "subject",
+                label: "Matière",
+              },
+              {
+                 url: "../../creates/newCES",
+                name: "SubjectsToSpecialty",
+                label: "Matières des series",
+              },
+             
+             
+            ],
+          },
+          {
+            // url: "../../show/results/candCodeResults",
+            name: "PhasesExamen",
+            label: "Phases Examen",
+            items: [
+              {
+                url: "../../creates/newPhase",
+                name: "examStages",
+                label: "Phase",
+              },
+              {
+                  url: "../../creates/newRank",
+                name: "rank",
+                label: "Poste",
+              },
+              {
+               url: "../../creates/newSubject",
+                name: "subject",
+                label: "Matière",
+              },
+              {
+                 url: "../../creates/newCES",
+                name: "SubjectsToSpecialty",
+                label: "Matières des series",
+              },
+             
+             
+            ],
+          },
+          {
+            // url: "../../show/results/candCodeResults",
+            name: "others",
+            label: "Autres Info",
+            items: [
+              {
+                url: "../../creates/newExam",
+                name: "exams",
+                label: "Examen",
+              },
+              {
+                  url: "../../creates/newSession",
+                name: "session",
+                label: "Session",
+              },
+              {
+               url: "../../creates/newExaminer",
+                name: "examiner",
+                label: "Examinateur",
+              },
+              {
+                 url: "../../creates/newCES",
+                name: "SubjectsToSpecialty",
+                label: "Matières des series",
+              },
+             
+             
+            ],
+          },
+          {
+            // url: "../../show/results/candCodeResults",
+            name: "centerInfo",
+            label: "Centre",
+            items: [
+              {
+                url: "../../creates/newRegister",
+                name: "candidateAttendance",
+                label: "Region",
+              },
+              {
+                url: "../../creates/newRegister",
+                name: "centerCandSecretCodes",
+                label: "Listes des Anonymats",
+              },
+            ],
+          },
+          {
+            // url: "../../show/results/candCodeResults",
+            name: "MarkingPahse",
+            label: "Correction",
+            items: [
+              {
+                url: "../../creates/enterMarks",
+                name: "candidateAMarks",
+                label: "Notes des candidats",
+              },
+              {
+                url: "../../creates/newRegister",
+                name: "centerCandSecretCodes",
+                label: "Listes des Anonymats",
+              },
+            ],
+          },
+        ],
+},

@@ -1,0 +1,15 @@
+#import * from "./EmployeeFragment.gql"
+#import * from "./BranchFragment.gql"
+#import * from "./OrderFragment.gql"
+
+fragment BranchEmployeeFragment on BranchEmployee {
+  Branch {
+    ...BranchFragment
+  }
+  endDate
+  id
+  startDate
+  Employee {
+    ...EmployeeFragment
+  }
+}

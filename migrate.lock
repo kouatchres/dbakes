@@ -1,0 +1,27 @@
+# Prisma Migrate lockfile v1
+
+20210504074303-first_transfer
+20210504082438-include-center-table
+20210505234454-added_centernumber
+20210506001453-complete_corrections
+20210506013152-trimmed
+20210506073826-registration_exam_session
+20210506082142-reduce_registration
+20210507110632-start_series
+20210507123611-educ_series
+20210508062852-unique_registration
+20210508132612-score
+20210508170651-score_correction
+20210510140653-adjustes-relations-plus-attendance
+20210510143047-relations-adjustments
+20210512042802-prismanew_schema
+20210512045238-caorrected_cand-center
+20210514075556
+20210514080528-refomulated-_ces
+20210526111752-annonymation-_spelling
+20210526113959-adjust-examiner-info
+20210526160357-town-corrections
+20210526180746-center-correction
+20210527034731-unique-cenexas
+20210527172622-cand-exam-session
+20210530094435-registration_completed

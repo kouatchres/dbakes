@@ -1,0 +1,31 @@
+#import from "../fragments/EmployeeFragment.gql"
+
+query AllEmployees {
+  employees {
+    ...EmployeeFragment
+  }
+}
+
+query SingleEmployee($where: EmployeeWhereUniqueInput!) {
+  employee(where: $where) {
+    ...EmployeeFragment
+  }
+}
+
+query SingleEmployeeById($id: String!) {
+  employeeById(id: $id) {
+    ...EmployeeFragment
+  }
+}
+
+query SingleEmployeeByPhoneNumber($employeePhoneNumb: Int!) {
+  employeeByPhoneNumber(employeePhoneNumb: $employeePhoneNumb) {
+    ...EmployeeFragment
+  }
+}
+
+query SingleEmployeeByCode($employeeCode: String!) {
+  employeeByCode(employeeCode: $employeeCode) {
+    ...EmployeeFragment
+  }
+}

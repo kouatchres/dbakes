@@ -1,0 +1,19 @@
+#import from "../fragments/EmployeeStatusFragment.gql"
+
+query AllEmployeeStatuses {
+  employeeStatuses {
+    ...EmployeeStatusFragment
+  }
+}
+
+query SingleEmployeeStatus($where: EmployeeStatusWhereUniqueInput!) {
+  employeeStatus(where: $where) {
+    ...EmployeeStatusFragment
+  }
+}
+
+query SingleEmployeeStatusById($id: String!) {
+  employeeStatusById(id: $id) {
+    ...EmployeeStatusFragment
+  }
+}

@@ -1,0 +1,28 @@
+#import BonusFragment from "../fragments/BonusFragment.gql"
+
+mutation createBonus($data: BonusCreateInput!) {
+  createOneBonus(data: $data) {
+    ...BonusFragment
+  }
+}
+
+mutation createABonus($data: BonusCreateInput!) {
+  createBonus(data: $data) {
+    ...BonusFragment
+  }
+}
+
+mutation deleteABonus($where: BonusWhereUniqueInput!) {
+  deleteOneBonus(where: $where) {
+    id
+  }
+}
+
+mutation updateABonus(
+  $data: BonusUpdateInput!
+  $where: BonusWhereUniqueInput!
+) {
+  updateOneBonus(data: $data, where: $where) {
+    ...BonusFragment
+  }
+}

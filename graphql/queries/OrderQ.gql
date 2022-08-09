@@ -1,0 +1,13 @@
+#import from "../fragments/OrderFragment.gql"
+
+query AllOrders {
+  orders {
+    ...OrderFragment
+  }
+}
+
+query SingleOrder($where: OrderWhereUniqueInput!) {
+  order(where: $where) {
+    ...OrderFragment
+  }
+}

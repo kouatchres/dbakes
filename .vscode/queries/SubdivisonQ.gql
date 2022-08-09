@@ -1,0 +1,17 @@
+#import from "../fragments/SubdivisionFragment.gql"
+#import from "../fragments/TownFragment.gql"
+
+query AllSubdivisions {
+  subdivisions {
+    ...SubdivisionFragment
+  }
+}
+
+query SingleSubdivision($id: String!) {
+  subdivision(id: $id) {
+    ...SubdivisionFragment
+    # towns {
+    #   ...TownFragment
+    # }
+  }
+}

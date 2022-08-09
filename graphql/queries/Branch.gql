@@ -1,0 +1,25 @@
+#import from "../fragments/BranchFragment.gql"
+
+query AllBranches {
+  branches {
+    ...BranchFragment
+  }
+}
+
+query SingleBranch($where: BranchWhereUniqueInput!) {
+  branch(where: $where) {
+    ...BranchFragment
+  }
+}
+
+query SingleBranchById($id: String!) {
+  branchById(id: $id) {
+    ...BranchFragment
+  }
+}
+
+query SingleBranchByBranchCode($branchCode: String!) {
+  branchByBranchCode(branchCode: $branchCode) {
+    ...BranchFragment
+  }
+}

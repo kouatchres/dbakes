@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "alwaysStrict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "lib": ["es6", "dom", "dom.iterable"],
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "baseUrl": "./generated",
+    "paths": {
+      "@/*": ["*"],
+      "@/api/*": ["/pages/api/*"],
+      "@/pages/*": ["/pages/components"],
+      "@/utils/*": ["/pages/components/utils"]
+    },
+
+    "noImplicitReturns": true,
+    "target": "esnext",
+    "typeRoots": ["node_modules/@types", "./pages/components"],
+    "rootDir": ".",
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "nexus/typescript-language-service"
+      }
+    ]
+  },
+
+  "exclude": ["node_modules"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".",
+    "types.d.ts",
+    "./pages/components",
+    "/generated"
+  ]
+}

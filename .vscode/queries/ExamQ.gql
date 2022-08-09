@@ -1,0 +1,8 @@
+#import from "../fragments/ExamFragment.gql"
+#import from "../fragments/RegistrationFragment.gql"
+
+query AllExams {
+  exams {
+    ...ExamFragment
+  }
+}

@@ -1,0 +1,20 @@
+#import * from "./CategoryFragment.gql"
+#import * from "./CartFragment.gql"
+#import * from "./OrderDetailFragment.gql"
+
+fragment ProductFragment on Product {
+  id
+  pdtName
+  pdtCode
+  Category {
+    ...CategoryFragment
+  }
+  carts {
+    ...CartFragment
+  }
+  categoryId
+  unitPrice
+  orderDetails {
+    ...OrderDetailFragment
+  }
+}

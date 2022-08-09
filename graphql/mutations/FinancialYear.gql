@@ -1,0 +1,28 @@
+#import FinancialYearFragment from "../fragments/FinancialYearFragment.gql"
+
+mutation createFinancialYear($data: FinancialYearCreateInput!) {
+  createOneFinancialYear(data: $data) {
+    ...FinancialYearFragment
+  }
+}
+
+mutation createAFinancialYear($data: FinancialYearCreateInput!) {
+  createFinancialYear(data: $data) {
+    ...FinancialYearFragment
+  }
+}
+
+mutation deleteAFinancialYear($where: FinancialYearWhereUniqueInput!) {
+  deleteOneFinancialYear(where: $where) {
+    id
+  }
+}
+
+mutation updateAFinancialYear(
+  $data: FinancialYearUpdateInput!
+  $where: FinancialYearWhereUniqueInput!
+) {
+  updateOneFinancialYear(data: $data, where: $where) {
+    ...FinancialYearFragment
+  }
+}

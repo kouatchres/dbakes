@@ -1,0 +1,77 @@
+# #import from "../fragments/RegistrationFragment.gql"
+# #import from "../fragments/CenterFragment.gql"
+# #import from "../fragments/ScoreFragment.gql"
+# #import from "../fragments/CandidateFragment.gql"
+# #import from "../fragments/SeriesFragment.gql"
+
+# query AllRegistrations {
+#   registrations {
+#     ...RegistrationFragment
+#   }
+# }
+
+# query SingleRegistration($id: String!) {
+#   registration(id: $id) {
+#     ...RegistrationFragment
+#   }
+# }
+
+# query SingleRegistrationAndScores($id: String!) {
+#   scoresOfARegistration(id: $id) {
+#     ...RegistrationFragment
+#     scores {
+#       ...ScoreFragment
+#     }
+#   }
+# }
+
+# query RegistrationsByAnoymation($candAnonymationCode: String!) {
+#   candAnonymationRegistration(candAnonymationCode: $candAnonymationCode) {
+#     ...RegistrationFragment
+#   }
+# }
+
+# query CenterRegisteredCandidates($centerExamSessionId: String!) {
+#   centerRegistrationNumber(centerExamSessionId: $centerExamSessionId) {
+#     ...RegistrationFragment
+#     Candidate {
+#       ...CandidateFragment
+#     }
+#     Series {
+#       ...SeriesFragment
+#     }
+#   }
+# }
+
+# query RegisteredCandidatesPerSeries(
+#   $centerExamSessionId: String!
+#   $seriesId: String!
+# ) {
+#   centerCandidatesPerSeries(
+#     centerExamSessionId: $centerExamSessionId
+#     seriesId: $seriesId
+#   ) {
+#     ...RegistrationFragment
+#     Candidate {
+#       ...CandidateFragment
+#     }
+#     Series {
+#       ...SeriesFragment
+#     }
+#   }
+# }
+
+# # query SingleCandidatesRegistrations($candidateId: String!) {
+# #   candidateRegistrations(candidateId: $candidateId) {
+# #     ...RegistrationFragment
+# #     Candidate {
+# #       ...CandidateFragment
+# #     }
+# #     Series {
+# #       ...SeriesFragment
+# #     }
+# #     Score {
+# #       ...ScoreFragment
+# #     }
+# #   }
+# # }

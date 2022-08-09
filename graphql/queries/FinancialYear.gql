@@ -1,0 +1,25 @@
+#import from "../fragments/FinancialYearFragment.gql"
+
+query AllFinancialYears {
+  financialYears {
+    ...FinancialYearFragment
+  }
+}
+
+query SingleFinancialYear($where: FinancialYearWhereUniqueInput!) {
+  financialYear(where: $where) {
+    ...FinancialYearFragment
+  }
+}
+
+query SingleFinancialYearById($id: String!) {
+  financialYearById(id: $id) {
+    ...FinancialYearFragment
+  }
+}
+
+query RecentSingleFinancialYear {
+  recentFinancialYear {
+    ...FinancialYearFragment
+  }
+}

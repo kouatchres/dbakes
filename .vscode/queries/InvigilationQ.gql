@@ -1,0 +1,19 @@
+#import from "../fragments/InvigilationFragment.gql"
+
+query AllInvigilations {
+  invigilations {
+    ...InvigilationFragment
+  }
+}
+
+query SingleInvigilation($id: String!) {
+  invigilation(id: $id) {
+    ...InvigilationFragment
+  }
+}
+
+# query InvigilationsOfAnExaminer($cenexasExaminerId: String!) {
+#   examinersInvigilations(cenexasExaminerId: $cenexasExaminerId) {
+#     ...InvigilationFragment
+#   }
+# }

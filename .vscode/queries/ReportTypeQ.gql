@@ -1,0 +1,13 @@
+#import from "../fragments/ReportTypeFragment.gql"
+
+query AllReportTypes {
+  reportTypes {
+    ...ReportTypeFragment
+  }
+}
+
+query SingleReportType($id: String!) {
+  reportType(id: $id) {
+    ...ReportTypeFragment
+  }
+}

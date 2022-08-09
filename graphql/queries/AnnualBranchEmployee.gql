@@ -1,0 +1,33 @@
+#import from "../fragments/AnnualBranchEmployeeFragment.gql"
+
+query AllAnnualBranchEmployees {
+  annualBranchEmployees {
+    ...AnnualBranchEmployeeFragment
+  }
+}
+
+query SingleAnnualBranchEmployee(
+  $where: AnnualBranchEmployeeWhereUniqueInput!
+) {
+  annualBranchEmployee(where: $where) {
+    ...AnnualBranchEmployeeFragment
+  }
+}
+
+query SingleAnnualBranchEmployeeById($id: String!) {
+  annualBranchEmployeeById(id: $id) {
+    ...AnnualBranchEmployeeFragment
+  }
+}
+
+query SingleAnnualBranchEmployeeByBranchEmployeeAndYear(
+  $financialYearId: String!
+  $branchEmployeeId: String!
+) {
+  annualBranchEmployeeByBranchEmployeeAndYear(
+    financialYearId: $financialYearId
+    branchEmployeeId: $branchEmployeeId
+  ) {
+    ...AnnualBranchEmployeeFragment
+  }
+}

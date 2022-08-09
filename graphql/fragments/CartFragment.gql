@@ -1,0 +1,19 @@
+#import * from "./ProductFragment.gql"
+#import * from "./AnnualClientFragment.gql"
+#import * from "./AnnualBranchEmployeeFragment.gql"
+
+fragment CartFragment on Cart {
+  AnnualBranchEmployee {
+    ...AnnualBranchEmployeeFragment
+  }
+  AnnualClient {
+    ...AnnualClientFragment
+  }
+
+  annualBranchEmployeeId
+  id
+  orderDate
+  qtty
+  pdtCost
+  salesPrice
+}

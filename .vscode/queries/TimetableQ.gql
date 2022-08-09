@@ -1,0 +1,27 @@
+#import from "../fragments/TimetableFragment.gql"
+
+query AllTimetables {
+  timetables {
+    ...TimetableFragment
+  }
+}
+
+query SingleTimetable($id: String!) {
+  timetable(id: $id) {
+    ...TimetableFragment
+  }
+}
+
+# query SingleTimetableFromESSS(
+#   $examId: String!
+#   $sessionId: String!
+#   $subjectSeriesId: String!
+# ) {
+#   timetableFromESSS(
+#     examId: $examId
+#     sessionId: $sessionId
+#     subjectSeriesId: $subjectSeriesId
+#   ) {
+#     ...TimetableFragment
+#   }
+# }

@@ -1,0 +1,28 @@
+#import EmployeeStatusFragment from "../fragments/EmployeeStatusFragment.gql"
+
+mutation createEmployeeStatus($data: EmployeeStatusCreateInput!) {
+  createOneEmployeeStatus(data: $data) {
+    ...EmployeeStatusFragment
+  }
+}
+
+mutation createAnEmployeeStatus($data: EmployeeStatusCreateInput!) {
+  createEmployeeStatus(data: $data) {
+    ...EmployeeStatusFragment
+  }
+}
+
+mutation deleteAnEmployeeStatus($where: EmployeeStatusWhereUniqueInput!) {
+  deleteOneEmployeeStatus(where: $where) {
+    id
+  }
+}
+
+mutation updateAnEmployeeStatus(
+  $data: EmployeeStatusUpdateInput!
+  $where: EmployeeStatusWhereUniqueInput!
+) {
+  updateOneEmployeeStatus(data: $data, where: $where) {
+    ...EmployeeStatusFragment
+  }
+}

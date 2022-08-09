@@ -1,0 +1,28 @@
+#import BranchFragment from "../fragments/BranchFragment.gql"
+
+mutation createBranch($data: BranchCreateInput!) {
+  createOneBranch(data: $data) {
+    ...BranchFragment
+  }
+}
+
+mutation createABranch($data: BranchCreateInput!) {
+  createBranch(data: $data) {
+    ...BranchFragment
+  }
+}
+
+mutation deleteABranch($where: BranchWhereUniqueInput!) {
+  deleteOneBranch(where: $where) {
+    id
+  }
+}
+
+mutation updateABranch(
+  $data: BranchUpdateInput!
+  $where: BranchWhereUniqueInput!
+) {
+  updateOneBranch(data: $data, where: $where) {
+    ...BranchFragment
+  }
+}

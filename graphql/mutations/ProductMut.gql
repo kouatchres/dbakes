@@ -1,0 +1,28 @@
+#import ProductFragment from "../fragments/ProductFragment.gql"
+
+mutation createProduct($data: ProductCreateInput!) {
+  createOneProduct(data: $data) {
+    ...ProductFragment
+  }
+}
+
+mutation createAProduct($data: ProductCreateInput!) {
+  createProduct(data: $data) {
+    ...ProductFragment
+  }
+}
+
+mutation deleteAProduct($where: ProductWhereUniqueInput!) {
+  deleteOneProduct(where: $where) {
+    id
+  }
+}
+
+mutation updateAProduct(
+  $data: ProductUpdateInput!
+  $where: ProductWhereUniqueInput!
+) {
+  updateOneProduct(data: $data, where: $where) {
+    ...ProductFragment
+  }
+}

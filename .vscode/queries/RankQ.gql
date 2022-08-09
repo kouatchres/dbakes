@@ -1,0 +1,13 @@
+#import from "../fragments/RankFragment.gql"
+
+query AllRanks {
+  ranks {
+    ...RankFragment
+  }
+}
+
+query SingleRank($id: String!) {
+  rank(id: $id) {
+    ...RankFragment
+  }
+}

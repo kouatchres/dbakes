@@ -1,0 +1,14 @@
+#import from "./AttendanceFragment.gql"
+#import from "./SubjectFragment.gql"
+
+query AllAttendances {
+  attendances {
+    ...AttendanceFragment
+  }
+}
+
+query SingleAttendance($id: String!) {
+  attendance(id: $id) {
+    ...AttendanceFragment
+  }
+}

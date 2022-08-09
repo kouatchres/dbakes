@@ -1,0 +1,13 @@
+#import from "../fragments/ProfGradeFragment.gql"
+
+query AllProfGrades {
+  profGrades {
+    ...ProfGradeFragment
+  }
+}
+
+query SingleProfGrade($id: String!) {
+  profGrade(id: $id) {
+    ...ProfGradeFragment
+  }
+}

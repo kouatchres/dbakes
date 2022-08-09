@@ -1,0 +1,5 @@
+fragment ClientFragment on Client {
+  id
+  clientNames
+  clientPhoneNumb
+}

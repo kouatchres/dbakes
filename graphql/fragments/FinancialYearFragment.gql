@@ -1,0 +1,6 @@
+#import * from "./AnnualBranchEmployeeFragment.gql"
+
+fragment FinancialYearFragment on FinancialYear {
+  yearName
+  id
+}

@@ -1,0 +1,21 @@
+#import from "../fragments/RegistrationFragment.gql"
+
+query AllCenterExamSessions {
+  centerExamSessions {
+    id
+  }
+}
+
+query SingleCenterExamSession(
+  $centerId: String!
+  $examId: String!
+  $sessionId: String!
+) {
+  existingCenterExamSession(
+    centerId: $centerId
+    examId: $examId
+    sessionId: $sessionId
+  ) {
+    id
+  }
+}

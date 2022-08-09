@@ -1,0 +1,19 @@
+#import from "../fragments/BonusFragment.gql"
+
+query AllBonuses {
+  bonuses {
+    ...BonusFragment
+  }
+}
+
+query SingleBonus($where: BonusWhereUniqueInput!) {
+  bonus(where: $where) {
+    ...BonusFragment
+  }
+}
+
+query SingleBonusById($id: String!) {
+  bonusById(id: $id) {
+    ...BonusFragment
+  }
+}

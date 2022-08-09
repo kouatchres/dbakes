@@ -1,0 +1,28 @@
+#import FinanceFragment from "../fragments/FinanceFragment.gql"
+
+mutation createFinance($data: FinanceCreateInput!) {
+  createOneFinance(data: $data) {
+    ...FinanceFragment
+  }
+}
+
+mutation createAFinance($data: FinanceCreateInput!) {
+  createFinance(data: $data) {
+    ...FinanceFragment
+  }
+}
+
+mutation deleteAFinance($where: FinanceWhereUniqueInput!) {
+  deleteOneFinance(where: $where) {
+    id
+  }
+}
+
+mutation updateAFinance(
+  $data: FinanceUpdateInput!
+  $where: FinanceWhereUniqueInput!
+) {
+  updateOneFinance(data: $data, where: $where) {
+    ...FinanceFragment
+  }
+}

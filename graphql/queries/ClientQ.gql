@@ -1,0 +1,25 @@
+#import from "../fragments/ClientFragment.gql"
+
+query AllClients {
+  clients {
+    ...ClientFragment
+  }
+}
+
+query SingleClient($where: ClientWhereUniqueInput!) {
+  client(where: $where) {
+    ...ClientFragment
+  }
+}
+
+query SingleClientByPhoneNumber($clientPhoneNumb: Int!) {
+  clientByPhoneNumber(clientPhoneNumb: $clientPhoneNumb) {
+    ...ClientFragment
+  }
+}
+
+query SingleClientById($id: String!) {
+  clientById(id: $id) {
+    ...ClientFragment
+  }
+}

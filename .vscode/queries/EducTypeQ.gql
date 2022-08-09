@@ -1,0 +1,16 @@
+#import from "../fragments/EducTypeFragment.gql"
+
+query AllEducTypes {
+  educTypes {
+    ...EducTypeFragment
+  }
+}
+
+query SingleEducType($id: String!) {
+  educType(id: $id) {
+    ...EducTypeFragment
+    # serieses {
+    #   ...SeriesFragment
+    # }
+  }
+}

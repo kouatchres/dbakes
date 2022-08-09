@@ -1,0 +1,13 @@
+#import from "../fragments/SubjectFragment.gql"
+
+query AllSubjects {
+  subjects {
+    ...SubjectFragment
+  }
+}
+
+query SingleSubject($id: String) {
+  subject(id: $id) {
+    ...SubjectFragment
+  }
+}

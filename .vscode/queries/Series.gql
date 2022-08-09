@@ -1,0 +1,13 @@
+# #import from "../fragments/SeriesFragment.gql"
+
+# query AllSerieses {
+#   serieses {
+#     ...SeriesFragment
+#   }
+# }
+
+# query SingleSeries($id: String) {
+#   series(id: $id) {
+#     ...SeriesFragment
+#   }
+# }

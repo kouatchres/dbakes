@@ -1,0 +1,38 @@
+# #import from "../fragments/CenexasExaminerFragment.gql"
+# #import from "../fragments/CenterFragment.gql"
+
+query AllCenexasExaminers {
+  cenexasExaminers {
+    ...CenexasExaminerFragment
+  }
+}
+
+query SingleCenexasExaminer($id: String!) {
+  cenexasExaminer(id: $id) {
+    ...CenexasExaminerFragment
+  }
+}
+
+# query cenexasExaminersByExaminerCES(
+#   $examinerId: String!
+#   $centerExamSessionId: String!
+# ) {
+#   cenexasExaminersByExaminerCES(
+#     examinerId: $examinerId
+#     centerExamSessionId: $centerExamSessionId
+#   ) {
+#     ...CenexasExaminerFragment
+#   }
+# }
+
+# query AllRanksCenexasExaminers(
+#   $rankId: String!
+#   $centerExamSessionId: String!
+# ) {
+#   ranksCenexasExaminers(
+#     rankId: $rankId
+#     centerExamSessionId: $centerExamSessionId
+#   ) {
+#     ...CenexasExaminerFragment
+#   }
+# }

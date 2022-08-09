@@ -1,0 +1,6 @@
+fragment OrderDetailFragment on OrderDetail {
+  id
+  pdtCost
+  qtty
+  salesPrice
+}

@@ -1,0 +1,19 @@
+#import from "../fragments/FinanceFragment.gql"
+
+query AllFinances {
+  finances {
+    ...FinanceFragment
+  }
+}
+
+query SingleFinance($where: FinanceWhereUniqueInput!) {
+  finance(where: $where) {
+    ...FinanceFragment
+  }
+}
+
+query SingleFinanceById($id: String!) {
+  financeById(id: $id) {
+    ...FinanceFragment
+  }
+}

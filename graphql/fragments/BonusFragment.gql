@@ -1,0 +1,4 @@
+fragment BonusFragment on Bonus {
+  bonusName
+  id
+}

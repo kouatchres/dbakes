@@ -1,0 +1,7 @@
+#import * from "./ProductFragment.gql"
+
+fragment CategoryFragment on Category {
+  categoryCode
+  categoryName
+  id
+}

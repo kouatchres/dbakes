@@ -1,0 +1,45 @@
+#import from "../fragments/AnnualClientFragment.gql"
+#import from "../fragments/ClientFragment.gql"
+#import from "../fragments/FinancialYearFragment.gql"
+
+query AllAnnualClients {
+  annualClients {
+    ...AnnualClientFragment
+  }
+}
+
+query SingleAnnualClient($where: AnnualClientWhereUniqueInput!) {
+  annualClient(where: $where) {
+    ...AnnualClientFragment
+  }
+}
+
+query SingleAnnualClientById($id: String!) {
+  annualClientById(id: $id) {
+    ...AnnualClientFragment
+  }
+}
+
+query SingleAnnualClientByYearClient($yearClient: String!) {
+  annualClientByYearClient(yearClient: $yearClient) {
+    ...AnnualClientFragment
+  }
+}
+
+query SingleAnnualClientByPhoneAndYear(
+  $clientId: String!
+  $financialYearId: String!
+) {
+  annualClientByPhoneAndYear(
+    clientId: $clientId
+    financialYearId: $financialYearId
+  ) {
+    ...AnnualClientFragment
+    Client {
+      ...ClientFragment
+    }
+    FinancialYear {
+      ...FinancialYearFragment
+    }
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "workbench.colorCustomizations": {
+    "activityBarBadge.Background": "#abe7e7",
+    "statusBar.noFolderBackground": "#212121",
+    "editorCursor.background": "#000",
+    "editorCursor.foreground": "#d17f05",
+    "tab.activeBackground": "#013161",
+    "tab.inactiveBackground": "#025249",
+    "tab.inactiveForeground": "#fff",
+    "tab.hoverBackground": "#b41",
+    "tab.activeBorderTop": "#ccbbff",
+    "terminal.dropBackground": "#ff0000",
+    "terminal.background": "#bbb",
+    "terminalCursor.foreground": "#fff",
+    "terminal.border": "#ff0000",
+    "terminal.ansiBrightCyan": "#ff0000",
+    "list.activeSelectionBackground": "#CCCC7C",
+    "list.hoverBackground": "#6fc52e7b",
+    "editor.lineHighlightBackground": "#000",
+    "list.activeSelectionForeground": "#000",
+    "editor.findMatchHighlightBorder": "#caca8b",
+    "editor.selectionBackground": "#1aaa64",
+    "editor.selectionForeground": "#2aa707cf",
+    "editor.selectionHighlightBackground": "#80b5b890",
+    "editor.findMatchBackground": "#00cc44a8",
+    "editor.findMatchHighlightBackground": "#ff7b00a1",
+    "tab.activeForeground": "#fff",
+    "editor.hoverHighlightBackground": "#4aa44b",
+    "titleBar.activeBackground": "#a75600",
+    "titleBar.activeForeground": "#000",
+    "titleBar.border": "#fff",
+    "activityBar.activeBackground": "#fff",
+    "activityBar.background": "#a75600",
+    "activityBarBadge.background": "#013161",
+    "activityBarBadge.foreground": "#fff",
+    "activityBar.foreground": "#000",
+    "activityBar.inactiveForeground": "#fff",
+    "statusBar.background": "#013161"
+  },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+    // "terminal.integrated.shell.windows": "C:\\Windows\\sys32\\bash.exe",
+    // "terminal.integrated.shellArgs.windows": ["-c", "zsh"],
+  },
+  // "terminal.integrated.shell.linux": "/user/bin/zsh",
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.defaultProfile.linux": "/user/bin/zsh",
+  "terminal.integrated.fontFamily": "Anonymous Pro for Powerline",
+  // "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "editor.fontLigatures": true,
+  "window.titleBarStyle": "custom",
+  "editor.suggestSelection": "first",
+  "editor.formatOnSave": true,
+  "editor.autoClosingQuotes": "always",
+  "editor.formatOnPaste": true,
+  "explorer.openEditors.visible": 0,
+  "explorer.sortOrder": "default",
+  "git.enableSmartCommit": true,
+  "prettier.enable": true,
+  "typescript.suggest.paths": false,
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/bin": true,
+    "**/.install": true,
+    "**/.next": true,
+    "**/.vscode": true
+  },
+  "prettier.bracketSpacing": true,
+  "prettier.requireConfig": true,
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "material-ui-snippets.showNotesOnStartup": false,
+  "material-ui-snippets.addCompletionImports": true,
+  "diffEditor.renderSideBySide": false,
+  "editor.cursorBlinking": "expand",
+  "terminal.integrated.cursorBlinking": true,
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorStyle": "block",
+  "editor.fontSize": 15,
+  "window.zoomLevel": 1,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Retreon",
+  "editor.fontFamily": " 'InconsolataGo Nerd Font','Fira code', Roboto, Consolas, 'Courier New', monospace",
+  // "editor.fontFamily": "'JetBrainsMono Nerd Font', 'InconsolataGo Nerd Font','Fira code', Roboto, Consolas, 'Courier New', monospace",
+  // "editor.fontFamily": "'Fira code','CaskadiaCove Nerd Font'",
+  "explorer.decorations.colors": true,
+  "colorTabs.config": [
+    {
+      "regex": ".*/mobile/.*",
+      "color": "#dd3161",
+      "label": "MOBILE"
+    },
+    {
+      "regex": ".*/web/.*",
+      "color": "#231aaa"
+    },
+    {
+      "regex": ".*/desktop/.*"
+    }
+  ],
+  // "colorTabs.titleBackground": true,
+  "colorTabs.ignoreCase": true,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "comment",
+        "settings": {
+          "fontStyle": "italic",
+          "foreground": "#C69650"
+        }
+      }
+    ]
+  },
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
+  "WillLuke.nextjs.addTypesOnSave": true,
+  "WillLuke.nextjs.hasPrompted": true,
+  "cSpell.words": ["Sygefex"],
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+  }
+  // "WillLuke.nextjs.addTypesOnSave": true,
+  // "WillLuke.nextjs.hasPrompted": true,
+  // "vscode-edge-devtools.headless": true
+}
+
+// "editor.fontLigatures": true,
+// "editor.formatOnSave": true,
+// "git.ignoreLimitWarning": true,
+// "workbench.colorCustomizations": {
+//   "activityBar.background": "#d17f05",
+//   "activityBar.activeBorder": "#06f997",
+//   "activityBar.foreground": "#013161",
+//   "activityBar.inactiveForeground": "#ffff",
+//   "activityBarBadge.Background": "#e7e7e7",
+//   "titleBar.activeBackground": "#9f6104",
+//   "titleBar.inactiveBackground": "#9f610499",
+//   "titleBar.activeForeground": "#e7e7e7",
+//   "titleBar.inactiveForeground": "#e7e7e799",
+//   "statusBarItem.hoverBackground": "#000",
+//   "activityBar.activeBackground": "#08f1e2",
+//   "editorCursor.background": "#000",
+//   "editorCursor.foreground": "#d17f05"
+// },

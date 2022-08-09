@@ -1,0 +1,13 @@
+#import from "../fragments/OrderDetailFragment.gql"
+
+query AllOrderDetail {
+  orderDetails {
+    ...OrderDetailFragment
+  }
+}
+
+query SingleOrderDetail($where: OrderDetailWhereUniqueInput!) {
+  orderDetail(where: $where) {
+    ...OrderDetailFragment
+  }
+}

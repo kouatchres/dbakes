@@ -1,0 +1,14 @@
+#import * from "./FinancialYearFragment.gql"
+#import * from "./ClientFragment.gql"
+#import * from "./OrderFragment.gql"
+
+fragment AnnualClientFragment on AnnualClient {
+  Client {
+    ...ClientFragment
+  }
+
+  FinancialYear {
+    ...FinancialYearFragment
+  }
+  id
+}

@@ -1,0 +1,7 @@
+#import * from "./ProductFragment.gql"
+#import * from "./ClientFragment.gql"
+
+fragment EmployeeStatusFragment on EmployeeStatus {
+  id
+  status
+}

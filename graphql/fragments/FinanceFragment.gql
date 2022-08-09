@@ -1,0 +1,10 @@
+#import * from "./OrderFragment.gql"
+
+fragment FinanceFragment on Finance {
+  amtPaid
+  orderId
+  id
+  Order {
+    ...OrderFragment
+  }
+}

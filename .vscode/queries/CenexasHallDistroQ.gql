@@ -1,0 +1,31 @@
+#import from "../fragments/CenexasHallDistroFragment.gql"
+
+query AllCenexasHallDistros {
+  cenexasHallDistros {
+    ...CenexasHallDistroFragment
+  }
+}
+
+query SingleCenexasHallDistro($id: String!) {
+  cenexasHallDistro(id: $id) {
+    ...CenexasHallDistroFragment
+  }
+}
+
+# query HallsOfACenexasDistro($centerExamSessionId: String!) {
+#   hallsOfACenexasDistro(centerExamSessionId: $centerExamSessionId) {
+#     ...CenexasHallDistroFragment
+#   }
+# }
+
+# query AllHallsOfACenexasSubject(
+#   $centerExamSessionId: String!
+#   $timetableId: String!
+# ) {
+#   hallsOfACenexasSubject(
+#     centerExamSessionId: $centerExamSessionId
+#     timetableId: $timetableId
+#   ) {
+#     ...CenexasHallDistroFragment
+#   }
+# }

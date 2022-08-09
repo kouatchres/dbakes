@@ -1,0 +1,19 @@
+#import from "../fragments/InventoryFragment.gql"
+
+query AllInventorys {
+  inventories {
+    ...InventoryFragment
+  }
+}
+
+query SingleInventory($where: InventoryWhereUniqueInput!) {
+  inventory(where: $where) {
+    ...InventoryFragment
+  }
+}
+
+query SingleInventoryById($id: String!) {
+  inventoryById(id: $id) {
+    ...InventoryFragment
+  }
+}

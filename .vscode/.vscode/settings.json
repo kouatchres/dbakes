@@ -1,0 +1,91 @@
+{
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#d17f05",
+    "activityBar.activeBorder": "#06f997",
+    "activityBarBadge.foreground": "#fff",
+    "activityBar.foreground": "#013161",
+    "activityBar.inactiveForeground": "#ffff",
+    "activityBarBadge.Background": "#abe7e7",
+    "titleBar.activeBackground": "#9f6104",
+    "titleBar.inactiveBackground": "#9f610499",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveForeground": "#e7e7e799",
+    "statusBar.background": "#013161",
+    "statusBarItem.hoverBackground": "#000",
+    "statusBar.foreground": "#fff",
+    "activityBar.activeBackground": "#08f1e2",
+    "editorCursor.background": "#000",
+    "editorCursor.foreground": "#d17f05",
+    "tab.activeBackground": "#013161",
+    "tab.activeForeground": "#fff",
+    "tab.inactiveBackground": "#025249",
+    "tab.inactiveForeground": "#fff",
+    "tab.hoverBackground": "#b41",
+    "list.activeSelectionBackground": "#CCCC7C",
+    "list.hoverBackground": "#6fc52e7b",
+    "editor.lineHighlightBackground": "#000",
+    "list.activeSelectionForeground": "#000",
+    "editor.findMatchHighlightBorder": "#caca8b",
+    "editor.selectionBackground": "#1aaa64",
+    "editor.selectionForeground": "#2aa707cf",
+    "editor.selectionHighlightBackground": "#80b5b890",
+    "editor.findMatchBackground": "#00cc44a8", //Current SEARCH MATCH,
+    "editor.findMatchHighlightBackground": "#ff7b00a1" //Other SEARCH MATCHES,
+  },
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  // "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  // "terminal.integrated.defaultProfile.windows":"PowerShell" ,
+  "editor.fontLigatures": true,
+  "window.titleBarStyle": "custom",
+  "editor.suggestSelection": "first",
+  "editor.formatOnSave": true,
+  "editor.autoClosingQuotes": "always",
+  "editor.formatOnPaste": true,
+  "explorer.openEditors.visible": 0,
+  "explorer.sortOrder": "default",
+  "git.enableSmartCommit": true,
+  "prettier.enable": true,
+  "typescript.suggest.paths": false,
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/bin": true,
+    "**/.install": true,
+    "**/.next": true,
+    "**/.vscode": true
+  },
+  "prettier.bracketSpacing": true,
+  "prettier.requireConfig": true,
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "diffEditor.renderSideBySide": false,
+  "editor.cursorBlinking": "expand",
+  "terminal.integrated.cursorBlinking": true,
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorStyle": "block",
+  "editor.fontSize": 13,
+  "window.zoomLevel": -1,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Default Dark+",
+  // "editor.fontFamily": "'Fira code', Roboto, Consolas, 'Courier New', monospace",
+  "editor.fontFamily": "'Fira code'",
+  "explorer.decorations.colors": true,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "comment",
+        "settings": {
+          "fontStyle": "italic",
+          "foreground": "#C69650"
+        }
+      }
+    ]
+  },
+  "WillLuke.nextjs.addTypesOnSave": true,
+  "WillLuke.nextjs.hasPrompted": true
+}

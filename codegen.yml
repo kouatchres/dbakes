@@ -1,0 +1,20 @@
+overwrite: true
+schema: 'http://localhost:3000/api/graphql' # GraphQL endpoint
+documents:
+  - 'graphql/**/**/*.gql' # parse gql operations in matching files
+  - 'graphql/**/*.gql' # parse gql operations in matching files
+  - 'graphql/**/*.graphql' # parse graphql operations in matching files
+  - 'graphql/**/**/*.graphql' # parse gql operations in matching files
+generates:
+  generated/graphql.tsx: # location for generated types, hooks and components
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+      - 'typescript-resolvers'
+    config:
+      skipTypename: false,
+      withHooks: true,
+      withHOC: false,
+      withComponent: false,
+      apolloReactHooksImportFrom: '@apollo/client'

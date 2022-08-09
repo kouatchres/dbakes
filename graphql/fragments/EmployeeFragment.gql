@@ -1,0 +1,6 @@
+fragment EmployeeFragment on Employee {
+  employeeNames
+  employeeCode
+  id
+  employeePhoneNumb
+}

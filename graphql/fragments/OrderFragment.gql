@@ -1,0 +1,17 @@
+# import * from "./AnnualClientFragment.gql"
+# import * from "./AnnualBranchEmployeeFragment.gql"
+# import * from "./OrderDetailFragment.gql"
+
+fragment OrderFragment on Order {
+  id
+  orderDate
+  orderTotal
+  totalPaid
+  orderNumber
+  orderDetails {
+    ...OrderDetailFragment
+  }
+  AnnualClient {
+    ...AnnualClientFragment
+  }
+}

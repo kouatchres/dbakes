@@ -1,0 +1,31 @@
+#import from "../fragments/CartFragment.gql"
+
+query AllCarts {
+  carts {
+    ...CartFragment
+  }
+}
+
+query SingleCart($where: CartWhereUniqueInput!) {
+  cart(where: $where) {
+    ...CartFragment
+  }
+}
+
+query SingleCartById($id: String!) {
+  cartById(id: $id) {
+    ...CartFragment
+  }
+}
+
+query cartByAnnualClientIdAndEmployeeId(
+  $annualClientId: String!
+  $annualBranchEmployeeId: String!
+) {
+  cartByAnnualClientIdAndEmplId(
+    annualClientId: $annualClientId
+    annualBranchEmployeeId: $annualBranchEmployeeId
+  ) {
+    ...CartFragment
+  }
+}

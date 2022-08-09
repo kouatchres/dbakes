@@ -1,0 +1,19 @@
+#import from "../fragments/CategoryFragment.gql"
+
+query AllCategories {
+  categories {
+    ...CategoryFragment
+  }
+}
+
+query SingleCategory($where: CategoryWhereUniqueInput!) {
+  category(where: $where) {
+    ...CategoryFragment
+  }
+}
+
+query SingleCategoryById($id: String!) {
+  categoryById(id: $id) {
+    ...CategoryFragment
+  }
+}

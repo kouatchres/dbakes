@@ -1,0 +1,28 @@
+#import AnnualClientFragment from "../fragments/AnnualClientFragment.gql"
+
+mutation createAnnualClient($data: AnnualClientCreateInput!) {
+  createOneAnnualClient(data: $data) {
+    ...AnnualClientFragment
+  }
+}
+
+mutation createAAnnualClient($data: AnnualClientCreateInput!) {
+  createAnnualClient(data: $data) {
+    ...AnnualClientFragment
+  }
+}
+
+mutation deleteAAnnualClient($where: AnnualClientWhereUniqueInput!) {
+  deleteOneAnnualClient(where: $where) {
+    id
+  }
+}
+
+mutation updateAAnnualClient(
+  $data: AnnualClientUpdateInput!
+  $where: AnnualClientWhereUniqueInput!
+) {
+  updateOneAnnualClient(data: $data, where: $where) {
+    ...AnnualClientFragment
+  }
+}

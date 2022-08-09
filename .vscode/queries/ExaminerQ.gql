@@ -1,0 +1,13 @@
+#import from "../fragments/ExaminerFragment.gql"
+
+query AllExaminers {
+  examiners {
+    ...ExaminerFragment
+  }
+}
+
+# query SingleExaminerByMatricule($examinerMatricule: String!) {
+#   examinerByMatricule(examinerMatricule: $examinerMatricule) {
+#     ...ExaminerFragment
+#   }
+# }

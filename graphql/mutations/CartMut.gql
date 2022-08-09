@@ -1,0 +1,25 @@
+#import CartFragment from "../fragments/CartFragment.gql"
+
+mutation createCart($data: CartCreateInput!) {
+  createOneCart(data: $data) {
+    ...CartFragment
+  }
+}
+
+mutation createACart($data: CartCreateInput!) {
+  createCart(data: $data) {
+    ...CartFragment
+  }
+}
+
+mutation deleteACart($where: CartWhereUniqueInput!) {
+  deleteOneCart(where: $where) {
+    id
+  }
+}
+
+mutation updateACart($data: CartUpdateInput!, $where: CartWhereUniqueInput!) {
+  updateOneCart(data: $data, where: $where) {
+    ...CartFragment
+  }
+}

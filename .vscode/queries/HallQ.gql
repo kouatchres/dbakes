@@ -1,0 +1,24 @@
+#import from "../fragments/HallFragment.gql"
+#import from "../fragments/CenterFragment.gql"
+
+query AllHalls {
+  halls {
+    ...HallFragment
+  }
+}
+
+query SingleHall($id: String!) {
+  hall(id: $id) {
+    ...HallFragment
+  }
+}
+
+# query AllHallsOfACenter($centerId: String!) {
+#   hallsOfACenter(centerId: $centerId) {
+#     id
+#     ...HallFragment
+#     Center {
+#       ...CenterFragment
+#     }
+#   }
+# }

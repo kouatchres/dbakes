@@ -1,0 +1,26 @@
+#import from "../fragments/CenterFragment.gql"
+#import from "../fragments/Hallragment.gql"
+
+query AllCenters {
+  centers {
+    ...CenterFragment
+  }
+}
+
+query SingleCenter($id: String!) {
+  centerByID(id: $id) {
+    ...CenterFragment
+  }
+}
+
+# query SingleCenterBySecretCode($centerSecretCode: String!) {
+#   centerBySecretCode(centerSecretCode: $centerSecretCode) {
+#     ...CenterFragment
+#   }
+# }
+
+# query SingleCenterByPublicCode($centerPublicCode: String!) {
+#   centerByPublicCode(centerPublicCode: $centerPublicCode) {
+#     ...CenterFragment
+#   }
+# }

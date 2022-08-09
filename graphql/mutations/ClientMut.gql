@@ -1,0 +1,28 @@
+#import ClientFragment from "../fragments/ClientFragment.gql"
+
+mutation createClient($data: ClientCreateInput!) {
+  createOneClient(data: $data) {
+    ...ClientFragment
+  }
+}
+
+mutation createAClient($data: ClientCreateInput!) {
+  createClient(data: $data) {
+    ...ClientFragment
+  }
+}
+
+mutation deleteAClient($where: ClientWhereUniqueInput!) {
+  deleteOneClient(where: $where) {
+    id
+  }
+}
+
+mutation updateAClient(
+  $data: ClientUpdateInput!
+  $where: ClientWhereUniqueInput!
+) {
+  updateOneClient(data: $data, where: $where) {
+    ...ClientFragment
+  }
+}

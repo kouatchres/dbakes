@@ -1,0 +1,25 @@
+#import from "../fragments/ProductFragment.gql"
+
+query AllProducts {
+  products {
+    ...ProductFragment
+  }
+}
+
+query SingleProduct($where: ProductWhereUniqueInput!) {
+  product(where: $where) {
+    ...ProductFragment
+  }
+}
+
+query SingleProductById($id: String!) {
+  productById(id: $id) {
+    ...ProductFragment
+  }
+}
+
+query AllProductsByCategoryID($categoryId: String!) {
+  productsByCategoryID(categoryId: $categoryId) {
+    ...ProductFragment
+  }
+}

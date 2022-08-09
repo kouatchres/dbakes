@@ -1,0 +1,28 @@
+#import CategoryFragment from "../fragments/CategoryFragment.gql"
+
+mutation createCategory($data: CategoryCreateInput!) {
+  createOneCategory(data: $data) {
+    ...CategoryFragment
+  }
+}
+
+mutation createACategory($data: CategoryCreateInput!) {
+  createCategory(data: $data) {
+    ...CategoryFragment
+  }
+}
+
+mutation deleteACategory($where: CategoryWhereUniqueInput!) {
+  deleteOneCategory(where: $where) {
+    id
+  }
+}
+
+mutation updateACategory(
+  $data: CategoryUpdateInput!
+  $where: CategoryWhereUniqueInput!
+) {
+  updateOneCategory(data: $data, where: $where) {
+    ...CategoryFragment
+  }
+}

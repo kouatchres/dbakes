@@ -1,0 +1,31 @@
+#import from "../fragments/BranchEmployeeFragment.gql"
+
+query AllBranchEmployees {
+  branchEmployees {
+    ...BranchEmployeeFragment
+  }
+}
+
+query SingleBranchEmployee($where: BranchEmployeeWhereUniqueInput!) {
+  branchEmployee(where: $where) {
+    ...BranchEmployeeFragment
+  }
+}
+
+query SingleBranchEmployeeById($id: String!) {
+  branchEmployeeById(id: $id) {
+    ...BranchEmployeeFragment
+  }
+}
+
+query SingleBranchEmployeeByEmployeeIdAndBranchId(
+  $employeeId: String!
+  $branchId: String!
+) {
+  branchEmployeeByEmplIdAndBranchId(
+    employeeId: $employeeId
+    branchId: $branchId
+  ) {
+    ...BranchEmployeeFragment
+  }
+}

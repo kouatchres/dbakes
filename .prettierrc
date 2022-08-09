@@ -1,0 +1,7 @@
+{
+  "filepath": "e:\\examination\\syginexult\\.vscode\\settings.json",
+  "parser": "json",
+  "singleQuote": true,
+  "arrowParens": "avoid",
+  "trailingComma": "none"
+}

@@ -1,0 +1,7 @@
+#import from "../fragments/ScoreFragment.gql"
+
+query AllScores {
+  scores {
+    ...ScoreFragment
+  }
+}

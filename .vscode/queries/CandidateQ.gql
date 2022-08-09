@@ -1,0 +1,50 @@
+#import from "../fragments/CandidateFragment.gql"
+#import from "../fragments/RegistrationFragment.gql"
+#import from "../fragments/ScoreFragment.gql"
+
+query AllCandidates {
+  candidates {
+    ...CandidateFragment
+  }
+}
+
+# query SingleCandidateBySecretCode($candidateSecretCode: String!) {
+#   candidateBySecretCode(candidateSecretCode: $candidateSecretCode) {
+#     ...CandidateFragment
+#   }
+# }
+
+# query SingleCandidateByMatricule($candidateMatricule: String!) {
+#   candidateByMatricule(candidateMatricule: $candidateMatricule) {
+#     ...CandidateFragment
+#   }
+# }
+
+# query SingleCandidateByID($id: String!) {
+#   candidate(id: $id) {
+#     ...CandidateFragment
+#   }
+# }
+
+# query SingleCandidatesRegistrations($candidateSecretCode: String!) {
+#   candidateRegistrationsBySecretCode(
+#     candidateSecretCode: $candidateSecretCode
+#   ) {
+#     ...CandidateFragment
+#     registrations {
+#       ...RegistrationFragment
+#     }
+#   }
+# }
+
+# query RegistrationsOfACandidate($candidateSecretCode: String!) {
+#   candidateRegistrations(candidateSecretCode: $candidateSecretCode) {
+#     ...CandidateFragment
+#     registrations {
+#       ...RegistrationFragment
+#       scores {
+#         ...ScoreFragment
+#       }
+#     }
+#   }
+# }

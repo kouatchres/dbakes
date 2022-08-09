@@ -1,0 +1,28 @@
+#import BranchEmployeeFragment from "../fragments/BranchEmployeeFragment.gql"
+
+mutation createBranchEmployee($data: BranchEmployeeCreateInput!) {
+  createOneBranchEmployee(data: $data) {
+    ...BranchEmployeeFragment
+  }
+}
+
+mutation createABranchEmployee($data: BranchEmployeeCreateInput!) {
+  createBranchEmployee(data: $data) {
+    ...BranchEmployeeFragment
+  }
+}
+
+mutation deleteABranchEmployee($where: BranchEmployeeWhereUniqueInput!) {
+  deleteOneBranchEmployee(where: $where) {
+    id
+  }
+}
+
+mutation updateABranchEmployee(
+  $data: BranchEmployeeUpdateInput!
+  $where: BranchEmployeeWhereUniqueInput!
+) {
+  updateOneBranchEmployee(data: $data, where: $where) {
+    ...BranchEmployeeFragment
+  }
+}

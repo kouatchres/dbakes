@@ -1,0 +1,37 @@
+#import from "../fragments/RegionFragment.gql"
+#import from "../fragments/DivisionFragment.gql"
+#import from "../fragments/SubdivisionFragment.gql"
+
+query AllRegions {
+  regions {
+    ...RegionFragment
+  }
+}
+
+query RegionsAndDivisions {
+  regions {
+    ...RegionFragment
+  }
+  divisions {
+    ...DivisionFragment
+  }
+}
+
+query RegionsDivisionsAndSubdivisions {
+  regions {
+    ...RegionFragment
+  }
+  # divisions {
+  #   ...DivisionFragment
+  # }
+  
+}
+
+query SingleRegion($id: String!) {
+  region(id: $id) {
+    ...RegionFragment
+  #   divisions {
+  #     ...DivisionFragment
+  #   }
+  # }
+}
