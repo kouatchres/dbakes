@@ -2,8 +2,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit';
-import { PrismaCategory } from '@prisma/category';
-import React, { useMemo, useState } from 'react';
+import { PrismaClient } from '@prisma/client';
+import { useMemo, useState } from 'react';
+
 import safeJsonStringify from 'safe-json-stringify';
 import GlassCard from '../utils/GlassCard';
 import CategoryEnhancedTable from './categoryEnhancedTable';
@@ -117,7 +118,7 @@ const CategoryList = ({ categories }) => {
   );
 };
 
-const prisma = new PrismaCategory();
+const prisma = new PrismaClient();
 
 export const getStaticProps = async () => {
   const allCategories = await prisma.category.findMany({

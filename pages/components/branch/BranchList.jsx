@@ -3,12 +3,12 @@ import Tooltip from '@material-ui/core/Tooltip';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit';
 import { PrismaClient } from '@prisma/client';
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import safeJsonStringify from 'safe-json-stringify';
 import GlassCard from '../utils/GlassCard';
-import ClientEnhancedTable from './BranchEnhancedTable';
+import BranchEnhancedTable from './BranchEnhancedTable';
 
-const ClientList = ({ clients }) => {
+const BranchList = ({ branches }) => {
   const [isAddPopupOpen, setIsAddPopupOpen] = useState(false);
   const [isUpdatePopupOpen, setIsUpdatePopupOpen] = useState({
     isOpen: false,
@@ -19,21 +19,21 @@ const ClientList = ({ clients }) => {
     id: ''
   });
 
-  console.log({ clients });
-  const getClients = clients?.map(client => ({ ...client }));
+  // console.log({ branches });
+  // const getBranches = branches?.map(branch => ({ ...branch }));
 
-  console.log({ getClients });
+  // console.log({ getBranches });
 
-  const clientCols = [
+  const branchCols = [
     {
-      Header: 'Client Name',
-      accessor: 'clientNames',
+      Header: 'Branch Name',
+      accessor: 'branchName',
       width: '70rem'
     },
 
     {
-      Header: 'Phone',
-      accessor: 'clientPhoneNumb',
+      Header: 'Branch Code',
+      accessor: 'branchCode',
       width: '10rem'
     },
 
@@ -52,13 +52,13 @@ const ClientList = ({ clients }) => {
               gridGap: '1rem'
             }}
           >
-            <Tooltip title="Update Client">
+            <Tooltip title="Update Branch">
               <IconButton onClick={() => handleUpdatePopupOpen(rowIdx)}>
                 <EditIcon />
               </IconButton>
             </Tooltip>
 
-            <Tooltip title="Delete Client">
+            <Tooltip title="Delete Branch">
               <IconButton onClick={() => handleDeletePopupOpen(rowIdx)}>
                 <DeleteForeverIcon />
               </IconButton>
@@ -69,8 +69,8 @@ const ClientList = ({ clients }) => {
     }
   ];
 
-  const columns = useMemo(() => clientCols, []);
-  const clientData = useMemo(() => getClients, []);
+  const columns = useMemo(() => branchCols, []);
+  const branchData = useMemo(() => branches, []);
 
   const handleChangePage = (event, newPage) => {
     gotoPage(newPage);
@@ -103,10 +103,10 @@ const ClientList = ({ clients }) => {
   return (
     <div>
       <GlassCard blur={3} minWidth="15rem" maxWidth="50rem">
-        <ClientEnhancedTable
+        <BranchEnhancedTable
           columns={columns}
-          data={clientData}
-          title="List of Clients"
+          data={branchData}
+          title="List of Branches"
           handleUpdatePopupChange={handleUpdatePopupChange}
           isUpdatePopupOpen={isUpdatePopupOpen}
           isDeletePopupOpen={isDeletePopupOpen}
@@ -120,13 +120,18 @@ const ClientList = ({ clients }) => {
 const prisma = new PrismaClient();
 
 export const getStaticProps = async () => {
-  const allClients = await prisma.client.findMany({
-    orderBy: [{ clientNames: 'asc' }, { clientPhoneNumb: 'asc' }]
+  //  const apolloClient = initializeApollo();
+  // const getAllBranches = await apolloClient.query({
+  //   query: AllBranchesDocument
+  // });
+  // console.log({ getAllBranches });
+  const allBranches = await prisma.branch.findMany({
+    orderBy: [{ branchName: 'asc' }, {branchCode: 'asc'}]
   });
 
-  const stringifiedData = safeJsonStringify(allClients);
-  const clients = JSON.parse(stringifiedData);
-  return { props: { clients } };
+  const stringifiedData = safeJsonStringify(allBranches);
+  const branches = JSON.parse(stringifiedData);
+  return { props: { branches } };
 };
 
-export default ClientList;
+export default BranchList;

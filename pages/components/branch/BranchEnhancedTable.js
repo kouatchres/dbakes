@@ -20,8 +20,8 @@ import {
   useTable
 } from 'react-table';
 import {
-  AllClientsDocument,
-  useDeleteAClientMutation
+  AllBranchesDocument,
+  useDeleteABranchMutation
 } from '../../../generated/graphql';
 import TablePaginationActions from '../table/TablePaginationActions';
 import TableToolbar from '../table/TableToolbar';
@@ -30,8 +30,8 @@ import ConfirmDialog from '../utils/ConfirmDialog';
 import Notification from '../utils/Notification';
 import SygefexTheme from '../utils/SygefexTheme';
 import UpdatePopup from '../utils/UpdatePopup';
-import CreateClient from './createBranch';
-import UpdateClient from './UpdateBranch';
+import CreateBranch from './createBranch';
+import UpdateBranch from './UpdateBranch';
 
 const useStyles = makeStyles(theme =>
   createStyles({
@@ -114,7 +114,7 @@ const defaultColumn = {
   Cell: EditableCell
 };
 
-const ClientEnhancedTable = ({
+const BranchEnhancedTable = ({
   columns,
   data,
   isUpdatePopupOpen,
@@ -166,18 +166,18 @@ const ClientEnhancedTable = ({
     setIsAddPopupOpen(!isAddPopupOpen);
   };
 
-  const [deleteAClientMutation, { data: dataClientDelete, loading, error }] =
-    useDeleteAClientMutation();
+  const [deleteABranchMutation, { data: dataBranchDelete, loading, error }] =
+    useDeleteABranchMutation();
 
-  const handleDeleteClientConfirm = () => {
-    deleteAClientMutation({
+  const handleDeleteBranchConfirm = () => {
+    deleteABranchMutation({
       variables: { where: { id: isDeletePopupOpen.id } },
-      refetchQueries: [{ query: AllClientsDocument }]
+      refetchQueries: [{ query: AllBranchesDocument }]
     });
 
     setNotify({
       isOpen: true,
-      message: 'Client sucessfully deleted',
+      message: 'Branch sucessfully deleted',
       type: 'success'
     });
     handleDeletePopupChange();
@@ -278,30 +278,30 @@ const ClientEnhancedTable = ({
           </TableRow>
         </TableFooter>
         <ConfirmDialog
-          title="Client Deletion"
-          content="Do you realy wanto delete this client?"
+          title="Branch Deletion"
+          content="Do you realy want to delete this branch?"
           isOpen={isDeletePopupOpen.isOpen}
           onClose={handleDeletePopupChange}
-          onConfirm={handleDeleteClientConfirm}
+          onConfirm={handleDeleteBranchConfirm}
         />
         <AddPopup
           maxWidth="sm"
-          title="New Client"
+          title="New Branch"
           isOpen={isAddPopupOpen}
           onClose={handleAddPopupChange}
         >
-          <CreateClient />
+          <CreateBranch />
         </AddPopup>
         <UpdatePopup
-          title="Update Client"
+          title="Update Branch"
           isOpen={isUpdatePopupOpen.isOpen}
           onClose={handleUpdatePopupChange}
         >
-          <UpdateClient id={isUpdatePopupOpen.id} />
+          <UpdateBranch id={isUpdatePopupOpen.id} />
         </UpdatePopup>
       </MaUTable>
       <Notification notify={notify} setNotify={setNotify} />
     </TableContainer>
   );
 };
-export default ClientEnhancedTable;
+export default BranchEnhancedTable;

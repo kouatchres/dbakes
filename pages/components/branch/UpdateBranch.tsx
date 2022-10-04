@@ -8,12 +8,11 @@ import {
 } from '@material-ui/core';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { TextField } from 'material-ui-formik-components/TextField';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import {
   BranchUpdateInput,
-  SingleBranchDocument,
-  useSingleBranchByIdLazyQuery,
+  SingleBranchDocument, useSingleBranchLazyQuery,
   useUpdateABranchMutation
 } from '../../../generated/graphql';
 import GlassCard from '../utils/GlassCard';
@@ -22,44 +21,48 @@ import SygefexTheme from '../utils/SygefexTheme';
 
 const validationSchema = Yup.object().shape({
   branchNames: Yup.string().required('Branch Name required'),
-  branchPhoneNumb: Yup.number().required('Branch phone required')
+  branchCode: Yup.number().required('Branch phone required')
 });
 
 const UpdateBranch = (props: { id: string }) => {
   const getBranchID = props?.id;
+  console.log({getBranchID})
   const [notify, setNotify] = useState({
     isOpen: false,
     message: '',
     type: ''
   });
 
-  const [SingleBranchByIdQuery, { data: dataBranch }] =
-    useSingleBranchByIdLazyQuery({
+  const [SingleBranchQuery, { data: dataBranch }] =
+    useSingleBranchLazyQuery({
       query: SingleBranchDocument
     });
 
   useEffect(() => {
-    SingleBranchByIdQuery({ variables: { id: getBranchID } });
+    SingleBranchQuery({ variables: {where:{ id: getBranchID} } });
   }, [getBranchID]);
 
-  console.log(dataBranch?.branchById);
+  console.log({props});
+  console.log({dataBranch});
 
   const initialValues: BranchUpdateInput = {
     branchName: '' || undefined,
+    branchCode: '' || undefined,
     id: '' || undefined
   };
 
   const [updateABranchMutation] = useUpdateABranchMutation();
   return (
     <Formik
-      initialValues={dataBranch?.branchById || initialValues}
+      initialValues={dataBranch?.branch || initialValues}
       enableReinitialize={true}
       validationSchema={validationSchema}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
         const res = await updateABranchMutation({
           variables: {
             data: {
-              branchName: { set: String(values?.branchName) }
+              branchName: { set: String(values?.branchName) },
+              branchCode: { set: String(values?.branchCode) },
             },
             where: { id: getBranchID }
           }
@@ -143,22 +146,22 @@ const UpdateBranch = (props: { id: string }) => {
                   <Grid container direction="column">
                     <Grid item>
                       <Field
-                        name="branchNames"
+                        name="branchName"
                         component={TextField}
                         type="text"
                         label="Branch Name"
                         disabled={isSubmitting}
-                        helpertext={<ErrorMessage name="branchNames" />}
+                        helpertext={<ErrorMessage name="branchName" />}
                       />
 
-                      <Field
-                        name="branchPhoneNumb"
+                     <Field
+                        name="branchCode"
                         component={TextField}
-                        type="number"
-                        label="Branch Phone Number"
+                        type="text"
+                        label="Branch code"
                         disabled={isSubmitting}
-                        helpertext={<ErrorMessage name="branchPhoneNumb" />}
-                      />
+                        helpertext={<ErrorMessage name="branchCode" />}
+                      /> 
                       <Notification notify={notify} setNotify={setNotify} />
                       <div style={{ placeItems: 'center', display: 'grid' }}>
                         <Button disabled={isSubmitting} onClick={submitForm}>

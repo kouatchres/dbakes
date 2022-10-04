@@ -1,1 +1,0 @@
-Set-PoshPrompt -Theme Paradox

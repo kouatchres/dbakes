@@ -8,9 +8,11 @@ import {
   Tooltip,
   Typography
 } from '@material-ui/core';
+import randomize from 'randomatic';
+
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { TextField } from 'material-ui-formik-components/TextField';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import * as Yup from 'yup';
 import DisplayError from '../../ErrorMessage';
 import GlassCard from '../utils/GlassCard';
@@ -22,7 +24,7 @@ const validationSchema = Yup.object().shape({
   categoryName: Yup.string().required('Libellé Poste requis')
 });
 
-const CreateCategory = () => {
+const CreateCategory = (props) => {
   const [notify, setNotify] = useState({
     isOpen: false,
     message: '',
@@ -43,7 +45,12 @@ const CreateCategory = () => {
       validationSchema={validationSchema}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
         const res = await createACategoryMutation({
-          variables: { data: values }
+          variables: {
+             data: {
+              ...values,
+              categoryCode: randomize('Aa0', 7)
+            }
+           }
 
           // update: (cache, { data }) => {
           //   const allCategorys = cache.readQuery<AllCategorysQuery>({

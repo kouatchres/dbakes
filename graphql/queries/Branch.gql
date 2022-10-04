@@ -12,11 +12,11 @@ query SingleBranch($where: BranchWhereUniqueInput!) {
   }
 }
 
-query SingleBranchById($id: String!) {
-  branchById(id: $id) {
-    ...BranchFragment
-  }
-}
+# query SingleBranchById($where: BranchWhereUniqueInput!) {
+#   branchById(where: $where) {
+#     ...BranchFragment
+#   }
+# }
 
 query SingleBranchByBranchCode($branchCode: String!) {
   branchByBranchCode(branchCode: $branchCode) {

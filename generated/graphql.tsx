@@ -4427,13 +4427,6 @@ export type SingleBranchQueryVariables = Exact<{
 
 export type SingleBranchQuery = { branch?: Maybe<BranchFragmentFragment> };
 
-export type SingleBranchByIdQueryVariables = Exact<{
-  id: Scalars['String'];
-}>;
-
-
-export type SingleBranchByIdQuery = { branchById?: Maybe<BranchFragmentFragment> };
-
 export type SingleBranchByBranchCodeQueryVariables = Exact<{
   branchCode: Scalars['String'];
 }>;
@@ -8982,60 +8975,6 @@ export function useSingleBranchLazyQuery(baseOptions?: ApolloReactHooks.LazyQuer
 export type SingleBranchQueryHookResult = ReturnType<typeof useSingleBranchQuery>;
 export type SingleBranchLazyQueryHookResult = ReturnType<typeof useSingleBranchLazyQuery>;
 export type SingleBranchQueryResult = Apollo.QueryResult<SingleBranchQuery, SingleBranchQueryVariables>;
-export const SingleBranchByIdDocument = gql`
-    query SingleBranchById($id: String!) {
-  branchById(id: $id) {
-    ...BranchFragment
-  }
-}
-    ${BranchFragmentFragmentDoc}`;
-export type SingleBranchByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<SingleBranchByIdQuery, SingleBranchByIdQueryVariables>, 'query'> & ({ variables: SingleBranchByIdQueryVariables; skip?: boolean; } | { skip: boolean; });
-
-    export const SingleBranchByIdComponent = (props: SingleBranchByIdComponentProps) => (
-      <ApolloReactComponents.Query<SingleBranchByIdQuery, SingleBranchByIdQueryVariables> query={SingleBranchByIdDocument} {...props} />
-    );
-    
-export type SingleBranchByIdProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<SingleBranchByIdQuery, SingleBranchByIdQueryVariables>
-    } & TChildProps;
-export function withSingleBranchById<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  SingleBranchByIdQuery,
-  SingleBranchByIdQueryVariables,
-  SingleBranchByIdProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, SingleBranchByIdQuery, SingleBranchByIdQueryVariables, SingleBranchByIdProps<TChildProps, TDataName>>(SingleBranchByIdDocument, {
-      alias: 'singleBranchById',
-      ...operationOptions
-    });
-};
-
-/**
- * __useSingleBranchByIdQuery__
- *
- * To run a query within a React component, call `useSingleBranchByIdQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleBranchByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSingleBranchByIdQuery({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function useSingleBranchByIdQuery(baseOptions: ApolloReactHooks.QueryHookOptions<SingleBranchByIdQuery, SingleBranchByIdQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<SingleBranchByIdQuery, SingleBranchByIdQueryVariables>(SingleBranchByIdDocument, options);
-      }
-export function useSingleBranchByIdLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleBranchByIdQuery, SingleBranchByIdQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<SingleBranchByIdQuery, SingleBranchByIdQueryVariables>(SingleBranchByIdDocument, options);
-        }
-export type SingleBranchByIdQueryHookResult = ReturnType<typeof useSingleBranchByIdQuery>;
-export type SingleBranchByIdLazyQueryHookResult = ReturnType<typeof useSingleBranchByIdLazyQuery>;
-export type SingleBranchByIdQueryResult = Apollo.QueryResult<SingleBranchByIdQuery, SingleBranchByIdQueryVariables>;
 export const SingleBranchByBranchCodeDocument = gql`
     query SingleBranchByBranchCode($branchCode: String!) {
   branchByBranchCode(branchCode: $branchCode) {

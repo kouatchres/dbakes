@@ -20,7 +20,7 @@ import {
   useTable
 } from 'react-table';
 import {
-  AllCategorysDocument,
+  AllCategoriesDocument,
   useDeleteACategoryMutation
 } from '../../../generated/graphql';
 import TablePaginationActions from '../table/TablePaginationActions';
@@ -174,7 +174,7 @@ const CategoryEnhancedTable = ({
   const handleDeleteCategoryConfirm = () => {
     deleteACategoryMutation({
       variables: { where: { id: isDeletePopupOpen.id } },
-      refetchQueries: [{ query: AllCategorysDocument }]
+      refetchQueries: [{ query: AllCategoriesDocument }]
     });
 
     setNotify({
@@ -281,7 +281,7 @@ const CategoryEnhancedTable = ({
         </TableFooter>
         <ConfirmDialog
           title="Category Deletion"
-          content="Do you realy wanto delete this client?"
+          content="Do you realy want to delete this client?"
           isOpen={isDeletePopupOpen.isOpen}
           onClose={handleDeletePopupChange}
           onConfirm={handleDeleteCategoryConfirm}

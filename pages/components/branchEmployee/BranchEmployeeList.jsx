@@ -3,7 +3,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit';
 import { PrismaClient } from '@prisma/client';
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import safeJsonStringify from 'safe-json-stringify';
 import GlassCard from '../utils/GlassCard';
 import ClientEnhancedTable from './BranchEmployeeEnhancedTable';
@@ -106,7 +106,7 @@ const ClientList = ({ clients }) => {
         <ClientEnhancedTable
           columns={columns}
           data={clientData}
-          title="List of Clients"
+          title="List of Branches"
           handleUpdatePopupChange={handleUpdatePopupChange}
           isUpdatePopupOpen={isUpdatePopupOpen}
           isDeletePopupOpen={isDeletePopupOpen}

@@ -14,7 +14,7 @@ export const branch = extendType({
         data: nonNull(arg({ type: 'BranchCreateInput' }))
       },
 
-      resolve: async (_, { data }, { prisma, userId }) => {
+      resolve: async (_, { data }, { prisma }) => {
         // const wasRegistered = (
         //   await prisma.branch.findUnique({
         //     where: {
@@ -43,5 +43,23 @@ export const branch = extendType({
         });
       }
     });
+
+    // t.field('updateBranch', {
+    //   type: 'Branch',
+    //   description: 'updates a branch manually',
+    //   args: {
+    //     where: nonNull(arg({ type: 'BranchWhereUniqueInput' })),
+    //     data: arg({ type: 'BranchUpdateInput' }),
+    //   },
+
+    //   resolve: async (_, {data, where: { id } }, { prisma }) => {
+    //     return await prisma.branch.update({
+    //       variables:{
+    //         data:{data},
+    //         where: { id: String(id) }
+    //       }
+    //     });
+    //   }
+    // });
   }
 });

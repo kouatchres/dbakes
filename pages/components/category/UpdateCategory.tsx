@@ -8,12 +8,12 @@ import {
 } from '@material-ui/core';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { TextField } from 'material-ui-formik-components/TextField';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import {
   CategoryUpdateInput,
   SingleCategoryDocument,
-  useSingleCategoryByIdLazyQuery,
+  useSingleCategoryLazyQuery,
   useUpdateACategoryMutation
 } from '../../../generated/graphql';
 import GlassCard from '../utils/GlassCard';
@@ -32,26 +32,27 @@ const UpdateCategory = (props: { id: string }) => {
     type: ''
   });
 
-  const [SingleCategoryByIdQuery, { data: dataCategory }] =
-    useSingleCategoryByIdLazyQuery({
+  const [SingleCategoryQuery, { data: dataCategory }] =
+    useSingleCategoryLazyQuery({
       query: SingleCategoryDocument
     });
 
   useEffect(() => {
-    SingleCategoryByIdQuery({ variables: { id: getCategoryID } });
+    SingleCategoryQuery({ variables: { where:{id: getCategoryID }} });
   }, [getCategoryID]);
 
-  console.log(dataCategory?.categoryById);
+  console.log(dataCategory?.category);
 
   const initialValues: CategoryUpdateInput = {
     categoryName: '' || undefined,
+    categoryCode: '' || undefined,
     id: '' || undefined
   };
 
   const [updateACategoryMutation] = useUpdateACategoryMutation();
   return (
     <Formik
-      initialValues={dataCategory?.categoryById || initialValues}
+      initialValues={dataCategory?.category || initialValues}
       enableReinitialize={true}
       validationSchema={validationSchema}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
@@ -122,7 +123,7 @@ const UpdateCategory = (props: { id: string }) => {
                     <Grid item>
                       <Tooltip
                         placement="top"
-                        title="Enrégistrer une nouvelle Poste"
+                        title="Update Category"
                       >
                         <Typography
                           color="primary"
@@ -151,12 +152,12 @@ const UpdateCategory = (props: { id: string }) => {
                       />
 
                       <Field
-                        name="categoryPhoneNumb"
+                        name="categoryCode"
                         component={TextField}
-                        type="number"
-                        label="Category Phone Number"
+                        type="text"
+                        label="Category Code"
                         disabled={isSubmitting}
-                        helpertext={<ErrorMessage name="categoryPhoneNumb" />}
+                        helpertext={<ErrorMessage name="categoryCode" />}
                       />
                       <Notification notify={notify} setNotify={setNotify} />
                       <div style={{ placeItems: 'center', display: 'grid' }}>
