@@ -8,72 +8,73 @@ import {
 } from '@material-ui/core';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { TextField } from 'material-ui-formik-components/TextField';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import {
-  BranchUpdateInput,
-  SingleBranchDocument,
-  useSingleBranchByIdLazyQuery,
-  useUpdateABranchMutation
+  EmployeeUpdateInput,
+  SingleEmployeeDocument,
+  useSingleEmployeeLazyQuery,
+  useUpdateAEmployeeMutation
 } from '../../../generated/graphql';
 import GlassCard from '../utils/GlassCard';
 import Notification from '../utils/Notification';
 import SygefexTheme from '../utils/SygefexTheme';
 
 const validationSchema = Yup.object().shape({
-  branchNames: Yup.string().required('Branch Name required'),
-  branchPhoneNumb: Yup.number().required('Branch phone required')
+  employeeNames: Yup.string().required('Employee Name required'),
+  employeePhoneNumb: Yup.number().required('Employee phone required')
 });
 
-const UpdateBranch = (props: { id: string }) => {
-  const getBranchID = props?.id;
+const UpdateEmployee = (props:{id:string}) => {
+  const getEmployeeID = props?.id;
   const [notify, setNotify] = useState({
     isOpen: false,
     message: '',
     type: ''
   });
 
-  const [SingleBranchByIdQuery, { data: dataBranch }] =
-    useSingleBranchByIdLazyQuery({
-      query: SingleBranchDocument
+  const [SingleEmployeeQuery, { data: dataEmployee }] =
+    useSingleEmployeeLazyQuery({
+      query: SingleEmployeeDocument
     });
 
   useEffect(() => {
-    SingleBranchByIdQuery({ variables: { id: getBranchID } });
-  }, [getBranchID]);
+    SingleEmployeeQuery({ variables: {where:{ id: getEmployeeID }} });
+  }, [getEmployeeID]);
 
-  console.log(dataBranch?.branchById);
+  console.log(dataEmployee?.employee);
 
-  const initialValues: BranchUpdateInput = {
-    branchName: '' || undefined,
+  const initialValues: EmployeeUpdateInput = {
+    employeeNames: '' || undefined,
     id: '' || undefined
   };
 
-  const [updateABranchMutation] = useUpdateABranchMutation();
+  const [updateAEmployeeMutation] = useUpdateAEmployeeMutation();
   return (
     <Formik
-      initialValues={dataBranch?.branchById || initialValues}
+      initialValues={dataEmployee?.employee || initialValues}
       enableReinitialize={true}
       validationSchema={validationSchema}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
-        const res = await updateABranchMutation({
+        const res = await updateAEmployeeMutation({
           variables: {
             data: {
-              branchName: { set: String(values?.branchName) }
+              employeeNames: { set: String(values?.employeeNames) },
+              employeePhoneNumb: { set: Number(values?.employeePhoneNumb) },
             },
-            where: { id: getBranchID }
+            where: { id: getEmployeeID }
           }
 
           //   update: (cache, { data }) => {
-          //     const allBranchsList = cache.readQuery({
-          //       query: AllBranchsDocument
+          //     const allEmployeesList = cache.readQuery({
+          //       query: AllEmployeesDocument
           //     });
-          //     // allBranchsList?.Branchs = [...allBranchsList?.Branchs, updateOneBranch];
+          //     // allEmployeesList?.Employees = [...allEmployeesList?.Employees, updateOneEmployee];
           //     console.log('running the update query');
-          //     console.log({ allBranchsList });
+          //     console.log({ allEmployeesList });
           //     cache.writeQuery({
-          //       query: AllBranchsDocument,
-          //       data: [allBranchsList, data?.updateOneBranch]
+          //       query: AllEmployeesDocument,
+          //       data: [allEmployeesList, data?.updateOneEmployee]
           //     });
           //   }
         });
@@ -135,7 +136,7 @@ const UpdateBranch = (props: { id: string }) => {
                             fontSize: 'clamp(0.6rem, 3vw + 0.5rem, 2rem)'
                           }}
                         >
-                          Update Branch
+                          Update Employee
                         </Typography>
                       </Tooltip>
                     </Grid>
@@ -143,21 +144,21 @@ const UpdateBranch = (props: { id: string }) => {
                   <Grid container direction="column">
                     <Grid item>
                       <Field
-                        name="branchNames"
+                        name="employeeNames"
                         component={TextField}
                         type="text"
-                        label="Branch Name"
+                        label="Employee Name"
                         disabled={isSubmitting}
-                        helpertext={<ErrorMessage name="branchNames" />}
+                        helpertext={<ErrorMessage name="employeeNames" />}
                       />
 
                       <Field
-                        name="branchPhoneNumb"
+                        name="employeePhoneNumb"
                         component={TextField}
                         type="number"
-                        label="Branch Phone Number"
+                        label="Employee Phone Number"
                         disabled={isSubmitting}
-                        helpertext={<ErrorMessage name="branchPhoneNumb" />}
+                        helpertext={<ErrorMessage name="employeePhoneNumb" />}
                       />
                       <Notification notify={notify} setNotify={setNotify} />
                       <div style={{ placeItems: 'center', display: 'grid' }}>
@@ -176,4 +177,4 @@ const UpdateBranch = (props: { id: string }) => {
     </Formik>
   );
 };
-export default UpdateBranch;
+export default UpdateEmployee;

@@ -8,12 +8,12 @@ import {
 } from '@material-ui/core';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { TextField } from 'material-ui-formik-components/TextField';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import {
   ClientUpdateInput,
-  SingleClientByIdDocument,
-  useSingleClientByIdLazyQuery,
+  SingleClientDocument,
+  useSingleClientLazyQuery,
   useUpdateAClientMutation
 } from '../../../generated/graphql';
 import GlassCard from '../utils/GlassCard';
@@ -25,7 +25,7 @@ const validationSchema = Yup.object().shape({
   clientPhoneNumb: Yup.number().required('Client price required')
 });
 
-const UpdateClient = (props: { id: string }) => {
+const UpdateClient = (props:{id:string}) => {
   const getClientID = props?.id;
   const [notify, setNotify] = useState({
     isOpen: false,
@@ -33,16 +33,16 @@ const UpdateClient = (props: { id: string }) => {
     type: ''
   });
 
-  const [SingleClientByIdQuery, { data: dataClients }] =
-    useSingleClientByIdLazyQuery({
-      query: SingleClientByIdDocument
+  const [SingleClientQuery, { data: dataClients }] =
+    useSingleClientLazyQuery({
+      query: SingleClientDocument
     });
 
   useEffect(() => {
-    SingleClientByIdQuery({ variables: { id: getClientID } });
+    SingleClientQuery({ variables: { where:{ id: getClientID }} });
   }, [getClientID]);
 
-  console.log(dataClients?.clientById);
+  console.log(dataClients?.client);
 
   const initialValues: ClientUpdateInput = {
     clientNames: '' || undefined,
@@ -55,15 +55,15 @@ const UpdateClient = (props: { id: string }) => {
   console.log({ clientData });
   return (
     <Formik
-      initialValues={dataClients?.clientById || initialValues}
+      initialValues={dataClients?.client || initialValues}
       enableReinitialize={true}
       validationSchema={validationSchema}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
         const res = await updateAClientMutation({
           variables: {
             data: {
-              clientNames: { set: values?.clientNames },
-              clientPhoneNumb: { set: Number() }
+              clientNames: { set: String(values?.clientNames) },
+              clientPhoneNumb: { set: Number(values?.clientPhoneNumb) }
             },
             where: { id: props?.id }
           }

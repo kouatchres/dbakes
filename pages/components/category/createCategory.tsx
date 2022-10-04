@@ -24,7 +24,7 @@ const validationSchema = Yup.object().shape({
   categoryName: Yup.string().required('Libellé Poste requis')
 });
 
-const CreateCategory = (props) => {
+const CreateCategory =(props:any) => {
   const [notify, setNotify] = useState({
     isOpen: false,
     message: '',

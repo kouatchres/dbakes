@@ -2,13 +2,13 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit';
-import { PrismaClient } from '@prisma/client';
-import React, { useMemo, useState } from 'react';
+import { PrismaEmployee } from '@prisma/employee';
+import { useMemo, useState } from 'react';
 import safeJsonStringify from 'safe-json-stringify';
 import GlassCard from '../utils/GlassCard';
-import ClientEnhancedTable from './EmployeeEnhancedTable';
+import EmployeeEnhancedTable from './EmployeeEnhancedTable';
 
-const ClientList = ({ clients }) => {
+const EmployeeList = ({ employees }) => {
   const [isAddPopupOpen, setIsAddPopupOpen] = useState(false);
   const [isUpdatePopupOpen, setIsUpdatePopupOpen] = useState({
     isOpen: false,
@@ -19,21 +19,21 @@ const ClientList = ({ clients }) => {
     id: ''
   });
 
-  console.log({ clients });
-  const getClients = clients?.map(client => ({ ...client }));
+  console.log({ employees });
+  const getEmployees = employees?.map(employee => ({ ...employee }));
 
-  console.log({ getClients });
+  console.log({ getEmployees });
 
-  const clientCols = [
+  const employeeCols = [
     {
-      Header: 'Client Name',
-      accessor: 'clientNames',
+      Header: 'Employee Name',
+      accessor: 'employeeNames',
       width: '70rem'
     },
 
     {
       Header: 'Phone',
-      accessor: 'clientPhoneNumb',
+      accessor: 'employeePhoneNumb',
       width: '10rem'
     },
 
@@ -52,13 +52,13 @@ const ClientList = ({ clients }) => {
               gridGap: '1rem'
             }}
           >
-            <Tooltip title="Update Client">
+            <Tooltip title="Update Employee">
               <IconButton onClick={() => handleUpdatePopupOpen(rowIdx)}>
                 <EditIcon />
               </IconButton>
             </Tooltip>
 
-            <Tooltip title="Delete Client">
+            <Tooltip title="Delete Employee">
               <IconButton onClick={() => handleDeletePopupOpen(rowIdx)}>
                 <DeleteForeverIcon />
               </IconButton>
@@ -69,8 +69,8 @@ const ClientList = ({ clients }) => {
     }
   ];
 
-  const columns = useMemo(() => clientCols, []);
-  const clientData = useMemo(() => getClients, []);
+  const columns = useMemo(() => employeeCols, []);
+  const employeeData = useMemo(() => getEmployees, []);
 
   const handleChangePage = (event, newPage) => {
     gotoPage(newPage);
@@ -103,10 +103,10 @@ const ClientList = ({ clients }) => {
   return (
     <div>
       <GlassCard blur={3} minWidth="15rem" maxWidth="50rem">
-        <ClientEnhancedTable
+        <EmployeeEnhancedTable
           columns={columns}
-          data={clientData}
-          title="List of Clients"
+          data={employeeData}
+          title="List of Employees"
           handleUpdatePopupChange={handleUpdatePopupChange}
           isUpdatePopupOpen={isUpdatePopupOpen}
           isDeletePopupOpen={isDeletePopupOpen}
@@ -117,16 +117,16 @@ const ClientList = ({ clients }) => {
   );
 };
 
-const prisma = new PrismaClient();
+const prisma = new PrismaEmployee();
 
 export const getStaticProps = async () => {
-  const allClients = await prisma.client.findMany({
-    orderBy: [{ clientNames: 'asc' }, { clientPhoneNumb: 'asc' }]
+  const allEmployees = await prisma.employee.findMany({
+    orderBy: [{ employeeNames: 'asc' }, { employeePhoneNumb: 'asc' }]
   });
 
-  const stringifiedData = safeJsonStringify(allClients);
-  const clients = JSON.parse(stringifiedData);
-  return { props: { clients } };
+  const stringifiedData = safeJsonStringify(allEmployees);
+  const employees = JSON.parse(stringifiedData);
+  return { props: { employees } };
 };
 
-export default ClientList;
+export default EmployeeList;

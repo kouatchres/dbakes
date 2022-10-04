@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { TextField } from 'material-ui-formik-components/TextField';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import * as Yup from 'yup';
 import {
   ClientCreateInput,
@@ -26,7 +26,7 @@ const validationSchema = Yup.object().shape({
   clientPhoneNumb: Yup.string().required('Client phone number required')
 });
 
-const CreateClient = (props: any) => {
+const CreateClient =()=> {
   // const classes = useStyles();
 
   const [notify, setNotify] = useState({

@@ -11,7 +11,7 @@ import {
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { TextField } from 'material-ui-formik-components/TextField';
 import randomize from 'randomatic';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import * as Yup from 'yup';
 import {
   BranchCreateInput,
@@ -27,7 +27,7 @@ const validationSchema = Yup.object().shape({
   branchName: Yup.string().required('Libellé Poste requis')
 });
 
-const CreateBranch = (props: any) => {
+const CreateBranch =(props:any) => {
   // const classes = useStyles();
   const { user } = useUser();
 
