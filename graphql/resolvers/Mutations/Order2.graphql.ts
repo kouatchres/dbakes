@@ -20,10 +20,8 @@ export const order = extendType({
         console.log({ userId });
         const clientCartItems = await prisma.cart.findMany({
           where: {
-            annualClientId: String(data?.AnnualClient?.connect?.id),
-            annualBranchEmployeeId: String(
-              data?.AnnualBranchEmployee?.connect?.id
-            )
+            annualClientId: String(data?.Client?.connect?.id),
+            annualBranchEmployeeId: String(data?.Employee?.connect?.id)
           }
         });
         if (!clientCartItems) {
@@ -61,11 +59,11 @@ export const order = extendType({
           data: {
             ...data,
             orderTotal: calcOrderTotal(clientCartItems),
-            AnnualClient: {
-              connect: { id: String(data?.AnnualClient?.connect?.id) }
+            Client: {
+              connect: { id: String(data?.Client?.connect?.id) }
             },
-            AnnualBranchEmployee: {
-              connect: { id: String(data?.AnnualBranchEmployee?.connect?.id) }
+            Employee: {
+              connect: { id: String(data?.Employee?.connect?.id) }
             },
             orderDetails: {
               createMany: {

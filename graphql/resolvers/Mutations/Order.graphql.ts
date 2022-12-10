@@ -19,10 +19,8 @@ export const order = extendType({
       resolve: async (_, { data }, { prisma }) => {
         const clientCartItems = await prisma.cart.findMany({
           where: {
-            annualClientId: String(data?.AnnualClient?.connect?.id),
-            annualBranchEmployeeId: String(
-              data?.AnnualBranchEmployee?.connect?.id
-            )
+            clientId: String(data?.Client?.connect?.id),
+            employeeId: String(data?.Employee?.connect?.id)
           }
         });
         if (!clientCartItems) {
@@ -46,6 +44,22 @@ export const order = extendType({
             productId: item?.productId
           })
         );
+
+        const cartItemQtty = clientCartItems?.map(
+          (item: { productId: string; qtty: 0 }) => ({
+            cartItemQtty: item?.qtty,
+            productId: item?.productId
+          })
+        );
+
+        //     const pdtItemQtty = await prisma.product.findMany({
+        //       where: {
+        //         id: {
+        //   in: users.map(user => user.user_id)
+        // },
+        //   }
+        // });
+
         // console.log({ clientCartItems });
         const calcOrderTotal = (clientCart: OrderDetail[]) => {
           const orderTotal =
@@ -59,11 +73,11 @@ export const order = extendType({
             data: {
               ...data,
               orderTotal: calcOrderTotal(clientCartItems),
-              AnnualClient: {
-                connect: { id: String(data?.AnnualClient?.connect?.id) }
+              client: {
+                connect: { id: String(data?.Client?.connect?.id) }
               },
-              AnnualBranchEmployee: {
-                connect: { id: String(data?.AnnualBranchEmployee?.connect?.id) }
+              Employee: {
+                connect: { id: String(data?.Employee?.connect?.id) }
               },
               orderDetails: {
                 createMany: {
@@ -79,10 +93,8 @@ export const order = extendType({
           }),
           prisma.cart.deleteMany({
             where: {
-              annualClientId: String(data?.AnnualClient?.connect?.id),
-              annualBranchEmployeeId: String(
-                data?.AnnualBranchEmployee?.connect?.id
-              )
+              clientId: String(data?.Client?.connect?.id),
+              EmployeeId: String(data?.Employee?.connect?.id)
             }
           })
         ]);
@@ -93,9 +105,9 @@ export const order = extendType({
         // ]);
         // return await prisma.cart.deleteMany({
         //   where: {
-        //     annualClientId: String(data?.AnnualClient?.connect?.id),
-        //     annualBranchEmployeeId: String(
-        //       data?.AnnualBranchEmployee?.connect?.id
+        //     clientId: String(data?.client?.connect?.id),
+        //     EmployeeId: String(
+        //       data?.Employee?.connect?.id
         //     )
         //   }
         // });

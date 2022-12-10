@@ -1,8 +1,3 @@
-export * from './AnnualBranchEmployee.graphql';
-export * from './AnnualClient.graphql';
-export * from './Bonus.graphql';
-export * from './Branch.graphql';
-export * from './BranchEmployee.graphql';
 export * from './Cart.graphql';
 export * from './Category.graphql';
 export * from './Client.graphql';
@@ -10,7 +5,7 @@ export * from './Employee.graphql';
 export * from './EmployeeStatus.graphql';
 export * from './Finance.graphql';
 export * from './FinancialYear.graphql';
-export * from './Inventory.graphql';
 export * from './Order.graphql';
 export * from './OrderDetail.graphql';
+export * from './OrderType.graphql';
 export * from './Product.graphql';

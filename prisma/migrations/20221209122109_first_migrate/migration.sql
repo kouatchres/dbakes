@@ -13,22 +13,12 @@ CREATE TABLE "Client" (
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "password" TEXT NOT NULL DEFAULT E'',
-    "resetPasswordToken" TEXT NOT NULL DEFAULT E'',
+    "password" TEXT NOT NULL DEFAULT '',
+    "resetPasswordToken" TEXT NOT NULL DEFAULT '',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "Bonus" (
-    "id" TEXT NOT NULL,
-    "bonusName" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT "Bonus_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -40,8 +30,8 @@ CREATE TABLE "Order" (
     "orderDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "annualClientId" TEXT,
-    "annualBranchEmployeeId" TEXT,
+    "clientId" TEXT NOT NULL,
+    "employeeId" TEXT NOT NULL,
 
     CONSTRAINT "Order_pkey" PRIMARY KEY ("id")
 );
@@ -71,8 +61,8 @@ CREATE TABLE "Cart" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "productId" TEXT NOT NULL,
-    "annualClientId" TEXT,
-    "annualBranchEmployeeId" TEXT,
+    "clientId" TEXT NOT NULL,
+    "employeeId" TEXT NOT NULL,
 
     CONSTRAINT "Cart_pkey" PRIMARY KEY ("id")
 );
@@ -82,10 +72,11 @@ CREATE TABLE "Product" (
     "id" TEXT NOT NULL,
     "pdtName" TEXT NOT NULL,
     "pdtCode" TEXT NOT NULL,
+    "qttyInHand" INTEGER NOT NULL,
     "unitPrice" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "categoryId" TEXT,
+    "categoryId" TEXT NOT NULL,
 
     CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
 );
@@ -114,42 +105,6 @@ CREATE TABLE "Employee" (
 );
 
 -- CreateTable
-CREATE TABLE "Branch" (
-    "id" TEXT NOT NULL,
-    "branchName" TEXT NOT NULL,
-    "branchCode" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT "Branch_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "BranchEmployee" (
-    "id" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "startDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "endDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "employeeId" TEXT NOT NULL,
-    "branchId" TEXT NOT NULL,
-    "employeeStatusId" TEXT NOT NULL,
-
-    CONSTRAINT "BranchEmployee_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "AnnualBranchEmployee" (
-    "id" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "branchEmployeeId" TEXT,
-    "financialYearId" TEXT,
-
-    CONSTRAINT "AnnualBranchEmployee_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "Finance" (
     "id" TEXT NOT NULL,
     "amtPaid" INTEGER NOT NULL,
@@ -161,33 +116,12 @@ CREATE TABLE "Finance" (
 );
 
 -- CreateTable
-CREATE TABLE "Inventory" (
-    "id" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "qttyInHand" INTEGER NOT NULL,
-
-    CONSTRAINT "Inventory_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "Sample" (
     "id" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Sample_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "AnnualClient" (
-    "id" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "clientId" TEXT,
-    "financialYearId" TEXT,
-
-    CONSTRAINT "AnnualClient_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -222,14 +156,11 @@ CREATE UNIQUE INDEX "Employee_employeeCode_key" ON "Employee"("employeeCode");
 -- CreateIndex
 CREATE UNIQUE INDEX "Employee_employeePhoneNumb_key" ON "Employee"("employeePhoneNumb");
 
--- CreateIndex
-CREATE UNIQUE INDEX "Branch_branchCode_key" ON "Branch"("branchCode");
+-- AddForeignKey
+ALTER TABLE "Order" ADD CONSTRAINT "Order_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "Client"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Order" ADD CONSTRAINT "Order_annualBranchEmployeeId_fkey" FOREIGN KEY ("annualBranchEmployeeId") REFERENCES "AnnualBranchEmployee"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Order" ADD CONSTRAINT "Order_annualClientId_fkey" FOREIGN KEY ("annualClientId") REFERENCES "AnnualClient"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Order" ADD CONSTRAINT "Order_employeeId_fkey" FOREIGN KEY ("employeeId") REFERENCES "Employee"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "OrderDetail" ADD CONSTRAINT "OrderDetail_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "Order"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -241,34 +172,13 @@ ALTER TABLE "OrderDetail" ADD CONSTRAINT "OrderDetail_productId_fkey" FOREIGN KE
 ALTER TABLE "Cart" ADD CONSTRAINT "Cart_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Cart" ADD CONSTRAINT "Cart_annualBranchEmployeeId_fkey" FOREIGN KEY ("annualBranchEmployeeId") REFERENCES "AnnualBranchEmployee"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Cart" ADD CONSTRAINT "Cart_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "Client"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Cart" ADD CONSTRAINT "Cart_annualClientId_fkey" FOREIGN KEY ("annualClientId") REFERENCES "AnnualClient"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Cart" ADD CONSTRAINT "Cart_employeeId_fkey" FOREIGN KEY ("employeeId") REFERENCES "Employee"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Product" ADD CONSTRAINT "Product_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "BranchEmployee" ADD CONSTRAINT "BranchEmployee_employeeId_fkey" FOREIGN KEY ("employeeId") REFERENCES "Employee"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "BranchEmployee" ADD CONSTRAINT "BranchEmployee_branchId_fkey" FOREIGN KEY ("branchId") REFERENCES "Branch"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "BranchEmployee" ADD CONSTRAINT "BranchEmployee_employeeStatusId_fkey" FOREIGN KEY ("employeeStatusId") REFERENCES "EmployeeStatus"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "AnnualBranchEmployee" ADD CONSTRAINT "AnnualBranchEmployee_branchEmployeeId_fkey" FOREIGN KEY ("branchEmployeeId") REFERENCES "BranchEmployee"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "AnnualBranchEmployee" ADD CONSTRAINT "AnnualBranchEmployee_financialYearId_fkey" FOREIGN KEY ("financialYearId") REFERENCES "FinancialYear"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Product" ADD CONSTRAINT "Product_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Finance" ADD CONSTRAINT "Finance_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "Order"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "AnnualClient" ADD CONSTRAINT "AnnualClient_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "Client"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "AnnualClient" ADD CONSTRAINT "AnnualClient_financialYearId_fkey" FOREIGN KEY ("financialYearId") REFERENCES "FinancialYear"("id") ON DELETE SET NULL ON UPDATE CASCADE;

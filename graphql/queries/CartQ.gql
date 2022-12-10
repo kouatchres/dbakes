@@ -18,14 +18,8 @@ query SingleCartById($id: String!) {
   }
 }
 
-query cartByAnnualClientIdAndEmployeeId(
-  $annualClientId: String!
-  $annualBranchEmployeeId: String!
-) {
-  cartByAnnualClientIdAndEmplId(
-    annualClientId: $annualClientId
-    annualBranchEmployeeId: $annualBranchEmployeeId
-  ) {
+query cartByClientIdAndEmployeeId($clientId: String!, $employeeId: String!) {
+  cartByClientIdAndEmplId(clientId: $clientId, employeeId: $employeeId) {
     ...CartFragment
   }
 }

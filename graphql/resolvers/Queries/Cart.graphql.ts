@@ -30,21 +30,17 @@ export const cart = extendType({
     //   }
     // });
 
-    t.list.field('cartByAnnualClientIdAndEmplId', {
+    t.list.field('cartByClientIdAndEmplId', {
       type: 'Cart',
       args: {
-        annualClientId: stringArg(),
-        annualBranchEmployeeId: stringArg()
+        clientId: stringArg(),
+        employeeId: stringArg()
       },
-      resolve: async (
-        _parent,
-        { annualClientId, annualBranchEmployeeId },
-        { prisma }
-      ) => {
+      resolve: async (_parent, { clientId, employeeId }, { prisma }) => {
         return await prisma.cart.findMany({
           where: {
-            annualClientId: String(annualClientId),
-            annualBranchEmployeeId: String(annualBranchEmployeeId)
+            clientId: String(clientId),
+            employeeId: String(employeeId)
           }
         });
       }

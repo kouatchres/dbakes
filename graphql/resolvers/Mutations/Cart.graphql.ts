@@ -20,7 +20,7 @@ export const cart = extendType({
         //  const employeeNotPresent = (
         //    await prisma.branchEmployee.findMany({
         //      where: {
-        //        branchId: String(data?.Branch?.connect?.id),
+        //        branchId: String(data?.?.connect?.id),
         //        employeeId: String(data?.Employee?.connect?.id)
         //      }
         //    })
@@ -33,10 +33,8 @@ export const cart = extendType({
         const presentInCart = (
           await prisma.cart.findMany({
             where: {
-              annualClientId: String(data?.AnnualClient?.connect?.id),
-              annualBranchEmployeeId: String(
-                data?.AnnualBranchEmployee?.connect?.id
-              ),
+              clientId: String(data?.Client?.connect?.id),
+              employeeId: String(data?.Employee?.connect?.id),
               productId: String(data?.Product?.connect?.id)
             }
           })
@@ -48,11 +46,11 @@ export const cart = extendType({
         return await prisma.cart.create({
           data: {
             ...data,
-            AnnualClient: {
-              connect: { id: String(data?.AnnualClient?.connect?.id) }
+            Client: {
+              connect: { id: String(data?.Client?.connect?.id) }
             },
-            AnnualBranchEmployee: {
-              connect: { id: String(data?.AnnualBranchEmployee?.connect?.id) }
+            Employee: {
+              connect: { id: String(data?.Employee?.connect?.id) }
             },
             Product: {
               connect: { id: String(data?.Product?.connect?.id) }

@@ -1,4 +1,4 @@
-import { useUser } from '@auth0/nextjs-auth0';
+import { OrderTypeCreateInput, useCreateAOrderTypeMutation } from '@/graphql';
 import {
   Button,
   CircularProgress,
@@ -8,15 +8,12 @@ import {
   Tooltip,
   Typography
 } from '@material-ui/core';
+import randomize from 'randomatic';
+
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { TextField } from 'material-ui-formik-components/TextField';
-import randomize from 'randomatic';
 import { useState } from 'react';
 import * as Yup from 'yup';
-import {
-  BranchCreateInput,
-  useCreateABranchMutation
-} from '../../../generated/graphql';
 import DisplayError from '../../ErrorMessage';
 import GlassCard from '../utils/GlassCard';
 import Notification from '../utils/Notification';
@@ -24,60 +21,59 @@ import SygefexTheme from '../utils/SygefexTheme';
 import ZoomList from '../utils/ZoomList';
 
 const validationSchema = Yup.object().shape({
-  branchName: Yup.string().required('Libellé Poste requis')
+  orderTypeName: Yup.string().required('Libellé Poste requis')
 });
 
-const CreateBranch =(props:any) => {
-  // const classes = useStyles();
-  const { user } = useUser();
-
+const CreateOrderType = () => {
   const [notify, setNotify] = useState({
     isOpen: false,
     message: '',
     type: ''
   });
-  console.log({ user });
-  const initialValues: BranchCreateInput = {
-    branchName: '',
-    branchCode: ''
+
+  const initialValues: OrderTypeCreateInput = {
+    orderTypeName: '',
+    orderTypeCode: ''
   };
 
-  const [createABranchMutation, { error: regErr }] = useCreateABranchMutation();
+  const [createAOrderTypeMutation, { error: regErr }] =
+    useCreateAOrderTypeMutation();
 
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
-        const res = await createABranchMutation({
+        const res = await createAOrderTypeMutation({
           variables: {
             data: {
               ...values,
-              branchCode: randomize('Aa0', 5)
+              orderTypeCode: randomize('Aa0', 5)
             }
           }
+
           // update: (cache, { data }) => {
-          //   const allBranchs = cache.readQuery<AllBranchsQuery>({
-          //     query: AllBranchsDocument
+          //   const allOrderTypes = cache.readQuery<AllOrderTypesQuery>({
+          //     query: AllOrderTypesDocument
           //   });
-          //   console.log({ cache, allBranchs });
-          //   const addedBranch = data?.createBranch;
-          //   if (addedBranch) {
+          //   console.log({ cache, allOrderTypes });
+          //   const addedOrderType = data?.createOrderType;
+          //   if (addedOrderType) {
           //     cache.writeQuery({
-          //       query: AllBranchsDocument,
+          //       query: AllOrderTypesDocument,
           //       data: {
-          //         // regions: [...allBranchs?.region, addedBranch]
+          //         // regions: [...allOrderTypes?.region, addedOrderType]
           //       }
           //     });
           //   }
           // }
           // update(cache, { data }) {
-          //   const regionsData = cache.readQuery<AllBranchsQuery>({
-          //     query: AllBranchsDocument
+          //   const regionsData = cache.readQuery<AllOrderTypesQuery>({
+          //     query: AllOrderTypesDocument
           //   });
           //   cache.writeQuery({
-          //     query: AllBranchsDocument,
-          //     data: { regions: [...regionsData?.regions, data?.createBranch] }
+          //     query: AllOrderTypesDocument,
+          //     data: { regions: [...regionsData?.regions, data?.createOrderType] }
           //   });
           // }
         });
@@ -88,7 +84,7 @@ const CreateBranch =(props:any) => {
 
           setNotify({
             isOpen: true,
-            message: 'New Branch created Successfully',
+            message: 'New OrderType created Successfully',
             type: 'success'
           });
           resetForm();
@@ -139,7 +135,7 @@ const CreateBranch =(props:any) => {
                               fontSize: 'clamp(0.6rem, 3vw + 0.5rem, 2rem)'
                             }}
                           >
-                            New Branch
+                            New OrderType
                           </Typography>
                         </Tooltip>
                       </Grid>
@@ -147,12 +143,12 @@ const CreateBranch =(props:any) => {
                     <Grid container direction="column">
                       <Grid item>
                         <Field
-                          name="branchName"
+                          name="orderTypeName"
                           component={TextField}
                           type="text"
-                          label="Branch Name"
+                          label="OrderType Name"
                           disabled={isSubmitting}
-                          helpertext={<ErrorMessage name="branchName" />}
+                          helpertext={<ErrorMessage name="orderTypeName" />}
                         />
 
                         <div
@@ -187,4 +183,4 @@ const CreateBranch =(props:any) => {
     </Formik>
   );
 };
-export default CreateBranch;
+export default CreateOrderType;

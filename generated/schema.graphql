@@ -2,1011 +2,8 @@
 ### Do not make changes to this file directly
 
 
-type AnnualBranchEmployee {
-  BranchEmployee: BranchEmployee
-  FinancialYear: FinancialYear
-  id: String!
-  orders(after: OrderWhereUniqueInput, before: OrderWhereUniqueInput, first: Int, last: Int): [Order!]!
-}
-
-input AnnualBranchEmployeeCreateInput {
-  BranchEmployee: BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput
-  FinancialYear: FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput
-  carts: CartCreateNestedManyWithoutAnnualBranchEmployeeInput
-  createdAt: DateTime
-  id: String
-  orders: OrderCreateNestedManyWithoutAnnualBranchEmployeeInput
-  updatedAt: DateTime
-}
-
-input AnnualBranchEmployeeCreateManyBranchEmployeeInput {
-  createdAt: DateTime
-  financialYearId: String
-  id: String
-  updatedAt: DateTime
-}
-
-input AnnualBranchEmployeeCreateManyBranchEmployeeInputEnvelope {
-  data: [AnnualBranchEmployeeCreateManyBranchEmployeeInput!]
-  skipDuplicates: Boolean
-}
-
-input AnnualBranchEmployeeCreateManyFinancialYearInput {
-  branchEmployeeId: String
-  createdAt: DateTime
-  id: String
-  updatedAt: DateTime
-}
-
-input AnnualBranchEmployeeCreateManyFinancialYearInputEnvelope {
-  data: [AnnualBranchEmployeeCreateManyFinancialYearInput!]
-  skipDuplicates: Boolean
-}
-
-input AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput {
-  connect: [AnnualBranchEmployeeWhereUniqueInput!]
-  connectOrCreate: [AnnualBranchEmployeeCreateOrConnectWithoutBranchEmployeeInput!]
-  create: [AnnualBranchEmployeeCreateWithoutBranchEmployeeInput!]
-  createMany: AnnualBranchEmployeeCreateManyBranchEmployeeInputEnvelope
-}
-
-input AnnualBranchEmployeeCreateNestedManyWithoutFinancialYearInput {
-  connect: [AnnualBranchEmployeeWhereUniqueInput!]
-  connectOrCreate: [AnnualBranchEmployeeCreateOrConnectWithoutFinancialYearInput!]
-  create: [AnnualBranchEmployeeCreateWithoutFinancialYearInput!]
-  createMany: AnnualBranchEmployeeCreateManyFinancialYearInputEnvelope
-}
-
-input AnnualBranchEmployeeCreateNestedOneWithoutCartsInput {
-  connect: AnnualBranchEmployeeWhereUniqueInput
-  connectOrCreate: AnnualBranchEmployeeCreateOrConnectWithoutCartsInput
-  create: AnnualBranchEmployeeCreateWithoutCartsInput
-}
-
-input AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput {
-  connect: AnnualBranchEmployeeWhereUniqueInput
-  connectOrCreate: AnnualBranchEmployeeCreateOrConnectWithoutOrdersInput
-  create: AnnualBranchEmployeeCreateWithoutOrdersInput
-}
-
-input AnnualBranchEmployeeCreateOrConnectWithoutBranchEmployeeInput {
-  create: AnnualBranchEmployeeCreateWithoutBranchEmployeeInput!
-  where: AnnualBranchEmployeeWhereUniqueInput!
-}
-
-input AnnualBranchEmployeeCreateOrConnectWithoutCartsInput {
-  create: AnnualBranchEmployeeCreateWithoutCartsInput!
-  where: AnnualBranchEmployeeWhereUniqueInput!
-}
-
-input AnnualBranchEmployeeCreateOrConnectWithoutFinancialYearInput {
-  create: AnnualBranchEmployeeCreateWithoutFinancialYearInput!
-  where: AnnualBranchEmployeeWhereUniqueInput!
-}
-
-input AnnualBranchEmployeeCreateOrConnectWithoutOrdersInput {
-  create: AnnualBranchEmployeeCreateWithoutOrdersInput!
-  where: AnnualBranchEmployeeWhereUniqueInput!
-}
-
-input AnnualBranchEmployeeCreateWithoutBranchEmployeeInput {
-  FinancialYear: FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput
-  carts: CartCreateNestedManyWithoutAnnualBranchEmployeeInput
-  createdAt: DateTime
-  id: String
-  orders: OrderCreateNestedManyWithoutAnnualBranchEmployeeInput
-  updatedAt: DateTime
-}
-
-input AnnualBranchEmployeeCreateWithoutCartsInput {
-  BranchEmployee: BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput
-  FinancialYear: FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput
-  createdAt: DateTime
-  id: String
-  orders: OrderCreateNestedManyWithoutAnnualBranchEmployeeInput
-  updatedAt: DateTime
-}
-
-input AnnualBranchEmployeeCreateWithoutFinancialYearInput {
-  BranchEmployee: BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput
-  carts: CartCreateNestedManyWithoutAnnualBranchEmployeeInput
-  createdAt: DateTime
-  id: String
-  orders: OrderCreateNestedManyWithoutAnnualBranchEmployeeInput
-  updatedAt: DateTime
-}
-
-input AnnualBranchEmployeeCreateWithoutOrdersInput {
-  BranchEmployee: BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput
-  FinancialYear: FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput
-  carts: CartCreateNestedManyWithoutAnnualBranchEmployeeInput
-  createdAt: DateTime
-  id: String
-  updatedAt: DateTime
-}
-
-input AnnualBranchEmployeeScalarWhereInput {
-  AND: [AnnualBranchEmployeeScalarWhereInput!]
-  NOT: [AnnualBranchEmployeeScalarWhereInput!]
-  OR: [AnnualBranchEmployeeScalarWhereInput!]
-  branchEmployeeId: StringNullableFilter
-  createdAt: DateTimeFilter
-  financialYearId: StringNullableFilter
-  id: StringFilter
-  updatedAt: DateTimeFilter
-}
-
-input AnnualBranchEmployeeUpdateInput {
-  BranchEmployee: BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput
-  FinancialYear: FinancialYearUpdateOneWithoutAnnBranchEmplsInput
-  carts: CartUpdateManyWithoutAnnualBranchEmployeeInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  orders: OrderUpdateManyWithoutAnnualBranchEmployeeInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input AnnualBranchEmployeeUpdateManyMutationInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input AnnualBranchEmployeeUpdateManyWithWhereWithoutBranchEmployeeInput {
-  data: AnnualBranchEmployeeUpdateManyMutationInput!
-  where: AnnualBranchEmployeeScalarWhereInput!
-}
-
-input AnnualBranchEmployeeUpdateManyWithWhereWithoutFinancialYearInput {
-  data: AnnualBranchEmployeeUpdateManyMutationInput!
-  where: AnnualBranchEmployeeScalarWhereInput!
-}
-
-input AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput {
-  connect: [AnnualBranchEmployeeWhereUniqueInput!]
-  connectOrCreate: [AnnualBranchEmployeeCreateOrConnectWithoutBranchEmployeeInput!]
-  create: [AnnualBranchEmployeeCreateWithoutBranchEmployeeInput!]
-  createMany: AnnualBranchEmployeeCreateManyBranchEmployeeInputEnvelope
-  delete: [AnnualBranchEmployeeWhereUniqueInput!]
-  deleteMany: [AnnualBranchEmployeeScalarWhereInput!]
-  disconnect: [AnnualBranchEmployeeWhereUniqueInput!]
-  set: [AnnualBranchEmployeeWhereUniqueInput!]
-  update: [AnnualBranchEmployeeUpdateWithWhereUniqueWithoutBranchEmployeeInput!]
-  updateMany: [AnnualBranchEmployeeUpdateManyWithWhereWithoutBranchEmployeeInput!]
-  upsert: [AnnualBranchEmployeeUpsertWithWhereUniqueWithoutBranchEmployeeInput!]
-}
-
-input AnnualBranchEmployeeUpdateManyWithoutFinancialYearInput {
-  connect: [AnnualBranchEmployeeWhereUniqueInput!]
-  connectOrCreate: [AnnualBranchEmployeeCreateOrConnectWithoutFinancialYearInput!]
-  create: [AnnualBranchEmployeeCreateWithoutFinancialYearInput!]
-  createMany: AnnualBranchEmployeeCreateManyFinancialYearInputEnvelope
-  delete: [AnnualBranchEmployeeWhereUniqueInput!]
-  deleteMany: [AnnualBranchEmployeeScalarWhereInput!]
-  disconnect: [AnnualBranchEmployeeWhereUniqueInput!]
-  set: [AnnualBranchEmployeeWhereUniqueInput!]
-  update: [AnnualBranchEmployeeUpdateWithWhereUniqueWithoutFinancialYearInput!]
-  updateMany: [AnnualBranchEmployeeUpdateManyWithWhereWithoutFinancialYearInput!]
-  upsert: [AnnualBranchEmployeeUpsertWithWhereUniqueWithoutFinancialYearInput!]
-}
-
-input AnnualBranchEmployeeUpdateOneWithoutCartsInput {
-  connect: AnnualBranchEmployeeWhereUniqueInput
-  connectOrCreate: AnnualBranchEmployeeCreateOrConnectWithoutCartsInput
-  create: AnnualBranchEmployeeCreateWithoutCartsInput
-  delete: Boolean
-  disconnect: Boolean
-  update: AnnualBranchEmployeeUpdateWithoutCartsInput
-  upsert: AnnualBranchEmployeeUpsertWithoutCartsInput
-}
-
-input AnnualBranchEmployeeUpdateOneWithoutOrdersInput {
-  connect: AnnualBranchEmployeeWhereUniqueInput
-  connectOrCreate: AnnualBranchEmployeeCreateOrConnectWithoutOrdersInput
-  create: AnnualBranchEmployeeCreateWithoutOrdersInput
-  delete: Boolean
-  disconnect: Boolean
-  update: AnnualBranchEmployeeUpdateWithoutOrdersInput
-  upsert: AnnualBranchEmployeeUpsertWithoutOrdersInput
-}
-
-input AnnualBranchEmployeeUpdateWithWhereUniqueWithoutBranchEmployeeInput {
-  data: AnnualBranchEmployeeUpdateWithoutBranchEmployeeInput!
-  where: AnnualBranchEmployeeWhereUniqueInput!
-}
-
-input AnnualBranchEmployeeUpdateWithWhereUniqueWithoutFinancialYearInput {
-  data: AnnualBranchEmployeeUpdateWithoutFinancialYearInput!
-  where: AnnualBranchEmployeeWhereUniqueInput!
-}
-
-input AnnualBranchEmployeeUpdateWithoutBranchEmployeeInput {
-  FinancialYear: FinancialYearUpdateOneWithoutAnnBranchEmplsInput
-  carts: CartUpdateManyWithoutAnnualBranchEmployeeInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  orders: OrderUpdateManyWithoutAnnualBranchEmployeeInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input AnnualBranchEmployeeUpdateWithoutCartsInput {
-  BranchEmployee: BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput
-  FinancialYear: FinancialYearUpdateOneWithoutAnnBranchEmplsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  orders: OrderUpdateManyWithoutAnnualBranchEmployeeInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input AnnualBranchEmployeeUpdateWithoutFinancialYearInput {
-  BranchEmployee: BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput
-  carts: CartUpdateManyWithoutAnnualBranchEmployeeInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  orders: OrderUpdateManyWithoutAnnualBranchEmployeeInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input AnnualBranchEmployeeUpdateWithoutOrdersInput {
-  BranchEmployee: BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput
-  FinancialYear: FinancialYearUpdateOneWithoutAnnBranchEmplsInput
-  carts: CartUpdateManyWithoutAnnualBranchEmployeeInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input AnnualBranchEmployeeUpsertWithWhereUniqueWithoutBranchEmployeeInput {
-  create: AnnualBranchEmployeeCreateWithoutBranchEmployeeInput!
-  update: AnnualBranchEmployeeUpdateWithoutBranchEmployeeInput!
-  where: AnnualBranchEmployeeWhereUniqueInput!
-}
-
-input AnnualBranchEmployeeUpsertWithWhereUniqueWithoutFinancialYearInput {
-  create: AnnualBranchEmployeeCreateWithoutFinancialYearInput!
-  update: AnnualBranchEmployeeUpdateWithoutFinancialYearInput!
-  where: AnnualBranchEmployeeWhereUniqueInput!
-}
-
-input AnnualBranchEmployeeUpsertWithoutCartsInput {
-  create: AnnualBranchEmployeeCreateWithoutCartsInput!
-  update: AnnualBranchEmployeeUpdateWithoutCartsInput!
-}
-
-input AnnualBranchEmployeeUpsertWithoutOrdersInput {
-  create: AnnualBranchEmployeeCreateWithoutOrdersInput!
-  update: AnnualBranchEmployeeUpdateWithoutOrdersInput!
-}
-
-input AnnualBranchEmployeeWhereUniqueInput {
-  id: String
-}
-
-type AnnualClient {
-  Client: Client
-  FinancialYear: FinancialYear
-  carts(after: CartWhereUniqueInput, before: CartWhereUniqueInput, first: Int, last: Int): [Cart!]!
-  clientId: String
-  financialYearId: String
-  id: String!
-  orders(after: OrderWhereUniqueInput, before: OrderWhereUniqueInput, first: Int, last: Int): [Order!]!
-}
-
-input AnnualClientCreateInput {
-  Client: ClientCreateNestedOneWithoutAnnClientsInput
-  FinancialYear: FinancialYearCreateNestedOneWithoutAnnClientsInput
-  carts: CartCreateNestedManyWithoutAnnualClientInput
-  createdAt: DateTime
-  id: String
-  orders: OrderCreateNestedManyWithoutAnnualClientInput
-  updatedAt: DateTime
-}
-
-input AnnualClientCreateManyClientInput {
-  createdAt: DateTime
-  financialYearId: String
-  id: String
-  updatedAt: DateTime
-}
-
-input AnnualClientCreateManyClientInputEnvelope {
-  data: [AnnualClientCreateManyClientInput!]
-  skipDuplicates: Boolean
-}
-
-input AnnualClientCreateManyFinancialYearInput {
-  clientId: String
-  createdAt: DateTime
-  id: String
-  updatedAt: DateTime
-}
-
-input AnnualClientCreateManyFinancialYearInputEnvelope {
-  data: [AnnualClientCreateManyFinancialYearInput!]
-  skipDuplicates: Boolean
-}
-
-input AnnualClientCreateNestedManyWithoutClientInput {
-  connect: [AnnualClientWhereUniqueInput!]
-  connectOrCreate: [AnnualClientCreateOrConnectWithoutClientInput!]
-  create: [AnnualClientCreateWithoutClientInput!]
-  createMany: AnnualClientCreateManyClientInputEnvelope
-}
-
-input AnnualClientCreateNestedManyWithoutFinancialYearInput {
-  connect: [AnnualClientWhereUniqueInput!]
-  connectOrCreate: [AnnualClientCreateOrConnectWithoutFinancialYearInput!]
-  create: [AnnualClientCreateWithoutFinancialYearInput!]
-  createMany: AnnualClientCreateManyFinancialYearInputEnvelope
-}
-
-input AnnualClientCreateNestedOneWithoutCartsInput {
-  connect: AnnualClientWhereUniqueInput
-  connectOrCreate: AnnualClientCreateOrConnectWithoutCartsInput
-  create: AnnualClientCreateWithoutCartsInput
-}
-
-input AnnualClientCreateNestedOneWithoutOrdersInput {
-  connect: AnnualClientWhereUniqueInput
-  connectOrCreate: AnnualClientCreateOrConnectWithoutOrdersInput
-  create: AnnualClientCreateWithoutOrdersInput
-}
-
-input AnnualClientCreateOrConnectWithoutCartsInput {
-  create: AnnualClientCreateWithoutCartsInput!
-  where: AnnualClientWhereUniqueInput!
-}
-
-input AnnualClientCreateOrConnectWithoutClientInput {
-  create: AnnualClientCreateWithoutClientInput!
-  where: AnnualClientWhereUniqueInput!
-}
-
-input AnnualClientCreateOrConnectWithoutFinancialYearInput {
-  create: AnnualClientCreateWithoutFinancialYearInput!
-  where: AnnualClientWhereUniqueInput!
-}
-
-input AnnualClientCreateOrConnectWithoutOrdersInput {
-  create: AnnualClientCreateWithoutOrdersInput!
-  where: AnnualClientWhereUniqueInput!
-}
-
-input AnnualClientCreateWithoutCartsInput {
-  Client: ClientCreateNestedOneWithoutAnnClientsInput
-  FinancialYear: FinancialYearCreateNestedOneWithoutAnnClientsInput
-  createdAt: DateTime
-  id: String
-  orders: OrderCreateNestedManyWithoutAnnualClientInput
-  updatedAt: DateTime
-}
-
-input AnnualClientCreateWithoutClientInput {
-  FinancialYear: FinancialYearCreateNestedOneWithoutAnnClientsInput
-  carts: CartCreateNestedManyWithoutAnnualClientInput
-  createdAt: DateTime
-  id: String
-  orders: OrderCreateNestedManyWithoutAnnualClientInput
-  updatedAt: DateTime
-}
-
-input AnnualClientCreateWithoutFinancialYearInput {
-  Client: ClientCreateNestedOneWithoutAnnClientsInput
-  carts: CartCreateNestedManyWithoutAnnualClientInput
-  createdAt: DateTime
-  id: String
-  orders: OrderCreateNestedManyWithoutAnnualClientInput
-  updatedAt: DateTime
-}
-
-input AnnualClientCreateWithoutOrdersInput {
-  Client: ClientCreateNestedOneWithoutAnnClientsInput
-  FinancialYear: FinancialYearCreateNestedOneWithoutAnnClientsInput
-  carts: CartCreateNestedManyWithoutAnnualClientInput
-  createdAt: DateTime
-  id: String
-  updatedAt: DateTime
-}
-
-input AnnualClientScalarWhereInput {
-  AND: [AnnualClientScalarWhereInput!]
-  NOT: [AnnualClientScalarWhereInput!]
-  OR: [AnnualClientScalarWhereInput!]
-  clientId: StringNullableFilter
-  createdAt: DateTimeFilter
-  financialYearId: StringNullableFilter
-  id: StringFilter
-  updatedAt: DateTimeFilter
-}
-
-input AnnualClientUpdateInput {
-  Client: ClientUpdateOneWithoutAnnClientsInput
-  FinancialYear: FinancialYearUpdateOneWithoutAnnClientsInput
-  carts: CartUpdateManyWithoutAnnualClientInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  orders: OrderUpdateManyWithoutAnnualClientInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input AnnualClientUpdateManyMutationInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input AnnualClientUpdateManyWithWhereWithoutClientInput {
-  data: AnnualClientUpdateManyMutationInput!
-  where: AnnualClientScalarWhereInput!
-}
-
-input AnnualClientUpdateManyWithWhereWithoutFinancialYearInput {
-  data: AnnualClientUpdateManyMutationInput!
-  where: AnnualClientScalarWhereInput!
-}
-
-input AnnualClientUpdateManyWithoutClientInput {
-  connect: [AnnualClientWhereUniqueInput!]
-  connectOrCreate: [AnnualClientCreateOrConnectWithoutClientInput!]
-  create: [AnnualClientCreateWithoutClientInput!]
-  createMany: AnnualClientCreateManyClientInputEnvelope
-  delete: [AnnualClientWhereUniqueInput!]
-  deleteMany: [AnnualClientScalarWhereInput!]
-  disconnect: [AnnualClientWhereUniqueInput!]
-  set: [AnnualClientWhereUniqueInput!]
-  update: [AnnualClientUpdateWithWhereUniqueWithoutClientInput!]
-  updateMany: [AnnualClientUpdateManyWithWhereWithoutClientInput!]
-  upsert: [AnnualClientUpsertWithWhereUniqueWithoutClientInput!]
-}
-
-input AnnualClientUpdateManyWithoutFinancialYearInput {
-  connect: [AnnualClientWhereUniqueInput!]
-  connectOrCreate: [AnnualClientCreateOrConnectWithoutFinancialYearInput!]
-  create: [AnnualClientCreateWithoutFinancialYearInput!]
-  createMany: AnnualClientCreateManyFinancialYearInputEnvelope
-  delete: [AnnualClientWhereUniqueInput!]
-  deleteMany: [AnnualClientScalarWhereInput!]
-  disconnect: [AnnualClientWhereUniqueInput!]
-  set: [AnnualClientWhereUniqueInput!]
-  update: [AnnualClientUpdateWithWhereUniqueWithoutFinancialYearInput!]
-  updateMany: [AnnualClientUpdateManyWithWhereWithoutFinancialYearInput!]
-  upsert: [AnnualClientUpsertWithWhereUniqueWithoutFinancialYearInput!]
-}
-
-input AnnualClientUpdateOneWithoutCartsInput {
-  connect: AnnualClientWhereUniqueInput
-  connectOrCreate: AnnualClientCreateOrConnectWithoutCartsInput
-  create: AnnualClientCreateWithoutCartsInput
-  delete: Boolean
-  disconnect: Boolean
-  update: AnnualClientUpdateWithoutCartsInput
-  upsert: AnnualClientUpsertWithoutCartsInput
-}
-
-input AnnualClientUpdateOneWithoutOrdersInput {
-  connect: AnnualClientWhereUniqueInput
-  connectOrCreate: AnnualClientCreateOrConnectWithoutOrdersInput
-  create: AnnualClientCreateWithoutOrdersInput
-  delete: Boolean
-  disconnect: Boolean
-  update: AnnualClientUpdateWithoutOrdersInput
-  upsert: AnnualClientUpsertWithoutOrdersInput
-}
-
-input AnnualClientUpdateWithWhereUniqueWithoutClientInput {
-  data: AnnualClientUpdateWithoutClientInput!
-  where: AnnualClientWhereUniqueInput!
-}
-
-input AnnualClientUpdateWithWhereUniqueWithoutFinancialYearInput {
-  data: AnnualClientUpdateWithoutFinancialYearInput!
-  where: AnnualClientWhereUniqueInput!
-}
-
-input AnnualClientUpdateWithoutCartsInput {
-  Client: ClientUpdateOneWithoutAnnClientsInput
-  FinancialYear: FinancialYearUpdateOneWithoutAnnClientsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  orders: OrderUpdateManyWithoutAnnualClientInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input AnnualClientUpdateWithoutClientInput {
-  FinancialYear: FinancialYearUpdateOneWithoutAnnClientsInput
-  carts: CartUpdateManyWithoutAnnualClientInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  orders: OrderUpdateManyWithoutAnnualClientInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input AnnualClientUpdateWithoutFinancialYearInput {
-  Client: ClientUpdateOneWithoutAnnClientsInput
-  carts: CartUpdateManyWithoutAnnualClientInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  orders: OrderUpdateManyWithoutAnnualClientInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input AnnualClientUpdateWithoutOrdersInput {
-  Client: ClientUpdateOneWithoutAnnClientsInput
-  FinancialYear: FinancialYearUpdateOneWithoutAnnClientsInput
-  carts: CartUpdateManyWithoutAnnualClientInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input AnnualClientUpsertWithWhereUniqueWithoutClientInput {
-  create: AnnualClientCreateWithoutClientInput!
-  update: AnnualClientUpdateWithoutClientInput!
-  where: AnnualClientWhereUniqueInput!
-}
-
-input AnnualClientUpsertWithWhereUniqueWithoutFinancialYearInput {
-  create: AnnualClientCreateWithoutFinancialYearInput!
-  update: AnnualClientUpdateWithoutFinancialYearInput!
-  where: AnnualClientWhereUniqueInput!
-}
-
-input AnnualClientUpsertWithoutCartsInput {
-  create: AnnualClientCreateWithoutCartsInput!
-  update: AnnualClientUpdateWithoutCartsInput!
-}
-
-input AnnualClientUpsertWithoutOrdersInput {
-  create: AnnualClientCreateWithoutOrdersInput!
-  update: AnnualClientUpdateWithoutOrdersInput!
-}
-
-input AnnualClientWhereUniqueInput {
-  id: String
-}
-
-type Bonus {
-  bonusName: String!
-  id: String!
-}
-
-input BonusCreateInput {
-  bonusName: String!
-  createdAt: DateTime
-  id: String
-  updatedAt: DateTime
-}
-
-input BonusUpdateInput {
-  bonusName: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input BonusWhereUniqueInput {
-  id: String
-}
-
-type Branch {
-  branchCode: String!
-  branchEmpls(after: BranchEmployeeWhereUniqueInput, before: BranchEmployeeWhereUniqueInput, first: Int, last: Int): [BranchEmployee!]!
-  branchName: String!
-  id: String!
-}
-
-input BranchCreateInput {
-  branchCode: String!
-  branchEmpls: BranchEmployeeCreateNestedManyWithoutBranchInput
-  branchName: String!
-  createdAt: DateTime
-  id: String
-  updatedAt: DateTime
-}
-
-input BranchCreateNestedOneWithoutBranchEmplsInput {
-  connect: BranchWhereUniqueInput
-  connectOrCreate: BranchCreateOrConnectWithoutBranchEmplsInput
-  create: BranchCreateWithoutBranchEmplsInput
-}
-
-input BranchCreateOrConnectWithoutBranchEmplsInput {
-  create: BranchCreateWithoutBranchEmplsInput!
-  where: BranchWhereUniqueInput!
-}
-
-input BranchCreateWithoutBranchEmplsInput {
-  branchCode: String!
-  branchName: String!
-  createdAt: DateTime
-  id: String
-  updatedAt: DateTime
-}
-
-type BranchEmployee {
-  Branch: Branch!
-  Employee: Employee!
-  EmployeeStatus: EmployeeStatus!
-  endDate: DateTime!
-  id: String!
-  startDate: DateTime!
-}
-
-input BranchEmployeeCreateInput {
-  Branch: BranchCreateNestedOneWithoutBranchEmplsInput!
-  Employee: EmployeeCreateNestedOneWithoutBranchEmplsInput!
-  EmployeeStatus: EmployeeStatusCreateNestedOneWithoutBranchEmplsInput!
-  annBranchEmployee: AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput
-  createdAt: DateTime
-  endDate: DateTime
-  id: String
-  startDate: DateTime
-  updatedAt: DateTime
-}
-
-input BranchEmployeeCreateManyBranchInput {
-  createdAt: DateTime
-  employeeId: String!
-  employeeStatusId: String!
-  endDate: DateTime
-  id: String
-  startDate: DateTime
-  updatedAt: DateTime
-}
-
-input BranchEmployeeCreateManyBranchInputEnvelope {
-  data: [BranchEmployeeCreateManyBranchInput!]
-  skipDuplicates: Boolean
-}
-
-input BranchEmployeeCreateManyEmployeeInput {
-  branchId: String!
-  createdAt: DateTime
-  employeeStatusId: String!
-  endDate: DateTime
-  id: String
-  startDate: DateTime
-  updatedAt: DateTime
-}
-
-input BranchEmployeeCreateManyEmployeeInputEnvelope {
-  data: [BranchEmployeeCreateManyEmployeeInput!]
-  skipDuplicates: Boolean
-}
-
-input BranchEmployeeCreateManyEmployeeStatusInput {
-  branchId: String!
-  createdAt: DateTime
-  employeeId: String!
-  endDate: DateTime
-  id: String
-  startDate: DateTime
-  updatedAt: DateTime
-}
-
-input BranchEmployeeCreateManyEmployeeStatusInputEnvelope {
-  data: [BranchEmployeeCreateManyEmployeeStatusInput!]
-  skipDuplicates: Boolean
-}
-
-input BranchEmployeeCreateNestedManyWithoutBranchInput {
-  connect: [BranchEmployeeWhereUniqueInput!]
-  connectOrCreate: [BranchEmployeeCreateOrConnectWithoutBranchInput!]
-  create: [BranchEmployeeCreateWithoutBranchInput!]
-  createMany: BranchEmployeeCreateManyBranchInputEnvelope
-}
-
-input BranchEmployeeCreateNestedManyWithoutEmployeeInput {
-  connect: [BranchEmployeeWhereUniqueInput!]
-  connectOrCreate: [BranchEmployeeCreateOrConnectWithoutEmployeeInput!]
-  create: [BranchEmployeeCreateWithoutEmployeeInput!]
-  createMany: BranchEmployeeCreateManyEmployeeInputEnvelope
-}
-
-input BranchEmployeeCreateNestedManyWithoutEmployeeStatusInput {
-  connect: [BranchEmployeeWhereUniqueInput!]
-  connectOrCreate: [BranchEmployeeCreateOrConnectWithoutEmployeeStatusInput!]
-  create: [BranchEmployeeCreateWithoutEmployeeStatusInput!]
-  createMany: BranchEmployeeCreateManyEmployeeStatusInputEnvelope
-}
-
-input BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput {
-  connect: BranchEmployeeWhereUniqueInput
-  connectOrCreate: BranchEmployeeCreateOrConnectWithoutAnnBranchEmployeeInput
-  create: BranchEmployeeCreateWithoutAnnBranchEmployeeInput
-}
-
-input BranchEmployeeCreateOrConnectWithoutAnnBranchEmployeeInput {
-  create: BranchEmployeeCreateWithoutAnnBranchEmployeeInput!
-  where: BranchEmployeeWhereUniqueInput!
-}
-
-input BranchEmployeeCreateOrConnectWithoutBranchInput {
-  create: BranchEmployeeCreateWithoutBranchInput!
-  where: BranchEmployeeWhereUniqueInput!
-}
-
-input BranchEmployeeCreateOrConnectWithoutEmployeeInput {
-  create: BranchEmployeeCreateWithoutEmployeeInput!
-  where: BranchEmployeeWhereUniqueInput!
-}
-
-input BranchEmployeeCreateOrConnectWithoutEmployeeStatusInput {
-  create: BranchEmployeeCreateWithoutEmployeeStatusInput!
-  where: BranchEmployeeWhereUniqueInput!
-}
-
-input BranchEmployeeCreateWithoutAnnBranchEmployeeInput {
-  Branch: BranchCreateNestedOneWithoutBranchEmplsInput!
-  Employee: EmployeeCreateNestedOneWithoutBranchEmplsInput!
-  EmployeeStatus: EmployeeStatusCreateNestedOneWithoutBranchEmplsInput!
-  createdAt: DateTime
-  endDate: DateTime
-  id: String
-  startDate: DateTime
-  updatedAt: DateTime
-}
-
-input BranchEmployeeCreateWithoutBranchInput {
-  Employee: EmployeeCreateNestedOneWithoutBranchEmplsInput!
-  EmployeeStatus: EmployeeStatusCreateNestedOneWithoutBranchEmplsInput!
-  annBranchEmployee: AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput
-  createdAt: DateTime
-  endDate: DateTime
-  id: String
-  startDate: DateTime
-  updatedAt: DateTime
-}
-
-input BranchEmployeeCreateWithoutEmployeeInput {
-  Branch: BranchCreateNestedOneWithoutBranchEmplsInput!
-  EmployeeStatus: EmployeeStatusCreateNestedOneWithoutBranchEmplsInput!
-  annBranchEmployee: AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput
-  createdAt: DateTime
-  endDate: DateTime
-  id: String
-  startDate: DateTime
-  updatedAt: DateTime
-}
-
-input BranchEmployeeCreateWithoutEmployeeStatusInput {
-  Branch: BranchCreateNestedOneWithoutBranchEmplsInput!
-  Employee: EmployeeCreateNestedOneWithoutBranchEmplsInput!
-  annBranchEmployee: AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput
-  createdAt: DateTime
-  endDate: DateTime
-  id: String
-  startDate: DateTime
-  updatedAt: DateTime
-}
-
-input BranchEmployeeScalarWhereInput {
-  AND: [BranchEmployeeScalarWhereInput!]
-  NOT: [BranchEmployeeScalarWhereInput!]
-  OR: [BranchEmployeeScalarWhereInput!]
-  branchId: StringFilter
-  createdAt: DateTimeFilter
-  employeeId: StringFilter
-  employeeStatusId: StringFilter
-  endDate: DateTimeFilter
-  id: StringFilter
-  startDate: DateTimeFilter
-  updatedAt: DateTimeFilter
-}
-
-input BranchEmployeeUpdateInput {
-  Branch: BranchUpdateOneRequiredWithoutBranchEmplsInput
-  Employee: EmployeeUpdateOneRequiredWithoutBranchEmplsInput
-  EmployeeStatus: EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput
-  annBranchEmployee: AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  endDate: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  startDate: DateTimeFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input BranchEmployeeUpdateManyMutationInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  endDate: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  startDate: DateTimeFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input BranchEmployeeUpdateManyWithWhereWithoutBranchInput {
-  data: BranchEmployeeUpdateManyMutationInput!
-  where: BranchEmployeeScalarWhereInput!
-}
-
-input BranchEmployeeUpdateManyWithWhereWithoutEmployeeInput {
-  data: BranchEmployeeUpdateManyMutationInput!
-  where: BranchEmployeeScalarWhereInput!
-}
-
-input BranchEmployeeUpdateManyWithWhereWithoutEmployeeStatusInput {
-  data: BranchEmployeeUpdateManyMutationInput!
-  where: BranchEmployeeScalarWhereInput!
-}
-
-input BranchEmployeeUpdateManyWithoutBranchInput {
-  connect: [BranchEmployeeWhereUniqueInput!]
-  connectOrCreate: [BranchEmployeeCreateOrConnectWithoutBranchInput!]
-  create: [BranchEmployeeCreateWithoutBranchInput!]
-  createMany: BranchEmployeeCreateManyBranchInputEnvelope
-  delete: [BranchEmployeeWhereUniqueInput!]
-  deleteMany: [BranchEmployeeScalarWhereInput!]
-  disconnect: [BranchEmployeeWhereUniqueInput!]
-  set: [BranchEmployeeWhereUniqueInput!]
-  update: [BranchEmployeeUpdateWithWhereUniqueWithoutBranchInput!]
-  updateMany: [BranchEmployeeUpdateManyWithWhereWithoutBranchInput!]
-  upsert: [BranchEmployeeUpsertWithWhereUniqueWithoutBranchInput!]
-}
-
-input BranchEmployeeUpdateManyWithoutEmployeeInput {
-  connect: [BranchEmployeeWhereUniqueInput!]
-  connectOrCreate: [BranchEmployeeCreateOrConnectWithoutEmployeeInput!]
-  create: [BranchEmployeeCreateWithoutEmployeeInput!]
-  createMany: BranchEmployeeCreateManyEmployeeInputEnvelope
-  delete: [BranchEmployeeWhereUniqueInput!]
-  deleteMany: [BranchEmployeeScalarWhereInput!]
-  disconnect: [BranchEmployeeWhereUniqueInput!]
-  set: [BranchEmployeeWhereUniqueInput!]
-  update: [BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeInput!]
-  updateMany: [BranchEmployeeUpdateManyWithWhereWithoutEmployeeInput!]
-  upsert: [BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeInput!]
-}
-
-input BranchEmployeeUpdateManyWithoutEmployeeStatusInput {
-  connect: [BranchEmployeeWhereUniqueInput!]
-  connectOrCreate: [BranchEmployeeCreateOrConnectWithoutEmployeeStatusInput!]
-  create: [BranchEmployeeCreateWithoutEmployeeStatusInput!]
-  createMany: BranchEmployeeCreateManyEmployeeStatusInputEnvelope
-  delete: [BranchEmployeeWhereUniqueInput!]
-  deleteMany: [BranchEmployeeScalarWhereInput!]
-  disconnect: [BranchEmployeeWhereUniqueInput!]
-  set: [BranchEmployeeWhereUniqueInput!]
-  update: [BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeStatusInput!]
-  updateMany: [BranchEmployeeUpdateManyWithWhereWithoutEmployeeStatusInput!]
-  upsert: [BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeStatusInput!]
-}
-
-input BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput {
-  connect: BranchEmployeeWhereUniqueInput
-  connectOrCreate: BranchEmployeeCreateOrConnectWithoutAnnBranchEmployeeInput
-  create: BranchEmployeeCreateWithoutAnnBranchEmployeeInput
-  delete: Boolean
-  disconnect: Boolean
-  update: BranchEmployeeUpdateWithoutAnnBranchEmployeeInput
-  upsert: BranchEmployeeUpsertWithoutAnnBranchEmployeeInput
-}
-
-input BranchEmployeeUpdateWithWhereUniqueWithoutBranchInput {
-  data: BranchEmployeeUpdateWithoutBranchInput!
-  where: BranchEmployeeWhereUniqueInput!
-}
-
-input BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeInput {
-  data: BranchEmployeeUpdateWithoutEmployeeInput!
-  where: BranchEmployeeWhereUniqueInput!
-}
-
-input BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeStatusInput {
-  data: BranchEmployeeUpdateWithoutEmployeeStatusInput!
-  where: BranchEmployeeWhereUniqueInput!
-}
-
-input BranchEmployeeUpdateWithoutAnnBranchEmployeeInput {
-  Branch: BranchUpdateOneRequiredWithoutBranchEmplsInput
-  Employee: EmployeeUpdateOneRequiredWithoutBranchEmplsInput
-  EmployeeStatus: EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  endDate: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  startDate: DateTimeFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input BranchEmployeeUpdateWithoutBranchInput {
-  Employee: EmployeeUpdateOneRequiredWithoutBranchEmplsInput
-  EmployeeStatus: EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput
-  annBranchEmployee: AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  endDate: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  startDate: DateTimeFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input BranchEmployeeUpdateWithoutEmployeeInput {
-  Branch: BranchUpdateOneRequiredWithoutBranchEmplsInput
-  EmployeeStatus: EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput
-  annBranchEmployee: AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  endDate: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  startDate: DateTimeFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input BranchEmployeeUpdateWithoutEmployeeStatusInput {
-  Branch: BranchUpdateOneRequiredWithoutBranchEmplsInput
-  Employee: EmployeeUpdateOneRequiredWithoutBranchEmplsInput
-  annBranchEmployee: AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  endDate: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  startDate: DateTimeFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input BranchEmployeeUpsertWithWhereUniqueWithoutBranchInput {
-  create: BranchEmployeeCreateWithoutBranchInput!
-  update: BranchEmployeeUpdateWithoutBranchInput!
-  where: BranchEmployeeWhereUniqueInput!
-}
-
-input BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeInput {
-  create: BranchEmployeeCreateWithoutEmployeeInput!
-  update: BranchEmployeeUpdateWithoutEmployeeInput!
-  where: BranchEmployeeWhereUniqueInput!
-}
-
-input BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeStatusInput {
-  create: BranchEmployeeCreateWithoutEmployeeStatusInput!
-  update: BranchEmployeeUpdateWithoutEmployeeStatusInput!
-  where: BranchEmployeeWhereUniqueInput!
-}
-
-input BranchEmployeeUpsertWithoutAnnBranchEmployeeInput {
-  create: BranchEmployeeCreateWithoutAnnBranchEmployeeInput!
-  update: BranchEmployeeUpdateWithoutAnnBranchEmployeeInput!
-}
-
-input BranchEmployeeWhereUniqueInput {
-  id: String
-}
-
-input BranchUpdateInput {
-  branchCode: StringFieldUpdateOperationsInput
-  branchEmpls: BranchEmployeeUpdateManyWithoutBranchInput
-  branchName: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input BranchUpdateOneRequiredWithoutBranchEmplsInput {
-  connect: BranchWhereUniqueInput
-  connectOrCreate: BranchCreateOrConnectWithoutBranchEmplsInput
-  create: BranchCreateWithoutBranchEmplsInput
-  update: BranchUpdateWithoutBranchEmplsInput
-  upsert: BranchUpsertWithoutBranchEmplsInput
-}
-
-input BranchUpdateWithoutBranchEmplsInput {
-  branchCode: StringFieldUpdateOperationsInput
-  branchName: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input BranchUpsertWithoutBranchEmplsInput {
-  create: BranchCreateWithoutBranchEmplsInput!
-  update: BranchUpdateWithoutBranchEmplsInput!
-}
-
-input BranchWhereUniqueInput {
-  branchCode: String
-  id: String
-}
-
 type Cart {
-  AnnualBranchEmployee: AnnualBranchEmployee
-  AnnualClient: AnnualClient
   Product: Product!
-  annualBranchEmployeeId: String
   id: String!
   orderDate: DateTime!
   pdtCost: Int!
@@ -1015,8 +12,8 @@ type Cart {
 }
 
 input CartCreateInput {
-  AnnualBranchEmployee: AnnualBranchEmployeeCreateNestedOneWithoutCartsInput
-  AnnualClient: AnnualClientCreateNestedOneWithoutCartsInput
+  Client: ClientCreateNestedOneWithoutCartsInput!
+  Employee: EmployeeCreateNestedOneWithoutCartsInput!
   Product: ProductCreateNestedOneWithoutCartsInput!
   createdAt: DateTime
   id: String
@@ -1027,9 +24,9 @@ input CartCreateInput {
   updatedAt: DateTime
 }
 
-input CartCreateManyAnnualBranchEmployeeInput {
-  annualClientId: String
+input CartCreateManyClientInput {
   createdAt: DateTime
+  employeeId: String!
   id: String
   orderDate: DateTime
   pdtCost: Int!
@@ -1039,13 +36,13 @@ input CartCreateManyAnnualBranchEmployeeInput {
   updatedAt: DateTime
 }
 
-input CartCreateManyAnnualBranchEmployeeInputEnvelope {
-  data: [CartCreateManyAnnualBranchEmployeeInput!]
+input CartCreateManyClientInputEnvelope {
+  data: [CartCreateManyClientInput!]
   skipDuplicates: Boolean
 }
 
-input CartCreateManyAnnualClientInput {
-  annualBranchEmployeeId: String
+input CartCreateManyEmployeeInput {
+  clientId: String!
   createdAt: DateTime
   id: String
   orderDate: DateTime
@@ -1056,15 +53,15 @@ input CartCreateManyAnnualClientInput {
   updatedAt: DateTime
 }
 
-input CartCreateManyAnnualClientInputEnvelope {
-  data: [CartCreateManyAnnualClientInput!]
+input CartCreateManyEmployeeInputEnvelope {
+  data: [CartCreateManyEmployeeInput!]
   skipDuplicates: Boolean
 }
 
 input CartCreateManyProductInput {
-  annualBranchEmployeeId: String
-  annualClientId: String
+  clientId: String!
   createdAt: DateTime
+  employeeId: String!
   id: String
   orderDate: DateTime
   pdtCost: Int!
@@ -1078,18 +75,18 @@ input CartCreateManyProductInputEnvelope {
   skipDuplicates: Boolean
 }
 
-input CartCreateNestedManyWithoutAnnualBranchEmployeeInput {
+input CartCreateNestedManyWithoutClientInput {
   connect: [CartWhereUniqueInput!]
-  connectOrCreate: [CartCreateOrConnectWithoutAnnualBranchEmployeeInput!]
-  create: [CartCreateWithoutAnnualBranchEmployeeInput!]
-  createMany: CartCreateManyAnnualBranchEmployeeInputEnvelope
+  connectOrCreate: [CartCreateOrConnectWithoutClientInput!]
+  create: [CartCreateWithoutClientInput!]
+  createMany: CartCreateManyClientInputEnvelope
 }
 
-input CartCreateNestedManyWithoutAnnualClientInput {
+input CartCreateNestedManyWithoutEmployeeInput {
   connect: [CartWhereUniqueInput!]
-  connectOrCreate: [CartCreateOrConnectWithoutAnnualClientInput!]
-  create: [CartCreateWithoutAnnualClientInput!]
-  createMany: CartCreateManyAnnualClientInputEnvelope
+  connectOrCreate: [CartCreateOrConnectWithoutEmployeeInput!]
+  create: [CartCreateWithoutEmployeeInput!]
+  createMany: CartCreateManyEmployeeInputEnvelope
 }
 
 input CartCreateNestedManyWithoutProductInput {
@@ -1099,13 +96,13 @@ input CartCreateNestedManyWithoutProductInput {
   createMany: CartCreateManyProductInputEnvelope
 }
 
-input CartCreateOrConnectWithoutAnnualBranchEmployeeInput {
-  create: CartCreateWithoutAnnualBranchEmployeeInput!
+input CartCreateOrConnectWithoutClientInput {
+  create: CartCreateWithoutClientInput!
   where: CartWhereUniqueInput!
 }
 
-input CartCreateOrConnectWithoutAnnualClientInput {
-  create: CartCreateWithoutAnnualClientInput!
+input CartCreateOrConnectWithoutEmployeeInput {
+  create: CartCreateWithoutEmployeeInput!
   where: CartWhereUniqueInput!
 }
 
@@ -1114,8 +111,8 @@ input CartCreateOrConnectWithoutProductInput {
   where: CartWhereUniqueInput!
 }
 
-input CartCreateWithoutAnnualBranchEmployeeInput {
-  AnnualClient: AnnualClientCreateNestedOneWithoutCartsInput
+input CartCreateWithoutClientInput {
+  Employee: EmployeeCreateNestedOneWithoutCartsInput!
   Product: ProductCreateNestedOneWithoutCartsInput!
   createdAt: DateTime
   id: String
@@ -1126,8 +123,8 @@ input CartCreateWithoutAnnualBranchEmployeeInput {
   updatedAt: DateTime
 }
 
-input CartCreateWithoutAnnualClientInput {
-  AnnualBranchEmployee: AnnualBranchEmployeeCreateNestedOneWithoutCartsInput
+input CartCreateWithoutEmployeeInput {
+  Client: ClientCreateNestedOneWithoutCartsInput!
   Product: ProductCreateNestedOneWithoutCartsInput!
   createdAt: DateTime
   id: String
@@ -1139,8 +136,8 @@ input CartCreateWithoutAnnualClientInput {
 }
 
 input CartCreateWithoutProductInput {
-  AnnualBranchEmployee: AnnualBranchEmployeeCreateNestedOneWithoutCartsInput
-  AnnualClient: AnnualClientCreateNestedOneWithoutCartsInput
+  Client: ClientCreateNestedOneWithoutCartsInput!
+  Employee: EmployeeCreateNestedOneWithoutCartsInput!
   createdAt: DateTime
   id: String
   orderDate: DateTime
@@ -1154,9 +151,9 @@ input CartScalarWhereInput {
   AND: [CartScalarWhereInput!]
   NOT: [CartScalarWhereInput!]
   OR: [CartScalarWhereInput!]
-  annualBranchEmployeeId: StringNullableFilter
-  annualClientId: StringNullableFilter
+  clientId: StringFilter
   createdAt: DateTimeFilter
+  employeeId: StringFilter
   id: StringFilter
   orderDate: DateTimeFilter
   pdtCost: IntFilter
@@ -1167,8 +164,8 @@ input CartScalarWhereInput {
 }
 
 input CartUpdateInput {
-  AnnualBranchEmployee: AnnualBranchEmployeeUpdateOneWithoutCartsInput
-  AnnualClient: AnnualClientUpdateOneWithoutCartsInput
+  Client: ClientUpdateOneRequiredWithoutCartsInput
+  Employee: EmployeeUpdateOneRequiredWithoutCartsInput
   Product: ProductUpdateOneRequiredWithoutCartsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
@@ -1189,12 +186,12 @@ input CartUpdateManyMutationInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
-input CartUpdateManyWithWhereWithoutAnnualBranchEmployeeInput {
+input CartUpdateManyWithWhereWithoutClientInput {
   data: CartUpdateManyMutationInput!
   where: CartScalarWhereInput!
 }
 
-input CartUpdateManyWithWhereWithoutAnnualClientInput {
+input CartUpdateManyWithWhereWithoutEmployeeInput {
   data: CartUpdateManyMutationInput!
   where: CartScalarWhereInput!
 }
@@ -1204,32 +201,32 @@ input CartUpdateManyWithWhereWithoutProductInput {
   where: CartScalarWhereInput!
 }
 
-input CartUpdateManyWithoutAnnualBranchEmployeeInput {
+input CartUpdateManyWithoutClientInput {
   connect: [CartWhereUniqueInput!]
-  connectOrCreate: [CartCreateOrConnectWithoutAnnualBranchEmployeeInput!]
-  create: [CartCreateWithoutAnnualBranchEmployeeInput!]
-  createMany: CartCreateManyAnnualBranchEmployeeInputEnvelope
+  connectOrCreate: [CartCreateOrConnectWithoutClientInput!]
+  create: [CartCreateWithoutClientInput!]
+  createMany: CartCreateManyClientInputEnvelope
   delete: [CartWhereUniqueInput!]
   deleteMany: [CartScalarWhereInput!]
   disconnect: [CartWhereUniqueInput!]
   set: [CartWhereUniqueInput!]
-  update: [CartUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput!]
-  updateMany: [CartUpdateManyWithWhereWithoutAnnualBranchEmployeeInput!]
-  upsert: [CartUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput!]
+  update: [CartUpdateWithWhereUniqueWithoutClientInput!]
+  updateMany: [CartUpdateManyWithWhereWithoutClientInput!]
+  upsert: [CartUpsertWithWhereUniqueWithoutClientInput!]
 }
 
-input CartUpdateManyWithoutAnnualClientInput {
+input CartUpdateManyWithoutEmployeeInput {
   connect: [CartWhereUniqueInput!]
-  connectOrCreate: [CartCreateOrConnectWithoutAnnualClientInput!]
-  create: [CartCreateWithoutAnnualClientInput!]
-  createMany: CartCreateManyAnnualClientInputEnvelope
+  connectOrCreate: [CartCreateOrConnectWithoutEmployeeInput!]
+  create: [CartCreateWithoutEmployeeInput!]
+  createMany: CartCreateManyEmployeeInputEnvelope
   delete: [CartWhereUniqueInput!]
   deleteMany: [CartScalarWhereInput!]
   disconnect: [CartWhereUniqueInput!]
   set: [CartWhereUniqueInput!]
-  update: [CartUpdateWithWhereUniqueWithoutAnnualClientInput!]
-  updateMany: [CartUpdateManyWithWhereWithoutAnnualClientInput!]
-  upsert: [CartUpsertWithWhereUniqueWithoutAnnualClientInput!]
+  update: [CartUpdateWithWhereUniqueWithoutEmployeeInput!]
+  updateMany: [CartUpdateManyWithWhereWithoutEmployeeInput!]
+  upsert: [CartUpsertWithWhereUniqueWithoutEmployeeInput!]
 }
 
 input CartUpdateManyWithoutProductInput {
@@ -1246,13 +243,13 @@ input CartUpdateManyWithoutProductInput {
   upsert: [CartUpsertWithWhereUniqueWithoutProductInput!]
 }
 
-input CartUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput {
-  data: CartUpdateWithoutAnnualBranchEmployeeInput!
+input CartUpdateWithWhereUniqueWithoutClientInput {
+  data: CartUpdateWithoutClientInput!
   where: CartWhereUniqueInput!
 }
 
-input CartUpdateWithWhereUniqueWithoutAnnualClientInput {
-  data: CartUpdateWithoutAnnualClientInput!
+input CartUpdateWithWhereUniqueWithoutEmployeeInput {
+  data: CartUpdateWithoutEmployeeInput!
   where: CartWhereUniqueInput!
 }
 
@@ -1261,8 +258,8 @@ input CartUpdateWithWhereUniqueWithoutProductInput {
   where: CartWhereUniqueInput!
 }
 
-input CartUpdateWithoutAnnualBranchEmployeeInput {
-  AnnualClient: AnnualClientUpdateOneWithoutCartsInput
+input CartUpdateWithoutClientInput {
+  Employee: EmployeeUpdateOneRequiredWithoutCartsInput
   Product: ProductUpdateOneRequiredWithoutCartsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
@@ -1273,8 +270,8 @@ input CartUpdateWithoutAnnualBranchEmployeeInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
-input CartUpdateWithoutAnnualClientInput {
-  AnnualBranchEmployee: AnnualBranchEmployeeUpdateOneWithoutCartsInput
+input CartUpdateWithoutEmployeeInput {
+  Client: ClientUpdateOneRequiredWithoutCartsInput
   Product: ProductUpdateOneRequiredWithoutCartsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
@@ -1286,8 +283,8 @@ input CartUpdateWithoutAnnualClientInput {
 }
 
 input CartUpdateWithoutProductInput {
-  AnnualBranchEmployee: AnnualBranchEmployeeUpdateOneWithoutCartsInput
-  AnnualClient: AnnualClientUpdateOneWithoutCartsInput
+  Client: ClientUpdateOneRequiredWithoutCartsInput
+  Employee: EmployeeUpdateOneRequiredWithoutCartsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   orderDate: DateTimeFieldUpdateOperationsInput
@@ -1297,15 +294,15 @@ input CartUpdateWithoutProductInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
-input CartUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput {
-  create: CartCreateWithoutAnnualBranchEmployeeInput!
-  update: CartUpdateWithoutAnnualBranchEmployeeInput!
+input CartUpsertWithWhereUniqueWithoutClientInput {
+  create: CartCreateWithoutClientInput!
+  update: CartUpdateWithoutClientInput!
   where: CartWhereUniqueInput!
 }
 
-input CartUpsertWithWhereUniqueWithoutAnnualClientInput {
-  create: CartCreateWithoutAnnualClientInput!
-  update: CartUpdateWithoutAnnualClientInput!
+input CartUpsertWithWhereUniqueWithoutEmployeeInput {
+  create: CartCreateWithoutEmployeeInput!
+  update: CartUpdateWithoutEmployeeInput!
   where: CartWhereUniqueInput!
 }
 
@@ -1363,12 +360,10 @@ input CategoryUpdateInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
-input CategoryUpdateOneWithoutProductsInput {
+input CategoryUpdateOneRequiredWithoutProductsInput {
   connect: CategoryWhereUniqueInput
   connectOrCreate: CategoryCreateOrConnectWithoutProductsInput
   create: CategoryCreateWithoutProductsInput
-  delete: Boolean
-  disconnect: Boolean
   update: CategoryUpdateWithoutProductsInput
   upsert: CategoryUpsertWithoutProductsInput
 }
@@ -1397,26 +392,48 @@ type Client {
 }
 
 input ClientCreateInput {
-  annClients: AnnualClientCreateNestedManyWithoutClientInput
+  carts: CartCreateNestedManyWithoutClientInput
   clientNames: String!
   clientPhoneNumb: Int!
   createdAt: DateTime
   id: String
+  orders: OrderCreateNestedManyWithoutClientInput
   updatedAt: DateTime
 }
 
-input ClientCreateNestedOneWithoutAnnClientsInput {
+input ClientCreateNestedOneWithoutCartsInput {
   connect: ClientWhereUniqueInput
-  connectOrCreate: ClientCreateOrConnectWithoutAnnClientsInput
-  create: ClientCreateWithoutAnnClientsInput
+  connectOrCreate: ClientCreateOrConnectWithoutCartsInput
+  create: ClientCreateWithoutCartsInput
 }
 
-input ClientCreateOrConnectWithoutAnnClientsInput {
-  create: ClientCreateWithoutAnnClientsInput!
+input ClientCreateNestedOneWithoutOrdersInput {
+  connect: ClientWhereUniqueInput
+  connectOrCreate: ClientCreateOrConnectWithoutOrdersInput
+  create: ClientCreateWithoutOrdersInput
+}
+
+input ClientCreateOrConnectWithoutCartsInput {
+  create: ClientCreateWithoutCartsInput!
   where: ClientWhereUniqueInput!
 }
 
-input ClientCreateWithoutAnnClientsInput {
+input ClientCreateOrConnectWithoutOrdersInput {
+  create: ClientCreateWithoutOrdersInput!
+  where: ClientWhereUniqueInput!
+}
+
+input ClientCreateWithoutCartsInput {
+  clientNames: String!
+  clientPhoneNumb: Int!
+  createdAt: DateTime
+  id: String
+  orders: OrderCreateNestedManyWithoutClientInput
+  updatedAt: DateTime
+}
+
+input ClientCreateWithoutOrdersInput {
+  carts: CartCreateNestedManyWithoutClientInput
   clientNames: String!
   clientPhoneNumb: Int!
   createdAt: DateTime
@@ -1425,25 +442,42 @@ input ClientCreateWithoutAnnClientsInput {
 }
 
 input ClientUpdateInput {
-  annClients: AnnualClientUpdateManyWithoutClientInput
+  carts: CartUpdateManyWithoutClientInput
   clientNames: StringFieldUpdateOperationsInput
   clientPhoneNumb: IntFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
+  orders: OrderUpdateManyWithoutClientInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
-input ClientUpdateOneWithoutAnnClientsInput {
+input ClientUpdateOneRequiredWithoutCartsInput {
   connect: ClientWhereUniqueInput
-  connectOrCreate: ClientCreateOrConnectWithoutAnnClientsInput
-  create: ClientCreateWithoutAnnClientsInput
-  delete: Boolean
-  disconnect: Boolean
-  update: ClientUpdateWithoutAnnClientsInput
-  upsert: ClientUpsertWithoutAnnClientsInput
+  connectOrCreate: ClientCreateOrConnectWithoutCartsInput
+  create: ClientCreateWithoutCartsInput
+  update: ClientUpdateWithoutCartsInput
+  upsert: ClientUpsertWithoutCartsInput
 }
 
-input ClientUpdateWithoutAnnClientsInput {
+input ClientUpdateOneRequiredWithoutOrdersInput {
+  connect: ClientWhereUniqueInput
+  connectOrCreate: ClientCreateOrConnectWithoutOrdersInput
+  create: ClientCreateWithoutOrdersInput
+  update: ClientUpdateWithoutOrdersInput
+  upsert: ClientUpsertWithoutOrdersInput
+}
+
+input ClientUpdateWithoutCartsInput {
+  clientNames: StringFieldUpdateOperationsInput
+  clientPhoneNumb: IntFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  orders: OrderUpdateManyWithoutClientInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input ClientUpdateWithoutOrdersInput {
+  carts: CartUpdateManyWithoutClientInput
   clientNames: StringFieldUpdateOperationsInput
   clientPhoneNumb: IntFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
@@ -1451,9 +485,14 @@ input ClientUpdateWithoutAnnClientsInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
-input ClientUpsertWithoutAnnClientsInput {
-  create: ClientCreateWithoutAnnClientsInput!
-  update: ClientUpdateWithoutAnnClientsInput!
+input ClientUpsertWithoutCartsInput {
+  create: ClientCreateWithoutCartsInput!
+  update: ClientUpdateWithoutCartsInput!
+}
+
+input ClientUpsertWithoutOrdersInput {
+  create: ClientCreateWithoutOrdersInput!
+  update: ClientUpdateWithoutOrdersInput!
 }
 
 input ClientWhereUniqueInput {
@@ -1479,7 +518,6 @@ input DateTimeFilter {
 }
 
 type Employee {
-  branchEmpls(after: BranchEmployeeWhereUniqueInput, before: BranchEmployeeWhereUniqueInput, first: Int, last: Int): [BranchEmployee!]!
   employeeCode: String!
   employeeNames: String!
   employeePhoneNumb: Int!
@@ -1487,27 +525,50 @@ type Employee {
 }
 
 input EmployeeCreateInput {
-  branchEmpls: BranchEmployeeCreateNestedManyWithoutEmployeeInput
+  carts: CartCreateNestedManyWithoutEmployeeInput
   createdAt: DateTime
   employeeCode: String!
   employeeNames: String!
   employeePhoneNumb: Int!
   id: String
+  orders: OrderCreateNestedManyWithoutEmployeeInput
   updatedAt: DateTime
 }
 
-input EmployeeCreateNestedOneWithoutBranchEmplsInput {
+input EmployeeCreateNestedOneWithoutCartsInput {
   connect: EmployeeWhereUniqueInput
-  connectOrCreate: EmployeeCreateOrConnectWithoutBranchEmplsInput
-  create: EmployeeCreateWithoutBranchEmplsInput
+  connectOrCreate: EmployeeCreateOrConnectWithoutCartsInput
+  create: EmployeeCreateWithoutCartsInput
 }
 
-input EmployeeCreateOrConnectWithoutBranchEmplsInput {
-  create: EmployeeCreateWithoutBranchEmplsInput!
+input EmployeeCreateNestedOneWithoutOrdersInput {
+  connect: EmployeeWhereUniqueInput
+  connectOrCreate: EmployeeCreateOrConnectWithoutOrdersInput
+  create: EmployeeCreateWithoutOrdersInput
+}
+
+input EmployeeCreateOrConnectWithoutCartsInput {
+  create: EmployeeCreateWithoutCartsInput!
   where: EmployeeWhereUniqueInput!
 }
 
-input EmployeeCreateWithoutBranchEmplsInput {
+input EmployeeCreateOrConnectWithoutOrdersInput {
+  create: EmployeeCreateWithoutOrdersInput!
+  where: EmployeeWhereUniqueInput!
+}
+
+input EmployeeCreateWithoutCartsInput {
+  createdAt: DateTime
+  employeeCode: String!
+  employeeNames: String!
+  employeePhoneNumb: Int!
+  id: String
+  orders: OrderCreateNestedManyWithoutEmployeeInput
+  updatedAt: DateTime
+}
+
+input EmployeeCreateWithoutOrdersInput {
+  carts: CartCreateNestedManyWithoutEmployeeInput
   createdAt: DateTime
   employeeCode: String!
   employeeNames: String!
@@ -1522,25 +583,6 @@ type EmployeeStatus {
 }
 
 input EmployeeStatusCreateInput {
-  branchEmpls: BranchEmployeeCreateNestedManyWithoutEmployeeStatusInput
-  createdAt: DateTime
-  id: String
-  status: String!
-  updatedAt: DateTime
-}
-
-input EmployeeStatusCreateNestedOneWithoutBranchEmplsInput {
-  connect: EmployeeStatusWhereUniqueInput
-  connectOrCreate: EmployeeStatusCreateOrConnectWithoutBranchEmplsInput
-  create: EmployeeStatusCreateWithoutBranchEmplsInput
-}
-
-input EmployeeStatusCreateOrConnectWithoutBranchEmplsInput {
-  create: EmployeeStatusCreateWithoutBranchEmplsInput!
-  where: EmployeeStatusWhereUniqueInput!
-}
-
-input EmployeeStatusCreateWithoutBranchEmplsInput {
   createdAt: DateTime
   id: String
   status: String!
@@ -1548,31 +590,10 @@ input EmployeeStatusCreateWithoutBranchEmplsInput {
 }
 
 input EmployeeStatusUpdateInput {
-  branchEmpls: BranchEmployeeUpdateManyWithoutEmployeeStatusInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   status: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput {
-  connect: EmployeeStatusWhereUniqueInput
-  connectOrCreate: EmployeeStatusCreateOrConnectWithoutBranchEmplsInput
-  create: EmployeeStatusCreateWithoutBranchEmplsInput
-  update: EmployeeStatusUpdateWithoutBranchEmplsInput
-  upsert: EmployeeStatusUpsertWithoutBranchEmplsInput
-}
-
-input EmployeeStatusUpdateWithoutBranchEmplsInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  status: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input EmployeeStatusUpsertWithoutBranchEmplsInput {
-  create: EmployeeStatusCreateWithoutBranchEmplsInput!
-  update: EmployeeStatusUpdateWithoutBranchEmplsInput!
 }
 
 input EmployeeStatusWhereUniqueInput {
@@ -1580,24 +601,44 @@ input EmployeeStatusWhereUniqueInput {
 }
 
 input EmployeeUpdateInput {
-  branchEmpls: BranchEmployeeUpdateManyWithoutEmployeeInput
+  carts: CartUpdateManyWithoutEmployeeInput
   createdAt: DateTimeFieldUpdateOperationsInput
   employeeCode: StringFieldUpdateOperationsInput
   employeeNames: StringFieldUpdateOperationsInput
   employeePhoneNumb: IntFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
+  orders: OrderUpdateManyWithoutEmployeeInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
-input EmployeeUpdateOneRequiredWithoutBranchEmplsInput {
+input EmployeeUpdateOneRequiredWithoutCartsInput {
   connect: EmployeeWhereUniqueInput
-  connectOrCreate: EmployeeCreateOrConnectWithoutBranchEmplsInput
-  create: EmployeeCreateWithoutBranchEmplsInput
-  update: EmployeeUpdateWithoutBranchEmplsInput
-  upsert: EmployeeUpsertWithoutBranchEmplsInput
+  connectOrCreate: EmployeeCreateOrConnectWithoutCartsInput
+  create: EmployeeCreateWithoutCartsInput
+  update: EmployeeUpdateWithoutCartsInput
+  upsert: EmployeeUpsertWithoutCartsInput
 }
 
-input EmployeeUpdateWithoutBranchEmplsInput {
+input EmployeeUpdateOneRequiredWithoutOrdersInput {
+  connect: EmployeeWhereUniqueInput
+  connectOrCreate: EmployeeCreateOrConnectWithoutOrdersInput
+  create: EmployeeCreateWithoutOrdersInput
+  update: EmployeeUpdateWithoutOrdersInput
+  upsert: EmployeeUpsertWithoutOrdersInput
+}
+
+input EmployeeUpdateWithoutCartsInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  employeeCode: StringFieldUpdateOperationsInput
+  employeeNames: StringFieldUpdateOperationsInput
+  employeePhoneNumb: IntFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  orders: OrderUpdateManyWithoutEmployeeInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input EmployeeUpdateWithoutOrdersInput {
+  carts: CartUpdateManyWithoutEmployeeInput
   createdAt: DateTimeFieldUpdateOperationsInput
   employeeCode: StringFieldUpdateOperationsInput
   employeeNames: StringFieldUpdateOperationsInput
@@ -1606,9 +647,14 @@ input EmployeeUpdateWithoutBranchEmplsInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
-input EmployeeUpsertWithoutBranchEmplsInput {
-  create: EmployeeCreateWithoutBranchEmplsInput!
-  update: EmployeeUpdateWithoutBranchEmplsInput!
+input EmployeeUpsertWithoutCartsInput {
+  create: EmployeeCreateWithoutCartsInput!
+  update: EmployeeUpdateWithoutCartsInput!
+}
+
+input EmployeeUpsertWithoutOrdersInput {
+  create: EmployeeCreateWithoutOrdersInput!
+  update: EmployeeUpdateWithoutOrdersInput!
 }
 
 input EmployeeWhereUniqueInput {
@@ -1731,53 +777,11 @@ input FinanceWhereUniqueInput {
 }
 
 type FinancialYear {
-  annBranchEmpls(after: AnnualBranchEmployeeWhereUniqueInput, before: AnnualBranchEmployeeWhereUniqueInput, first: Int, last: Int): [AnnualBranchEmployee!]!
-  annClients(after: AnnualClientWhereUniqueInput, before: AnnualClientWhereUniqueInput, first: Int, last: Int): [AnnualClient!]!
   id: String!
   yearName: Int!
 }
 
 input FinancialYearCreateInput {
-  annBranchEmpls: AnnualBranchEmployeeCreateNestedManyWithoutFinancialYearInput
-  annClients: AnnualClientCreateNestedManyWithoutFinancialYearInput
-  createdAt: DateTime
-  id: String
-  updatedAt: DateTime
-  yearName: Int!
-}
-
-input FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput {
-  connect: FinancialYearWhereUniqueInput
-  connectOrCreate: FinancialYearCreateOrConnectWithoutAnnBranchEmplsInput
-  create: FinancialYearCreateWithoutAnnBranchEmplsInput
-}
-
-input FinancialYearCreateNestedOneWithoutAnnClientsInput {
-  connect: FinancialYearWhereUniqueInput
-  connectOrCreate: FinancialYearCreateOrConnectWithoutAnnClientsInput
-  create: FinancialYearCreateWithoutAnnClientsInput
-}
-
-input FinancialYearCreateOrConnectWithoutAnnBranchEmplsInput {
-  create: FinancialYearCreateWithoutAnnBranchEmplsInput!
-  where: FinancialYearWhereUniqueInput!
-}
-
-input FinancialYearCreateOrConnectWithoutAnnClientsInput {
-  create: FinancialYearCreateWithoutAnnClientsInput!
-  where: FinancialYearWhereUniqueInput!
-}
-
-input FinancialYearCreateWithoutAnnBranchEmplsInput {
-  annClients: AnnualClientCreateNestedManyWithoutFinancialYearInput
-  createdAt: DateTime
-  id: String
-  updatedAt: DateTime
-  yearName: Int!
-}
-
-input FinancialYearCreateWithoutAnnClientsInput {
-  annBranchEmpls: AnnualBranchEmployeeCreateNestedManyWithoutFinancialYearInput
   createdAt: DateTime
   id: String
   updatedAt: DateTime
@@ -1785,58 +789,10 @@ input FinancialYearCreateWithoutAnnClientsInput {
 }
 
 input FinancialYearUpdateInput {
-  annBranchEmpls: AnnualBranchEmployeeUpdateManyWithoutFinancialYearInput
-  annClients: AnnualClientUpdateManyWithoutFinancialYearInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
   yearName: IntFieldUpdateOperationsInput
-}
-
-input FinancialYearUpdateOneWithoutAnnBranchEmplsInput {
-  connect: FinancialYearWhereUniqueInput
-  connectOrCreate: FinancialYearCreateOrConnectWithoutAnnBranchEmplsInput
-  create: FinancialYearCreateWithoutAnnBranchEmplsInput
-  delete: Boolean
-  disconnect: Boolean
-  update: FinancialYearUpdateWithoutAnnBranchEmplsInput
-  upsert: FinancialYearUpsertWithoutAnnBranchEmplsInput
-}
-
-input FinancialYearUpdateOneWithoutAnnClientsInput {
-  connect: FinancialYearWhereUniqueInput
-  connectOrCreate: FinancialYearCreateOrConnectWithoutAnnClientsInput
-  create: FinancialYearCreateWithoutAnnClientsInput
-  delete: Boolean
-  disconnect: Boolean
-  update: FinancialYearUpdateWithoutAnnClientsInput
-  upsert: FinancialYearUpsertWithoutAnnClientsInput
-}
-
-input FinancialYearUpdateWithoutAnnBranchEmplsInput {
-  annClients: AnnualClientUpdateManyWithoutFinancialYearInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-  yearName: IntFieldUpdateOperationsInput
-}
-
-input FinancialYearUpdateWithoutAnnClientsInput {
-  annBranchEmpls: AnnualBranchEmployeeUpdateManyWithoutFinancialYearInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-  yearName: IntFieldUpdateOperationsInput
-}
-
-input FinancialYearUpsertWithoutAnnBranchEmplsInput {
-  create: FinancialYearCreateWithoutAnnBranchEmplsInput!
-  update: FinancialYearUpdateWithoutAnnBranchEmplsInput!
-}
-
-input FinancialYearUpsertWithoutAnnClientsInput {
-  create: FinancialYearCreateWithoutAnnClientsInput!
-  update: FinancialYearUpdateWithoutAnnClientsInput!
 }
 
 input FinancialYearWhereUniqueInput {
@@ -1881,45 +837,7 @@ input IntFilter {
   notIn: [Int!]
 }
 
-type Inventory {
-  id: String!
-  qttyInHand: Int!
-}
-
-input InventoryCreateInput {
-  createdAt: DateTime
-  id: String
-  qttyInHand: Int!
-  updatedAt: DateTime
-}
-
-input InventoryUpdateInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  qttyInHand: IntFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input InventoryWhereUniqueInput {
-  id: String
-}
-
 type Mutation {
-  """Stores a AnnualBranchEmployee manually"""
-  createAnnualBranchEmployee(data: AnnualBranchEmployeeCreateInput!): AnnualBranchEmployee
-
-  """Stores a AnnualClient manually"""
-  createAnnualClient(data: AnnualClientCreateInput!): AnnualClient
-
-  """Stores a Bonus manually"""
-  createBonus(data: BonusCreateInput!): Bonus
-
-  """Stores a Branch manually"""
-  createBranch(data: BranchCreateInput!): Branch
-
-  """Stores a BranchEmployee manually"""
-  createBranchEmployee(data: BranchEmployeeCreateInput!): BranchEmployee
-
   """Stores a Cart manually"""
   createCart(data: CartCreateInput!): Cart
 
@@ -1940,14 +858,6 @@ type Mutation {
 
   """Stores a FinancialYear manually"""
   createFinancialYear(data: FinancialYearCreateInput!): FinancialYear
-
-  """Stores a Inventory manually"""
-  createInventory(data: InventoryCreateInput!): Inventory
-  createOneAnnualBranchEmployee(data: AnnualBranchEmployeeCreateInput!): AnnualBranchEmployee!
-  createOneAnnualClient(data: AnnualClientCreateInput!): AnnualClient!
-  createOneBonus(data: BonusCreateInput!): Bonus!
-  createOneBranch(data: BranchCreateInput!): Branch!
-  createOneBranchEmployee(data: BranchEmployeeCreateInput!): BranchEmployee!
   createOneCart(data: CartCreateInput!): Cart!
   createOneCategory(data: CategoryCreateInput!): Category!
   createOneClient(data: ClientCreateInput!): Client!
@@ -1955,9 +865,9 @@ type Mutation {
   createOneEmployeeStatus(data: EmployeeStatusCreateInput!): EmployeeStatus!
   createOneFinance(data: FinanceCreateInput!): Finance!
   createOneFinancialYear(data: FinancialYearCreateInput!): FinancialYear!
-  createOneInventory(data: InventoryCreateInput!): Inventory!
   createOneOrder(data: OrderCreateInput!): Order!
   createOneOrderDetail(data: OrderDetailCreateInput!): OrderDetail!
+  createOneOrderType(data: OrderTypeCreateInput!): OrderType!
   createOneProduct(data: ProductCreateInput!): Product!
 
   """Stores an  Order manually"""
@@ -1966,23 +876,11 @@ type Mutation {
   """Stores a OrderDetail manually"""
   createOrderDetail(data: OrderDetailCreateInput!): OrderDetail
 
+  """Stores a OrderType manually"""
+  createOrderType(data: OrderTypeCreateInput!): OrderType
+
   """Stores a Product manually"""
   createProduct(data: ProductCreateInput!): Product
-
-  """deletes a branchEmployee manually"""
-  deleteAnnualBranchEmployee(where: AnnualBranchEmployeeWhereUniqueInput!): AnnualBranchEmployee
-
-  """deletes a annualClient manually"""
-  deleteAnnualClient(where: AnnualClientWhereUniqueInput!): AnnualClient
-
-  """deletes a Bonus manually"""
-  deleteBonus(where: BonusWhereUniqueInput!): Bonus
-
-  """deletes a branch manually"""
-  deleteBranch(where: BranchWhereUniqueInput!): Branch
-
-  """deletes a branchEmployee manually"""
-  deleteBranchEmployee(where: BranchEmployeeWhereUniqueInput!): BranchEmployee
 
   """deletes a cart manually"""
   deleteCart(where: CartWhereUniqueInput!): Cart
@@ -2004,14 +902,6 @@ type Mutation {
 
   """deletes a financialYear manually"""
   deleteFinancialYear(where: FinancialYearWhereUniqueInput!): FinancialYear
-
-  """deletes a inventory manually"""
-  deleteInventory(where: InventoryWhereUniqueInput!): Inventory
-  deleteOneAnnualBranchEmployee(where: AnnualBranchEmployeeWhereUniqueInput!): AnnualBranchEmployee
-  deleteOneAnnualClient(where: AnnualClientWhereUniqueInput!): AnnualClient
-  deleteOneBonus(where: BonusWhereUniqueInput!): Bonus
-  deleteOneBranch(where: BranchWhereUniqueInput!): Branch
-  deleteOneBranchEmployee(where: BranchEmployeeWhereUniqueInput!): BranchEmployee
   deleteOneCart(where: CartWhereUniqueInput!): Cart
   deleteOneCategory(where: CategoryWhereUniqueInput!): Category
   deleteOneClient(where: ClientWhereUniqueInput!): Client
@@ -2019,9 +909,9 @@ type Mutation {
   deleteOneEmployeeStatus(where: EmployeeStatusWhereUniqueInput!): EmployeeStatus
   deleteOneFinance(where: FinanceWhereUniqueInput!): Finance
   deleteOneFinancialYear(where: FinancialYearWhereUniqueInput!): FinancialYear
-  deleteOneInventory(where: InventoryWhereUniqueInput!): Inventory
   deleteOneOrder(where: OrderWhereUniqueInput!): Order
   deleteOneOrderDetail(where: OrderDetailWhereUniqueInput!): OrderDetail
+  deleteOneOrderType(where: OrderTypeWhereUniqueInput!): OrderType
   deleteOneProduct(where: ProductWhereUniqueInput!): Product
 
   """deletes a Order manually"""
@@ -2030,13 +920,11 @@ type Mutation {
   """deletes a OrderDetail manually"""
   deleteOrderDetail(where: OrderDetailWhereUniqueInput!): OrderDetail
 
+  """deletes a orderType manually"""
+  deleteOrderType(where: OrderTypeWhereUniqueInput!): OrderType
+
   """deletes a Product manually"""
   deleteProduct(where: ProductWhereUniqueInput!): Product
-  updateOneAnnualBranchEmployee(data: AnnualBranchEmployeeUpdateInput!, where: AnnualBranchEmployeeWhereUniqueInput!): AnnualBranchEmployee
-  updateOneAnnualClient(data: AnnualClientUpdateInput!, where: AnnualClientWhereUniqueInput!): AnnualClient
-  updateOneBonus(data: BonusUpdateInput!, where: BonusWhereUniqueInput!): Bonus
-  updateOneBranch(data: BranchUpdateInput!, where: BranchWhereUniqueInput!): Branch
-  updateOneBranchEmployee(data: BranchEmployeeUpdateInput!, where: BranchEmployeeWhereUniqueInput!): BranchEmployee
   updateOneCart(data: CartUpdateInput!, where: CartWhereUniqueInput!): Cart
   updateOneCategory(data: CategoryUpdateInput!, where: CategoryWhereUniqueInput!): Category
   updateOneClient(data: ClientUpdateInput!, where: ClientWhereUniqueInput!): Client
@@ -2044,9 +932,9 @@ type Mutation {
   updateOneEmployeeStatus(data: EmployeeStatusUpdateInput!, where: EmployeeStatusWhereUniqueInput!): EmployeeStatus
   updateOneFinance(data: FinanceUpdateInput!, where: FinanceWhereUniqueInput!): Finance
   updateOneFinancialYear(data: FinancialYearUpdateInput!, where: FinancialYearWhereUniqueInput!): FinancialYear
-  updateOneInventory(data: InventoryUpdateInput!, where: InventoryWhereUniqueInput!): Inventory
   updateOneOrder(data: OrderUpdateInput!, where: OrderWhereUniqueInput!): Order
   updateOneOrderDetail(data: OrderDetailUpdateInput!, where: OrderDetailWhereUniqueInput!): OrderDetail
+  updateOneOrderType(data: OrderTypeUpdateInput!, where: OrderTypeWhereUniqueInput!): OrderType
   updateOneProduct(data: ProductUpdateInput!, where: ProductWhereUniqueInput!): Product
 }
 
@@ -2097,25 +985,7 @@ input NestedStringFilter {
   startsWith: String
 }
 
-input NestedStringNullableFilter {
-  contains: String
-  endsWith: String
-  equals: String
-  gt: String
-  gte: String
-  in: [String!]
-  lt: String
-  lte: String
-  not: NestedStringNullableFilter
-  notIn: [String!]
-  startsWith: String
-}
-
 type Order {
-  AnnualBranchEmployee: AnnualBranchEmployee
-  AnnualClient: AnnualClient
-  annualBranchEmployeeId: String
-  annualClientId: String
   finances(after: FinanceWhereUniqueInput, before: FinanceWhereUniqueInput, first: Int, last: Int): [Finance!]!
   id: String!
   orderDate: DateTime!
@@ -2126,8 +996,8 @@ type Order {
 }
 
 input OrderCreateInput {
-  AnnualBranchEmployee: AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput
-  AnnualClient: AnnualClientCreateNestedOneWithoutOrdersInput
+  Client: ClientCreateNestedOneWithoutOrdersInput!
+  Employee: EmployeeCreateNestedOneWithoutOrdersInput!
   createdAt: DateTime
   finances: FinanceCreateNestedManyWithoutOrderInput
   id: String
@@ -2139,8 +1009,24 @@ input OrderCreateInput {
   updatedAt: DateTime
 }
 
-input OrderCreateManyAnnualBranchEmployeeInput {
-  annualClientId: String
+input OrderCreateManyClientInput {
+  createdAt: DateTime
+  employeeId: String!
+  id: String
+  orderDate: DateTime
+  orderNumber: String!
+  orderTotal: Int!
+  totalPaid: Int!
+  updatedAt: DateTime
+}
+
+input OrderCreateManyClientInputEnvelope {
+  data: [OrderCreateManyClientInput!]
+  skipDuplicates: Boolean
+}
+
+input OrderCreateManyEmployeeInput {
+  clientId: String!
   createdAt: DateTime
   id: String
   orderDate: DateTime
@@ -2150,39 +1036,23 @@ input OrderCreateManyAnnualBranchEmployeeInput {
   updatedAt: DateTime
 }
 
-input OrderCreateManyAnnualBranchEmployeeInputEnvelope {
-  data: [OrderCreateManyAnnualBranchEmployeeInput!]
+input OrderCreateManyEmployeeInputEnvelope {
+  data: [OrderCreateManyEmployeeInput!]
   skipDuplicates: Boolean
 }
 
-input OrderCreateManyAnnualClientInput {
-  annualBranchEmployeeId: String
-  createdAt: DateTime
-  id: String
-  orderDate: DateTime
-  orderNumber: String!
-  orderTotal: Int!
-  totalPaid: Int!
-  updatedAt: DateTime
-}
-
-input OrderCreateManyAnnualClientInputEnvelope {
-  data: [OrderCreateManyAnnualClientInput!]
-  skipDuplicates: Boolean
-}
-
-input OrderCreateNestedManyWithoutAnnualBranchEmployeeInput {
+input OrderCreateNestedManyWithoutClientInput {
   connect: [OrderWhereUniqueInput!]
-  connectOrCreate: [OrderCreateOrConnectWithoutAnnualBranchEmployeeInput!]
-  create: [OrderCreateWithoutAnnualBranchEmployeeInput!]
-  createMany: OrderCreateManyAnnualBranchEmployeeInputEnvelope
+  connectOrCreate: [OrderCreateOrConnectWithoutClientInput!]
+  create: [OrderCreateWithoutClientInput!]
+  createMany: OrderCreateManyClientInputEnvelope
 }
 
-input OrderCreateNestedManyWithoutAnnualClientInput {
+input OrderCreateNestedManyWithoutEmployeeInput {
   connect: [OrderWhereUniqueInput!]
-  connectOrCreate: [OrderCreateOrConnectWithoutAnnualClientInput!]
-  create: [OrderCreateWithoutAnnualClientInput!]
-  createMany: OrderCreateManyAnnualClientInputEnvelope
+  connectOrCreate: [OrderCreateOrConnectWithoutEmployeeInput!]
+  create: [OrderCreateWithoutEmployeeInput!]
+  createMany: OrderCreateManyEmployeeInputEnvelope
 }
 
 input OrderCreateNestedOneWithoutFinancesInput {
@@ -2197,13 +1067,13 @@ input OrderCreateNestedOneWithoutOrderDetailsInput {
   create: OrderCreateWithoutOrderDetailsInput
 }
 
-input OrderCreateOrConnectWithoutAnnualBranchEmployeeInput {
-  create: OrderCreateWithoutAnnualBranchEmployeeInput!
+input OrderCreateOrConnectWithoutClientInput {
+  create: OrderCreateWithoutClientInput!
   where: OrderWhereUniqueInput!
 }
 
-input OrderCreateOrConnectWithoutAnnualClientInput {
-  create: OrderCreateWithoutAnnualClientInput!
+input OrderCreateOrConnectWithoutEmployeeInput {
+  create: OrderCreateWithoutEmployeeInput!
   where: OrderWhereUniqueInput!
 }
 
@@ -2217,8 +1087,8 @@ input OrderCreateOrConnectWithoutOrderDetailsInput {
   where: OrderWhereUniqueInput!
 }
 
-input OrderCreateWithoutAnnualBranchEmployeeInput {
-  AnnualClient: AnnualClientCreateNestedOneWithoutOrdersInput
+input OrderCreateWithoutClientInput {
+  Employee: EmployeeCreateNestedOneWithoutOrdersInput!
   createdAt: DateTime
   finances: FinanceCreateNestedManyWithoutOrderInput
   id: String
@@ -2230,8 +1100,8 @@ input OrderCreateWithoutAnnualBranchEmployeeInput {
   updatedAt: DateTime
 }
 
-input OrderCreateWithoutAnnualClientInput {
-  AnnualBranchEmployee: AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput
+input OrderCreateWithoutEmployeeInput {
+  Client: ClientCreateNestedOneWithoutOrdersInput!
   createdAt: DateTime
   finances: FinanceCreateNestedManyWithoutOrderInput
   id: String
@@ -2244,8 +1114,8 @@ input OrderCreateWithoutAnnualClientInput {
 }
 
 input OrderCreateWithoutFinancesInput {
-  AnnualBranchEmployee: AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput
-  AnnualClient: AnnualClientCreateNestedOneWithoutOrdersInput
+  Client: ClientCreateNestedOneWithoutOrdersInput!
+  Employee: EmployeeCreateNestedOneWithoutOrdersInput!
   createdAt: DateTime
   id: String
   orderDate: DateTime
@@ -2257,8 +1127,8 @@ input OrderCreateWithoutFinancesInput {
 }
 
 input OrderCreateWithoutOrderDetailsInput {
-  AnnualBranchEmployee: AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput
-  AnnualClient: AnnualClientCreateNestedOneWithoutOrdersInput
+  Client: ClientCreateNestedOneWithoutOrdersInput!
+  Employee: EmployeeCreateNestedOneWithoutOrdersInput!
   createdAt: DateTime
   finances: FinanceCreateNestedManyWithoutOrderInput
   id: String
@@ -2497,9 +1367,9 @@ input OrderScalarWhereInput {
   AND: [OrderScalarWhereInput!]
   NOT: [OrderScalarWhereInput!]
   OR: [OrderScalarWhereInput!]
-  annualBranchEmployeeId: StringNullableFilter
-  annualClientId: StringNullableFilter
+  clientId: StringFilter
   createdAt: DateTimeFilter
+  employeeId: StringFilter
   id: StringFilter
   orderDate: DateTimeFilter
   orderNumber: StringFilter
@@ -2508,9 +1378,35 @@ input OrderScalarWhereInput {
   updatedAt: DateTimeFilter
 }
 
+type OrderType {
+  id: String!
+  orderTypeCode: String!
+  orderTypeName: String!
+}
+
+input OrderTypeCreateInput {
+  createdAt: DateTime
+  id: String
+  orderTypeCode: String!
+  orderTypeName: String!
+  updatedAt: DateTime
+}
+
+input OrderTypeUpdateInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  orderTypeCode: StringFieldUpdateOperationsInput
+  orderTypeName: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input OrderTypeWhereUniqueInput {
+  id: String
+}
+
 input OrderUpdateInput {
-  AnnualBranchEmployee: AnnualBranchEmployeeUpdateOneWithoutOrdersInput
-  AnnualClient: AnnualClientUpdateOneWithoutOrdersInput
+  Client: ClientUpdateOneRequiredWithoutOrdersInput
+  Employee: EmployeeUpdateOneRequiredWithoutOrdersInput
   createdAt: DateTimeFieldUpdateOperationsInput
   finances: FinanceUpdateManyWithoutOrderInput
   id: StringFieldUpdateOperationsInput
@@ -2532,42 +1428,42 @@ input OrderUpdateManyMutationInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
-input OrderUpdateManyWithWhereWithoutAnnualBranchEmployeeInput {
+input OrderUpdateManyWithWhereWithoutClientInput {
   data: OrderUpdateManyMutationInput!
   where: OrderScalarWhereInput!
 }
 
-input OrderUpdateManyWithWhereWithoutAnnualClientInput {
+input OrderUpdateManyWithWhereWithoutEmployeeInput {
   data: OrderUpdateManyMutationInput!
   where: OrderScalarWhereInput!
 }
 
-input OrderUpdateManyWithoutAnnualBranchEmployeeInput {
+input OrderUpdateManyWithoutClientInput {
   connect: [OrderWhereUniqueInput!]
-  connectOrCreate: [OrderCreateOrConnectWithoutAnnualBranchEmployeeInput!]
-  create: [OrderCreateWithoutAnnualBranchEmployeeInput!]
-  createMany: OrderCreateManyAnnualBranchEmployeeInputEnvelope
+  connectOrCreate: [OrderCreateOrConnectWithoutClientInput!]
+  create: [OrderCreateWithoutClientInput!]
+  createMany: OrderCreateManyClientInputEnvelope
   delete: [OrderWhereUniqueInput!]
   deleteMany: [OrderScalarWhereInput!]
   disconnect: [OrderWhereUniqueInput!]
   set: [OrderWhereUniqueInput!]
-  update: [OrderUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput!]
-  updateMany: [OrderUpdateManyWithWhereWithoutAnnualBranchEmployeeInput!]
-  upsert: [OrderUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput!]
+  update: [OrderUpdateWithWhereUniqueWithoutClientInput!]
+  updateMany: [OrderUpdateManyWithWhereWithoutClientInput!]
+  upsert: [OrderUpsertWithWhereUniqueWithoutClientInput!]
 }
 
-input OrderUpdateManyWithoutAnnualClientInput {
+input OrderUpdateManyWithoutEmployeeInput {
   connect: [OrderWhereUniqueInput!]
-  connectOrCreate: [OrderCreateOrConnectWithoutAnnualClientInput!]
-  create: [OrderCreateWithoutAnnualClientInput!]
-  createMany: OrderCreateManyAnnualClientInputEnvelope
+  connectOrCreate: [OrderCreateOrConnectWithoutEmployeeInput!]
+  create: [OrderCreateWithoutEmployeeInput!]
+  createMany: OrderCreateManyEmployeeInputEnvelope
   delete: [OrderWhereUniqueInput!]
   deleteMany: [OrderScalarWhereInput!]
   disconnect: [OrderWhereUniqueInput!]
   set: [OrderWhereUniqueInput!]
-  update: [OrderUpdateWithWhereUniqueWithoutAnnualClientInput!]
-  updateMany: [OrderUpdateManyWithWhereWithoutAnnualClientInput!]
-  upsert: [OrderUpsertWithWhereUniqueWithoutAnnualClientInput!]
+  update: [OrderUpdateWithWhereUniqueWithoutEmployeeInput!]
+  updateMany: [OrderUpdateManyWithWhereWithoutEmployeeInput!]
+  upsert: [OrderUpsertWithWhereUniqueWithoutEmployeeInput!]
 }
 
 input OrderUpdateOneRequiredWithoutFinancesInput {
@@ -2586,18 +1482,18 @@ input OrderUpdateOneRequiredWithoutOrderDetailsInput {
   upsert: OrderUpsertWithoutOrderDetailsInput
 }
 
-input OrderUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput {
-  data: OrderUpdateWithoutAnnualBranchEmployeeInput!
+input OrderUpdateWithWhereUniqueWithoutClientInput {
+  data: OrderUpdateWithoutClientInput!
   where: OrderWhereUniqueInput!
 }
 
-input OrderUpdateWithWhereUniqueWithoutAnnualClientInput {
-  data: OrderUpdateWithoutAnnualClientInput!
+input OrderUpdateWithWhereUniqueWithoutEmployeeInput {
+  data: OrderUpdateWithoutEmployeeInput!
   where: OrderWhereUniqueInput!
 }
 
-input OrderUpdateWithoutAnnualBranchEmployeeInput {
-  AnnualClient: AnnualClientUpdateOneWithoutOrdersInput
+input OrderUpdateWithoutClientInput {
+  Employee: EmployeeUpdateOneRequiredWithoutOrdersInput
   createdAt: DateTimeFieldUpdateOperationsInput
   finances: FinanceUpdateManyWithoutOrderInput
   id: StringFieldUpdateOperationsInput
@@ -2609,8 +1505,8 @@ input OrderUpdateWithoutAnnualBranchEmployeeInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
-input OrderUpdateWithoutAnnualClientInput {
-  AnnualBranchEmployee: AnnualBranchEmployeeUpdateOneWithoutOrdersInput
+input OrderUpdateWithoutEmployeeInput {
+  Client: ClientUpdateOneRequiredWithoutOrdersInput
   createdAt: DateTimeFieldUpdateOperationsInput
   finances: FinanceUpdateManyWithoutOrderInput
   id: StringFieldUpdateOperationsInput
@@ -2623,8 +1519,8 @@ input OrderUpdateWithoutAnnualClientInput {
 }
 
 input OrderUpdateWithoutFinancesInput {
-  AnnualBranchEmployee: AnnualBranchEmployeeUpdateOneWithoutOrdersInput
-  AnnualClient: AnnualClientUpdateOneWithoutOrdersInput
+  Client: ClientUpdateOneRequiredWithoutOrdersInput
+  Employee: EmployeeUpdateOneRequiredWithoutOrdersInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   orderDate: DateTimeFieldUpdateOperationsInput
@@ -2636,8 +1532,8 @@ input OrderUpdateWithoutFinancesInput {
 }
 
 input OrderUpdateWithoutOrderDetailsInput {
-  AnnualBranchEmployee: AnnualBranchEmployeeUpdateOneWithoutOrdersInput
-  AnnualClient: AnnualClientUpdateOneWithoutOrdersInput
+  Client: ClientUpdateOneRequiredWithoutOrdersInput
+  Employee: EmployeeUpdateOneRequiredWithoutOrdersInput
   createdAt: DateTimeFieldUpdateOperationsInput
   finances: FinanceUpdateManyWithoutOrderInput
   id: StringFieldUpdateOperationsInput
@@ -2648,15 +1544,15 @@ input OrderUpdateWithoutOrderDetailsInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
-input OrderUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput {
-  create: OrderCreateWithoutAnnualBranchEmployeeInput!
-  update: OrderUpdateWithoutAnnualBranchEmployeeInput!
+input OrderUpsertWithWhereUniqueWithoutClientInput {
+  create: OrderCreateWithoutClientInput!
+  update: OrderUpdateWithoutClientInput!
   where: OrderWhereUniqueInput!
 }
 
-input OrderUpsertWithWhereUniqueWithoutAnnualClientInput {
-  create: OrderCreateWithoutAnnualClientInput!
-  update: OrderUpdateWithoutAnnualClientInput!
+input OrderUpsertWithWhereUniqueWithoutEmployeeInput {
+  create: OrderCreateWithoutEmployeeInput!
+  update: OrderUpdateWithoutEmployeeInput!
   where: OrderWhereUniqueInput!
 }
 
@@ -2675,9 +1571,9 @@ input OrderWhereUniqueInput {
 }
 
 type Product {
-  Category: Category
+  Category: Category!
   carts(after: CartWhereUniqueInput, before: CartWhereUniqueInput, first: Int, last: Int): [Cart!]!
-  categoryId: String
+  categoryId: String!
   id: String!
   orderDetails(after: OrderDetailWhereUniqueInput, before: OrderDetailWhereUniqueInput, first: Int, last: Int): [OrderDetail!]!
   pdtCode: String!
@@ -2686,13 +1582,14 @@ type Product {
 }
 
 input ProductCreateInput {
-  Category: CategoryCreateNestedOneWithoutProductsInput
+  Category: CategoryCreateNestedOneWithoutProductsInput!
   carts: CartCreateNestedManyWithoutProductInput
   createdAt: DateTime
   id: String
   orderDetails: OrderDetailCreateNestedManyWithoutProductInput
   pdtCode: String!
   pdtName: String!
+  qttyInHand: Int!
   unitPrice: Int!
   updatedAt: DateTime
 }
@@ -2702,6 +1599,7 @@ input ProductCreateManyCategoryInput {
   id: String
   pdtCode: String!
   pdtName: String!
+  qttyInHand: Int!
   unitPrice: Int!
   updatedAt: DateTime
 }
@@ -2746,12 +1644,13 @@ input ProductCreateOrConnectWithoutOrderDetailsInput {
 }
 
 input ProductCreateWithoutCartsInput {
-  Category: CategoryCreateNestedOneWithoutProductsInput
+  Category: CategoryCreateNestedOneWithoutProductsInput!
   createdAt: DateTime
   id: String
   orderDetails: OrderDetailCreateNestedManyWithoutProductInput
   pdtCode: String!
   pdtName: String!
+  qttyInHand: Int!
   unitPrice: Int!
   updatedAt: DateTime
 }
@@ -2763,17 +1662,19 @@ input ProductCreateWithoutCategoryInput {
   orderDetails: OrderDetailCreateNestedManyWithoutProductInput
   pdtCode: String!
   pdtName: String!
+  qttyInHand: Int!
   unitPrice: Int!
   updatedAt: DateTime
 }
 
 input ProductCreateWithoutOrderDetailsInput {
-  Category: CategoryCreateNestedOneWithoutProductsInput
+  Category: CategoryCreateNestedOneWithoutProductsInput!
   carts: CartCreateNestedManyWithoutProductInput
   createdAt: DateTime
   id: String
   pdtCode: String!
   pdtName: String!
+  qttyInHand: Int!
   unitPrice: Int!
   updatedAt: DateTime
 }
@@ -2782,23 +1683,25 @@ input ProductScalarWhereInput {
   AND: [ProductScalarWhereInput!]
   NOT: [ProductScalarWhereInput!]
   OR: [ProductScalarWhereInput!]
-  categoryId: StringNullableFilter
+  categoryId: StringFilter
   createdAt: DateTimeFilter
   id: StringFilter
   pdtCode: StringFilter
   pdtName: StringFilter
+  qttyInHand: IntFilter
   unitPrice: IntFilter
   updatedAt: DateTimeFilter
 }
 
 input ProductUpdateInput {
-  Category: CategoryUpdateOneWithoutProductsInput
+  Category: CategoryUpdateOneRequiredWithoutProductsInput
   carts: CartUpdateManyWithoutProductInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   orderDetails: OrderDetailUpdateManyWithoutProductInput
   pdtCode: StringFieldUpdateOperationsInput
   pdtName: StringFieldUpdateOperationsInput
+  qttyInHand: IntFieldUpdateOperationsInput
   unitPrice: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -2808,6 +1711,7 @@ input ProductUpdateManyMutationInput {
   id: StringFieldUpdateOperationsInput
   pdtCode: StringFieldUpdateOperationsInput
   pdtName: StringFieldUpdateOperationsInput
+  qttyInHand: IntFieldUpdateOperationsInput
   unitPrice: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -2853,12 +1757,13 @@ input ProductUpdateWithWhereUniqueWithoutCategoryInput {
 }
 
 input ProductUpdateWithoutCartsInput {
-  Category: CategoryUpdateOneWithoutProductsInput
+  Category: CategoryUpdateOneRequiredWithoutProductsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   orderDetails: OrderDetailUpdateManyWithoutProductInput
   pdtCode: StringFieldUpdateOperationsInput
   pdtName: StringFieldUpdateOperationsInput
+  qttyInHand: IntFieldUpdateOperationsInput
   unitPrice: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -2870,17 +1775,19 @@ input ProductUpdateWithoutCategoryInput {
   orderDetails: OrderDetailUpdateManyWithoutProductInput
   pdtCode: StringFieldUpdateOperationsInput
   pdtName: StringFieldUpdateOperationsInput
+  qttyInHand: IntFieldUpdateOperationsInput
   unitPrice: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input ProductUpdateWithoutOrderDetailsInput {
-  Category: CategoryUpdateOneWithoutProductsInput
+  Category: CategoryUpdateOneRequiredWithoutProductsInput
   carts: CartUpdateManyWithoutProductInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   pdtCode: StringFieldUpdateOperationsInput
   pdtName: StringFieldUpdateOperationsInput
+  qttyInHand: IntFieldUpdateOperationsInput
   unitPrice: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -2906,28 +1813,8 @@ input ProductWhereUniqueInput {
 }
 
 type Query {
-  annualBranchEmployee(where: AnnualBranchEmployeeWhereUniqueInput!): AnnualBranchEmployee
-  annualBranchEmployeeByBranchEmployeeAndYear(branchEmployeeId: String, financialYearId: String): AnnualBranchEmployee
-  annualBranchEmployeeById(id: String): AnnualBranchEmployee
-  annualBranchEmployees(after: AnnualBranchEmployeeWhereUniqueInput, before: AnnualBranchEmployeeWhereUniqueInput, first: Int, last: Int): [AnnualBranchEmployee!]!
-  annualClient(where: AnnualClientWhereUniqueInput!): AnnualClient
-  annualClientById(id: String): AnnualClient
-  annualClientByPhoneAndYear(clientId: String, financialYearId: String): AnnualClient
-  annualClientByYearClient(yearClient: String): AnnualClient
-  annualClients(after: AnnualClientWhereUniqueInput, before: AnnualClientWhereUniqueInput, first: Int, last: Int): [AnnualClient!]!
-  bonus(where: BonusWhereUniqueInput!): Bonus
-  bonusById(id: String): Bonus
-  bonuses(after: BonusWhereUniqueInput, before: BonusWhereUniqueInput, first: Int, last: Int): [Bonus!]!
-  branch(where: BranchWhereUniqueInput!): Branch
-  branchByBranchCode(branchCode: String): Branch
-  branchById(id: String): Branch
-  branchEmployee(where: BranchEmployeeWhereUniqueInput!): BranchEmployee
-  branchEmployeeByEmplIdAndBranchId(branchId: String, employeeId: String): BranchEmployee
-  branchEmployeeById(id: String): BranchEmployee
-  branchEmployees(after: BranchEmployeeWhereUniqueInput, before: BranchEmployeeWhereUniqueInput, first: Int, last: Int): [BranchEmployee!]!
-  branches(after: BranchWhereUniqueInput, before: BranchWhereUniqueInput, first: Int, last: Int): [Branch!]!
   cart(where: CartWhereUniqueInput!): Cart
-  cartByAnnualClientIdAndEmplId(annualBranchEmployeeId: String, annualClientId: String): [Cart]
+  cartByClientIdAndEmplId(clientId: String, employeeId: String): [Cart]
   cartById(id: String): Cart
   carts(after: CartWhereUniqueInput, before: CartWhereUniqueInput, first: Int, last: Int): [Cart!]!
   categories(after: CategoryWhereUniqueInput, before: CategoryWhereUniqueInput, first: Int, last: Int): [Category!]!
@@ -2951,13 +1838,13 @@ type Query {
   financialYear(where: FinancialYearWhereUniqueInput!): FinancialYear
   financialYearById(id: String): FinancialYear
   financialYears(id: String): FinancialYear
-  inventories(after: InventoryWhereUniqueInput, before: InventoryWhereUniqueInput, first: Int, last: Int): [Inventory!]!
-  inventory(where: InventoryWhereUniqueInput!): Inventory
-  inventoryById(id: String): Inventory
   order(where: OrderWhereUniqueInput!): Order
   orderById(id: String): Order
   orderDetail(where: OrderDetailWhereUniqueInput!): OrderDetail
   orderDetails(after: OrderDetailWhereUniqueInput, before: OrderDetailWhereUniqueInput, first: Int, last: Int): [OrderDetail!]!
+  orderType(where: OrderTypeWhereUniqueInput!): OrderType
+  orderTypeById(id: String): OrderType
+  orderTypes(after: OrderTypeWhereUniqueInput, before: OrderTypeWhereUniqueInput, first: Int, last: Int): [OrderType!]!
   orders: [Order]
   product(where: ProductWhereUniqueInput!): Product
   productById(id: String): Product
@@ -2986,21 +1873,6 @@ input StringFilter {
   lte: String
   mode: QueryMode
   not: NestedStringFilter
-  notIn: [String!]
-  startsWith: String
-}
-
-input StringNullableFilter {
-  contains: String
-  endsWith: String
-  equals: String
-  gt: String
-  gte: String
-  in: [String!]
-  lt: String
-  lte: String
-  mode: QueryMode
-  not: NestedStringNullableFilter
   notIn: [String!]
   startsWith: String
 }

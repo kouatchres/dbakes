@@ -22,85 +22,12 @@ export type Scalars = {
   DateTime: any;
 };
 
-export type AnnualBranchEmployee = {
-  id: Scalars['String'];
-  BranchEmployee?: Maybe<BranchEmployee>;
-  FinancialYear?: Maybe<FinancialYear>;
-  orders: Array<Order>;
-};
-
-
-export type AnnualBranchEmployeeOrdersArgs = {
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<OrderWhereUniqueInput>;
-  after?: Maybe<OrderWhereUniqueInput>;
-};
-
-export type AnnualClient = {
-  id: Scalars['String'];
-  Client?: Maybe<Client>;
-  FinancialYear?: Maybe<FinancialYear>;
-  orders: Array<Order>;
-  carts: Array<Cart>;
-  clientId?: Maybe<Scalars['String']>;
-  financialYearId?: Maybe<Scalars['String']>;
-};
-
-
-export type AnnualClientOrdersArgs = {
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<OrderWhereUniqueInput>;
-  after?: Maybe<OrderWhereUniqueInput>;
-};
-
-
-export type AnnualClientCartsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<CartWhereUniqueInput>;
-  after?: Maybe<CartWhereUniqueInput>;
-};
-
-export type Bonus = {
-  id: Scalars['String'];
-  bonusName: Scalars['String'];
-};
-
-export type Branch = {
-  id: Scalars['String'];
-  branchName: Scalars['String'];
-  branchEmpls: Array<BranchEmployee>;
-  branchCode: Scalars['String'];
-};
-
-
-export type BranchBranchEmplsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<BranchEmployeeWhereUniqueInput>;
-  after?: Maybe<BranchEmployeeWhereUniqueInput>;
-};
-
-export type BranchEmployee = {
-  id: Scalars['String'];
-  endDate: Scalars['DateTime'];
-  startDate: Scalars['DateTime'];
-  Employee: Employee;
-  EmployeeStatus: EmployeeStatus;
-  Branch: Branch;
-};
-
 export type Cart = {
   id: Scalars['String'];
-  AnnualClient?: Maybe<AnnualClient>;
   orderDate: Scalars['DateTime'];
   qtty: Scalars['Float'];
   pdtCost: Scalars['Int'];
   salesPrice: Scalars['Int'];
-  AnnualBranchEmployee?: Maybe<AnnualBranchEmployee>;
-  annualBranchEmployeeId?: Maybe<Scalars['String']>;
   Product: Product;
 };
 
@@ -128,17 +55,8 @@ export type Client = {
 export type Employee = {
   id: Scalars['String'];
   employeeNames: Scalars['String'];
-  branchEmpls: Array<BranchEmployee>;
   employeePhoneNumb: Scalars['Int'];
   employeeCode: Scalars['String'];
-};
-
-
-export type EmployeeBranchEmplsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<BranchEmployeeWhereUniqueInput>;
-  after?: Maybe<BranchEmployeeWhereUniqueInput>;
 };
 
 export type EmployeeStatus = {
@@ -155,40 +73,13 @@ export type Finance = {
 
 export type FinancialYear = {
   id: Scalars['String'];
-  annBranchEmpls: Array<AnnualBranchEmployee>;
   yearName: Scalars['Int'];
-  annClients: Array<AnnualClient>;
-};
-
-
-export type FinancialYearAnnBranchEmplsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<AnnualBranchEmployeeWhereUniqueInput>;
-  after?: Maybe<AnnualBranchEmployeeWhereUniqueInput>;
-};
-
-
-export type FinancialYearAnnClientsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<AnnualClientWhereUniqueInput>;
-  after?: Maybe<AnnualClientWhereUniqueInput>;
-};
-
-export type Inventory = {
-  id: Scalars['String'];
-  qttyInHand: Scalars['Int'];
 };
 
 export type Order = {
   id: Scalars['String'];
   orderDate: Scalars['DateTime'];
   orderTotal: Scalars['Int'];
-  AnnualBranchEmployee?: Maybe<AnnualBranchEmployee>;
-  annualBranchEmployeeId?: Maybe<Scalars['String']>;
-  AnnualClient?: Maybe<AnnualClient>;
-  annualClientId?: Maybe<Scalars['String']>;
   finances: Array<Finance>;
   totalPaid: Scalars['Int'];
   orderDetails: Array<OrderDetail>;
@@ -222,13 +113,19 @@ export type OrderDetail = {
   productId: Scalars['String'];
 };
 
+export type OrderType = {
+  id: Scalars['String'];
+  orderTypeName: Scalars['String'];
+  orderTypeCode: Scalars['String'];
+};
+
 export type Product = {
   id: Scalars['String'];
   pdtName: Scalars['String'];
   pdtCode: Scalars['String'];
-  Category?: Maybe<Category>;
+  Category: Category;
   carts: Array<Cart>;
-  categoryId?: Maybe<Scalars['String']>;
+  categoryId: Scalars['String'];
   unitPrice: Scalars['Int'];
   orderDetails: Array<OrderDetail>;
 };
@@ -249,28 +146,8 @@ export type ProductOrderDetailsArgs = {
   after?: Maybe<OrderDetailWhereUniqueInput>;
 };
 
-export type OrderWhereUniqueInput = {
-  id?: Maybe<Scalars['String']>;
-};
-
-export type CartWhereUniqueInput = {
-  id?: Maybe<Scalars['String']>;
-};
-
-export type BranchEmployeeWhereUniqueInput = {
-  id?: Maybe<Scalars['String']>;
-};
-
 
 export type ProductWhereUniqueInput = {
-  id?: Maybe<Scalars['String']>;
-};
-
-export type AnnualBranchEmployeeWhereUniqueInput = {
-  id?: Maybe<Scalars['String']>;
-};
-
-export type AnnualClientWhereUniqueInput = {
   id?: Maybe<Scalars['String']>;
 };
 
@@ -282,22 +159,17 @@ export type OrderDetailWhereUniqueInput = {
   id?: Maybe<Scalars['String']>;
 };
 
+export type CartWhereUniqueInput = {
+  id?: Maybe<Scalars['String']>;
+};
+
+export type CategoryWhereUniqueInput = {
+  id?: Maybe<Scalars['String']>;
+};
+
 export type ClientWhereUniqueInput = {
   id?: Maybe<Scalars['String']>;
   clientPhoneNumb?: Maybe<Scalars['Int']>;
-};
-
-export type BonusWhereUniqueInput = {
-  id?: Maybe<Scalars['String']>;
-};
-
-export type BranchWhereUniqueInput = {
-  id?: Maybe<Scalars['String']>;
-  branchCode?: Maybe<Scalars['String']>;
-};
-
-export type FinancialYearWhereUniqueInput = {
-  id?: Maybe<Scalars['String']>;
 };
 
 export type EmployeeWhereUniqueInput = {
@@ -310,52 +182,16 @@ export type EmployeeStatusWhereUniqueInput = {
   id?: Maybe<Scalars['String']>;
 };
 
-export type InventoryWhereUniqueInput = {
+export type FinancialYearWhereUniqueInput = {
   id?: Maybe<Scalars['String']>;
 };
 
-export type CategoryWhereUniqueInput = {
+export type OrderWhereUniqueInput = {
   id?: Maybe<Scalars['String']>;
 };
 
-export type AnnualBranchEmployeeCreateInput = {
+export type OrderTypeWhereUniqueInput = {
   id?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  orders?: Maybe<OrderCreateNestedManyWithoutAnnualBranchEmployeeInput>;
-  carts?: Maybe<CartCreateNestedManyWithoutAnnualBranchEmployeeInput>;
-  BranchEmployee?: Maybe<BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput>;
-  FinancialYear?: Maybe<FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput>;
-};
-
-export type AnnualBranchEmployeeUpdateInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  orders?: Maybe<OrderUpdateManyWithoutAnnualBranchEmployeeInput>;
-  carts?: Maybe<CartUpdateManyWithoutAnnualBranchEmployeeInput>;
-  BranchEmployee?: Maybe<BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput>;
-  FinancialYear?: Maybe<FinancialYearUpdateOneWithoutAnnBranchEmplsInput>;
-};
-
-export type AnnualClientCreateInput = {
-  id?: Maybe<Scalars['String']>;
-  orders?: Maybe<OrderCreateNestedManyWithoutAnnualClientInput>;
-  carts?: Maybe<CartCreateNestedManyWithoutAnnualClientInput>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  Client?: Maybe<ClientCreateNestedOneWithoutAnnClientsInput>;
-  FinancialYear?: Maybe<FinancialYearCreateNestedOneWithoutAnnClientsInput>;
-};
-
-export type AnnualClientUpdateInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  orders?: Maybe<OrderUpdateManyWithoutAnnualClientInput>;
-  carts?: Maybe<CartUpdateManyWithoutAnnualClientInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  Client?: Maybe<ClientUpdateOneWithoutAnnClientsInput>;
-  FinancialYear?: Maybe<FinancialYearUpdateOneWithoutAnnClientsInput>;
 };
 
 export type CartCreateInput = {
@@ -367,8 +203,8 @@ export type CartCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   Product: ProductCreateNestedOneWithoutCartsInput;
-  AnnualClient?: Maybe<AnnualClientCreateNestedOneWithoutCartsInput>;
-  AnnualBranchEmployee?: Maybe<AnnualBranchEmployeeCreateNestedOneWithoutCartsInput>;
+  Client: ClientCreateNestedOneWithoutCartsInput;
+  Employee: EmployeeCreateNestedOneWithoutCartsInput;
 };
 
 export type CartUpdateInput = {
@@ -380,8 +216,8 @@ export type CartUpdateInput = {
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   Product?: Maybe<ProductUpdateOneRequiredWithoutCartsInput>;
-  AnnualClient?: Maybe<AnnualClientUpdateOneWithoutCartsInput>;
-  AnnualBranchEmployee?: Maybe<AnnualBranchEmployeeUpdateOneWithoutCartsInput>;
+  Client?: Maybe<ClientUpdateOneRequiredWithoutCartsInput>;
+  Employee?: Maybe<EmployeeUpdateOneRequiredWithoutCartsInput>;
 };
 
 export type CategoryCreateInput = {
@@ -405,8 +241,9 @@ export type CategoryUpdateInput = {
 export type ClientCreateInput = {
   id?: Maybe<Scalars['String']>;
   clientPhoneNumb: Scalars['Int'];
-  annClients?: Maybe<AnnualClientCreateNestedManyWithoutClientInput>;
   clientNames: Scalars['String'];
+  carts?: Maybe<CartCreateNestedManyWithoutClientInput>;
+  orders?: Maybe<OrderCreateNestedManyWithoutClientInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -414,8 +251,9 @@ export type ClientCreateInput = {
 export type ClientUpdateInput = {
   id?: Maybe<StringFieldUpdateOperationsInput>;
   clientPhoneNumb?: Maybe<IntFieldUpdateOperationsInput>;
-  annClients?: Maybe<AnnualClientUpdateManyWithoutClientInput>;
   clientNames?: Maybe<StringFieldUpdateOperationsInput>;
+  carts?: Maybe<CartUpdateManyWithoutClientInput>;
+  orders?: Maybe<OrderUpdateManyWithoutClientInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
 };
@@ -454,8 +292,8 @@ export type OrderCreateInput = {
   finances?: Maybe<FinanceCreateNestedManyWithoutOrderInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  AnnualClient?: Maybe<AnnualClientCreateNestedOneWithoutOrdersInput>;
-  AnnualBranchEmployee?: Maybe<AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput>;
+  Client: ClientCreateNestedOneWithoutOrdersInput;
+  Employee: EmployeeCreateNestedOneWithoutOrdersInput;
 };
 
 export type OrderUpdateInput = {
@@ -468,70 +306,28 @@ export type OrderUpdateInput = {
   finances?: Maybe<FinanceUpdateManyWithoutOrderInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  AnnualClient?: Maybe<AnnualClientUpdateOneWithoutOrdersInput>;
-  AnnualBranchEmployee?: Maybe<AnnualBranchEmployeeUpdateOneWithoutOrdersInput>;
+  Client?: Maybe<ClientUpdateOneRequiredWithoutOrdersInput>;
+  Employee?: Maybe<EmployeeUpdateOneRequiredWithoutOrdersInput>;
 };
 
-export type BonusCreateInput = {
+export type OrderTypeCreateInput = {
   id?: Maybe<Scalars['String']>;
-  bonusName: Scalars['String'];
+  orderTypeName: Scalars['String'];
+  orderTypeCode: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
-export type BonusUpdateInput = {
+export type OrderTypeUpdateInput = {
   id?: Maybe<StringFieldUpdateOperationsInput>;
-  bonusName?: Maybe<StringFieldUpdateOperationsInput>;
+  orderTypeName?: Maybe<StringFieldUpdateOperationsInput>;
+  orderTypeCode?: Maybe<StringFieldUpdateOperationsInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-};
-
-export type BranchCreateInput = {
-  id?: Maybe<Scalars['String']>;
-  branchName: Scalars['String'];
-  branchCode: Scalars['String'];
-  branchEmpls?: Maybe<BranchEmployeeCreateNestedManyWithoutBranchInput>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type BranchUpdateInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  branchName?: Maybe<StringFieldUpdateOperationsInput>;
-  branchCode?: Maybe<StringFieldUpdateOperationsInput>;
-  branchEmpls?: Maybe<BranchEmployeeUpdateManyWithoutBranchInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-};
-
-export type BranchEmployeeCreateInput = {
-  id?: Maybe<Scalars['String']>;
-  annBranchEmployee?: Maybe<AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  startDate?: Maybe<Scalars['DateTime']>;
-  endDate?: Maybe<Scalars['DateTime']>;
-  Employee: EmployeeCreateNestedOneWithoutBranchEmplsInput;
-  Branch: BranchCreateNestedOneWithoutBranchEmplsInput;
-  EmployeeStatus: EmployeeStatusCreateNestedOneWithoutBranchEmplsInput;
-};
-
-export type BranchEmployeeUpdateInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  annBranchEmployee?: Maybe<AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  startDate?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  endDate?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  Employee?: Maybe<EmployeeUpdateOneRequiredWithoutBranchEmplsInput>;
-  Branch?: Maybe<BranchUpdateOneRequiredWithoutBranchEmplsInput>;
-  EmployeeStatus?: Maybe<EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput>;
 };
 
 export type FinancialYearCreateInput = {
   id?: Maybe<Scalars['String']>;
-  annBranchEmpls?: Maybe<AnnualBranchEmployeeCreateNestedManyWithoutFinancialYearInput>;
-  annClients?: Maybe<AnnualClientCreateNestedManyWithoutFinancialYearInput>;
   yearName: Scalars['Int'];
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -539,8 +335,6 @@ export type FinancialYearCreateInput = {
 
 export type FinancialYearUpdateInput = {
   id?: Maybe<StringFieldUpdateOperationsInput>;
-  annBranchEmpls?: Maybe<AnnualBranchEmployeeUpdateManyWithoutFinancialYearInput>;
-  annClients?: Maybe<AnnualClientUpdateManyWithoutFinancialYearInput>;
   yearName?: Maybe<IntFieldUpdateOperationsInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
@@ -548,9 +342,10 @@ export type FinancialYearUpdateInput = {
 
 export type EmployeeCreateInput = {
   id?: Maybe<Scalars['String']>;
-  branchEmpls?: Maybe<BranchEmployeeCreateNestedManyWithoutEmployeeInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+  carts?: Maybe<CartCreateNestedManyWithoutEmployeeInput>;
+  orders?: Maybe<OrderCreateNestedManyWithoutEmployeeInput>;
   employeeNames: Scalars['String'];
   employeeCode: Scalars['String'];
   employeePhoneNumb: Scalars['Int'];
@@ -558,9 +353,10 @@ export type EmployeeCreateInput = {
 
 export type EmployeeUpdateInput = {
   id?: Maybe<StringFieldUpdateOperationsInput>;
-  branchEmpls?: Maybe<BranchEmployeeUpdateManyWithoutEmployeeInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  carts?: Maybe<CartUpdateManyWithoutEmployeeInput>;
+  orders?: Maybe<OrderUpdateManyWithoutEmployeeInput>;
   employeeNames?: Maybe<StringFieldUpdateOperationsInput>;
   employeeCode?: Maybe<StringFieldUpdateOperationsInput>;
   employeePhoneNumb?: Maybe<IntFieldUpdateOperationsInput>;
@@ -571,7 +367,6 @@ export type EmployeeStatusCreateInput = {
   status: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  branchEmpls?: Maybe<BranchEmployeeCreateNestedManyWithoutEmployeeStatusInput>;
 };
 
 export type EmployeeStatusUpdateInput = {
@@ -579,7 +374,6 @@ export type EmployeeStatusUpdateInput = {
   status?: Maybe<StringFieldUpdateOperationsInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  branchEmpls?: Maybe<BranchEmployeeUpdateManyWithoutEmployeeStatusInput>;
 };
 
 export type FinanceCreateInput = {
@@ -598,198 +392,30 @@ export type FinanceUpdateInput = {
   Order?: Maybe<OrderUpdateOneRequiredWithoutFinancesInput>;
 };
 
-export type InventoryCreateInput = {
-  id?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  qttyInHand: Scalars['Int'];
-};
-
-export type InventoryUpdateInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  qttyInHand?: Maybe<IntFieldUpdateOperationsInput>;
-};
-
 export type ProductCreateInput = {
   id?: Maybe<Scalars['String']>;
   pdtName: Scalars['String'];
   pdtCode: Scalars['String'];
+  qttyInHand: Scalars['Int'];
   unitPrice: Scalars['Int'];
   carts?: Maybe<CartCreateNestedManyWithoutProductInput>;
   orderDetails?: Maybe<OrderDetailCreateNestedManyWithoutProductInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  Category?: Maybe<CategoryCreateNestedOneWithoutProductsInput>;
+  Category: CategoryCreateNestedOneWithoutProductsInput;
 };
 
 export type ProductUpdateInput = {
   id?: Maybe<StringFieldUpdateOperationsInput>;
   pdtName?: Maybe<StringFieldUpdateOperationsInput>;
   pdtCode?: Maybe<StringFieldUpdateOperationsInput>;
+  qttyInHand?: Maybe<IntFieldUpdateOperationsInput>;
   unitPrice?: Maybe<IntFieldUpdateOperationsInput>;
   carts?: Maybe<CartUpdateManyWithoutProductInput>;
   orderDetails?: Maybe<OrderDetailUpdateManyWithoutProductInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  Category?: Maybe<CategoryUpdateOneWithoutProductsInput>;
-};
-
-export type OrderCreateNestedManyWithoutAnnualBranchEmployeeInput = {
-  create?: Maybe<Array<OrderCreateWithoutAnnualBranchEmployeeInput>>;
-  connectOrCreate?: Maybe<Array<OrderCreateOrConnectWithoutAnnualBranchEmployeeInput>>;
-  createMany?: Maybe<OrderCreateManyAnnualBranchEmployeeInputEnvelope>;
-  connect?: Maybe<Array<OrderWhereUniqueInput>>;
-};
-
-export type CartCreateNestedManyWithoutAnnualBranchEmployeeInput = {
-  create?: Maybe<Array<CartCreateWithoutAnnualBranchEmployeeInput>>;
-  connectOrCreate?: Maybe<Array<CartCreateOrConnectWithoutAnnualBranchEmployeeInput>>;
-  createMany?: Maybe<CartCreateManyAnnualBranchEmployeeInputEnvelope>;
-  connect?: Maybe<Array<CartWhereUniqueInput>>;
-};
-
-export type BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput = {
-  create?: Maybe<BranchEmployeeCreateWithoutAnnBranchEmployeeInput>;
-  connectOrCreate?: Maybe<BranchEmployeeCreateOrConnectWithoutAnnBranchEmployeeInput>;
-  connect?: Maybe<BranchEmployeeWhereUniqueInput>;
-};
-
-export type FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput = {
-  create?: Maybe<FinancialYearCreateWithoutAnnBranchEmplsInput>;
-  connectOrCreate?: Maybe<FinancialYearCreateOrConnectWithoutAnnBranchEmplsInput>;
-  connect?: Maybe<FinancialYearWhereUniqueInput>;
-};
-
-export type StringFieldUpdateOperationsInput = {
-  set?: Maybe<Scalars['String']>;
-};
-
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Maybe<Scalars['DateTime']>;
-};
-
-export type OrderUpdateManyWithoutAnnualBranchEmployeeInput = {
-  create?: Maybe<Array<OrderCreateWithoutAnnualBranchEmployeeInput>>;
-  connectOrCreate?: Maybe<Array<OrderCreateOrConnectWithoutAnnualBranchEmployeeInput>>;
-  upsert?: Maybe<Array<OrderUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput>>;
-  createMany?: Maybe<OrderCreateManyAnnualBranchEmployeeInputEnvelope>;
-  set?: Maybe<Array<OrderWhereUniqueInput>>;
-  disconnect?: Maybe<Array<OrderWhereUniqueInput>>;
-  delete?: Maybe<Array<OrderWhereUniqueInput>>;
-  connect?: Maybe<Array<OrderWhereUniqueInput>>;
-  update?: Maybe<Array<OrderUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput>>;
-  updateMany?: Maybe<Array<OrderUpdateManyWithWhereWithoutAnnualBranchEmployeeInput>>;
-  deleteMany?: Maybe<Array<OrderScalarWhereInput>>;
-};
-
-export type CartUpdateManyWithoutAnnualBranchEmployeeInput = {
-  create?: Maybe<Array<CartCreateWithoutAnnualBranchEmployeeInput>>;
-  connectOrCreate?: Maybe<Array<CartCreateOrConnectWithoutAnnualBranchEmployeeInput>>;
-  upsert?: Maybe<Array<CartUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput>>;
-  createMany?: Maybe<CartCreateManyAnnualBranchEmployeeInputEnvelope>;
-  set?: Maybe<Array<CartWhereUniqueInput>>;
-  disconnect?: Maybe<Array<CartWhereUniqueInput>>;
-  delete?: Maybe<Array<CartWhereUniqueInput>>;
-  connect?: Maybe<Array<CartWhereUniqueInput>>;
-  update?: Maybe<Array<CartUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput>>;
-  updateMany?: Maybe<Array<CartUpdateManyWithWhereWithoutAnnualBranchEmployeeInput>>;
-  deleteMany?: Maybe<Array<CartScalarWhereInput>>;
-};
-
-export type BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput = {
-  create?: Maybe<BranchEmployeeCreateWithoutAnnBranchEmployeeInput>;
-  connectOrCreate?: Maybe<BranchEmployeeCreateOrConnectWithoutAnnBranchEmployeeInput>;
-  upsert?: Maybe<BranchEmployeeUpsertWithoutAnnBranchEmployeeInput>;
-  disconnect?: Maybe<Scalars['Boolean']>;
-  delete?: Maybe<Scalars['Boolean']>;
-  connect?: Maybe<BranchEmployeeWhereUniqueInput>;
-  update?: Maybe<BranchEmployeeUpdateWithoutAnnBranchEmployeeInput>;
-};
-
-export type FinancialYearUpdateOneWithoutAnnBranchEmplsInput = {
-  create?: Maybe<FinancialYearCreateWithoutAnnBranchEmplsInput>;
-  connectOrCreate?: Maybe<FinancialYearCreateOrConnectWithoutAnnBranchEmplsInput>;
-  upsert?: Maybe<FinancialYearUpsertWithoutAnnBranchEmplsInput>;
-  disconnect?: Maybe<Scalars['Boolean']>;
-  delete?: Maybe<Scalars['Boolean']>;
-  connect?: Maybe<FinancialYearWhereUniqueInput>;
-  update?: Maybe<FinancialYearUpdateWithoutAnnBranchEmplsInput>;
-};
-
-export type OrderCreateNestedManyWithoutAnnualClientInput = {
-  create?: Maybe<Array<OrderCreateWithoutAnnualClientInput>>;
-  connectOrCreate?: Maybe<Array<OrderCreateOrConnectWithoutAnnualClientInput>>;
-  createMany?: Maybe<OrderCreateManyAnnualClientInputEnvelope>;
-  connect?: Maybe<Array<OrderWhereUniqueInput>>;
-};
-
-export type CartCreateNestedManyWithoutAnnualClientInput = {
-  create?: Maybe<Array<CartCreateWithoutAnnualClientInput>>;
-  connectOrCreate?: Maybe<Array<CartCreateOrConnectWithoutAnnualClientInput>>;
-  createMany?: Maybe<CartCreateManyAnnualClientInputEnvelope>;
-  connect?: Maybe<Array<CartWhereUniqueInput>>;
-};
-
-export type ClientCreateNestedOneWithoutAnnClientsInput = {
-  create?: Maybe<ClientCreateWithoutAnnClientsInput>;
-  connectOrCreate?: Maybe<ClientCreateOrConnectWithoutAnnClientsInput>;
-  connect?: Maybe<ClientWhereUniqueInput>;
-};
-
-export type FinancialYearCreateNestedOneWithoutAnnClientsInput = {
-  create?: Maybe<FinancialYearCreateWithoutAnnClientsInput>;
-  connectOrCreate?: Maybe<FinancialYearCreateOrConnectWithoutAnnClientsInput>;
-  connect?: Maybe<FinancialYearWhereUniqueInput>;
-};
-
-export type OrderUpdateManyWithoutAnnualClientInput = {
-  create?: Maybe<Array<OrderCreateWithoutAnnualClientInput>>;
-  connectOrCreate?: Maybe<Array<OrderCreateOrConnectWithoutAnnualClientInput>>;
-  upsert?: Maybe<Array<OrderUpsertWithWhereUniqueWithoutAnnualClientInput>>;
-  createMany?: Maybe<OrderCreateManyAnnualClientInputEnvelope>;
-  set?: Maybe<Array<OrderWhereUniqueInput>>;
-  disconnect?: Maybe<Array<OrderWhereUniqueInput>>;
-  delete?: Maybe<Array<OrderWhereUniqueInput>>;
-  connect?: Maybe<Array<OrderWhereUniqueInput>>;
-  update?: Maybe<Array<OrderUpdateWithWhereUniqueWithoutAnnualClientInput>>;
-  updateMany?: Maybe<Array<OrderUpdateManyWithWhereWithoutAnnualClientInput>>;
-  deleteMany?: Maybe<Array<OrderScalarWhereInput>>;
-};
-
-export type CartUpdateManyWithoutAnnualClientInput = {
-  create?: Maybe<Array<CartCreateWithoutAnnualClientInput>>;
-  connectOrCreate?: Maybe<Array<CartCreateOrConnectWithoutAnnualClientInput>>;
-  upsert?: Maybe<Array<CartUpsertWithWhereUniqueWithoutAnnualClientInput>>;
-  createMany?: Maybe<CartCreateManyAnnualClientInputEnvelope>;
-  set?: Maybe<Array<CartWhereUniqueInput>>;
-  disconnect?: Maybe<Array<CartWhereUniqueInput>>;
-  delete?: Maybe<Array<CartWhereUniqueInput>>;
-  connect?: Maybe<Array<CartWhereUniqueInput>>;
-  update?: Maybe<Array<CartUpdateWithWhereUniqueWithoutAnnualClientInput>>;
-  updateMany?: Maybe<Array<CartUpdateManyWithWhereWithoutAnnualClientInput>>;
-  deleteMany?: Maybe<Array<CartScalarWhereInput>>;
-};
-
-export type ClientUpdateOneWithoutAnnClientsInput = {
-  create?: Maybe<ClientCreateWithoutAnnClientsInput>;
-  connectOrCreate?: Maybe<ClientCreateOrConnectWithoutAnnClientsInput>;
-  upsert?: Maybe<ClientUpsertWithoutAnnClientsInput>;
-  disconnect?: Maybe<Scalars['Boolean']>;
-  delete?: Maybe<Scalars['Boolean']>;
-  connect?: Maybe<ClientWhereUniqueInput>;
-  update?: Maybe<ClientUpdateWithoutAnnClientsInput>;
-};
-
-export type FinancialYearUpdateOneWithoutAnnClientsInput = {
-  create?: Maybe<FinancialYearCreateWithoutAnnClientsInput>;
-  connectOrCreate?: Maybe<FinancialYearCreateOrConnectWithoutAnnClientsInput>;
-  upsert?: Maybe<FinancialYearUpsertWithoutAnnClientsInput>;
-  disconnect?: Maybe<Scalars['Boolean']>;
-  delete?: Maybe<Scalars['Boolean']>;
-  connect?: Maybe<FinancialYearWhereUniqueInput>;
-  update?: Maybe<FinancialYearUpdateWithoutAnnClientsInput>;
+  Category?: Maybe<CategoryUpdateOneRequiredWithoutProductsInput>;
 };
 
 export type ProductCreateNestedOneWithoutCartsInput = {
@@ -798,16 +424,20 @@ export type ProductCreateNestedOneWithoutCartsInput = {
   connect?: Maybe<ProductWhereUniqueInput>;
 };
 
-export type AnnualClientCreateNestedOneWithoutCartsInput = {
-  create?: Maybe<AnnualClientCreateWithoutCartsInput>;
-  connectOrCreate?: Maybe<AnnualClientCreateOrConnectWithoutCartsInput>;
-  connect?: Maybe<AnnualClientWhereUniqueInput>;
+export type ClientCreateNestedOneWithoutCartsInput = {
+  create?: Maybe<ClientCreateWithoutCartsInput>;
+  connectOrCreate?: Maybe<ClientCreateOrConnectWithoutCartsInput>;
+  connect?: Maybe<ClientWhereUniqueInput>;
 };
 
-export type AnnualBranchEmployeeCreateNestedOneWithoutCartsInput = {
-  create?: Maybe<AnnualBranchEmployeeCreateWithoutCartsInput>;
-  connectOrCreate?: Maybe<AnnualBranchEmployeeCreateOrConnectWithoutCartsInput>;
-  connect?: Maybe<AnnualBranchEmployeeWhereUniqueInput>;
+export type EmployeeCreateNestedOneWithoutCartsInput = {
+  create?: Maybe<EmployeeCreateWithoutCartsInput>;
+  connectOrCreate?: Maybe<EmployeeCreateOrConnectWithoutCartsInput>;
+  connect?: Maybe<EmployeeWhereUniqueInput>;
+};
+
+export type StringFieldUpdateOperationsInput = {
+  set?: Maybe<Scalars['String']>;
 };
 
 export type FloatFieldUpdateOperationsInput = {
@@ -826,6 +456,10 @@ export type IntFieldUpdateOperationsInput = {
   divide?: Maybe<Scalars['Int']>;
 };
 
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Maybe<Scalars['DateTime']>;
+};
+
 export type ProductUpdateOneRequiredWithoutCartsInput = {
   create?: Maybe<ProductCreateWithoutCartsInput>;
   connectOrCreate?: Maybe<ProductCreateOrConnectWithoutCartsInput>;
@@ -834,24 +468,20 @@ export type ProductUpdateOneRequiredWithoutCartsInput = {
   update?: Maybe<ProductUpdateWithoutCartsInput>;
 };
 
-export type AnnualClientUpdateOneWithoutCartsInput = {
-  create?: Maybe<AnnualClientCreateWithoutCartsInput>;
-  connectOrCreate?: Maybe<AnnualClientCreateOrConnectWithoutCartsInput>;
-  upsert?: Maybe<AnnualClientUpsertWithoutCartsInput>;
-  disconnect?: Maybe<Scalars['Boolean']>;
-  delete?: Maybe<Scalars['Boolean']>;
-  connect?: Maybe<AnnualClientWhereUniqueInput>;
-  update?: Maybe<AnnualClientUpdateWithoutCartsInput>;
+export type ClientUpdateOneRequiredWithoutCartsInput = {
+  create?: Maybe<ClientCreateWithoutCartsInput>;
+  connectOrCreate?: Maybe<ClientCreateOrConnectWithoutCartsInput>;
+  upsert?: Maybe<ClientUpsertWithoutCartsInput>;
+  connect?: Maybe<ClientWhereUniqueInput>;
+  update?: Maybe<ClientUpdateWithoutCartsInput>;
 };
 
-export type AnnualBranchEmployeeUpdateOneWithoutCartsInput = {
-  create?: Maybe<AnnualBranchEmployeeCreateWithoutCartsInput>;
-  connectOrCreate?: Maybe<AnnualBranchEmployeeCreateOrConnectWithoutCartsInput>;
-  upsert?: Maybe<AnnualBranchEmployeeUpsertWithoutCartsInput>;
-  disconnect?: Maybe<Scalars['Boolean']>;
-  delete?: Maybe<Scalars['Boolean']>;
-  connect?: Maybe<AnnualBranchEmployeeWhereUniqueInput>;
-  update?: Maybe<AnnualBranchEmployeeUpdateWithoutCartsInput>;
+export type EmployeeUpdateOneRequiredWithoutCartsInput = {
+  create?: Maybe<EmployeeCreateWithoutCartsInput>;
+  connectOrCreate?: Maybe<EmployeeCreateOrConnectWithoutCartsInput>;
+  upsert?: Maybe<EmployeeUpsertWithoutCartsInput>;
+  connect?: Maybe<EmployeeWhereUniqueInput>;
+  update?: Maybe<EmployeeUpdateWithoutCartsInput>;
 };
 
 export type ProductCreateNestedManyWithoutCategoryInput = {
@@ -875,25 +505,46 @@ export type ProductUpdateManyWithoutCategoryInput = {
   deleteMany?: Maybe<Array<ProductScalarWhereInput>>;
 };
 
-export type AnnualClientCreateNestedManyWithoutClientInput = {
-  create?: Maybe<Array<AnnualClientCreateWithoutClientInput>>;
-  connectOrCreate?: Maybe<Array<AnnualClientCreateOrConnectWithoutClientInput>>;
-  createMany?: Maybe<AnnualClientCreateManyClientInputEnvelope>;
-  connect?: Maybe<Array<AnnualClientWhereUniqueInput>>;
+export type CartCreateNestedManyWithoutClientInput = {
+  create?: Maybe<Array<CartCreateWithoutClientInput>>;
+  connectOrCreate?: Maybe<Array<CartCreateOrConnectWithoutClientInput>>;
+  createMany?: Maybe<CartCreateManyClientInputEnvelope>;
+  connect?: Maybe<Array<CartWhereUniqueInput>>;
 };
 
-export type AnnualClientUpdateManyWithoutClientInput = {
-  create?: Maybe<Array<AnnualClientCreateWithoutClientInput>>;
-  connectOrCreate?: Maybe<Array<AnnualClientCreateOrConnectWithoutClientInput>>;
-  upsert?: Maybe<Array<AnnualClientUpsertWithWhereUniqueWithoutClientInput>>;
-  createMany?: Maybe<AnnualClientCreateManyClientInputEnvelope>;
-  set?: Maybe<Array<AnnualClientWhereUniqueInput>>;
-  disconnect?: Maybe<Array<AnnualClientWhereUniqueInput>>;
-  delete?: Maybe<Array<AnnualClientWhereUniqueInput>>;
-  connect?: Maybe<Array<AnnualClientWhereUniqueInput>>;
-  update?: Maybe<Array<AnnualClientUpdateWithWhereUniqueWithoutClientInput>>;
-  updateMany?: Maybe<Array<AnnualClientUpdateManyWithWhereWithoutClientInput>>;
-  deleteMany?: Maybe<Array<AnnualClientScalarWhereInput>>;
+export type OrderCreateNestedManyWithoutClientInput = {
+  create?: Maybe<Array<OrderCreateWithoutClientInput>>;
+  connectOrCreate?: Maybe<Array<OrderCreateOrConnectWithoutClientInput>>;
+  createMany?: Maybe<OrderCreateManyClientInputEnvelope>;
+  connect?: Maybe<Array<OrderWhereUniqueInput>>;
+};
+
+export type CartUpdateManyWithoutClientInput = {
+  create?: Maybe<Array<CartCreateWithoutClientInput>>;
+  connectOrCreate?: Maybe<Array<CartCreateOrConnectWithoutClientInput>>;
+  upsert?: Maybe<Array<CartUpsertWithWhereUniqueWithoutClientInput>>;
+  createMany?: Maybe<CartCreateManyClientInputEnvelope>;
+  set?: Maybe<Array<CartWhereUniqueInput>>;
+  disconnect?: Maybe<Array<CartWhereUniqueInput>>;
+  delete?: Maybe<Array<CartWhereUniqueInput>>;
+  connect?: Maybe<Array<CartWhereUniqueInput>>;
+  update?: Maybe<Array<CartUpdateWithWhereUniqueWithoutClientInput>>;
+  updateMany?: Maybe<Array<CartUpdateManyWithWhereWithoutClientInput>>;
+  deleteMany?: Maybe<Array<CartScalarWhereInput>>;
+};
+
+export type OrderUpdateManyWithoutClientInput = {
+  create?: Maybe<Array<OrderCreateWithoutClientInput>>;
+  connectOrCreate?: Maybe<Array<OrderCreateOrConnectWithoutClientInput>>;
+  upsert?: Maybe<Array<OrderUpsertWithWhereUniqueWithoutClientInput>>;
+  createMany?: Maybe<OrderCreateManyClientInputEnvelope>;
+  set?: Maybe<Array<OrderWhereUniqueInput>>;
+  disconnect?: Maybe<Array<OrderWhereUniqueInput>>;
+  delete?: Maybe<Array<OrderWhereUniqueInput>>;
+  connect?: Maybe<Array<OrderWhereUniqueInput>>;
+  update?: Maybe<Array<OrderUpdateWithWhereUniqueWithoutClientInput>>;
+  updateMany?: Maybe<Array<OrderUpdateManyWithWhereWithoutClientInput>>;
+  deleteMany?: Maybe<Array<OrderScalarWhereInput>>;
 };
 
 export type OrderCreateNestedOneWithoutOrderDetailsInput = {
@@ -938,16 +589,16 @@ export type FinanceCreateNestedManyWithoutOrderInput = {
   connect?: Maybe<Array<FinanceWhereUniqueInput>>;
 };
 
-export type AnnualClientCreateNestedOneWithoutOrdersInput = {
-  create?: Maybe<AnnualClientCreateWithoutOrdersInput>;
-  connectOrCreate?: Maybe<AnnualClientCreateOrConnectWithoutOrdersInput>;
-  connect?: Maybe<AnnualClientWhereUniqueInput>;
+export type ClientCreateNestedOneWithoutOrdersInput = {
+  create?: Maybe<ClientCreateWithoutOrdersInput>;
+  connectOrCreate?: Maybe<ClientCreateOrConnectWithoutOrdersInput>;
+  connect?: Maybe<ClientWhereUniqueInput>;
 };
 
-export type AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput = {
-  create?: Maybe<AnnualBranchEmployeeCreateWithoutOrdersInput>;
-  connectOrCreate?: Maybe<AnnualBranchEmployeeCreateOrConnectWithoutOrdersInput>;
-  connect?: Maybe<AnnualBranchEmployeeWhereUniqueInput>;
+export type EmployeeCreateNestedOneWithoutOrdersInput = {
+  create?: Maybe<EmployeeCreateWithoutOrdersInput>;
+  connectOrCreate?: Maybe<EmployeeCreateOrConnectWithoutOrdersInput>;
+  connect?: Maybe<EmployeeWhereUniqueInput>;
 };
 
 export type OrderDetailUpdateManyWithoutOrderInput = {
@@ -978,192 +629,62 @@ export type FinanceUpdateManyWithoutOrderInput = {
   deleteMany?: Maybe<Array<FinanceScalarWhereInput>>;
 };
 
-export type AnnualClientUpdateOneWithoutOrdersInput = {
-  create?: Maybe<AnnualClientCreateWithoutOrdersInput>;
-  connectOrCreate?: Maybe<AnnualClientCreateOrConnectWithoutOrdersInput>;
-  upsert?: Maybe<AnnualClientUpsertWithoutOrdersInput>;
-  disconnect?: Maybe<Scalars['Boolean']>;
-  delete?: Maybe<Scalars['Boolean']>;
-  connect?: Maybe<AnnualClientWhereUniqueInput>;
-  update?: Maybe<AnnualClientUpdateWithoutOrdersInput>;
+export type ClientUpdateOneRequiredWithoutOrdersInput = {
+  create?: Maybe<ClientCreateWithoutOrdersInput>;
+  connectOrCreate?: Maybe<ClientCreateOrConnectWithoutOrdersInput>;
+  upsert?: Maybe<ClientUpsertWithoutOrdersInput>;
+  connect?: Maybe<ClientWhereUniqueInput>;
+  update?: Maybe<ClientUpdateWithoutOrdersInput>;
 };
 
-export type AnnualBranchEmployeeUpdateOneWithoutOrdersInput = {
-  create?: Maybe<AnnualBranchEmployeeCreateWithoutOrdersInput>;
-  connectOrCreate?: Maybe<AnnualBranchEmployeeCreateOrConnectWithoutOrdersInput>;
-  upsert?: Maybe<AnnualBranchEmployeeUpsertWithoutOrdersInput>;
-  disconnect?: Maybe<Scalars['Boolean']>;
-  delete?: Maybe<Scalars['Boolean']>;
-  connect?: Maybe<AnnualBranchEmployeeWhereUniqueInput>;
-  update?: Maybe<AnnualBranchEmployeeUpdateWithoutOrdersInput>;
-};
-
-export type BranchEmployeeCreateNestedManyWithoutBranchInput = {
-  create?: Maybe<Array<BranchEmployeeCreateWithoutBranchInput>>;
-  connectOrCreate?: Maybe<Array<BranchEmployeeCreateOrConnectWithoutBranchInput>>;
-  createMany?: Maybe<BranchEmployeeCreateManyBranchInputEnvelope>;
-  connect?: Maybe<Array<BranchEmployeeWhereUniqueInput>>;
-};
-
-export type BranchEmployeeUpdateManyWithoutBranchInput = {
-  create?: Maybe<Array<BranchEmployeeCreateWithoutBranchInput>>;
-  connectOrCreate?: Maybe<Array<BranchEmployeeCreateOrConnectWithoutBranchInput>>;
-  upsert?: Maybe<Array<BranchEmployeeUpsertWithWhereUniqueWithoutBranchInput>>;
-  createMany?: Maybe<BranchEmployeeCreateManyBranchInputEnvelope>;
-  set?: Maybe<Array<BranchEmployeeWhereUniqueInput>>;
-  disconnect?: Maybe<Array<BranchEmployeeWhereUniqueInput>>;
-  delete?: Maybe<Array<BranchEmployeeWhereUniqueInput>>;
-  connect?: Maybe<Array<BranchEmployeeWhereUniqueInput>>;
-  update?: Maybe<Array<BranchEmployeeUpdateWithWhereUniqueWithoutBranchInput>>;
-  updateMany?: Maybe<Array<BranchEmployeeUpdateManyWithWhereWithoutBranchInput>>;
-  deleteMany?: Maybe<Array<BranchEmployeeScalarWhereInput>>;
-};
-
-export type AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput = {
-  create?: Maybe<Array<AnnualBranchEmployeeCreateWithoutBranchEmployeeInput>>;
-  connectOrCreate?: Maybe<Array<AnnualBranchEmployeeCreateOrConnectWithoutBranchEmployeeInput>>;
-  createMany?: Maybe<AnnualBranchEmployeeCreateManyBranchEmployeeInputEnvelope>;
-  connect?: Maybe<Array<AnnualBranchEmployeeWhereUniqueInput>>;
-};
-
-export type EmployeeCreateNestedOneWithoutBranchEmplsInput = {
-  create?: Maybe<EmployeeCreateWithoutBranchEmplsInput>;
-  connectOrCreate?: Maybe<EmployeeCreateOrConnectWithoutBranchEmplsInput>;
+export type EmployeeUpdateOneRequiredWithoutOrdersInput = {
+  create?: Maybe<EmployeeCreateWithoutOrdersInput>;
+  connectOrCreate?: Maybe<EmployeeCreateOrConnectWithoutOrdersInput>;
+  upsert?: Maybe<EmployeeUpsertWithoutOrdersInput>;
   connect?: Maybe<EmployeeWhereUniqueInput>;
+  update?: Maybe<EmployeeUpdateWithoutOrdersInput>;
 };
 
-export type BranchCreateNestedOneWithoutBranchEmplsInput = {
-  create?: Maybe<BranchCreateWithoutBranchEmplsInput>;
-  connectOrCreate?: Maybe<BranchCreateOrConnectWithoutBranchEmplsInput>;
-  connect?: Maybe<BranchWhereUniqueInput>;
+export type CartCreateNestedManyWithoutEmployeeInput = {
+  create?: Maybe<Array<CartCreateWithoutEmployeeInput>>;
+  connectOrCreate?: Maybe<Array<CartCreateOrConnectWithoutEmployeeInput>>;
+  createMany?: Maybe<CartCreateManyEmployeeInputEnvelope>;
+  connect?: Maybe<Array<CartWhereUniqueInput>>;
 };
 
-export type EmployeeStatusCreateNestedOneWithoutBranchEmplsInput = {
-  create?: Maybe<EmployeeStatusCreateWithoutBranchEmplsInput>;
-  connectOrCreate?: Maybe<EmployeeStatusCreateOrConnectWithoutBranchEmplsInput>;
-  connect?: Maybe<EmployeeStatusWhereUniqueInput>;
+export type OrderCreateNestedManyWithoutEmployeeInput = {
+  create?: Maybe<Array<OrderCreateWithoutEmployeeInput>>;
+  connectOrCreate?: Maybe<Array<OrderCreateOrConnectWithoutEmployeeInput>>;
+  createMany?: Maybe<OrderCreateManyEmployeeInputEnvelope>;
+  connect?: Maybe<Array<OrderWhereUniqueInput>>;
 };
 
-export type AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput = {
-  create?: Maybe<Array<AnnualBranchEmployeeCreateWithoutBranchEmployeeInput>>;
-  connectOrCreate?: Maybe<Array<AnnualBranchEmployeeCreateOrConnectWithoutBranchEmployeeInput>>;
-  upsert?: Maybe<Array<AnnualBranchEmployeeUpsertWithWhereUniqueWithoutBranchEmployeeInput>>;
-  createMany?: Maybe<AnnualBranchEmployeeCreateManyBranchEmployeeInputEnvelope>;
-  set?: Maybe<Array<AnnualBranchEmployeeWhereUniqueInput>>;
-  disconnect?: Maybe<Array<AnnualBranchEmployeeWhereUniqueInput>>;
-  delete?: Maybe<Array<AnnualBranchEmployeeWhereUniqueInput>>;
-  connect?: Maybe<Array<AnnualBranchEmployeeWhereUniqueInput>>;
-  update?: Maybe<Array<AnnualBranchEmployeeUpdateWithWhereUniqueWithoutBranchEmployeeInput>>;
-  updateMany?: Maybe<Array<AnnualBranchEmployeeUpdateManyWithWhereWithoutBranchEmployeeInput>>;
-  deleteMany?: Maybe<Array<AnnualBranchEmployeeScalarWhereInput>>;
+export type CartUpdateManyWithoutEmployeeInput = {
+  create?: Maybe<Array<CartCreateWithoutEmployeeInput>>;
+  connectOrCreate?: Maybe<Array<CartCreateOrConnectWithoutEmployeeInput>>;
+  upsert?: Maybe<Array<CartUpsertWithWhereUniqueWithoutEmployeeInput>>;
+  createMany?: Maybe<CartCreateManyEmployeeInputEnvelope>;
+  set?: Maybe<Array<CartWhereUniqueInput>>;
+  disconnect?: Maybe<Array<CartWhereUniqueInput>>;
+  delete?: Maybe<Array<CartWhereUniqueInput>>;
+  connect?: Maybe<Array<CartWhereUniqueInput>>;
+  update?: Maybe<Array<CartUpdateWithWhereUniqueWithoutEmployeeInput>>;
+  updateMany?: Maybe<Array<CartUpdateManyWithWhereWithoutEmployeeInput>>;
+  deleteMany?: Maybe<Array<CartScalarWhereInput>>;
 };
 
-export type EmployeeUpdateOneRequiredWithoutBranchEmplsInput = {
-  create?: Maybe<EmployeeCreateWithoutBranchEmplsInput>;
-  connectOrCreate?: Maybe<EmployeeCreateOrConnectWithoutBranchEmplsInput>;
-  upsert?: Maybe<EmployeeUpsertWithoutBranchEmplsInput>;
-  connect?: Maybe<EmployeeWhereUniqueInput>;
-  update?: Maybe<EmployeeUpdateWithoutBranchEmplsInput>;
-};
-
-export type BranchUpdateOneRequiredWithoutBranchEmplsInput = {
-  create?: Maybe<BranchCreateWithoutBranchEmplsInput>;
-  connectOrCreate?: Maybe<BranchCreateOrConnectWithoutBranchEmplsInput>;
-  upsert?: Maybe<BranchUpsertWithoutBranchEmplsInput>;
-  connect?: Maybe<BranchWhereUniqueInput>;
-  update?: Maybe<BranchUpdateWithoutBranchEmplsInput>;
-};
-
-export type EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput = {
-  create?: Maybe<EmployeeStatusCreateWithoutBranchEmplsInput>;
-  connectOrCreate?: Maybe<EmployeeStatusCreateOrConnectWithoutBranchEmplsInput>;
-  upsert?: Maybe<EmployeeStatusUpsertWithoutBranchEmplsInput>;
-  connect?: Maybe<EmployeeStatusWhereUniqueInput>;
-  update?: Maybe<EmployeeStatusUpdateWithoutBranchEmplsInput>;
-};
-
-export type AnnualBranchEmployeeCreateNestedManyWithoutFinancialYearInput = {
-  create?: Maybe<Array<AnnualBranchEmployeeCreateWithoutFinancialYearInput>>;
-  connectOrCreate?: Maybe<Array<AnnualBranchEmployeeCreateOrConnectWithoutFinancialYearInput>>;
-  createMany?: Maybe<AnnualBranchEmployeeCreateManyFinancialYearInputEnvelope>;
-  connect?: Maybe<Array<AnnualBranchEmployeeWhereUniqueInput>>;
-};
-
-export type AnnualClientCreateNestedManyWithoutFinancialYearInput = {
-  create?: Maybe<Array<AnnualClientCreateWithoutFinancialYearInput>>;
-  connectOrCreate?: Maybe<Array<AnnualClientCreateOrConnectWithoutFinancialYearInput>>;
-  createMany?: Maybe<AnnualClientCreateManyFinancialYearInputEnvelope>;
-  connect?: Maybe<Array<AnnualClientWhereUniqueInput>>;
-};
-
-export type AnnualBranchEmployeeUpdateManyWithoutFinancialYearInput = {
-  create?: Maybe<Array<AnnualBranchEmployeeCreateWithoutFinancialYearInput>>;
-  connectOrCreate?: Maybe<Array<AnnualBranchEmployeeCreateOrConnectWithoutFinancialYearInput>>;
-  upsert?: Maybe<Array<AnnualBranchEmployeeUpsertWithWhereUniqueWithoutFinancialYearInput>>;
-  createMany?: Maybe<AnnualBranchEmployeeCreateManyFinancialYearInputEnvelope>;
-  set?: Maybe<Array<AnnualBranchEmployeeWhereUniqueInput>>;
-  disconnect?: Maybe<Array<AnnualBranchEmployeeWhereUniqueInput>>;
-  delete?: Maybe<Array<AnnualBranchEmployeeWhereUniqueInput>>;
-  connect?: Maybe<Array<AnnualBranchEmployeeWhereUniqueInput>>;
-  update?: Maybe<Array<AnnualBranchEmployeeUpdateWithWhereUniqueWithoutFinancialYearInput>>;
-  updateMany?: Maybe<Array<AnnualBranchEmployeeUpdateManyWithWhereWithoutFinancialYearInput>>;
-  deleteMany?: Maybe<Array<AnnualBranchEmployeeScalarWhereInput>>;
-};
-
-export type AnnualClientUpdateManyWithoutFinancialYearInput = {
-  create?: Maybe<Array<AnnualClientCreateWithoutFinancialYearInput>>;
-  connectOrCreate?: Maybe<Array<AnnualClientCreateOrConnectWithoutFinancialYearInput>>;
-  upsert?: Maybe<Array<AnnualClientUpsertWithWhereUniqueWithoutFinancialYearInput>>;
-  createMany?: Maybe<AnnualClientCreateManyFinancialYearInputEnvelope>;
-  set?: Maybe<Array<AnnualClientWhereUniqueInput>>;
-  disconnect?: Maybe<Array<AnnualClientWhereUniqueInput>>;
-  delete?: Maybe<Array<AnnualClientWhereUniqueInput>>;
-  connect?: Maybe<Array<AnnualClientWhereUniqueInput>>;
-  update?: Maybe<Array<AnnualClientUpdateWithWhereUniqueWithoutFinancialYearInput>>;
-  updateMany?: Maybe<Array<AnnualClientUpdateManyWithWhereWithoutFinancialYearInput>>;
-  deleteMany?: Maybe<Array<AnnualClientScalarWhereInput>>;
-};
-
-export type BranchEmployeeCreateNestedManyWithoutEmployeeInput = {
-  create?: Maybe<Array<BranchEmployeeCreateWithoutEmployeeInput>>;
-  connectOrCreate?: Maybe<Array<BranchEmployeeCreateOrConnectWithoutEmployeeInput>>;
-  createMany?: Maybe<BranchEmployeeCreateManyEmployeeInputEnvelope>;
-  connect?: Maybe<Array<BranchEmployeeWhereUniqueInput>>;
-};
-
-export type BranchEmployeeUpdateManyWithoutEmployeeInput = {
-  create?: Maybe<Array<BranchEmployeeCreateWithoutEmployeeInput>>;
-  connectOrCreate?: Maybe<Array<BranchEmployeeCreateOrConnectWithoutEmployeeInput>>;
-  upsert?: Maybe<Array<BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeInput>>;
-  createMany?: Maybe<BranchEmployeeCreateManyEmployeeInputEnvelope>;
-  set?: Maybe<Array<BranchEmployeeWhereUniqueInput>>;
-  disconnect?: Maybe<Array<BranchEmployeeWhereUniqueInput>>;
-  delete?: Maybe<Array<BranchEmployeeWhereUniqueInput>>;
-  connect?: Maybe<Array<BranchEmployeeWhereUniqueInput>>;
-  update?: Maybe<Array<BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeInput>>;
-  updateMany?: Maybe<Array<BranchEmployeeUpdateManyWithWhereWithoutEmployeeInput>>;
-  deleteMany?: Maybe<Array<BranchEmployeeScalarWhereInput>>;
-};
-
-export type BranchEmployeeCreateNestedManyWithoutEmployeeStatusInput = {
-  create?: Maybe<Array<BranchEmployeeCreateWithoutEmployeeStatusInput>>;
-  connectOrCreate?: Maybe<Array<BranchEmployeeCreateOrConnectWithoutEmployeeStatusInput>>;
-  createMany?: Maybe<BranchEmployeeCreateManyEmployeeStatusInputEnvelope>;
-  connect?: Maybe<Array<BranchEmployeeWhereUniqueInput>>;
-};
-
-export type BranchEmployeeUpdateManyWithoutEmployeeStatusInput = {
-  create?: Maybe<Array<BranchEmployeeCreateWithoutEmployeeStatusInput>>;
-  connectOrCreate?: Maybe<Array<BranchEmployeeCreateOrConnectWithoutEmployeeStatusInput>>;
-  upsert?: Maybe<Array<BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeStatusInput>>;
-  createMany?: Maybe<BranchEmployeeCreateManyEmployeeStatusInputEnvelope>;
-  set?: Maybe<Array<BranchEmployeeWhereUniqueInput>>;
-  disconnect?: Maybe<Array<BranchEmployeeWhereUniqueInput>>;
-  delete?: Maybe<Array<BranchEmployeeWhereUniqueInput>>;
-  connect?: Maybe<Array<BranchEmployeeWhereUniqueInput>>;
-  update?: Maybe<Array<BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeStatusInput>>;
-  updateMany?: Maybe<Array<BranchEmployeeUpdateManyWithWhereWithoutEmployeeStatusInput>>;
-  deleteMany?: Maybe<Array<BranchEmployeeScalarWhereInput>>;
+export type OrderUpdateManyWithoutEmployeeInput = {
+  create?: Maybe<Array<OrderCreateWithoutEmployeeInput>>;
+  connectOrCreate?: Maybe<Array<OrderCreateOrConnectWithoutEmployeeInput>>;
+  upsert?: Maybe<Array<OrderUpsertWithWhereUniqueWithoutEmployeeInput>>;
+  createMany?: Maybe<OrderCreateManyEmployeeInputEnvelope>;
+  set?: Maybe<Array<OrderWhereUniqueInput>>;
+  disconnect?: Maybe<Array<OrderWhereUniqueInput>>;
+  delete?: Maybe<Array<OrderWhereUniqueInput>>;
+  connect?: Maybe<Array<OrderWhereUniqueInput>>;
+  update?: Maybe<Array<OrderUpdateWithWhereUniqueWithoutEmployeeInput>>;
+  updateMany?: Maybe<Array<OrderUpdateManyWithWhereWithoutEmployeeInput>>;
+  deleteMany?: Maybe<Array<OrderScalarWhereInput>>;
 };
 
 export type OrderCreateNestedOneWithoutFinancesInput = {
@@ -1228,320 +749,24 @@ export type OrderDetailUpdateManyWithoutProductInput = {
   deleteMany?: Maybe<Array<OrderDetailScalarWhereInput>>;
 };
 
-export type CategoryUpdateOneWithoutProductsInput = {
+export type CategoryUpdateOneRequiredWithoutProductsInput = {
   create?: Maybe<CategoryCreateWithoutProductsInput>;
   connectOrCreate?: Maybe<CategoryCreateOrConnectWithoutProductsInput>;
   upsert?: Maybe<CategoryUpsertWithoutProductsInput>;
-  disconnect?: Maybe<Scalars['Boolean']>;
-  delete?: Maybe<Scalars['Boolean']>;
   connect?: Maybe<CategoryWhereUniqueInput>;
   update?: Maybe<CategoryUpdateWithoutProductsInput>;
-};
-
-export type OrderCreateWithoutAnnualBranchEmployeeInput = {
-  id?: Maybe<Scalars['String']>;
-  orderTotal: Scalars['Int'];
-  totalPaid: Scalars['Int'];
-  orderNumber: Scalars['String'];
-  orderDate?: Maybe<Scalars['DateTime']>;
-  orderDetails?: Maybe<OrderDetailCreateNestedManyWithoutOrderInput>;
-  finances?: Maybe<FinanceCreateNestedManyWithoutOrderInput>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  AnnualClient?: Maybe<AnnualClientCreateNestedOneWithoutOrdersInput>;
-};
-
-export type OrderCreateOrConnectWithoutAnnualBranchEmployeeInput = {
-  where: OrderWhereUniqueInput;
-  create: OrderCreateWithoutAnnualBranchEmployeeInput;
-};
-
-export type OrderCreateManyAnnualBranchEmployeeInputEnvelope = {
-  data?: Maybe<Array<OrderCreateManyAnnualBranchEmployeeInput>>;
-  skipDuplicates?: Maybe<Scalars['Boolean']>;
-};
-
-export type CartCreateWithoutAnnualBranchEmployeeInput = {
-  id?: Maybe<Scalars['String']>;
-  qtty: Scalars['Float'];
-  pdtCost: Scalars['Int'];
-  salesPrice: Scalars['Int'];
-  orderDate?: Maybe<Scalars['DateTime']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  Product: ProductCreateNestedOneWithoutCartsInput;
-  AnnualClient?: Maybe<AnnualClientCreateNestedOneWithoutCartsInput>;
-};
-
-export type CartCreateOrConnectWithoutAnnualBranchEmployeeInput = {
-  where: CartWhereUniqueInput;
-  create: CartCreateWithoutAnnualBranchEmployeeInput;
-};
-
-export type CartCreateManyAnnualBranchEmployeeInputEnvelope = {
-  data?: Maybe<Array<CartCreateManyAnnualBranchEmployeeInput>>;
-  skipDuplicates?: Maybe<Scalars['Boolean']>;
-};
-
-export type BranchEmployeeCreateWithoutAnnBranchEmployeeInput = {
-  id?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  startDate?: Maybe<Scalars['DateTime']>;
-  endDate?: Maybe<Scalars['DateTime']>;
-  Employee: EmployeeCreateNestedOneWithoutBranchEmplsInput;
-  Branch: BranchCreateNestedOneWithoutBranchEmplsInput;
-  EmployeeStatus: EmployeeStatusCreateNestedOneWithoutBranchEmplsInput;
-};
-
-export type BranchEmployeeCreateOrConnectWithoutAnnBranchEmployeeInput = {
-  where: BranchEmployeeWhereUniqueInput;
-  create: BranchEmployeeCreateWithoutAnnBranchEmployeeInput;
-};
-
-export type FinancialYearCreateWithoutAnnBranchEmplsInput = {
-  id?: Maybe<Scalars['String']>;
-  annClients?: Maybe<AnnualClientCreateNestedManyWithoutFinancialYearInput>;
-  yearName: Scalars['Int'];
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type FinancialYearCreateOrConnectWithoutAnnBranchEmplsInput = {
-  where: FinancialYearWhereUniqueInput;
-  create: FinancialYearCreateWithoutAnnBranchEmplsInput;
-};
-
-export type OrderUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput = {
-  where: OrderWhereUniqueInput;
-  update: OrderUpdateWithoutAnnualBranchEmployeeInput;
-  create: OrderCreateWithoutAnnualBranchEmployeeInput;
-};
-
-export type OrderUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput = {
-  where: OrderWhereUniqueInput;
-  data: OrderUpdateWithoutAnnualBranchEmployeeInput;
-};
-
-export type OrderUpdateManyWithWhereWithoutAnnualBranchEmployeeInput = {
-  where: OrderScalarWhereInput;
-  data: OrderUpdateManyMutationInput;
-};
-
-export type OrderScalarWhereInput = {
-  AND?: Maybe<Array<OrderScalarWhereInput>>;
-  OR?: Maybe<Array<OrderScalarWhereInput>>;
-  NOT?: Maybe<Array<OrderScalarWhereInput>>;
-  id?: Maybe<StringFilter>;
-  orderTotal?: Maybe<IntFilter>;
-  totalPaid?: Maybe<IntFilter>;
-  orderNumber?: Maybe<StringFilter>;
-  orderDate?: Maybe<DateTimeFilter>;
-  createdAt?: Maybe<DateTimeFilter>;
-  updatedAt?: Maybe<DateTimeFilter>;
-  annualClientId?: Maybe<StringNullableFilter>;
-  annualBranchEmployeeId?: Maybe<StringNullableFilter>;
-};
-
-export type CartUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput = {
-  where: CartWhereUniqueInput;
-  update: CartUpdateWithoutAnnualBranchEmployeeInput;
-  create: CartCreateWithoutAnnualBranchEmployeeInput;
-};
-
-export type CartUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput = {
-  where: CartWhereUniqueInput;
-  data: CartUpdateWithoutAnnualBranchEmployeeInput;
-};
-
-export type CartUpdateManyWithWhereWithoutAnnualBranchEmployeeInput = {
-  where: CartScalarWhereInput;
-  data: CartUpdateManyMutationInput;
-};
-
-export type CartScalarWhereInput = {
-  AND?: Maybe<Array<CartScalarWhereInput>>;
-  OR?: Maybe<Array<CartScalarWhereInput>>;
-  NOT?: Maybe<Array<CartScalarWhereInput>>;
-  id?: Maybe<StringFilter>;
-  qtty?: Maybe<FloatFilter>;
-  pdtCost?: Maybe<IntFilter>;
-  salesPrice?: Maybe<IntFilter>;
-  orderDate?: Maybe<DateTimeFilter>;
-  createdAt?: Maybe<DateTimeFilter>;
-  updatedAt?: Maybe<DateTimeFilter>;
-  productId?: Maybe<StringFilter>;
-  annualClientId?: Maybe<StringNullableFilter>;
-  annualBranchEmployeeId?: Maybe<StringNullableFilter>;
-};
-
-export type BranchEmployeeUpsertWithoutAnnBranchEmployeeInput = {
-  update: BranchEmployeeUpdateWithoutAnnBranchEmployeeInput;
-  create: BranchEmployeeCreateWithoutAnnBranchEmployeeInput;
-};
-
-export type BranchEmployeeUpdateWithoutAnnBranchEmployeeInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  startDate?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  endDate?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  Employee?: Maybe<EmployeeUpdateOneRequiredWithoutBranchEmplsInput>;
-  Branch?: Maybe<BranchUpdateOneRequiredWithoutBranchEmplsInput>;
-  EmployeeStatus?: Maybe<EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput>;
-};
-
-export type FinancialYearUpsertWithoutAnnBranchEmplsInput = {
-  update: FinancialYearUpdateWithoutAnnBranchEmplsInput;
-  create: FinancialYearCreateWithoutAnnBranchEmplsInput;
-};
-
-export type FinancialYearUpdateWithoutAnnBranchEmplsInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  annClients?: Maybe<AnnualClientUpdateManyWithoutFinancialYearInput>;
-  yearName?: Maybe<IntFieldUpdateOperationsInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-};
-
-export type OrderCreateWithoutAnnualClientInput = {
-  id?: Maybe<Scalars['String']>;
-  orderTotal: Scalars['Int'];
-  totalPaid: Scalars['Int'];
-  orderNumber: Scalars['String'];
-  orderDate?: Maybe<Scalars['DateTime']>;
-  orderDetails?: Maybe<OrderDetailCreateNestedManyWithoutOrderInput>;
-  finances?: Maybe<FinanceCreateNestedManyWithoutOrderInput>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  AnnualBranchEmployee?: Maybe<AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput>;
-};
-
-export type OrderCreateOrConnectWithoutAnnualClientInput = {
-  where: OrderWhereUniqueInput;
-  create: OrderCreateWithoutAnnualClientInput;
-};
-
-export type OrderCreateManyAnnualClientInputEnvelope = {
-  data?: Maybe<Array<OrderCreateManyAnnualClientInput>>;
-  skipDuplicates?: Maybe<Scalars['Boolean']>;
-};
-
-export type CartCreateWithoutAnnualClientInput = {
-  id?: Maybe<Scalars['String']>;
-  qtty: Scalars['Float'];
-  pdtCost: Scalars['Int'];
-  salesPrice: Scalars['Int'];
-  orderDate?: Maybe<Scalars['DateTime']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  Product: ProductCreateNestedOneWithoutCartsInput;
-  AnnualBranchEmployee?: Maybe<AnnualBranchEmployeeCreateNestedOneWithoutCartsInput>;
-};
-
-export type CartCreateOrConnectWithoutAnnualClientInput = {
-  where: CartWhereUniqueInput;
-  create: CartCreateWithoutAnnualClientInput;
-};
-
-export type CartCreateManyAnnualClientInputEnvelope = {
-  data?: Maybe<Array<CartCreateManyAnnualClientInput>>;
-  skipDuplicates?: Maybe<Scalars['Boolean']>;
-};
-
-export type ClientCreateWithoutAnnClientsInput = {
-  id?: Maybe<Scalars['String']>;
-  clientPhoneNumb: Scalars['Int'];
-  clientNames: Scalars['String'];
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type ClientCreateOrConnectWithoutAnnClientsInput = {
-  where: ClientWhereUniqueInput;
-  create: ClientCreateWithoutAnnClientsInput;
-};
-
-export type FinancialYearCreateWithoutAnnClientsInput = {
-  id?: Maybe<Scalars['String']>;
-  annBranchEmpls?: Maybe<AnnualBranchEmployeeCreateNestedManyWithoutFinancialYearInput>;
-  yearName: Scalars['Int'];
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type FinancialYearCreateOrConnectWithoutAnnClientsInput = {
-  where: FinancialYearWhereUniqueInput;
-  create: FinancialYearCreateWithoutAnnClientsInput;
-};
-
-export type OrderUpsertWithWhereUniqueWithoutAnnualClientInput = {
-  where: OrderWhereUniqueInput;
-  update: OrderUpdateWithoutAnnualClientInput;
-  create: OrderCreateWithoutAnnualClientInput;
-};
-
-export type OrderUpdateWithWhereUniqueWithoutAnnualClientInput = {
-  where: OrderWhereUniqueInput;
-  data: OrderUpdateWithoutAnnualClientInput;
-};
-
-export type OrderUpdateManyWithWhereWithoutAnnualClientInput = {
-  where: OrderScalarWhereInput;
-  data: OrderUpdateManyMutationInput;
-};
-
-export type CartUpsertWithWhereUniqueWithoutAnnualClientInput = {
-  where: CartWhereUniqueInput;
-  update: CartUpdateWithoutAnnualClientInput;
-  create: CartCreateWithoutAnnualClientInput;
-};
-
-export type CartUpdateWithWhereUniqueWithoutAnnualClientInput = {
-  where: CartWhereUniqueInput;
-  data: CartUpdateWithoutAnnualClientInput;
-};
-
-export type CartUpdateManyWithWhereWithoutAnnualClientInput = {
-  where: CartScalarWhereInput;
-  data: CartUpdateManyMutationInput;
-};
-
-export type ClientUpsertWithoutAnnClientsInput = {
-  update: ClientUpdateWithoutAnnClientsInput;
-  create: ClientCreateWithoutAnnClientsInput;
-};
-
-export type ClientUpdateWithoutAnnClientsInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  clientPhoneNumb?: Maybe<IntFieldUpdateOperationsInput>;
-  clientNames?: Maybe<StringFieldUpdateOperationsInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-};
-
-export type FinancialYearUpsertWithoutAnnClientsInput = {
-  update: FinancialYearUpdateWithoutAnnClientsInput;
-  create: FinancialYearCreateWithoutAnnClientsInput;
-};
-
-export type FinancialYearUpdateWithoutAnnClientsInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  annBranchEmpls?: Maybe<AnnualBranchEmployeeUpdateManyWithoutFinancialYearInput>;
-  yearName?: Maybe<IntFieldUpdateOperationsInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type ProductCreateWithoutCartsInput = {
   id?: Maybe<Scalars['String']>;
   pdtName: Scalars['String'];
   pdtCode: Scalars['String'];
+  qttyInHand: Scalars['Int'];
   unitPrice: Scalars['Int'];
   orderDetails?: Maybe<OrderDetailCreateNestedManyWithoutProductInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  Category?: Maybe<CategoryCreateNestedOneWithoutProductsInput>;
+  Category: CategoryCreateNestedOneWithoutProductsInput;
 };
 
 export type ProductCreateOrConnectWithoutCartsInput = {
@@ -1549,32 +774,33 @@ export type ProductCreateOrConnectWithoutCartsInput = {
   create: ProductCreateWithoutCartsInput;
 };
 
-export type AnnualClientCreateWithoutCartsInput = {
+export type ClientCreateWithoutCartsInput = {
   id?: Maybe<Scalars['String']>;
-  orders?: Maybe<OrderCreateNestedManyWithoutAnnualClientInput>;
+  clientPhoneNumb: Scalars['Int'];
+  clientNames: Scalars['String'];
+  orders?: Maybe<OrderCreateNestedManyWithoutClientInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  Client?: Maybe<ClientCreateNestedOneWithoutAnnClientsInput>;
-  FinancialYear?: Maybe<FinancialYearCreateNestedOneWithoutAnnClientsInput>;
 };
 
-export type AnnualClientCreateOrConnectWithoutCartsInput = {
-  where: AnnualClientWhereUniqueInput;
-  create: AnnualClientCreateWithoutCartsInput;
+export type ClientCreateOrConnectWithoutCartsInput = {
+  where: ClientWhereUniqueInput;
+  create: ClientCreateWithoutCartsInput;
 };
 
-export type AnnualBranchEmployeeCreateWithoutCartsInput = {
+export type EmployeeCreateWithoutCartsInput = {
   id?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  orders?: Maybe<OrderCreateNestedManyWithoutAnnualBranchEmployeeInput>;
-  BranchEmployee?: Maybe<BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput>;
-  FinancialYear?: Maybe<FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput>;
+  orders?: Maybe<OrderCreateNestedManyWithoutEmployeeInput>;
+  employeeNames: Scalars['String'];
+  employeeCode: Scalars['String'];
+  employeePhoneNumb: Scalars['Int'];
 };
 
-export type AnnualBranchEmployeeCreateOrConnectWithoutCartsInput = {
-  where: AnnualBranchEmployeeWhereUniqueInput;
-  create: AnnualBranchEmployeeCreateWithoutCartsInput;
+export type EmployeeCreateOrConnectWithoutCartsInput = {
+  where: EmployeeWhereUniqueInput;
+  create: EmployeeCreateWithoutCartsInput;
 };
 
 export type ProductUpsertWithoutCartsInput = {
@@ -1586,45 +812,48 @@ export type ProductUpdateWithoutCartsInput = {
   id?: Maybe<StringFieldUpdateOperationsInput>;
   pdtName?: Maybe<StringFieldUpdateOperationsInput>;
   pdtCode?: Maybe<StringFieldUpdateOperationsInput>;
+  qttyInHand?: Maybe<IntFieldUpdateOperationsInput>;
   unitPrice?: Maybe<IntFieldUpdateOperationsInput>;
   orderDetails?: Maybe<OrderDetailUpdateManyWithoutProductInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  Category?: Maybe<CategoryUpdateOneWithoutProductsInput>;
+  Category?: Maybe<CategoryUpdateOneRequiredWithoutProductsInput>;
 };
 
-export type AnnualClientUpsertWithoutCartsInput = {
-  update: AnnualClientUpdateWithoutCartsInput;
-  create: AnnualClientCreateWithoutCartsInput;
+export type ClientUpsertWithoutCartsInput = {
+  update: ClientUpdateWithoutCartsInput;
+  create: ClientCreateWithoutCartsInput;
 };
 
-export type AnnualClientUpdateWithoutCartsInput = {
+export type ClientUpdateWithoutCartsInput = {
   id?: Maybe<StringFieldUpdateOperationsInput>;
-  orders?: Maybe<OrderUpdateManyWithoutAnnualClientInput>;
+  clientPhoneNumb?: Maybe<IntFieldUpdateOperationsInput>;
+  clientNames?: Maybe<StringFieldUpdateOperationsInput>;
+  orders?: Maybe<OrderUpdateManyWithoutClientInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  Client?: Maybe<ClientUpdateOneWithoutAnnClientsInput>;
-  FinancialYear?: Maybe<FinancialYearUpdateOneWithoutAnnClientsInput>;
 };
 
-export type AnnualBranchEmployeeUpsertWithoutCartsInput = {
-  update: AnnualBranchEmployeeUpdateWithoutCartsInput;
-  create: AnnualBranchEmployeeCreateWithoutCartsInput;
+export type EmployeeUpsertWithoutCartsInput = {
+  update: EmployeeUpdateWithoutCartsInput;
+  create: EmployeeCreateWithoutCartsInput;
 };
 
-export type AnnualBranchEmployeeUpdateWithoutCartsInput = {
+export type EmployeeUpdateWithoutCartsInput = {
   id?: Maybe<StringFieldUpdateOperationsInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  orders?: Maybe<OrderUpdateManyWithoutAnnualBranchEmployeeInput>;
-  BranchEmployee?: Maybe<BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput>;
-  FinancialYear?: Maybe<FinancialYearUpdateOneWithoutAnnBranchEmplsInput>;
+  orders?: Maybe<OrderUpdateManyWithoutEmployeeInput>;
+  employeeNames?: Maybe<StringFieldUpdateOperationsInput>;
+  employeeCode?: Maybe<StringFieldUpdateOperationsInput>;
+  employeePhoneNumb?: Maybe<IntFieldUpdateOperationsInput>;
 };
 
 export type ProductCreateWithoutCategoryInput = {
   id?: Maybe<Scalars['String']>;
   pdtName: Scalars['String'];
   pdtCode: Scalars['String'];
+  qttyInHand: Scalars['Int'];
   unitPrice: Scalars['Int'];
   carts?: Maybe<CartCreateNestedManyWithoutProductInput>;
   orderDetails?: Maybe<OrderDetailCreateNestedManyWithoutProductInput>;
@@ -1665,56 +894,119 @@ export type ProductScalarWhereInput = {
   id?: Maybe<StringFilter>;
   pdtName?: Maybe<StringFilter>;
   pdtCode?: Maybe<StringFilter>;
+  qttyInHand?: Maybe<IntFilter>;
   unitPrice?: Maybe<IntFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
-  categoryId?: Maybe<StringNullableFilter>;
+  categoryId?: Maybe<StringFilter>;
 };
 
-export type AnnualClientCreateWithoutClientInput = {
+export type CartCreateWithoutClientInput = {
   id?: Maybe<Scalars['String']>;
-  orders?: Maybe<OrderCreateNestedManyWithoutAnnualClientInput>;
-  carts?: Maybe<CartCreateNestedManyWithoutAnnualClientInput>;
+  qtty: Scalars['Float'];
+  pdtCost: Scalars['Int'];
+  salesPrice: Scalars['Int'];
+  orderDate?: Maybe<Scalars['DateTime']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  FinancialYear?: Maybe<FinancialYearCreateNestedOneWithoutAnnClientsInput>;
+  Product: ProductCreateNestedOneWithoutCartsInput;
+  Employee: EmployeeCreateNestedOneWithoutCartsInput;
 };
 
-export type AnnualClientCreateOrConnectWithoutClientInput = {
-  where: AnnualClientWhereUniqueInput;
-  create: AnnualClientCreateWithoutClientInput;
+export type CartCreateOrConnectWithoutClientInput = {
+  where: CartWhereUniqueInput;
+  create: CartCreateWithoutClientInput;
 };
 
-export type AnnualClientCreateManyClientInputEnvelope = {
-  data?: Maybe<Array<AnnualClientCreateManyClientInput>>;
+export type CartCreateManyClientInputEnvelope = {
+  data?: Maybe<Array<CartCreateManyClientInput>>;
   skipDuplicates?: Maybe<Scalars['Boolean']>;
 };
 
-export type AnnualClientUpsertWithWhereUniqueWithoutClientInput = {
-  where: AnnualClientWhereUniqueInput;
-  update: AnnualClientUpdateWithoutClientInput;
-  create: AnnualClientCreateWithoutClientInput;
+export type OrderCreateWithoutClientInput = {
+  id?: Maybe<Scalars['String']>;
+  orderTotal: Scalars['Int'];
+  totalPaid: Scalars['Int'];
+  orderNumber: Scalars['String'];
+  orderDate?: Maybe<Scalars['DateTime']>;
+  orderDetails?: Maybe<OrderDetailCreateNestedManyWithoutOrderInput>;
+  finances?: Maybe<FinanceCreateNestedManyWithoutOrderInput>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  Employee: EmployeeCreateNestedOneWithoutOrdersInput;
 };
 
-export type AnnualClientUpdateWithWhereUniqueWithoutClientInput = {
-  where: AnnualClientWhereUniqueInput;
-  data: AnnualClientUpdateWithoutClientInput;
+export type OrderCreateOrConnectWithoutClientInput = {
+  where: OrderWhereUniqueInput;
+  create: OrderCreateWithoutClientInput;
 };
 
-export type AnnualClientUpdateManyWithWhereWithoutClientInput = {
-  where: AnnualClientScalarWhereInput;
-  data: AnnualClientUpdateManyMutationInput;
+export type OrderCreateManyClientInputEnvelope = {
+  data?: Maybe<Array<OrderCreateManyClientInput>>;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
 };
 
-export type AnnualClientScalarWhereInput = {
-  AND?: Maybe<Array<AnnualClientScalarWhereInput>>;
-  OR?: Maybe<Array<AnnualClientScalarWhereInput>>;
-  NOT?: Maybe<Array<AnnualClientScalarWhereInput>>;
+export type CartUpsertWithWhereUniqueWithoutClientInput = {
+  where: CartWhereUniqueInput;
+  update: CartUpdateWithoutClientInput;
+  create: CartCreateWithoutClientInput;
+};
+
+export type CartUpdateWithWhereUniqueWithoutClientInput = {
+  where: CartWhereUniqueInput;
+  data: CartUpdateWithoutClientInput;
+};
+
+export type CartUpdateManyWithWhereWithoutClientInput = {
+  where: CartScalarWhereInput;
+  data: CartUpdateManyMutationInput;
+};
+
+export type CartScalarWhereInput = {
+  AND?: Maybe<Array<CartScalarWhereInput>>;
+  OR?: Maybe<Array<CartScalarWhereInput>>;
+  NOT?: Maybe<Array<CartScalarWhereInput>>;
   id?: Maybe<StringFilter>;
+  qtty?: Maybe<FloatFilter>;
+  pdtCost?: Maybe<IntFilter>;
+  salesPrice?: Maybe<IntFilter>;
+  orderDate?: Maybe<DateTimeFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
-  clientId?: Maybe<StringNullableFilter>;
-  financialYearId?: Maybe<StringNullableFilter>;
+  productId?: Maybe<StringFilter>;
+  clientId?: Maybe<StringFilter>;
+  employeeId?: Maybe<StringFilter>;
+};
+
+export type OrderUpsertWithWhereUniqueWithoutClientInput = {
+  where: OrderWhereUniqueInput;
+  update: OrderUpdateWithoutClientInput;
+  create: OrderCreateWithoutClientInput;
+};
+
+export type OrderUpdateWithWhereUniqueWithoutClientInput = {
+  where: OrderWhereUniqueInput;
+  data: OrderUpdateWithoutClientInput;
+};
+
+export type OrderUpdateManyWithWhereWithoutClientInput = {
+  where: OrderScalarWhereInput;
+  data: OrderUpdateManyMutationInput;
+};
+
+export type OrderScalarWhereInput = {
+  AND?: Maybe<Array<OrderScalarWhereInput>>;
+  OR?: Maybe<Array<OrderScalarWhereInput>>;
+  NOT?: Maybe<Array<OrderScalarWhereInput>>;
+  id?: Maybe<StringFilter>;
+  orderTotal?: Maybe<IntFilter>;
+  totalPaid?: Maybe<IntFilter>;
+  orderNumber?: Maybe<StringFilter>;
+  orderDate?: Maybe<DateTimeFilter>;
+  createdAt?: Maybe<DateTimeFilter>;
+  updatedAt?: Maybe<DateTimeFilter>;
+  clientId?: Maybe<StringFilter>;
+  employeeId?: Maybe<StringFilter>;
 };
 
 export type OrderCreateWithoutOrderDetailsInput = {
@@ -1726,8 +1018,8 @@ export type OrderCreateWithoutOrderDetailsInput = {
   finances?: Maybe<FinanceCreateNestedManyWithoutOrderInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  AnnualClient?: Maybe<AnnualClientCreateNestedOneWithoutOrdersInput>;
-  AnnualBranchEmployee?: Maybe<AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput>;
+  Client: ClientCreateNestedOneWithoutOrdersInput;
+  Employee: EmployeeCreateNestedOneWithoutOrdersInput;
 };
 
 export type OrderCreateOrConnectWithoutOrderDetailsInput = {
@@ -1739,11 +1031,12 @@ export type ProductCreateWithoutOrderDetailsInput = {
   id?: Maybe<Scalars['String']>;
   pdtName: Scalars['String'];
   pdtCode: Scalars['String'];
+  qttyInHand: Scalars['Int'];
   unitPrice: Scalars['Int'];
   carts?: Maybe<CartCreateNestedManyWithoutProductInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  Category?: Maybe<CategoryCreateNestedOneWithoutProductsInput>;
+  Category: CategoryCreateNestedOneWithoutProductsInput;
 };
 
 export type ProductCreateOrConnectWithoutOrderDetailsInput = {
@@ -1765,8 +1058,8 @@ export type OrderUpdateWithoutOrderDetailsInput = {
   finances?: Maybe<FinanceUpdateManyWithoutOrderInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  AnnualClient?: Maybe<AnnualClientUpdateOneWithoutOrdersInput>;
-  AnnualBranchEmployee?: Maybe<AnnualBranchEmployeeUpdateOneWithoutOrdersInput>;
+  Client?: Maybe<ClientUpdateOneRequiredWithoutOrdersInput>;
+  Employee?: Maybe<EmployeeUpdateOneRequiredWithoutOrdersInput>;
 };
 
 export type ProductUpsertWithoutOrderDetailsInput = {
@@ -1778,11 +1071,12 @@ export type ProductUpdateWithoutOrderDetailsInput = {
   id?: Maybe<StringFieldUpdateOperationsInput>;
   pdtName?: Maybe<StringFieldUpdateOperationsInput>;
   pdtCode?: Maybe<StringFieldUpdateOperationsInput>;
+  qttyInHand?: Maybe<IntFieldUpdateOperationsInput>;
   unitPrice?: Maybe<IntFieldUpdateOperationsInput>;
   carts?: Maybe<CartUpdateManyWithoutProductInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  Category?: Maybe<CategoryUpdateOneWithoutProductsInput>;
+  Category?: Maybe<CategoryUpdateOneRequiredWithoutProductsInput>;
 };
 
 export type OrderDetailCreateWithoutOrderInput = {
@@ -1823,32 +1117,33 @@ export type FinanceCreateManyOrderInputEnvelope = {
   skipDuplicates?: Maybe<Scalars['Boolean']>;
 };
 
-export type AnnualClientCreateWithoutOrdersInput = {
+export type ClientCreateWithoutOrdersInput = {
   id?: Maybe<Scalars['String']>;
-  carts?: Maybe<CartCreateNestedManyWithoutAnnualClientInput>;
+  clientPhoneNumb: Scalars['Int'];
+  clientNames: Scalars['String'];
+  carts?: Maybe<CartCreateNestedManyWithoutClientInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  Client?: Maybe<ClientCreateNestedOneWithoutAnnClientsInput>;
-  FinancialYear?: Maybe<FinancialYearCreateNestedOneWithoutAnnClientsInput>;
 };
 
-export type AnnualClientCreateOrConnectWithoutOrdersInput = {
-  where: AnnualClientWhereUniqueInput;
-  create: AnnualClientCreateWithoutOrdersInput;
+export type ClientCreateOrConnectWithoutOrdersInput = {
+  where: ClientWhereUniqueInput;
+  create: ClientCreateWithoutOrdersInput;
 };
 
-export type AnnualBranchEmployeeCreateWithoutOrdersInput = {
+export type EmployeeCreateWithoutOrdersInput = {
   id?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  carts?: Maybe<CartCreateNestedManyWithoutAnnualBranchEmployeeInput>;
-  BranchEmployee?: Maybe<BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput>;
-  FinancialYear?: Maybe<FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput>;
+  carts?: Maybe<CartCreateNestedManyWithoutEmployeeInput>;
+  employeeNames: Scalars['String'];
+  employeeCode: Scalars['String'];
+  employeePhoneNumb: Scalars['Int'];
 };
 
-export type AnnualBranchEmployeeCreateOrConnectWithoutOrdersInput = {
-  where: AnnualBranchEmployeeWhereUniqueInput;
-  create: AnnualBranchEmployeeCreateWithoutOrdersInput;
+export type EmployeeCreateOrConnectWithoutOrdersInput = {
+  where: EmployeeWhereUniqueInput;
+  create: EmployeeCreateWithoutOrdersInput;
 };
 
 export type OrderDetailUpsertWithWhereUniqueWithoutOrderInput = {
@@ -1909,351 +1204,110 @@ export type FinanceScalarWhereInput = {
   orderId?: Maybe<StringFilter>;
 };
 
-export type AnnualClientUpsertWithoutOrdersInput = {
-  update: AnnualClientUpdateWithoutOrdersInput;
-  create: AnnualClientCreateWithoutOrdersInput;
+export type ClientUpsertWithoutOrdersInput = {
+  update: ClientUpdateWithoutOrdersInput;
+  create: ClientCreateWithoutOrdersInput;
 };
 
-export type AnnualClientUpdateWithoutOrdersInput = {
+export type ClientUpdateWithoutOrdersInput = {
   id?: Maybe<StringFieldUpdateOperationsInput>;
-  carts?: Maybe<CartUpdateManyWithoutAnnualClientInput>;
+  clientPhoneNumb?: Maybe<IntFieldUpdateOperationsInput>;
+  clientNames?: Maybe<StringFieldUpdateOperationsInput>;
+  carts?: Maybe<CartUpdateManyWithoutClientInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  Client?: Maybe<ClientUpdateOneWithoutAnnClientsInput>;
-  FinancialYear?: Maybe<FinancialYearUpdateOneWithoutAnnClientsInput>;
 };
 
-export type AnnualBranchEmployeeUpsertWithoutOrdersInput = {
-  update: AnnualBranchEmployeeUpdateWithoutOrdersInput;
-  create: AnnualBranchEmployeeCreateWithoutOrdersInput;
+export type EmployeeUpsertWithoutOrdersInput = {
+  update: EmployeeUpdateWithoutOrdersInput;
+  create: EmployeeCreateWithoutOrdersInput;
 };
 
-export type AnnualBranchEmployeeUpdateWithoutOrdersInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  carts?: Maybe<CartUpdateManyWithoutAnnualBranchEmployeeInput>;
-  BranchEmployee?: Maybe<BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput>;
-  FinancialYear?: Maybe<FinancialYearUpdateOneWithoutAnnBranchEmplsInput>;
-};
-
-export type BranchEmployeeCreateWithoutBranchInput = {
-  id?: Maybe<Scalars['String']>;
-  annBranchEmployee?: Maybe<AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  startDate?: Maybe<Scalars['DateTime']>;
-  endDate?: Maybe<Scalars['DateTime']>;
-  Employee: EmployeeCreateNestedOneWithoutBranchEmplsInput;
-  EmployeeStatus: EmployeeStatusCreateNestedOneWithoutBranchEmplsInput;
-};
-
-export type BranchEmployeeCreateOrConnectWithoutBranchInput = {
-  where: BranchEmployeeWhereUniqueInput;
-  create: BranchEmployeeCreateWithoutBranchInput;
-};
-
-export type BranchEmployeeCreateManyBranchInputEnvelope = {
-  data?: Maybe<Array<BranchEmployeeCreateManyBranchInput>>;
-  skipDuplicates?: Maybe<Scalars['Boolean']>;
-};
-
-export type BranchEmployeeUpsertWithWhereUniqueWithoutBranchInput = {
-  where: BranchEmployeeWhereUniqueInput;
-  update: BranchEmployeeUpdateWithoutBranchInput;
-  create: BranchEmployeeCreateWithoutBranchInput;
-};
-
-export type BranchEmployeeUpdateWithWhereUniqueWithoutBranchInput = {
-  where: BranchEmployeeWhereUniqueInput;
-  data: BranchEmployeeUpdateWithoutBranchInput;
-};
-
-export type BranchEmployeeUpdateManyWithWhereWithoutBranchInput = {
-  where: BranchEmployeeScalarWhereInput;
-  data: BranchEmployeeUpdateManyMutationInput;
-};
-
-export type BranchEmployeeScalarWhereInput = {
-  AND?: Maybe<Array<BranchEmployeeScalarWhereInput>>;
-  OR?: Maybe<Array<BranchEmployeeScalarWhereInput>>;
-  NOT?: Maybe<Array<BranchEmployeeScalarWhereInput>>;
-  id?: Maybe<StringFilter>;
-  createdAt?: Maybe<DateTimeFilter>;
-  updatedAt?: Maybe<DateTimeFilter>;
-  startDate?: Maybe<DateTimeFilter>;
-  endDate?: Maybe<DateTimeFilter>;
-  employeeId?: Maybe<StringFilter>;
-  branchId?: Maybe<StringFilter>;
-  employeeStatusId?: Maybe<StringFilter>;
-};
-
-export type AnnualBranchEmployeeCreateWithoutBranchEmployeeInput = {
-  id?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  orders?: Maybe<OrderCreateNestedManyWithoutAnnualBranchEmployeeInput>;
-  carts?: Maybe<CartCreateNestedManyWithoutAnnualBranchEmployeeInput>;
-  FinancialYear?: Maybe<FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput>;
-};
-
-export type AnnualBranchEmployeeCreateOrConnectWithoutBranchEmployeeInput = {
-  where: AnnualBranchEmployeeWhereUniqueInput;
-  create: AnnualBranchEmployeeCreateWithoutBranchEmployeeInput;
-};
-
-export type AnnualBranchEmployeeCreateManyBranchEmployeeInputEnvelope = {
-  data?: Maybe<Array<AnnualBranchEmployeeCreateManyBranchEmployeeInput>>;
-  skipDuplicates?: Maybe<Scalars['Boolean']>;
-};
-
-export type EmployeeCreateWithoutBranchEmplsInput = {
-  id?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  employeeNames: Scalars['String'];
-  employeeCode: Scalars['String'];
-  employeePhoneNumb: Scalars['Int'];
-};
-
-export type EmployeeCreateOrConnectWithoutBranchEmplsInput = {
-  where: EmployeeWhereUniqueInput;
-  create: EmployeeCreateWithoutBranchEmplsInput;
-};
-
-export type BranchCreateWithoutBranchEmplsInput = {
-  id?: Maybe<Scalars['String']>;
-  branchName: Scalars['String'];
-  branchCode: Scalars['String'];
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type BranchCreateOrConnectWithoutBranchEmplsInput = {
-  where: BranchWhereUniqueInput;
-  create: BranchCreateWithoutBranchEmplsInput;
-};
-
-export type EmployeeStatusCreateWithoutBranchEmplsInput = {
-  id?: Maybe<Scalars['String']>;
-  status: Scalars['String'];
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type EmployeeStatusCreateOrConnectWithoutBranchEmplsInput = {
-  where: EmployeeStatusWhereUniqueInput;
-  create: EmployeeStatusCreateWithoutBranchEmplsInput;
-};
-
-export type AnnualBranchEmployeeUpsertWithWhereUniqueWithoutBranchEmployeeInput = {
-  where: AnnualBranchEmployeeWhereUniqueInput;
-  update: AnnualBranchEmployeeUpdateWithoutBranchEmployeeInput;
-  create: AnnualBranchEmployeeCreateWithoutBranchEmployeeInput;
-};
-
-export type AnnualBranchEmployeeUpdateWithWhereUniqueWithoutBranchEmployeeInput = {
-  where: AnnualBranchEmployeeWhereUniqueInput;
-  data: AnnualBranchEmployeeUpdateWithoutBranchEmployeeInput;
-};
-
-export type AnnualBranchEmployeeUpdateManyWithWhereWithoutBranchEmployeeInput = {
-  where: AnnualBranchEmployeeScalarWhereInput;
-  data: AnnualBranchEmployeeUpdateManyMutationInput;
-};
-
-export type AnnualBranchEmployeeScalarWhereInput = {
-  AND?: Maybe<Array<AnnualBranchEmployeeScalarWhereInput>>;
-  OR?: Maybe<Array<AnnualBranchEmployeeScalarWhereInput>>;
-  NOT?: Maybe<Array<AnnualBranchEmployeeScalarWhereInput>>;
-  id?: Maybe<StringFilter>;
-  createdAt?: Maybe<DateTimeFilter>;
-  updatedAt?: Maybe<DateTimeFilter>;
-  branchEmployeeId?: Maybe<StringNullableFilter>;
-  financialYearId?: Maybe<StringNullableFilter>;
-};
-
-export type EmployeeUpsertWithoutBranchEmplsInput = {
-  update: EmployeeUpdateWithoutBranchEmplsInput;
-  create: EmployeeCreateWithoutBranchEmplsInput;
-};
-
-export type EmployeeUpdateWithoutBranchEmplsInput = {
+export type EmployeeUpdateWithoutOrdersInput = {
   id?: Maybe<StringFieldUpdateOperationsInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  carts?: Maybe<CartUpdateManyWithoutEmployeeInput>;
   employeeNames?: Maybe<StringFieldUpdateOperationsInput>;
   employeeCode?: Maybe<StringFieldUpdateOperationsInput>;
   employeePhoneNumb?: Maybe<IntFieldUpdateOperationsInput>;
 };
 
-export type BranchUpsertWithoutBranchEmplsInput = {
-  update: BranchUpdateWithoutBranchEmplsInput;
-  create: BranchCreateWithoutBranchEmplsInput;
-};
-
-export type BranchUpdateWithoutBranchEmplsInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  branchName?: Maybe<StringFieldUpdateOperationsInput>;
-  branchCode?: Maybe<StringFieldUpdateOperationsInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-};
-
-export type EmployeeStatusUpsertWithoutBranchEmplsInput = {
-  update: EmployeeStatusUpdateWithoutBranchEmplsInput;
-  create: EmployeeStatusCreateWithoutBranchEmplsInput;
-};
-
-export type EmployeeStatusUpdateWithoutBranchEmplsInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  status?: Maybe<StringFieldUpdateOperationsInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-};
-
-export type AnnualBranchEmployeeCreateWithoutFinancialYearInput = {
+export type CartCreateWithoutEmployeeInput = {
   id?: Maybe<Scalars['String']>;
+  qtty: Scalars['Float'];
+  pdtCost: Scalars['Int'];
+  salesPrice: Scalars['Int'];
+  orderDate?: Maybe<Scalars['DateTime']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  orders?: Maybe<OrderCreateNestedManyWithoutAnnualBranchEmployeeInput>;
-  carts?: Maybe<CartCreateNestedManyWithoutAnnualBranchEmployeeInput>;
-  BranchEmployee?: Maybe<BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput>;
+  Product: ProductCreateNestedOneWithoutCartsInput;
+  Client: ClientCreateNestedOneWithoutCartsInput;
 };
 
-export type AnnualBranchEmployeeCreateOrConnectWithoutFinancialYearInput = {
-  where: AnnualBranchEmployeeWhereUniqueInput;
-  create: AnnualBranchEmployeeCreateWithoutFinancialYearInput;
+export type CartCreateOrConnectWithoutEmployeeInput = {
+  where: CartWhereUniqueInput;
+  create: CartCreateWithoutEmployeeInput;
 };
 
-export type AnnualBranchEmployeeCreateManyFinancialYearInputEnvelope = {
-  data?: Maybe<Array<AnnualBranchEmployeeCreateManyFinancialYearInput>>;
+export type CartCreateManyEmployeeInputEnvelope = {
+  data?: Maybe<Array<CartCreateManyEmployeeInput>>;
   skipDuplicates?: Maybe<Scalars['Boolean']>;
 };
 
-export type AnnualClientCreateWithoutFinancialYearInput = {
+export type OrderCreateWithoutEmployeeInput = {
   id?: Maybe<Scalars['String']>;
-  orders?: Maybe<OrderCreateNestedManyWithoutAnnualClientInput>;
-  carts?: Maybe<CartCreateNestedManyWithoutAnnualClientInput>;
+  orderTotal: Scalars['Int'];
+  totalPaid: Scalars['Int'];
+  orderNumber: Scalars['String'];
+  orderDate?: Maybe<Scalars['DateTime']>;
+  orderDetails?: Maybe<OrderDetailCreateNestedManyWithoutOrderInput>;
+  finances?: Maybe<FinanceCreateNestedManyWithoutOrderInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  Client?: Maybe<ClientCreateNestedOneWithoutAnnClientsInput>;
+  Client: ClientCreateNestedOneWithoutOrdersInput;
 };
 
-export type AnnualClientCreateOrConnectWithoutFinancialYearInput = {
-  where: AnnualClientWhereUniqueInput;
-  create: AnnualClientCreateWithoutFinancialYearInput;
+export type OrderCreateOrConnectWithoutEmployeeInput = {
+  where: OrderWhereUniqueInput;
+  create: OrderCreateWithoutEmployeeInput;
 };
 
-export type AnnualClientCreateManyFinancialYearInputEnvelope = {
-  data?: Maybe<Array<AnnualClientCreateManyFinancialYearInput>>;
+export type OrderCreateManyEmployeeInputEnvelope = {
+  data?: Maybe<Array<OrderCreateManyEmployeeInput>>;
   skipDuplicates?: Maybe<Scalars['Boolean']>;
 };
 
-export type AnnualBranchEmployeeUpsertWithWhereUniqueWithoutFinancialYearInput = {
-  where: AnnualBranchEmployeeWhereUniqueInput;
-  update: AnnualBranchEmployeeUpdateWithoutFinancialYearInput;
-  create: AnnualBranchEmployeeCreateWithoutFinancialYearInput;
+export type CartUpsertWithWhereUniqueWithoutEmployeeInput = {
+  where: CartWhereUniqueInput;
+  update: CartUpdateWithoutEmployeeInput;
+  create: CartCreateWithoutEmployeeInput;
 };
 
-export type AnnualBranchEmployeeUpdateWithWhereUniqueWithoutFinancialYearInput = {
-  where: AnnualBranchEmployeeWhereUniqueInput;
-  data: AnnualBranchEmployeeUpdateWithoutFinancialYearInput;
+export type CartUpdateWithWhereUniqueWithoutEmployeeInput = {
+  where: CartWhereUniqueInput;
+  data: CartUpdateWithoutEmployeeInput;
 };
 
-export type AnnualBranchEmployeeUpdateManyWithWhereWithoutFinancialYearInput = {
-  where: AnnualBranchEmployeeScalarWhereInput;
-  data: AnnualBranchEmployeeUpdateManyMutationInput;
+export type CartUpdateManyWithWhereWithoutEmployeeInput = {
+  where: CartScalarWhereInput;
+  data: CartUpdateManyMutationInput;
 };
 
-export type AnnualClientUpsertWithWhereUniqueWithoutFinancialYearInput = {
-  where: AnnualClientWhereUniqueInput;
-  update: AnnualClientUpdateWithoutFinancialYearInput;
-  create: AnnualClientCreateWithoutFinancialYearInput;
+export type OrderUpsertWithWhereUniqueWithoutEmployeeInput = {
+  where: OrderWhereUniqueInput;
+  update: OrderUpdateWithoutEmployeeInput;
+  create: OrderCreateWithoutEmployeeInput;
 };
 
-export type AnnualClientUpdateWithWhereUniqueWithoutFinancialYearInput = {
-  where: AnnualClientWhereUniqueInput;
-  data: AnnualClientUpdateWithoutFinancialYearInput;
+export type OrderUpdateWithWhereUniqueWithoutEmployeeInput = {
+  where: OrderWhereUniqueInput;
+  data: OrderUpdateWithoutEmployeeInput;
 };
 
-export type AnnualClientUpdateManyWithWhereWithoutFinancialYearInput = {
-  where: AnnualClientScalarWhereInput;
-  data: AnnualClientUpdateManyMutationInput;
-};
-
-export type BranchEmployeeCreateWithoutEmployeeInput = {
-  id?: Maybe<Scalars['String']>;
-  annBranchEmployee?: Maybe<AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  startDate?: Maybe<Scalars['DateTime']>;
-  endDate?: Maybe<Scalars['DateTime']>;
-  Branch: BranchCreateNestedOneWithoutBranchEmplsInput;
-  EmployeeStatus: EmployeeStatusCreateNestedOneWithoutBranchEmplsInput;
-};
-
-export type BranchEmployeeCreateOrConnectWithoutEmployeeInput = {
-  where: BranchEmployeeWhereUniqueInput;
-  create: BranchEmployeeCreateWithoutEmployeeInput;
-};
-
-export type BranchEmployeeCreateManyEmployeeInputEnvelope = {
-  data?: Maybe<Array<BranchEmployeeCreateManyEmployeeInput>>;
-  skipDuplicates?: Maybe<Scalars['Boolean']>;
-};
-
-export type BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeInput = {
-  where: BranchEmployeeWhereUniqueInput;
-  update: BranchEmployeeUpdateWithoutEmployeeInput;
-  create: BranchEmployeeCreateWithoutEmployeeInput;
-};
-
-export type BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeInput = {
-  where: BranchEmployeeWhereUniqueInput;
-  data: BranchEmployeeUpdateWithoutEmployeeInput;
-};
-
-export type BranchEmployeeUpdateManyWithWhereWithoutEmployeeInput = {
-  where: BranchEmployeeScalarWhereInput;
-  data: BranchEmployeeUpdateManyMutationInput;
-};
-
-export type BranchEmployeeCreateWithoutEmployeeStatusInput = {
-  id?: Maybe<Scalars['String']>;
-  annBranchEmployee?: Maybe<AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  startDate?: Maybe<Scalars['DateTime']>;
-  endDate?: Maybe<Scalars['DateTime']>;
-  Employee: EmployeeCreateNestedOneWithoutBranchEmplsInput;
-  Branch: BranchCreateNestedOneWithoutBranchEmplsInput;
-};
-
-export type BranchEmployeeCreateOrConnectWithoutEmployeeStatusInput = {
-  where: BranchEmployeeWhereUniqueInput;
-  create: BranchEmployeeCreateWithoutEmployeeStatusInput;
-};
-
-export type BranchEmployeeCreateManyEmployeeStatusInputEnvelope = {
-  data?: Maybe<Array<BranchEmployeeCreateManyEmployeeStatusInput>>;
-  skipDuplicates?: Maybe<Scalars['Boolean']>;
-};
-
-export type BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeStatusInput = {
-  where: BranchEmployeeWhereUniqueInput;
-  update: BranchEmployeeUpdateWithoutEmployeeStatusInput;
-  create: BranchEmployeeCreateWithoutEmployeeStatusInput;
-};
-
-export type BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeStatusInput = {
-  where: BranchEmployeeWhereUniqueInput;
-  data: BranchEmployeeUpdateWithoutEmployeeStatusInput;
-};
-
-export type BranchEmployeeUpdateManyWithWhereWithoutEmployeeStatusInput = {
-  where: BranchEmployeeScalarWhereInput;
-  data: BranchEmployeeUpdateManyMutationInput;
+export type OrderUpdateManyWithWhereWithoutEmployeeInput = {
+  where: OrderScalarWhereInput;
+  data: OrderUpdateManyMutationInput;
 };
 
 export type OrderCreateWithoutFinancesInput = {
@@ -2265,8 +1319,8 @@ export type OrderCreateWithoutFinancesInput = {
   orderDetails?: Maybe<OrderDetailCreateNestedManyWithoutOrderInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  AnnualClient?: Maybe<AnnualClientCreateNestedOneWithoutOrdersInput>;
-  AnnualBranchEmployee?: Maybe<AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput>;
+  Client: ClientCreateNestedOneWithoutOrdersInput;
+  Employee: EmployeeCreateNestedOneWithoutOrdersInput;
 };
 
 export type OrderCreateOrConnectWithoutFinancesInput = {
@@ -2288,8 +1342,8 @@ export type OrderUpdateWithoutFinancesInput = {
   orderDetails?: Maybe<OrderDetailUpdateManyWithoutOrderInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  AnnualClient?: Maybe<AnnualClientUpdateOneWithoutOrdersInput>;
-  AnnualBranchEmployee?: Maybe<AnnualBranchEmployeeUpdateOneWithoutOrdersInput>;
+  Client?: Maybe<ClientUpdateOneRequiredWithoutOrdersInput>;
+  Employee?: Maybe<EmployeeUpdateOneRequiredWithoutOrdersInput>;
 };
 
 export type CartCreateWithoutProductInput = {
@@ -2300,8 +1354,8 @@ export type CartCreateWithoutProductInput = {
   orderDate?: Maybe<Scalars['DateTime']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  AnnualClient?: Maybe<AnnualClientCreateNestedOneWithoutCartsInput>;
-  AnnualBranchEmployee?: Maybe<AnnualBranchEmployeeCreateNestedOneWithoutCartsInput>;
+  Client: ClientCreateNestedOneWithoutCartsInput;
+  Employee: EmployeeCreateNestedOneWithoutCartsInput;
 };
 
 export type CartCreateOrConnectWithoutProductInput = {
@@ -2393,48 +1447,34 @@ export type CategoryUpdateWithoutProductsInput = {
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
 };
 
-export type OrderCreateManyAnnualBranchEmployeeInput = {
+export type ProductCreateManyCategoryInput = {
   id?: Maybe<Scalars['String']>;
-  orderTotal: Scalars['Int'];
-  totalPaid: Scalars['Int'];
-  orderNumber: Scalars['String'];
-  orderDate?: Maybe<Scalars['DateTime']>;
+  pdtName: Scalars['String'];
+  pdtCode: Scalars['String'];
+  qttyInHand: Scalars['Int'];
+  unitPrice: Scalars['Int'];
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  annualClientId?: Maybe<Scalars['String']>;
 };
 
-export type CartCreateManyAnnualBranchEmployeeInput = {
-  id?: Maybe<Scalars['String']>;
-  qtty: Scalars['Float'];
-  pdtCost: Scalars['Int'];
-  salesPrice: Scalars['Int'];
-  orderDate?: Maybe<Scalars['DateTime']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  productId: Scalars['String'];
-  annualClientId?: Maybe<Scalars['String']>;
-};
-
-export type OrderUpdateWithoutAnnualBranchEmployeeInput = {
+export type ProductUpdateWithoutCategoryInput = {
   id?: Maybe<StringFieldUpdateOperationsInput>;
-  orderTotal?: Maybe<IntFieldUpdateOperationsInput>;
-  totalPaid?: Maybe<IntFieldUpdateOperationsInput>;
-  orderNumber?: Maybe<StringFieldUpdateOperationsInput>;
-  orderDate?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  orderDetails?: Maybe<OrderDetailUpdateManyWithoutOrderInput>;
-  finances?: Maybe<FinanceUpdateManyWithoutOrderInput>;
+  pdtName?: Maybe<StringFieldUpdateOperationsInput>;
+  pdtCode?: Maybe<StringFieldUpdateOperationsInput>;
+  qttyInHand?: Maybe<IntFieldUpdateOperationsInput>;
+  unitPrice?: Maybe<IntFieldUpdateOperationsInput>;
+  carts?: Maybe<CartUpdateManyWithoutProductInput>;
+  orderDetails?: Maybe<OrderDetailUpdateManyWithoutProductInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  AnnualClient?: Maybe<AnnualClientUpdateOneWithoutOrdersInput>;
 };
 
-export type OrderUpdateManyMutationInput = {
+export type ProductUpdateManyMutationInput = {
   id?: Maybe<StringFieldUpdateOperationsInput>;
-  orderTotal?: Maybe<IntFieldUpdateOperationsInput>;
-  totalPaid?: Maybe<IntFieldUpdateOperationsInput>;
-  orderNumber?: Maybe<StringFieldUpdateOperationsInput>;
-  orderDate?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  pdtName?: Maybe<StringFieldUpdateOperationsInput>;
+  pdtCode?: Maybe<StringFieldUpdateOperationsInput>;
+  qttyInHand?: Maybe<IntFieldUpdateOperationsInput>;
+  unitPrice?: Maybe<IntFieldUpdateOperationsInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
 };
@@ -2476,22 +1516,30 @@ export type DateTimeFilter = {
   not?: Maybe<NestedDateTimeFilter>;
 };
 
-export type StringNullableFilter = {
-  equals?: Maybe<Scalars['String']>;
-  in?: Maybe<Array<Scalars['String']>>;
-  notIn?: Maybe<Array<Scalars['String']>>;
-  lt?: Maybe<Scalars['String']>;
-  lte?: Maybe<Scalars['String']>;
-  gt?: Maybe<Scalars['String']>;
-  gte?: Maybe<Scalars['String']>;
-  contains?: Maybe<Scalars['String']>;
-  startsWith?: Maybe<Scalars['String']>;
-  endsWith?: Maybe<Scalars['String']>;
-  mode?: Maybe<QueryMode>;
-  not?: Maybe<NestedStringNullableFilter>;
+export type CartCreateManyClientInput = {
+  id?: Maybe<Scalars['String']>;
+  qtty: Scalars['Float'];
+  pdtCost: Scalars['Int'];
+  salesPrice: Scalars['Int'];
+  orderDate?: Maybe<Scalars['DateTime']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  productId: Scalars['String'];
+  employeeId: Scalars['String'];
 };
 
-export type CartUpdateWithoutAnnualBranchEmployeeInput = {
+export type OrderCreateManyClientInput = {
+  id?: Maybe<Scalars['String']>;
+  orderTotal: Scalars['Int'];
+  totalPaid: Scalars['Int'];
+  orderNumber: Scalars['String'];
+  orderDate?: Maybe<Scalars['DateTime']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  employeeId: Scalars['String'];
+};
+
+export type CartUpdateWithoutClientInput = {
   id?: Maybe<StringFieldUpdateOperationsInput>;
   qtty?: Maybe<FloatFieldUpdateOperationsInput>;
   pdtCost?: Maybe<IntFieldUpdateOperationsInput>;
@@ -2500,7 +1548,7 @@ export type CartUpdateWithoutAnnualBranchEmployeeInput = {
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   Product?: Maybe<ProductUpdateOneRequiredWithoutCartsInput>;
-  AnnualClient?: Maybe<AnnualClientUpdateOneWithoutCartsInput>;
+  Employee?: Maybe<EmployeeUpdateOneRequiredWithoutCartsInput>;
 };
 
 export type CartUpdateManyMutationInput = {
@@ -2524,30 +1572,7 @@ export type FloatFilter = {
   not?: Maybe<NestedFloatFilter>;
 };
 
-export type OrderCreateManyAnnualClientInput = {
-  id?: Maybe<Scalars['String']>;
-  orderTotal: Scalars['Int'];
-  totalPaid: Scalars['Int'];
-  orderNumber: Scalars['String'];
-  orderDate?: Maybe<Scalars['DateTime']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  annualBranchEmployeeId?: Maybe<Scalars['String']>;
-};
-
-export type CartCreateManyAnnualClientInput = {
-  id?: Maybe<Scalars['String']>;
-  qtty: Scalars['Float'];
-  pdtCost: Scalars['Int'];
-  salesPrice: Scalars['Int'];
-  orderDate?: Maybe<Scalars['DateTime']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  productId: Scalars['String'];
-  annualBranchEmployeeId?: Maybe<Scalars['String']>;
-};
-
-export type OrderUpdateWithoutAnnualClientInput = {
+export type OrderUpdateWithoutClientInput = {
   id?: Maybe<StringFieldUpdateOperationsInput>;
   orderTotal?: Maybe<IntFieldUpdateOperationsInput>;
   totalPaid?: Maybe<IntFieldUpdateOperationsInput>;
@@ -2557,68 +1582,15 @@ export type OrderUpdateWithoutAnnualClientInput = {
   finances?: Maybe<FinanceUpdateManyWithoutOrderInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  AnnualBranchEmployee?: Maybe<AnnualBranchEmployeeUpdateOneWithoutOrdersInput>;
+  Employee?: Maybe<EmployeeUpdateOneRequiredWithoutOrdersInput>;
 };
 
-export type CartUpdateWithoutAnnualClientInput = {
+export type OrderUpdateManyMutationInput = {
   id?: Maybe<StringFieldUpdateOperationsInput>;
-  qtty?: Maybe<FloatFieldUpdateOperationsInput>;
-  pdtCost?: Maybe<IntFieldUpdateOperationsInput>;
-  salesPrice?: Maybe<IntFieldUpdateOperationsInput>;
+  orderTotal?: Maybe<IntFieldUpdateOperationsInput>;
+  totalPaid?: Maybe<IntFieldUpdateOperationsInput>;
+  orderNumber?: Maybe<StringFieldUpdateOperationsInput>;
   orderDate?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  Product?: Maybe<ProductUpdateOneRequiredWithoutCartsInput>;
-  AnnualBranchEmployee?: Maybe<AnnualBranchEmployeeUpdateOneWithoutCartsInput>;
-};
-
-export type ProductCreateManyCategoryInput = {
-  id?: Maybe<Scalars['String']>;
-  pdtName: Scalars['String'];
-  pdtCode: Scalars['String'];
-  unitPrice: Scalars['Int'];
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type ProductUpdateWithoutCategoryInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  pdtName?: Maybe<StringFieldUpdateOperationsInput>;
-  pdtCode?: Maybe<StringFieldUpdateOperationsInput>;
-  unitPrice?: Maybe<IntFieldUpdateOperationsInput>;
-  carts?: Maybe<CartUpdateManyWithoutProductInput>;
-  orderDetails?: Maybe<OrderDetailUpdateManyWithoutProductInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-};
-
-export type ProductUpdateManyMutationInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  pdtName?: Maybe<StringFieldUpdateOperationsInput>;
-  pdtCode?: Maybe<StringFieldUpdateOperationsInput>;
-  unitPrice?: Maybe<IntFieldUpdateOperationsInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-};
-
-export type AnnualClientCreateManyClientInput = {
-  id?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  financialYearId?: Maybe<Scalars['String']>;
-};
-
-export type AnnualClientUpdateWithoutClientInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  orders?: Maybe<OrderUpdateManyWithoutAnnualClientInput>;
-  carts?: Maybe<CartUpdateManyWithoutAnnualClientInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  FinancialYear?: Maybe<FinancialYearUpdateOneWithoutAnnClientsInput>;
-};
-
-export type AnnualClientUpdateManyMutationInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
 };
@@ -2676,129 +1648,52 @@ export type FinanceUpdateManyMutationInput = {
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
 };
 
-export type BranchEmployeeCreateManyBranchInput = {
+export type CartCreateManyEmployeeInput = {
   id?: Maybe<Scalars['String']>;
+  qtty: Scalars['Float'];
+  pdtCost: Scalars['Int'];
+  salesPrice: Scalars['Int'];
+  orderDate?: Maybe<Scalars['DateTime']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  startDate?: Maybe<Scalars['DateTime']>;
-  endDate?: Maybe<Scalars['DateTime']>;
-  employeeId: Scalars['String'];
-  employeeStatusId: Scalars['String'];
+  productId: Scalars['String'];
+  clientId: Scalars['String'];
 };
 
-export type BranchEmployeeUpdateWithoutBranchInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  annBranchEmployee?: Maybe<AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  startDate?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  endDate?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  Employee?: Maybe<EmployeeUpdateOneRequiredWithoutBranchEmplsInput>;
-  EmployeeStatus?: Maybe<EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput>;
-};
-
-export type BranchEmployeeUpdateManyMutationInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  startDate?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  endDate?: Maybe<DateTimeFieldUpdateOperationsInput>;
-};
-
-export type AnnualBranchEmployeeCreateManyBranchEmployeeInput = {
+export type OrderCreateManyEmployeeInput = {
   id?: Maybe<Scalars['String']>;
+  orderTotal: Scalars['Int'];
+  totalPaid: Scalars['Int'];
+  orderNumber: Scalars['String'];
+  orderDate?: Maybe<Scalars['DateTime']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  financialYearId?: Maybe<Scalars['String']>;
+  clientId: Scalars['String'];
 };
 
-export type AnnualBranchEmployeeUpdateWithoutBranchEmployeeInput = {
+export type CartUpdateWithoutEmployeeInput = {
   id?: Maybe<StringFieldUpdateOperationsInput>;
+  qtty?: Maybe<FloatFieldUpdateOperationsInput>;
+  pdtCost?: Maybe<IntFieldUpdateOperationsInput>;
+  salesPrice?: Maybe<IntFieldUpdateOperationsInput>;
+  orderDate?: Maybe<DateTimeFieldUpdateOperationsInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  orders?: Maybe<OrderUpdateManyWithoutAnnualBranchEmployeeInput>;
-  carts?: Maybe<CartUpdateManyWithoutAnnualBranchEmployeeInput>;
-  FinancialYear?: Maybe<FinancialYearUpdateOneWithoutAnnBranchEmplsInput>;
+  Product?: Maybe<ProductUpdateOneRequiredWithoutCartsInput>;
+  Client?: Maybe<ClientUpdateOneRequiredWithoutCartsInput>;
 };
 
-export type AnnualBranchEmployeeUpdateManyMutationInput = {
+export type OrderUpdateWithoutEmployeeInput = {
   id?: Maybe<StringFieldUpdateOperationsInput>;
+  orderTotal?: Maybe<IntFieldUpdateOperationsInput>;
+  totalPaid?: Maybe<IntFieldUpdateOperationsInput>;
+  orderNumber?: Maybe<StringFieldUpdateOperationsInput>;
+  orderDate?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  orderDetails?: Maybe<OrderDetailUpdateManyWithoutOrderInput>;
+  finances?: Maybe<FinanceUpdateManyWithoutOrderInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-};
-
-export type AnnualBranchEmployeeCreateManyFinancialYearInput = {
-  id?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  branchEmployeeId?: Maybe<Scalars['String']>;
-};
-
-export type AnnualClientCreateManyFinancialYearInput = {
-  id?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  clientId?: Maybe<Scalars['String']>;
-};
-
-export type AnnualBranchEmployeeUpdateWithoutFinancialYearInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  orders?: Maybe<OrderUpdateManyWithoutAnnualBranchEmployeeInput>;
-  carts?: Maybe<CartUpdateManyWithoutAnnualBranchEmployeeInput>;
-  BranchEmployee?: Maybe<BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput>;
-};
-
-export type AnnualClientUpdateWithoutFinancialYearInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  orders?: Maybe<OrderUpdateManyWithoutAnnualClientInput>;
-  carts?: Maybe<CartUpdateManyWithoutAnnualClientInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  Client?: Maybe<ClientUpdateOneWithoutAnnClientsInput>;
-};
-
-export type BranchEmployeeCreateManyEmployeeInput = {
-  id?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  startDate?: Maybe<Scalars['DateTime']>;
-  endDate?: Maybe<Scalars['DateTime']>;
-  branchId: Scalars['String'];
-  employeeStatusId: Scalars['String'];
-};
-
-export type BranchEmployeeUpdateWithoutEmployeeInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  annBranchEmployee?: Maybe<AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  startDate?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  endDate?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  Branch?: Maybe<BranchUpdateOneRequiredWithoutBranchEmplsInput>;
-  EmployeeStatus?: Maybe<EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput>;
-};
-
-export type BranchEmployeeCreateManyEmployeeStatusInput = {
-  id?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  startDate?: Maybe<Scalars['DateTime']>;
-  endDate?: Maybe<Scalars['DateTime']>;
-  employeeId: Scalars['String'];
-  branchId: Scalars['String'];
-};
-
-export type BranchEmployeeUpdateWithoutEmployeeStatusInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  annBranchEmployee?: Maybe<AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  startDate?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  endDate?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  Employee?: Maybe<EmployeeUpdateOneRequiredWithoutBranchEmplsInput>;
-  Branch?: Maybe<BranchUpdateOneRequiredWithoutBranchEmplsInput>;
+  Client?: Maybe<ClientUpdateOneRequiredWithoutOrdersInput>;
 };
 
 export type CartCreateManyProductInput = {
@@ -2809,8 +1704,8 @@ export type CartCreateManyProductInput = {
   orderDate?: Maybe<Scalars['DateTime']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  annualClientId?: Maybe<Scalars['String']>;
-  annualBranchEmployeeId?: Maybe<Scalars['String']>;
+  clientId: Scalars['String'];
+  employeeId: Scalars['String'];
 };
 
 export type OrderDetailCreateManyProductInput = {
@@ -2832,8 +1727,8 @@ export type CartUpdateWithoutProductInput = {
   orderDate?: Maybe<DateTimeFieldUpdateOperationsInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  AnnualClient?: Maybe<AnnualClientUpdateOneWithoutCartsInput>;
-  AnnualBranchEmployee?: Maybe<AnnualBranchEmployeeUpdateOneWithoutCartsInput>;
+  Client?: Maybe<ClientUpdateOneRequiredWithoutCartsInput>;
+  Employee?: Maybe<EmployeeUpdateOneRequiredWithoutCartsInput>;
 };
 
 export type OrderDetailUpdateWithoutProductInput = {
@@ -2888,20 +1783,6 @@ export type NestedDateTimeFilter = {
   not?: Maybe<NestedDateTimeFilter>;
 };
 
-export type NestedStringNullableFilter = {
-  equals?: Maybe<Scalars['String']>;
-  in?: Maybe<Array<Scalars['String']>>;
-  notIn?: Maybe<Array<Scalars['String']>>;
-  lt?: Maybe<Scalars['String']>;
-  lte?: Maybe<Scalars['String']>;
-  gt?: Maybe<Scalars['String']>;
-  gte?: Maybe<Scalars['String']>;
-  contains?: Maybe<Scalars['String']>;
-  startsWith?: Maybe<Scalars['String']>;
-  endsWith?: Maybe<Scalars['String']>;
-  not?: Maybe<NestedStringNullableFilter>;
-};
-
 export type NestedFloatFilter = {
   equals?: Maybe<Scalars['Float']>;
   in?: Maybe<Array<Scalars['Float']>>;
@@ -2914,43 +1795,17 @@ export type NestedFloatFilter = {
 };
 
 export type Query = {
-  annualBranchEmployee?: Maybe<AnnualBranchEmployee>;
-  annualBranchEmployees: Array<AnnualBranchEmployee>;
-  annualBranchEmployeeById?: Maybe<AnnualBranchEmployee>;
-  annualBranchEmployeeByBranchEmployeeAndYear?: Maybe<AnnualBranchEmployee>;
-  annualClient?: Maybe<AnnualClient>;
-  annualClients: Array<AnnualClient>;
-  annualClientById?: Maybe<AnnualClient>;
-  annualClientByPhoneAndYear?: Maybe<AnnualClient>;
-  annualClientByYearClient?: Maybe<AnnualClient>;
   cart?: Maybe<Cart>;
   carts: Array<Cart>;
   cartById?: Maybe<Cart>;
-  cartByAnnualClientIdAndEmplId?: Maybe<Array<Maybe<Cart>>>;
+  cartByClientIdAndEmplId?: Maybe<Array<Maybe<Cart>>>;
+  category?: Maybe<Category>;
+  categories: Array<Category>;
+  categoryById?: Maybe<Category>;
   client?: Maybe<Client>;
   clients?: Maybe<Array<Maybe<Client>>>;
   clientByPhoneNumber?: Maybe<Client>;
   clientById?: Maybe<Array<Maybe<Client>>>;
-  orderDetail?: Maybe<OrderDetail>;
-  orderDetails: Array<OrderDetail>;
-  order?: Maybe<Order>;
-  orders?: Maybe<Array<Maybe<Order>>>;
-  orderById?: Maybe<Order>;
-  bonus?: Maybe<Bonus>;
-  bonuses: Array<Bonus>;
-  bonusById?: Maybe<Bonus>;
-  branch?: Maybe<Branch>;
-  branches: Array<Branch>;
-  branchById?: Maybe<Branch>;
-  branchByBranchCode?: Maybe<Branch>;
-  branchEmployee?: Maybe<BranchEmployee>;
-  branchEmployees: Array<BranchEmployee>;
-  branchEmployeeById?: Maybe<BranchEmployee>;
-  branchEmployeeByEmplIdAndBranchId?: Maybe<BranchEmployee>;
-  financialYear?: Maybe<FinancialYear>;
-  financialYears?: Maybe<FinancialYear>;
-  financialYearById?: Maybe<FinancialYear>;
-  recentFinancialYear?: Maybe<FinancialYear>;
   employee?: Maybe<Employee>;
   employees: Array<Employee>;
   employeeById?: Maybe<Employee>;
@@ -2962,69 +1817,22 @@ export type Query = {
   finance?: Maybe<Finance>;
   finances: Array<Finance>;
   financeById?: Maybe<Finance>;
-  inventory?: Maybe<Inventory>;
-  inventories: Array<Inventory>;
-  inventoryById?: Maybe<Inventory>;
-  category?: Maybe<Category>;
-  categories: Array<Category>;
-  categoryById?: Maybe<Category>;
+  financialYear?: Maybe<FinancialYear>;
+  financialYears?: Maybe<FinancialYear>;
+  financialYearById?: Maybe<FinancialYear>;
+  recentFinancialYear?: Maybe<FinancialYear>;
+  order?: Maybe<Order>;
+  orders?: Maybe<Array<Maybe<Order>>>;
+  orderById?: Maybe<Order>;
+  orderDetail?: Maybe<OrderDetail>;
+  orderDetails: Array<OrderDetail>;
+  orderType?: Maybe<OrderType>;
+  orderTypes: Array<OrderType>;
+  orderTypeById?: Maybe<OrderType>;
   product?: Maybe<Product>;
   products?: Maybe<Array<Maybe<Product>>>;
   productById?: Maybe<Product>;
   productsByCategoryID?: Maybe<Array<Maybe<Product>>>;
-};
-
-
-export type QueryAnnualBranchEmployeeArgs = {
-  where: AnnualBranchEmployeeWhereUniqueInput;
-};
-
-
-export type QueryAnnualBranchEmployeesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<AnnualBranchEmployeeWhereUniqueInput>;
-  after?: Maybe<AnnualBranchEmployeeWhereUniqueInput>;
-};
-
-
-export type QueryAnnualBranchEmployeeByIdArgs = {
-  id?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryAnnualBranchEmployeeByBranchEmployeeAndYearArgs = {
-  financialYearId?: Maybe<Scalars['String']>;
-  branchEmployeeId?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryAnnualClientArgs = {
-  where: AnnualClientWhereUniqueInput;
-};
-
-
-export type QueryAnnualClientsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<AnnualClientWhereUniqueInput>;
-  after?: Maybe<AnnualClientWhereUniqueInput>;
-};
-
-
-export type QueryAnnualClientByIdArgs = {
-  id?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryAnnualClientByPhoneAndYearArgs = {
-  clientId?: Maybe<Scalars['String']>;
-  financialYearId?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryAnnualClientByYearClientArgs = {
-  yearClient?: Maybe<Scalars['String']>;
 };
 
 
@@ -3046,9 +1854,27 @@ export type QueryCartByIdArgs = {
 };
 
 
-export type QueryCartByAnnualClientIdAndEmplIdArgs = {
-  annualClientId?: Maybe<Scalars['String']>;
-  annualBranchEmployeeId?: Maybe<Scalars['String']>;
+export type QueryCartByClientIdAndEmplIdArgs = {
+  clientId?: Maybe<Scalars['String']>;
+  employeeId?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryCategoryArgs = {
+  where: CategoryWhereUniqueInput;
+};
+
+
+export type QueryCategoriesArgs = {
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<CategoryWhereUniqueInput>;
+  after?: Maybe<CategoryWhereUniqueInput>;
+};
+
+
+export type QueryCategoryByIdArgs = {
+  id?: Maybe<Scalars['String']>;
 };
 
 
@@ -3063,109 +1889,6 @@ export type QueryClientByPhoneNumberArgs = {
 
 
 export type QueryClientByIdArgs = {
-  id?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryOrderDetailArgs = {
-  where: OrderDetailWhereUniqueInput;
-};
-
-
-export type QueryOrderDetailsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<OrderDetailWhereUniqueInput>;
-  after?: Maybe<OrderDetailWhereUniqueInput>;
-};
-
-
-export type QueryOrderArgs = {
-  where: OrderWhereUniqueInput;
-};
-
-
-export type QueryOrderByIdArgs = {
-  id?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryBonusArgs = {
-  where: BonusWhereUniqueInput;
-};
-
-
-export type QueryBonusesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<BonusWhereUniqueInput>;
-  after?: Maybe<BonusWhereUniqueInput>;
-};
-
-
-export type QueryBonusByIdArgs = {
-  id?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryBranchArgs = {
-  where: BranchWhereUniqueInput;
-};
-
-
-export type QueryBranchesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<BranchWhereUniqueInput>;
-  after?: Maybe<BranchWhereUniqueInput>;
-};
-
-
-export type QueryBranchByIdArgs = {
-  id?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryBranchByBranchCodeArgs = {
-  branchCode?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryBranchEmployeeArgs = {
-  where: BranchEmployeeWhereUniqueInput;
-};
-
-
-export type QueryBranchEmployeesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<BranchEmployeeWhereUniqueInput>;
-  after?: Maybe<BranchEmployeeWhereUniqueInput>;
-};
-
-
-export type QueryBranchEmployeeByIdArgs = {
-  id?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryBranchEmployeeByEmplIdAndBranchIdArgs = {
-  employeeId?: Maybe<Scalars['String']>;
-  branchId?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryFinancialYearArgs = {
-  where: FinancialYearWhereUniqueInput;
-};
-
-
-export type QueryFinancialYearsArgs = {
-  id?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryFinancialYearByIdArgs = {
   id?: Maybe<Scalars['String']>;
 };
 
@@ -3234,38 +1957,58 @@ export type QueryFinanceByIdArgs = {
 };
 
 
-export type QueryInventoryArgs = {
-  where: InventoryWhereUniqueInput;
+export type QueryFinancialYearArgs = {
+  where: FinancialYearWhereUniqueInput;
 };
 
 
-export type QueryInventoriesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<InventoryWhereUniqueInput>;
-  after?: Maybe<InventoryWhereUniqueInput>;
-};
-
-
-export type QueryInventoryByIdArgs = {
+export type QueryFinancialYearsArgs = {
   id?: Maybe<Scalars['String']>;
 };
 
 
-export type QueryCategoryArgs = {
-  where: CategoryWhereUniqueInput;
+export type QueryFinancialYearByIdArgs = {
+  id?: Maybe<Scalars['String']>;
 };
 
 
-export type QueryCategoriesArgs = {
+export type QueryOrderArgs = {
+  where: OrderWhereUniqueInput;
+};
+
+
+export type QueryOrderByIdArgs = {
+  id?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryOrderDetailArgs = {
+  where: OrderDetailWhereUniqueInput;
+};
+
+
+export type QueryOrderDetailsArgs = {
   first?: Maybe<Scalars['Int']>;
   last?: Maybe<Scalars['Int']>;
-  before?: Maybe<CategoryWhereUniqueInput>;
-  after?: Maybe<CategoryWhereUniqueInput>;
+  before?: Maybe<OrderDetailWhereUniqueInput>;
+  after?: Maybe<OrderDetailWhereUniqueInput>;
 };
 
 
-export type QueryCategoryByIdArgs = {
+export type QueryOrderTypeArgs = {
+  where: OrderTypeWhereUniqueInput;
+};
+
+
+export type QueryOrderTypesArgs = {
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<OrderTypeWhereUniqueInput>;
+  after?: Maybe<OrderTypeWhereUniqueInput>;
+};
+
+
+export type QueryOrderTypeByIdArgs = {
   id?: Maybe<Scalars['String']>;
 };
 
@@ -3285,20 +2028,6 @@ export type QueryProductsByCategoryIdArgs = {
 };
 
 export type Mutation = {
-  createOneAnnualBranchEmployee: AnnualBranchEmployee;
-  deleteOneAnnualBranchEmployee?: Maybe<AnnualBranchEmployee>;
-  updateOneAnnualBranchEmployee?: Maybe<AnnualBranchEmployee>;
-  /** Stores a AnnualBranchEmployee manually */
-  createAnnualBranchEmployee?: Maybe<AnnualBranchEmployee>;
-  /** deletes a branchEmployee manually */
-  deleteAnnualBranchEmployee?: Maybe<AnnualBranchEmployee>;
-  createOneAnnualClient: AnnualClient;
-  deleteOneAnnualClient?: Maybe<AnnualClient>;
-  updateOneAnnualClient?: Maybe<AnnualClient>;
-  /** Stores a AnnualClient manually */
-  createAnnualClient?: Maybe<AnnualClient>;
-  /** deletes a annualClient manually */
-  deleteAnnualClient?: Maybe<AnnualClient>;
   createOneCart: Cart;
   deleteOneCart?: Maybe<Cart>;
   updateOneCart?: Maybe<Cart>;
@@ -3334,27 +2063,13 @@ export type Mutation = {
   createOrder?: Maybe<Order>;
   /** deletes a Order manually */
   deleteOrder?: Maybe<Order>;
-  createOneBonus: Bonus;
-  deleteOneBonus?: Maybe<Bonus>;
-  updateOneBonus?: Maybe<Bonus>;
-  /** Stores a Bonus manually */
-  createBonus?: Maybe<Bonus>;
-  /** deletes a Bonus manually */
-  deleteBonus?: Maybe<Bonus>;
-  createOneBranch: Branch;
-  deleteOneBranch?: Maybe<Branch>;
-  updateOneBranch?: Maybe<Branch>;
-  /** Stores a Branch manually */
-  createBranch?: Maybe<Branch>;
-  /** deletes a branch manually */
-  deleteBranch?: Maybe<Branch>;
-  createOneBranchEmployee: BranchEmployee;
-  deleteOneBranchEmployee?: Maybe<BranchEmployee>;
-  updateOneBranchEmployee?: Maybe<BranchEmployee>;
-  /** Stores a BranchEmployee manually */
-  createBranchEmployee?: Maybe<BranchEmployee>;
-  /** deletes a branchEmployee manually */
-  deleteBranchEmployee?: Maybe<BranchEmployee>;
+  createOneOrderType: OrderType;
+  deleteOneOrderType?: Maybe<OrderType>;
+  updateOneOrderType?: Maybe<OrderType>;
+  /** Stores a OrderType manually */
+  createOrderType?: Maybe<OrderType>;
+  /** deletes a orderType manually */
+  deleteOrderType?: Maybe<OrderType>;
   createOneFinancialYear: FinancialYear;
   deleteOneFinancialYear?: Maybe<FinancialYear>;
   updateOneFinancialYear?: Maybe<FinancialYear>;
@@ -3383,13 +2098,6 @@ export type Mutation = {
   createFinance?: Maybe<Finance>;
   /** deletes a finance manually */
   deleteFinance?: Maybe<Finance>;
-  createOneInventory: Inventory;
-  deleteOneInventory?: Maybe<Inventory>;
-  updateOneInventory?: Maybe<Inventory>;
-  /** Stores a Inventory manually */
-  createInventory?: Maybe<Inventory>;
-  /** deletes a inventory manually */
-  deleteInventory?: Maybe<Inventory>;
   createOneProduct: Product;
   deleteOneProduct?: Maybe<Product>;
   updateOneProduct?: Maybe<Product>;
@@ -3397,58 +2105,6 @@ export type Mutation = {
   createProduct?: Maybe<Product>;
   /** deletes a Product manually */
   deleteProduct?: Maybe<Product>;
-};
-
-
-export type MutationCreateOneAnnualBranchEmployeeArgs = {
-  data: AnnualBranchEmployeeCreateInput;
-};
-
-
-export type MutationDeleteOneAnnualBranchEmployeeArgs = {
-  where: AnnualBranchEmployeeWhereUniqueInput;
-};
-
-
-export type MutationUpdateOneAnnualBranchEmployeeArgs = {
-  data: AnnualBranchEmployeeUpdateInput;
-  where: AnnualBranchEmployeeWhereUniqueInput;
-};
-
-
-export type MutationCreateAnnualBranchEmployeeArgs = {
-  data: AnnualBranchEmployeeCreateInput;
-};
-
-
-export type MutationDeleteAnnualBranchEmployeeArgs = {
-  where: AnnualBranchEmployeeWhereUniqueInput;
-};
-
-
-export type MutationCreateOneAnnualClientArgs = {
-  data: AnnualClientCreateInput;
-};
-
-
-export type MutationDeleteOneAnnualClientArgs = {
-  where: AnnualClientWhereUniqueInput;
-};
-
-
-export type MutationUpdateOneAnnualClientArgs = {
-  data: AnnualClientUpdateInput;
-  where: AnnualClientWhereUniqueInput;
-};
-
-
-export type MutationCreateAnnualClientArgs = {
-  data: AnnualClientCreateInput;
-};
-
-
-export type MutationDeleteAnnualClientArgs = {
-  where: AnnualClientWhereUniqueInput;
 };
 
 
@@ -3582,81 +2238,29 @@ export type MutationDeleteOrderArgs = {
 };
 
 
-export type MutationCreateOneBonusArgs = {
-  data: BonusCreateInput;
+export type MutationCreateOneOrderTypeArgs = {
+  data: OrderTypeCreateInput;
 };
 
 
-export type MutationDeleteOneBonusArgs = {
-  where: BonusWhereUniqueInput;
+export type MutationDeleteOneOrderTypeArgs = {
+  where: OrderTypeWhereUniqueInput;
 };
 
 
-export type MutationUpdateOneBonusArgs = {
-  data: BonusUpdateInput;
-  where: BonusWhereUniqueInput;
+export type MutationUpdateOneOrderTypeArgs = {
+  data: OrderTypeUpdateInput;
+  where: OrderTypeWhereUniqueInput;
 };
 
 
-export type MutationCreateBonusArgs = {
-  data: BonusCreateInput;
+export type MutationCreateOrderTypeArgs = {
+  data: OrderTypeCreateInput;
 };
 
 
-export type MutationDeleteBonusArgs = {
-  where: BonusWhereUniqueInput;
-};
-
-
-export type MutationCreateOneBranchArgs = {
-  data: BranchCreateInput;
-};
-
-
-export type MutationDeleteOneBranchArgs = {
-  where: BranchWhereUniqueInput;
-};
-
-
-export type MutationUpdateOneBranchArgs = {
-  data: BranchUpdateInput;
-  where: BranchWhereUniqueInput;
-};
-
-
-export type MutationCreateBranchArgs = {
-  data: BranchCreateInput;
-};
-
-
-export type MutationDeleteBranchArgs = {
-  where: BranchWhereUniqueInput;
-};
-
-
-export type MutationCreateOneBranchEmployeeArgs = {
-  data: BranchEmployeeCreateInput;
-};
-
-
-export type MutationDeleteOneBranchEmployeeArgs = {
-  where: BranchEmployeeWhereUniqueInput;
-};
-
-
-export type MutationUpdateOneBranchEmployeeArgs = {
-  data: BranchEmployeeUpdateInput;
-  where: BranchEmployeeWhereUniqueInput;
-};
-
-
-export type MutationCreateBranchEmployeeArgs = {
-  data: BranchEmployeeCreateInput;
-};
-
-
-export type MutationDeleteBranchEmployeeArgs = {
-  where: BranchEmployeeWhereUniqueInput;
+export type MutationDeleteOrderTypeArgs = {
+  where: OrderTypeWhereUniqueInput;
 };
 
 
@@ -3764,32 +2368,6 @@ export type MutationDeleteFinanceArgs = {
 };
 
 
-export type MutationCreateOneInventoryArgs = {
-  data: InventoryCreateInput;
-};
-
-
-export type MutationDeleteOneInventoryArgs = {
-  where: InventoryWhereUniqueInput;
-};
-
-
-export type MutationUpdateOneInventoryArgs = {
-  data: InventoryUpdateInput;
-  where: InventoryWhereUniqueInput;
-};
-
-
-export type MutationCreateInventoryArgs = {
-  data: InventoryCreateInput;
-};
-
-
-export type MutationDeleteInventoryArgs = {
-  where: InventoryWhereUniqueInput;
-};
-
-
 export type MutationCreateOneProductArgs = {
   data: ProductCreateInput;
 };
@@ -3815,29 +2393,7 @@ export type MutationDeleteProductArgs = {
   where: ProductWhereUniqueInput;
 };
 
-export type AnnualBranchEmployeeFragmentFragment = (
-  Pick<AnnualBranchEmployee, 'id'>
-  & { BranchEmployee?: Maybe<BranchEmployeeFragmentFragment>, orders: Array<OrderFragmentFragment>, FinancialYear?: Maybe<FinancialYearFragmentFragment> }
-);
-
-export type AnnualClientFragmentFragment = (
-  Pick<AnnualClient, 'id'>
-  & { Client?: Maybe<ClientFragmentFragment>, FinancialYear?: Maybe<FinancialYearFragmentFragment> }
-);
-
-export type BonusFragmentFragment = Pick<Bonus, 'bonusName' | 'id'>;
-
-export type BranchEmployeeFragmentFragment = (
-  Pick<BranchEmployee, 'endDate' | 'id' | 'startDate'>
-  & { Branch: BranchFragmentFragment, Employee: EmployeeFragmentFragment }
-);
-
-export type BranchFragmentFragment = Pick<Branch, 'branchName' | 'branchCode' | 'id'>;
-
-export type CartFragmentFragment = (
-  Pick<Cart, 'annualBranchEmployeeId' | 'id' | 'orderDate' | 'qtty' | 'pdtCost' | 'salesPrice'>
-  & { AnnualBranchEmployee?: Maybe<AnnualBranchEmployeeFragmentFragment>, AnnualClient?: Maybe<AnnualClientFragmentFragment> }
-);
+export type CartFragmentFragment = Pick<Cart, 'id' | 'orderDate' | 'qtty' | 'pdtCost' | 'salesPrice'>;
 
 export type CategoryFragmentFragment = Pick<Category, 'categoryCode' | 'categoryName' | 'id'>;
 
@@ -3854,164 +2410,19 @@ export type FinanceFragmentFragment = (
 
 export type FinancialYearFragmentFragment = Pick<FinancialYear, 'yearName' | 'id'>;
 
-export type InventoryFragmentFragment = Pick<Inventory, 'qttyInHand' | 'id'>;
-
 export type OrderDetailFragmentFragment = Pick<OrderDetail, 'id' | 'pdtCost' | 'qtty' | 'salesPrice'>;
 
 export type OrderFragmentFragment = (
   Pick<Order, 'id' | 'orderDate' | 'orderTotal' | 'totalPaid' | 'orderNumber'>
-  & { orderDetails: Array<OrderDetailFragmentFragment>, AnnualClient?: Maybe<AnnualClientFragmentFragment> }
+  & { orderDetails: Array<OrderDetailFragmentFragment> }
 );
+
+export type OrderTypeFragmentFragment = Pick<OrderType, 'orderTypeCode' | 'orderTypeName' | 'id'>;
 
 export type ProductFragmentFragment = (
   Pick<Product, 'id' | 'pdtName' | 'pdtCode' | 'categoryId' | 'unitPrice'>
-  & { Category?: Maybe<CategoryFragmentFragment>, carts: Array<CartFragmentFragment>, orderDetails: Array<OrderDetailFragmentFragment> }
+  & { Category: CategoryFragmentFragment, carts: Array<CartFragmentFragment>, orderDetails: Array<OrderDetailFragmentFragment> }
 );
-
-export type CreateAnnualBranchEmployeeMutationVariables = Exact<{
-  data: AnnualBranchEmployeeCreateInput;
-}>;
-
-
-export type CreateAnnualBranchEmployeeMutation = { createOneAnnualBranchEmployee: AnnualBranchEmployeeFragmentFragment };
-
-export type CreateAnAnnualBranchEmployeeMutationVariables = Exact<{
-  data: AnnualBranchEmployeeCreateInput;
-}>;
-
-
-export type CreateAnAnnualBranchEmployeeMutation = { createAnnualBranchEmployee?: Maybe<AnnualBranchEmployeeFragmentFragment> };
-
-export type DeleteAnAnnualBranchEmployeeMutationVariables = Exact<{
-  where: AnnualBranchEmployeeWhereUniqueInput;
-}>;
-
-
-export type DeleteAnAnnualBranchEmployeeMutation = { deleteOneAnnualBranchEmployee?: Maybe<Pick<AnnualBranchEmployee, 'id'>> };
-
-export type UpdateAnAnnualBranchEmployeeMutationVariables = Exact<{
-  data: AnnualBranchEmployeeUpdateInput;
-  where: AnnualBranchEmployeeWhereUniqueInput;
-}>;
-
-
-export type UpdateAnAnnualBranchEmployeeMutation = { updateOneAnnualBranchEmployee?: Maybe<AnnualBranchEmployeeFragmentFragment> };
-
-export type CreateAnnualClientMutationVariables = Exact<{
-  data: AnnualClientCreateInput;
-}>;
-
-
-export type CreateAnnualClientMutation = { createOneAnnualClient: AnnualClientFragmentFragment };
-
-export type CreateAAnnualClientMutationVariables = Exact<{
-  data: AnnualClientCreateInput;
-}>;
-
-
-export type CreateAAnnualClientMutation = { createAnnualClient?: Maybe<AnnualClientFragmentFragment> };
-
-export type DeleteAAnnualClientMutationVariables = Exact<{
-  where: AnnualClientWhereUniqueInput;
-}>;
-
-
-export type DeleteAAnnualClientMutation = { deleteOneAnnualClient?: Maybe<Pick<AnnualClient, 'id'>> };
-
-export type UpdateAAnnualClientMutationVariables = Exact<{
-  data: AnnualClientUpdateInput;
-  where: AnnualClientWhereUniqueInput;
-}>;
-
-
-export type UpdateAAnnualClientMutation = { updateOneAnnualClient?: Maybe<AnnualClientFragmentFragment> };
-
-export type CreateBonusMutationVariables = Exact<{
-  data: BonusCreateInput;
-}>;
-
-
-export type CreateBonusMutation = { createOneBonus: BonusFragmentFragment };
-
-export type CreateABonusMutationVariables = Exact<{
-  data: BonusCreateInput;
-}>;
-
-
-export type CreateABonusMutation = { createBonus?: Maybe<BonusFragmentFragment> };
-
-export type DeleteABonusMutationVariables = Exact<{
-  where: BonusWhereUniqueInput;
-}>;
-
-
-export type DeleteABonusMutation = { deleteOneBonus?: Maybe<Pick<Bonus, 'id'>> };
-
-export type UpdateABonusMutationVariables = Exact<{
-  data: BonusUpdateInput;
-  where: BonusWhereUniqueInput;
-}>;
-
-
-export type UpdateABonusMutation = { updateOneBonus?: Maybe<BonusFragmentFragment> };
-
-export type CreateBranchMutationVariables = Exact<{
-  data: BranchCreateInput;
-}>;
-
-
-export type CreateBranchMutation = { createOneBranch: BranchFragmentFragment };
-
-export type CreateABranchMutationVariables = Exact<{
-  data: BranchCreateInput;
-}>;
-
-
-export type CreateABranchMutation = { createBranch?: Maybe<BranchFragmentFragment> };
-
-export type DeleteABranchMutationVariables = Exact<{
-  where: BranchWhereUniqueInput;
-}>;
-
-
-export type DeleteABranchMutation = { deleteOneBranch?: Maybe<Pick<Branch, 'id'>> };
-
-export type UpdateABranchMutationVariables = Exact<{
-  data: BranchUpdateInput;
-  where: BranchWhereUniqueInput;
-}>;
-
-
-export type UpdateABranchMutation = { updateOneBranch?: Maybe<BranchFragmentFragment> };
-
-export type CreateBranchEmployeeMutationVariables = Exact<{
-  data: BranchEmployeeCreateInput;
-}>;
-
-
-export type CreateBranchEmployeeMutation = { createOneBranchEmployee: BranchEmployeeFragmentFragment };
-
-export type CreateABranchEmployeeMutationVariables = Exact<{
-  data: BranchEmployeeCreateInput;
-}>;
-
-
-export type CreateABranchEmployeeMutation = { createBranchEmployee?: Maybe<BranchEmployeeFragmentFragment> };
-
-export type DeleteABranchEmployeeMutationVariables = Exact<{
-  where: BranchEmployeeWhereUniqueInput;
-}>;
-
-
-export type DeleteABranchEmployeeMutation = { deleteOneBranchEmployee?: Maybe<Pick<BranchEmployee, 'id'>> };
-
-export type UpdateABranchEmployeeMutationVariables = Exact<{
-  data: BranchEmployeeUpdateInput;
-  where: BranchEmployeeWhereUniqueInput;
-}>;
-
-
-export type UpdateABranchEmployeeMutation = { updateOneBranchEmployee?: Maybe<BranchEmployeeFragmentFragment> };
 
 export type CreateCartMutationVariables = Exact<{
   data: CartCreateInput;
@@ -4216,35 +2627,6 @@ export type UpdateAFinancialYearMutationVariables = Exact<{
 
 export type UpdateAFinancialYearMutation = { updateOneFinancialYear?: Maybe<FinancialYearFragmentFragment> };
 
-export type CreateInventoryMutationVariables = Exact<{
-  data: InventoryCreateInput;
-}>;
-
-
-export type CreateInventoryMutation = { createOneInventory: InventoryFragmentFragment };
-
-export type CreateAInventoryMutationVariables = Exact<{
-  data: InventoryCreateInput;
-}>;
-
-
-export type CreateAInventoryMutation = { createInventory?: Maybe<InventoryFragmentFragment> };
-
-export type DeleteAInventoryMutationVariables = Exact<{
-  where: InventoryWhereUniqueInput;
-}>;
-
-
-export type DeleteAInventoryMutation = { deleteOneInventory?: Maybe<Pick<Inventory, 'id'>> };
-
-export type UpdateAInventoryMutationVariables = Exact<{
-  data: InventoryUpdateInput;
-  where: InventoryWhereUniqueInput;
-}>;
-
-
-export type UpdateAInventoryMutation = { updateOneInventory?: Maybe<InventoryFragmentFragment> };
-
 export type CreateOrderMutationVariables = Exact<{
   data: OrderCreateInput;
 }>;
@@ -4303,6 +2685,35 @@ export type UpdateAnOrderDetailMutationVariables = Exact<{
 
 export type UpdateAnOrderDetailMutation = { updateOneOrderDetail?: Maybe<OrderDetailFragmentFragment> };
 
+export type CreateOrderTypeMutationVariables = Exact<{
+  data: OrderTypeCreateInput;
+}>;
+
+
+export type CreateOrderTypeMutation = { createOneOrderType: OrderTypeFragmentFragment };
+
+export type CreateAOrderTypeMutationVariables = Exact<{
+  data: OrderTypeCreateInput;
+}>;
+
+
+export type CreateAOrderTypeMutation = { createOrderType?: Maybe<OrderTypeFragmentFragment> };
+
+export type DeleteAOrderTypeMutationVariables = Exact<{
+  where: OrderTypeWhereUniqueInput;
+}>;
+
+
+export type DeleteAOrderTypeMutation = { deleteOneOrderType?: Maybe<Pick<OrderType, 'id'>> };
+
+export type UpdateAOrderTypeMutationVariables = Exact<{
+  data: OrderTypeUpdateInput;
+  where: OrderTypeWhereUniqueInput;
+}>;
+
+
+export type UpdateAOrderTypeMutation = { updateOneOrderType?: Maybe<OrderTypeFragmentFragment> };
+
 export type CreateProductMutationVariables = Exact<{
   data: ProductCreateInput;
 }>;
@@ -4332,135 +2743,6 @@ export type UpdateAProductMutationVariables = Exact<{
 
 export type UpdateAProductMutation = { updateOneProduct?: Maybe<ProductFragmentFragment> };
 
-export type AllAnnualBranchEmployeesQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type AllAnnualBranchEmployeesQuery = { annualBranchEmployees: Array<AnnualBranchEmployeeFragmentFragment> };
-
-export type SingleAnnualBranchEmployeeQueryVariables = Exact<{
-  where: AnnualBranchEmployeeWhereUniqueInput;
-}>;
-
-
-export type SingleAnnualBranchEmployeeQuery = { annualBranchEmployee?: Maybe<AnnualBranchEmployeeFragmentFragment> };
-
-export type SingleAnnualBranchEmployeeByIdQueryVariables = Exact<{
-  id: Scalars['String'];
-}>;
-
-
-export type SingleAnnualBranchEmployeeByIdQuery = { annualBranchEmployeeById?: Maybe<AnnualBranchEmployeeFragmentFragment> };
-
-export type SingleAnnualBranchEmployeeByBranchEmployeeAndYearQueryVariables = Exact<{
-  financialYearId: Scalars['String'];
-  branchEmployeeId: Scalars['String'];
-}>;
-
-
-export type SingleAnnualBranchEmployeeByBranchEmployeeAndYearQuery = { annualBranchEmployeeByBranchEmployeeAndYear?: Maybe<AnnualBranchEmployeeFragmentFragment> };
-
-export type AllAnnualClientsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type AllAnnualClientsQuery = { annualClients: Array<AnnualClientFragmentFragment> };
-
-export type SingleAnnualClientQueryVariables = Exact<{
-  where: AnnualClientWhereUniqueInput;
-}>;
-
-
-export type SingleAnnualClientQuery = { annualClient?: Maybe<AnnualClientFragmentFragment> };
-
-export type SingleAnnualClientByIdQueryVariables = Exact<{
-  id: Scalars['String'];
-}>;
-
-
-export type SingleAnnualClientByIdQuery = { annualClientById?: Maybe<AnnualClientFragmentFragment> };
-
-export type SingleAnnualClientByYearClientQueryVariables = Exact<{
-  yearClient: Scalars['String'];
-}>;
-
-
-export type SingleAnnualClientByYearClientQuery = { annualClientByYearClient?: Maybe<AnnualClientFragmentFragment> };
-
-export type SingleAnnualClientByPhoneAndYearQueryVariables = Exact<{
-  clientId: Scalars['String'];
-  financialYearId: Scalars['String'];
-}>;
-
-
-export type SingleAnnualClientByPhoneAndYearQuery = { annualClientByPhoneAndYear?: Maybe<(
-    { Client?: Maybe<ClientFragmentFragment>, FinancialYear?: Maybe<FinancialYearFragmentFragment> }
-    & AnnualClientFragmentFragment
-  )> };
-
-export type AllBonusesQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type AllBonusesQuery = { bonuses: Array<BonusFragmentFragment> };
-
-export type SingleBonusQueryVariables = Exact<{
-  where: BonusWhereUniqueInput;
-}>;
-
-
-export type SingleBonusQuery = { bonus?: Maybe<BonusFragmentFragment> };
-
-export type SingleBonusByIdQueryVariables = Exact<{
-  id: Scalars['String'];
-}>;
-
-
-export type SingleBonusByIdQuery = { bonusById?: Maybe<BonusFragmentFragment> };
-
-export type AllBranchesQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type AllBranchesQuery = { branches: Array<BranchFragmentFragment> };
-
-export type SingleBranchQueryVariables = Exact<{
-  where: BranchWhereUniqueInput;
-}>;
-
-
-export type SingleBranchQuery = { branch?: Maybe<BranchFragmentFragment> };
-
-export type SingleBranchByBranchCodeQueryVariables = Exact<{
-  branchCode: Scalars['String'];
-}>;
-
-
-export type SingleBranchByBranchCodeQuery = { branchByBranchCode?: Maybe<BranchFragmentFragment> };
-
-export type AllBranchEmployeesQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type AllBranchEmployeesQuery = { branchEmployees: Array<BranchEmployeeFragmentFragment> };
-
-export type SingleBranchEmployeeQueryVariables = Exact<{
-  where: BranchEmployeeWhereUniqueInput;
-}>;
-
-
-export type SingleBranchEmployeeQuery = { branchEmployee?: Maybe<BranchEmployeeFragmentFragment> };
-
-export type SingleBranchEmployeeByIdQueryVariables = Exact<{
-  id: Scalars['String'];
-}>;
-
-
-export type SingleBranchEmployeeByIdQuery = { branchEmployeeById?: Maybe<BranchEmployeeFragmentFragment> };
-
-export type SingleBranchEmployeeByEmployeeIdAndBranchIdQueryVariables = Exact<{
-  employeeId: Scalars['String'];
-  branchId: Scalars['String'];
-}>;
-
-
-export type SingleBranchEmployeeByEmployeeIdAndBranchIdQuery = { branchEmployeeByEmplIdAndBranchId?: Maybe<BranchEmployeeFragmentFragment> };
-
 export type AllCartsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4480,13 +2762,13 @@ export type SingleCartByIdQueryVariables = Exact<{
 
 export type SingleCartByIdQuery = { cartById?: Maybe<CartFragmentFragment> };
 
-export type CartByAnnualClientIdAndEmployeeIdQueryVariables = Exact<{
-  annualClientId: Scalars['String'];
-  annualBranchEmployeeId: Scalars['String'];
+export type CartByClientIdAndEmployeeIdQueryVariables = Exact<{
+  clientId: Scalars['String'];
+  employeeId: Scalars['String'];
 }>;
 
 
-export type CartByAnnualClientIdAndEmployeeIdQuery = { cartByAnnualClientIdAndEmplId?: Maybe<Array<Maybe<CartFragmentFragment>>> };
+export type CartByClientIdAndEmployeeIdQuery = { cartByClientIdAndEmplId?: Maybe<Array<Maybe<CartFragmentFragment>>> };
 
 export type AllCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4628,25 +2910,6 @@ export type RecentSingleFinancialYearQueryVariables = Exact<{ [key: string]: nev
 
 export type RecentSingleFinancialYearQuery = { recentFinancialYear?: Maybe<FinancialYearFragmentFragment> };
 
-export type AllInventorysQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type AllInventorysQuery = { inventories: Array<InventoryFragmentFragment> };
-
-export type SingleInventoryQueryVariables = Exact<{
-  where: InventoryWhereUniqueInput;
-}>;
-
-
-export type SingleInventoryQuery = { inventory?: Maybe<InventoryFragmentFragment> };
-
-export type SingleInventoryByIdQueryVariables = Exact<{
-  id: Scalars['String'];
-}>;
-
-
-export type SingleInventoryByIdQuery = { inventoryById?: Maybe<InventoryFragmentFragment> };
-
 export type AllOrderDetailQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4670,6 +2933,25 @@ export type SingleOrderQueryVariables = Exact<{
 
 
 export type SingleOrderQuery = { order?: Maybe<OrderFragmentFragment> };
+
+export type AllOrderTypesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllOrderTypesQuery = { orderTypes: Array<OrderTypeFragmentFragment> };
+
+export type SingleOrderTypeQueryVariables = Exact<{
+  where: OrderTypeWhereUniqueInput;
+}>;
+
+
+export type SingleOrderTypeQuery = { orderType?: Maybe<OrderTypeFragmentFragment> };
+
+export type SingleOrderTypeByIdQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type SingleOrderTypeByIdQuery = { orderTypeById?: Maybe<OrderTypeFragmentFragment> };
 
 export type AllProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4697,10 +2979,19 @@ export type AllProductsByCategoryIdQueryVariables = Exact<{
 
 export type AllProductsByCategoryIdQuery = { productsByCategoryID?: Maybe<Array<Maybe<ProductFragmentFragment>>> };
 
-export const BonusFragmentFragmentDoc = gql`
-    fragment BonusFragment on Bonus {
-  bonusName
+export const ClientFragmentFragmentDoc = gql`
+    fragment ClientFragment on Client {
   id
+  clientNames
+  clientPhoneNumb
+}
+    `;
+export const EmployeeFragmentFragmentDoc = gql`
+    fragment EmployeeFragment on Employee {
+  employeeNames
+  employeeCode
+  id
+  employeePhoneNumb
 }
     `;
 export const EmployeeStatusFragmentFragmentDoc = gql`
@@ -4717,31 +3008,6 @@ export const OrderDetailFragmentFragmentDoc = gql`
   salesPrice
 }
     `;
-export const ClientFragmentFragmentDoc = gql`
-    fragment ClientFragment on Client {
-  id
-  clientNames
-  clientPhoneNumb
-}
-    `;
-export const FinancialYearFragmentFragmentDoc = gql`
-    fragment FinancialYearFragment on FinancialYear {
-  yearName
-  id
-}
-    `;
-export const AnnualClientFragmentFragmentDoc = gql`
-    fragment AnnualClientFragment on AnnualClient {
-  Client {
-    ...ClientFragment
-  }
-  FinancialYear {
-    ...FinancialYearFragment
-  }
-  id
-}
-    ${ClientFragmentFragmentDoc}
-${FinancialYearFragmentFragmentDoc}`;
 export const OrderFragmentFragmentDoc = gql`
     fragment OrderFragment on Order {
   id
@@ -4752,12 +3018,8 @@ export const OrderFragmentFragmentDoc = gql`
   orderDetails {
     ...OrderDetailFragment
   }
-  AnnualClient {
-    ...AnnualClientFragment
-  }
 }
-    ${OrderDetailFragmentFragmentDoc}
-${AnnualClientFragmentFragmentDoc}`;
+    ${OrderDetailFragmentFragmentDoc}`;
 export const FinanceFragmentFragmentDoc = gql`
     fragment FinanceFragment on Finance {
   amtPaid
@@ -4768,9 +3030,16 @@ export const FinanceFragmentFragmentDoc = gql`
   }
 }
     ${OrderFragmentFragmentDoc}`;
-export const InventoryFragmentFragmentDoc = gql`
-    fragment InventoryFragment on Inventory {
-  qttyInHand
+export const FinancialYearFragmentFragmentDoc = gql`
+    fragment FinancialYearFragment on FinancialYear {
+  yearName
+  id
+}
+    `;
+export const OrderTypeFragmentFragmentDoc = gql`
+    fragment OrderTypeFragment on OrderType {
+  orderTypeCode
+  orderTypeName
   id
 }
     `;
@@ -4781,68 +3050,15 @@ export const CategoryFragmentFragmentDoc = gql`
   id
 }
     `;
-export const BranchFragmentFragmentDoc = gql`
-    fragment BranchFragment on Branch {
-  branchName
-  branchCode
-  id
-}
-    `;
-export const EmployeeFragmentFragmentDoc = gql`
-    fragment EmployeeFragment on Employee {
-  employeeNames
-  employeeCode
-  id
-  employeePhoneNumb
-}
-    `;
-export const BranchEmployeeFragmentFragmentDoc = gql`
-    fragment BranchEmployeeFragment on BranchEmployee {
-  Branch {
-    ...BranchFragment
-  }
-  endDate
-  id
-  startDate
-  Employee {
-    ...EmployeeFragment
-  }
-}
-    ${BranchFragmentFragmentDoc}
-${EmployeeFragmentFragmentDoc}`;
-export const AnnualBranchEmployeeFragmentFragmentDoc = gql`
-    fragment AnnualBranchEmployeeFragment on AnnualBranchEmployee {
-  id
-  BranchEmployee {
-    ...BranchEmployeeFragment
-  }
-  orders {
-    ...OrderFragment
-  }
-  FinancialYear {
-    ...FinancialYearFragment
-  }
-}
-    ${BranchEmployeeFragmentFragmentDoc}
-${OrderFragmentFragmentDoc}
-${FinancialYearFragmentFragmentDoc}`;
 export const CartFragmentFragmentDoc = gql`
     fragment CartFragment on Cart {
-  AnnualBranchEmployee {
-    ...AnnualBranchEmployeeFragment
-  }
-  AnnualClient {
-    ...AnnualClientFragment
-  }
-  annualBranchEmployeeId
   id
   orderDate
   qtty
   pdtCost
   salesPrice
 }
-    ${AnnualBranchEmployeeFragmentFragmentDoc}
-${AnnualClientFragmentFragmentDoc}`;
+    `;
 export const ProductFragmentFragmentDoc = gql`
     fragment ProductFragment on Product {
   id
@@ -4863,1051 +3079,6 @@ export const ProductFragmentFragmentDoc = gql`
     ${CategoryFragmentFragmentDoc}
 ${CartFragmentFragmentDoc}
 ${OrderDetailFragmentFragmentDoc}`;
-export const CreateAnnualBranchEmployeeDocument = gql`
-    mutation createAnnualBranchEmployee($data: AnnualBranchEmployeeCreateInput!) {
-  createOneAnnualBranchEmployee(data: $data) {
-    ...AnnualBranchEmployeeFragment
-  }
-}
-    ${AnnualBranchEmployeeFragmentFragmentDoc}`;
-export type CreateAnnualBranchEmployeeMutationFn = Apollo.MutationFunction<CreateAnnualBranchEmployeeMutation, CreateAnnualBranchEmployeeMutationVariables>;
-export type CreateAnnualBranchEmployeeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateAnnualBranchEmployeeMutation, CreateAnnualBranchEmployeeMutationVariables>, 'mutation'>;
-
-    export const CreateAnnualBranchEmployeeComponent = (props: CreateAnnualBranchEmployeeComponentProps) => (
-      <ApolloReactComponents.Mutation<CreateAnnualBranchEmployeeMutation, CreateAnnualBranchEmployeeMutationVariables> mutation={CreateAnnualBranchEmployeeDocument} {...props} />
-    );
-    
-export type CreateAnnualBranchEmployeeProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<CreateAnnualBranchEmployeeMutation, CreateAnnualBranchEmployeeMutationVariables>
-    } & TChildProps;
-export function withCreateAnnualBranchEmployee<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  CreateAnnualBranchEmployeeMutation,
-  CreateAnnualBranchEmployeeMutationVariables,
-  CreateAnnualBranchEmployeeProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, CreateAnnualBranchEmployeeMutation, CreateAnnualBranchEmployeeMutationVariables, CreateAnnualBranchEmployeeProps<TChildProps, TDataName>>(CreateAnnualBranchEmployeeDocument, {
-      alias: 'createAnnualBranchEmployee',
-      ...operationOptions
-    });
-};
-
-/**
- * __useCreateAnnualBranchEmployeeMutation__
- *
- * To run a mutation, you first call `useCreateAnnualBranchEmployeeMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateAnnualBranchEmployeeMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createAnnualBranchEmployeeMutation, { data, loading, error }] = useCreateAnnualBranchEmployeeMutation({
- *   variables: {
- *      data: // value for 'data'
- *   },
- * });
- */
-export function useCreateAnnualBranchEmployeeMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateAnnualBranchEmployeeMutation, CreateAnnualBranchEmployeeMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<CreateAnnualBranchEmployeeMutation, CreateAnnualBranchEmployeeMutationVariables>(CreateAnnualBranchEmployeeDocument, options);
-      }
-export type CreateAnnualBranchEmployeeMutationHookResult = ReturnType<typeof useCreateAnnualBranchEmployeeMutation>;
-export type CreateAnnualBranchEmployeeMutationResult = Apollo.MutationResult<CreateAnnualBranchEmployeeMutation>;
-export type CreateAnnualBranchEmployeeMutationOptions = Apollo.BaseMutationOptions<CreateAnnualBranchEmployeeMutation, CreateAnnualBranchEmployeeMutationVariables>;
-export const CreateAnAnnualBranchEmployeeDocument = gql`
-    mutation createAnAnnualBranchEmployee($data: AnnualBranchEmployeeCreateInput!) {
-  createAnnualBranchEmployee(data: $data) {
-    ...AnnualBranchEmployeeFragment
-  }
-}
-    ${AnnualBranchEmployeeFragmentFragmentDoc}`;
-export type CreateAnAnnualBranchEmployeeMutationFn = Apollo.MutationFunction<CreateAnAnnualBranchEmployeeMutation, CreateAnAnnualBranchEmployeeMutationVariables>;
-export type CreateAnAnnualBranchEmployeeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateAnAnnualBranchEmployeeMutation, CreateAnAnnualBranchEmployeeMutationVariables>, 'mutation'>;
-
-    export const CreateAnAnnualBranchEmployeeComponent = (props: CreateAnAnnualBranchEmployeeComponentProps) => (
-      <ApolloReactComponents.Mutation<CreateAnAnnualBranchEmployeeMutation, CreateAnAnnualBranchEmployeeMutationVariables> mutation={CreateAnAnnualBranchEmployeeDocument} {...props} />
-    );
-    
-export type CreateAnAnnualBranchEmployeeProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<CreateAnAnnualBranchEmployeeMutation, CreateAnAnnualBranchEmployeeMutationVariables>
-    } & TChildProps;
-export function withCreateAnAnnualBranchEmployee<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  CreateAnAnnualBranchEmployeeMutation,
-  CreateAnAnnualBranchEmployeeMutationVariables,
-  CreateAnAnnualBranchEmployeeProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, CreateAnAnnualBranchEmployeeMutation, CreateAnAnnualBranchEmployeeMutationVariables, CreateAnAnnualBranchEmployeeProps<TChildProps, TDataName>>(CreateAnAnnualBranchEmployeeDocument, {
-      alias: 'createAnAnnualBranchEmployee',
-      ...operationOptions
-    });
-};
-
-/**
- * __useCreateAnAnnualBranchEmployeeMutation__
- *
- * To run a mutation, you first call `useCreateAnAnnualBranchEmployeeMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateAnAnnualBranchEmployeeMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createAnAnnualBranchEmployeeMutation, { data, loading, error }] = useCreateAnAnnualBranchEmployeeMutation({
- *   variables: {
- *      data: // value for 'data'
- *   },
- * });
- */
-export function useCreateAnAnnualBranchEmployeeMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateAnAnnualBranchEmployeeMutation, CreateAnAnnualBranchEmployeeMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<CreateAnAnnualBranchEmployeeMutation, CreateAnAnnualBranchEmployeeMutationVariables>(CreateAnAnnualBranchEmployeeDocument, options);
-      }
-export type CreateAnAnnualBranchEmployeeMutationHookResult = ReturnType<typeof useCreateAnAnnualBranchEmployeeMutation>;
-export type CreateAnAnnualBranchEmployeeMutationResult = Apollo.MutationResult<CreateAnAnnualBranchEmployeeMutation>;
-export type CreateAnAnnualBranchEmployeeMutationOptions = Apollo.BaseMutationOptions<CreateAnAnnualBranchEmployeeMutation, CreateAnAnnualBranchEmployeeMutationVariables>;
-export const DeleteAnAnnualBranchEmployeeDocument = gql`
-    mutation deleteAnAnnualBranchEmployee($where: AnnualBranchEmployeeWhereUniqueInput!) {
-  deleteOneAnnualBranchEmployee(where: $where) {
-    id
-  }
-}
-    `;
-export type DeleteAnAnnualBranchEmployeeMutationFn = Apollo.MutationFunction<DeleteAnAnnualBranchEmployeeMutation, DeleteAnAnnualBranchEmployeeMutationVariables>;
-export type DeleteAnAnnualBranchEmployeeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<DeleteAnAnnualBranchEmployeeMutation, DeleteAnAnnualBranchEmployeeMutationVariables>, 'mutation'>;
-
-    export const DeleteAnAnnualBranchEmployeeComponent = (props: DeleteAnAnnualBranchEmployeeComponentProps) => (
-      <ApolloReactComponents.Mutation<DeleteAnAnnualBranchEmployeeMutation, DeleteAnAnnualBranchEmployeeMutationVariables> mutation={DeleteAnAnnualBranchEmployeeDocument} {...props} />
-    );
-    
-export type DeleteAnAnnualBranchEmployeeProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<DeleteAnAnnualBranchEmployeeMutation, DeleteAnAnnualBranchEmployeeMutationVariables>
-    } & TChildProps;
-export function withDeleteAnAnnualBranchEmployee<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  DeleteAnAnnualBranchEmployeeMutation,
-  DeleteAnAnnualBranchEmployeeMutationVariables,
-  DeleteAnAnnualBranchEmployeeProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, DeleteAnAnnualBranchEmployeeMutation, DeleteAnAnnualBranchEmployeeMutationVariables, DeleteAnAnnualBranchEmployeeProps<TChildProps, TDataName>>(DeleteAnAnnualBranchEmployeeDocument, {
-      alias: 'deleteAnAnnualBranchEmployee',
-      ...operationOptions
-    });
-};
-
-/**
- * __useDeleteAnAnnualBranchEmployeeMutation__
- *
- * To run a mutation, you first call `useDeleteAnAnnualBranchEmployeeMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useDeleteAnAnnualBranchEmployeeMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [deleteAnAnnualBranchEmployeeMutation, { data, loading, error }] = useDeleteAnAnnualBranchEmployeeMutation({
- *   variables: {
- *      where: // value for 'where'
- *   },
- * });
- */
-export function useDeleteAnAnnualBranchEmployeeMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<DeleteAnAnnualBranchEmployeeMutation, DeleteAnAnnualBranchEmployeeMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<DeleteAnAnnualBranchEmployeeMutation, DeleteAnAnnualBranchEmployeeMutationVariables>(DeleteAnAnnualBranchEmployeeDocument, options);
-      }
-export type DeleteAnAnnualBranchEmployeeMutationHookResult = ReturnType<typeof useDeleteAnAnnualBranchEmployeeMutation>;
-export type DeleteAnAnnualBranchEmployeeMutationResult = Apollo.MutationResult<DeleteAnAnnualBranchEmployeeMutation>;
-export type DeleteAnAnnualBranchEmployeeMutationOptions = Apollo.BaseMutationOptions<DeleteAnAnnualBranchEmployeeMutation, DeleteAnAnnualBranchEmployeeMutationVariables>;
-export const UpdateAnAnnualBranchEmployeeDocument = gql`
-    mutation updateAnAnnualBranchEmployee($data: AnnualBranchEmployeeUpdateInput!, $where: AnnualBranchEmployeeWhereUniqueInput!) {
-  updateOneAnnualBranchEmployee(data: $data, where: $where) {
-    ...AnnualBranchEmployeeFragment
-  }
-}
-    ${AnnualBranchEmployeeFragmentFragmentDoc}`;
-export type UpdateAnAnnualBranchEmployeeMutationFn = Apollo.MutationFunction<UpdateAnAnnualBranchEmployeeMutation, UpdateAnAnnualBranchEmployeeMutationVariables>;
-export type UpdateAnAnnualBranchEmployeeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<UpdateAnAnnualBranchEmployeeMutation, UpdateAnAnnualBranchEmployeeMutationVariables>, 'mutation'>;
-
-    export const UpdateAnAnnualBranchEmployeeComponent = (props: UpdateAnAnnualBranchEmployeeComponentProps) => (
-      <ApolloReactComponents.Mutation<UpdateAnAnnualBranchEmployeeMutation, UpdateAnAnnualBranchEmployeeMutationVariables> mutation={UpdateAnAnnualBranchEmployeeDocument} {...props} />
-    );
-    
-export type UpdateAnAnnualBranchEmployeeProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<UpdateAnAnnualBranchEmployeeMutation, UpdateAnAnnualBranchEmployeeMutationVariables>
-    } & TChildProps;
-export function withUpdateAnAnnualBranchEmployee<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  UpdateAnAnnualBranchEmployeeMutation,
-  UpdateAnAnnualBranchEmployeeMutationVariables,
-  UpdateAnAnnualBranchEmployeeProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, UpdateAnAnnualBranchEmployeeMutation, UpdateAnAnnualBranchEmployeeMutationVariables, UpdateAnAnnualBranchEmployeeProps<TChildProps, TDataName>>(UpdateAnAnnualBranchEmployeeDocument, {
-      alias: 'updateAnAnnualBranchEmployee',
-      ...operationOptions
-    });
-};
-
-/**
- * __useUpdateAnAnnualBranchEmployeeMutation__
- *
- * To run a mutation, you first call `useUpdateAnAnnualBranchEmployeeMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateAnAnnualBranchEmployeeMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateAnAnnualBranchEmployeeMutation, { data, loading, error }] = useUpdateAnAnnualBranchEmployeeMutation({
- *   variables: {
- *      data: // value for 'data'
- *      where: // value for 'where'
- *   },
- * });
- */
-export function useUpdateAnAnnualBranchEmployeeMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateAnAnnualBranchEmployeeMutation, UpdateAnAnnualBranchEmployeeMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<UpdateAnAnnualBranchEmployeeMutation, UpdateAnAnnualBranchEmployeeMutationVariables>(UpdateAnAnnualBranchEmployeeDocument, options);
-      }
-export type UpdateAnAnnualBranchEmployeeMutationHookResult = ReturnType<typeof useUpdateAnAnnualBranchEmployeeMutation>;
-export type UpdateAnAnnualBranchEmployeeMutationResult = Apollo.MutationResult<UpdateAnAnnualBranchEmployeeMutation>;
-export type UpdateAnAnnualBranchEmployeeMutationOptions = Apollo.BaseMutationOptions<UpdateAnAnnualBranchEmployeeMutation, UpdateAnAnnualBranchEmployeeMutationVariables>;
-export const CreateAnnualClientDocument = gql`
-    mutation createAnnualClient($data: AnnualClientCreateInput!) {
-  createOneAnnualClient(data: $data) {
-    ...AnnualClientFragment
-  }
-}
-    ${AnnualClientFragmentFragmentDoc}`;
-export type CreateAnnualClientMutationFn = Apollo.MutationFunction<CreateAnnualClientMutation, CreateAnnualClientMutationVariables>;
-export type CreateAnnualClientComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateAnnualClientMutation, CreateAnnualClientMutationVariables>, 'mutation'>;
-
-    export const CreateAnnualClientComponent = (props: CreateAnnualClientComponentProps) => (
-      <ApolloReactComponents.Mutation<CreateAnnualClientMutation, CreateAnnualClientMutationVariables> mutation={CreateAnnualClientDocument} {...props} />
-    );
-    
-export type CreateAnnualClientProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<CreateAnnualClientMutation, CreateAnnualClientMutationVariables>
-    } & TChildProps;
-export function withCreateAnnualClient<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  CreateAnnualClientMutation,
-  CreateAnnualClientMutationVariables,
-  CreateAnnualClientProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, CreateAnnualClientMutation, CreateAnnualClientMutationVariables, CreateAnnualClientProps<TChildProps, TDataName>>(CreateAnnualClientDocument, {
-      alias: 'createAnnualClient',
-      ...operationOptions
-    });
-};
-
-/**
- * __useCreateAnnualClientMutation__
- *
- * To run a mutation, you first call `useCreateAnnualClientMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateAnnualClientMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createAnnualClientMutation, { data, loading, error }] = useCreateAnnualClientMutation({
- *   variables: {
- *      data: // value for 'data'
- *   },
- * });
- */
-export function useCreateAnnualClientMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateAnnualClientMutation, CreateAnnualClientMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<CreateAnnualClientMutation, CreateAnnualClientMutationVariables>(CreateAnnualClientDocument, options);
-      }
-export type CreateAnnualClientMutationHookResult = ReturnType<typeof useCreateAnnualClientMutation>;
-export type CreateAnnualClientMutationResult = Apollo.MutationResult<CreateAnnualClientMutation>;
-export type CreateAnnualClientMutationOptions = Apollo.BaseMutationOptions<CreateAnnualClientMutation, CreateAnnualClientMutationVariables>;
-export const CreateAAnnualClientDocument = gql`
-    mutation createAAnnualClient($data: AnnualClientCreateInput!) {
-  createAnnualClient(data: $data) {
-    ...AnnualClientFragment
-  }
-}
-    ${AnnualClientFragmentFragmentDoc}`;
-export type CreateAAnnualClientMutationFn = Apollo.MutationFunction<CreateAAnnualClientMutation, CreateAAnnualClientMutationVariables>;
-export type CreateAAnnualClientComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateAAnnualClientMutation, CreateAAnnualClientMutationVariables>, 'mutation'>;
-
-    export const CreateAAnnualClientComponent = (props: CreateAAnnualClientComponentProps) => (
-      <ApolloReactComponents.Mutation<CreateAAnnualClientMutation, CreateAAnnualClientMutationVariables> mutation={CreateAAnnualClientDocument} {...props} />
-    );
-    
-export type CreateAAnnualClientProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<CreateAAnnualClientMutation, CreateAAnnualClientMutationVariables>
-    } & TChildProps;
-export function withCreateAAnnualClient<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  CreateAAnnualClientMutation,
-  CreateAAnnualClientMutationVariables,
-  CreateAAnnualClientProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, CreateAAnnualClientMutation, CreateAAnnualClientMutationVariables, CreateAAnnualClientProps<TChildProps, TDataName>>(CreateAAnnualClientDocument, {
-      alias: 'createAAnnualClient',
-      ...operationOptions
-    });
-};
-
-/**
- * __useCreateAAnnualClientMutation__
- *
- * To run a mutation, you first call `useCreateAAnnualClientMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateAAnnualClientMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createAAnnualClientMutation, { data, loading, error }] = useCreateAAnnualClientMutation({
- *   variables: {
- *      data: // value for 'data'
- *   },
- * });
- */
-export function useCreateAAnnualClientMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateAAnnualClientMutation, CreateAAnnualClientMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<CreateAAnnualClientMutation, CreateAAnnualClientMutationVariables>(CreateAAnnualClientDocument, options);
-      }
-export type CreateAAnnualClientMutationHookResult = ReturnType<typeof useCreateAAnnualClientMutation>;
-export type CreateAAnnualClientMutationResult = Apollo.MutationResult<CreateAAnnualClientMutation>;
-export type CreateAAnnualClientMutationOptions = Apollo.BaseMutationOptions<CreateAAnnualClientMutation, CreateAAnnualClientMutationVariables>;
-export const DeleteAAnnualClientDocument = gql`
-    mutation deleteAAnnualClient($where: AnnualClientWhereUniqueInput!) {
-  deleteOneAnnualClient(where: $where) {
-    id
-  }
-}
-    `;
-export type DeleteAAnnualClientMutationFn = Apollo.MutationFunction<DeleteAAnnualClientMutation, DeleteAAnnualClientMutationVariables>;
-export type DeleteAAnnualClientComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<DeleteAAnnualClientMutation, DeleteAAnnualClientMutationVariables>, 'mutation'>;
-
-    export const DeleteAAnnualClientComponent = (props: DeleteAAnnualClientComponentProps) => (
-      <ApolloReactComponents.Mutation<DeleteAAnnualClientMutation, DeleteAAnnualClientMutationVariables> mutation={DeleteAAnnualClientDocument} {...props} />
-    );
-    
-export type DeleteAAnnualClientProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<DeleteAAnnualClientMutation, DeleteAAnnualClientMutationVariables>
-    } & TChildProps;
-export function withDeleteAAnnualClient<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  DeleteAAnnualClientMutation,
-  DeleteAAnnualClientMutationVariables,
-  DeleteAAnnualClientProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, DeleteAAnnualClientMutation, DeleteAAnnualClientMutationVariables, DeleteAAnnualClientProps<TChildProps, TDataName>>(DeleteAAnnualClientDocument, {
-      alias: 'deleteAAnnualClient',
-      ...operationOptions
-    });
-};
-
-/**
- * __useDeleteAAnnualClientMutation__
- *
- * To run a mutation, you first call `useDeleteAAnnualClientMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useDeleteAAnnualClientMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [deleteAAnnualClientMutation, { data, loading, error }] = useDeleteAAnnualClientMutation({
- *   variables: {
- *      where: // value for 'where'
- *   },
- * });
- */
-export function useDeleteAAnnualClientMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<DeleteAAnnualClientMutation, DeleteAAnnualClientMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<DeleteAAnnualClientMutation, DeleteAAnnualClientMutationVariables>(DeleteAAnnualClientDocument, options);
-      }
-export type DeleteAAnnualClientMutationHookResult = ReturnType<typeof useDeleteAAnnualClientMutation>;
-export type DeleteAAnnualClientMutationResult = Apollo.MutationResult<DeleteAAnnualClientMutation>;
-export type DeleteAAnnualClientMutationOptions = Apollo.BaseMutationOptions<DeleteAAnnualClientMutation, DeleteAAnnualClientMutationVariables>;
-export const UpdateAAnnualClientDocument = gql`
-    mutation updateAAnnualClient($data: AnnualClientUpdateInput!, $where: AnnualClientWhereUniqueInput!) {
-  updateOneAnnualClient(data: $data, where: $where) {
-    ...AnnualClientFragment
-  }
-}
-    ${AnnualClientFragmentFragmentDoc}`;
-export type UpdateAAnnualClientMutationFn = Apollo.MutationFunction<UpdateAAnnualClientMutation, UpdateAAnnualClientMutationVariables>;
-export type UpdateAAnnualClientComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<UpdateAAnnualClientMutation, UpdateAAnnualClientMutationVariables>, 'mutation'>;
-
-    export const UpdateAAnnualClientComponent = (props: UpdateAAnnualClientComponentProps) => (
-      <ApolloReactComponents.Mutation<UpdateAAnnualClientMutation, UpdateAAnnualClientMutationVariables> mutation={UpdateAAnnualClientDocument} {...props} />
-    );
-    
-export type UpdateAAnnualClientProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<UpdateAAnnualClientMutation, UpdateAAnnualClientMutationVariables>
-    } & TChildProps;
-export function withUpdateAAnnualClient<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  UpdateAAnnualClientMutation,
-  UpdateAAnnualClientMutationVariables,
-  UpdateAAnnualClientProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, UpdateAAnnualClientMutation, UpdateAAnnualClientMutationVariables, UpdateAAnnualClientProps<TChildProps, TDataName>>(UpdateAAnnualClientDocument, {
-      alias: 'updateAAnnualClient',
-      ...operationOptions
-    });
-};
-
-/**
- * __useUpdateAAnnualClientMutation__
- *
- * To run a mutation, you first call `useUpdateAAnnualClientMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateAAnnualClientMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateAAnnualClientMutation, { data, loading, error }] = useUpdateAAnnualClientMutation({
- *   variables: {
- *      data: // value for 'data'
- *      where: // value for 'where'
- *   },
- * });
- */
-export function useUpdateAAnnualClientMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateAAnnualClientMutation, UpdateAAnnualClientMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<UpdateAAnnualClientMutation, UpdateAAnnualClientMutationVariables>(UpdateAAnnualClientDocument, options);
-      }
-export type UpdateAAnnualClientMutationHookResult = ReturnType<typeof useUpdateAAnnualClientMutation>;
-export type UpdateAAnnualClientMutationResult = Apollo.MutationResult<UpdateAAnnualClientMutation>;
-export type UpdateAAnnualClientMutationOptions = Apollo.BaseMutationOptions<UpdateAAnnualClientMutation, UpdateAAnnualClientMutationVariables>;
-export const CreateBonusDocument = gql`
-    mutation createBonus($data: BonusCreateInput!) {
-  createOneBonus(data: $data) {
-    ...BonusFragment
-  }
-}
-    ${BonusFragmentFragmentDoc}`;
-export type CreateBonusMutationFn = Apollo.MutationFunction<CreateBonusMutation, CreateBonusMutationVariables>;
-export type CreateBonusComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateBonusMutation, CreateBonusMutationVariables>, 'mutation'>;
-
-    export const CreateBonusComponent = (props: CreateBonusComponentProps) => (
-      <ApolloReactComponents.Mutation<CreateBonusMutation, CreateBonusMutationVariables> mutation={CreateBonusDocument} {...props} />
-    );
-    
-export type CreateBonusProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<CreateBonusMutation, CreateBonusMutationVariables>
-    } & TChildProps;
-export function withCreateBonus<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  CreateBonusMutation,
-  CreateBonusMutationVariables,
-  CreateBonusProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, CreateBonusMutation, CreateBonusMutationVariables, CreateBonusProps<TChildProps, TDataName>>(CreateBonusDocument, {
-      alias: 'createBonus',
-      ...operationOptions
-    });
-};
-
-/**
- * __useCreateBonusMutation__
- *
- * To run a mutation, you first call `useCreateBonusMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateBonusMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createBonusMutation, { data, loading, error }] = useCreateBonusMutation({
- *   variables: {
- *      data: // value for 'data'
- *   },
- * });
- */
-export function useCreateBonusMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateBonusMutation, CreateBonusMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<CreateBonusMutation, CreateBonusMutationVariables>(CreateBonusDocument, options);
-      }
-export type CreateBonusMutationHookResult = ReturnType<typeof useCreateBonusMutation>;
-export type CreateBonusMutationResult = Apollo.MutationResult<CreateBonusMutation>;
-export type CreateBonusMutationOptions = Apollo.BaseMutationOptions<CreateBonusMutation, CreateBonusMutationVariables>;
-export const CreateABonusDocument = gql`
-    mutation createABonus($data: BonusCreateInput!) {
-  createBonus(data: $data) {
-    ...BonusFragment
-  }
-}
-    ${BonusFragmentFragmentDoc}`;
-export type CreateABonusMutationFn = Apollo.MutationFunction<CreateABonusMutation, CreateABonusMutationVariables>;
-export type CreateABonusComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateABonusMutation, CreateABonusMutationVariables>, 'mutation'>;
-
-    export const CreateABonusComponent = (props: CreateABonusComponentProps) => (
-      <ApolloReactComponents.Mutation<CreateABonusMutation, CreateABonusMutationVariables> mutation={CreateABonusDocument} {...props} />
-    );
-    
-export type CreateABonusProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<CreateABonusMutation, CreateABonusMutationVariables>
-    } & TChildProps;
-export function withCreateABonus<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  CreateABonusMutation,
-  CreateABonusMutationVariables,
-  CreateABonusProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, CreateABonusMutation, CreateABonusMutationVariables, CreateABonusProps<TChildProps, TDataName>>(CreateABonusDocument, {
-      alias: 'createABonus',
-      ...operationOptions
-    });
-};
-
-/**
- * __useCreateABonusMutation__
- *
- * To run a mutation, you first call `useCreateABonusMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateABonusMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createABonusMutation, { data, loading, error }] = useCreateABonusMutation({
- *   variables: {
- *      data: // value for 'data'
- *   },
- * });
- */
-export function useCreateABonusMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateABonusMutation, CreateABonusMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<CreateABonusMutation, CreateABonusMutationVariables>(CreateABonusDocument, options);
-      }
-export type CreateABonusMutationHookResult = ReturnType<typeof useCreateABonusMutation>;
-export type CreateABonusMutationResult = Apollo.MutationResult<CreateABonusMutation>;
-export type CreateABonusMutationOptions = Apollo.BaseMutationOptions<CreateABonusMutation, CreateABonusMutationVariables>;
-export const DeleteABonusDocument = gql`
-    mutation deleteABonus($where: BonusWhereUniqueInput!) {
-  deleteOneBonus(where: $where) {
-    id
-  }
-}
-    `;
-export type DeleteABonusMutationFn = Apollo.MutationFunction<DeleteABonusMutation, DeleteABonusMutationVariables>;
-export type DeleteABonusComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<DeleteABonusMutation, DeleteABonusMutationVariables>, 'mutation'>;
-
-    export const DeleteABonusComponent = (props: DeleteABonusComponentProps) => (
-      <ApolloReactComponents.Mutation<DeleteABonusMutation, DeleteABonusMutationVariables> mutation={DeleteABonusDocument} {...props} />
-    );
-    
-export type DeleteABonusProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<DeleteABonusMutation, DeleteABonusMutationVariables>
-    } & TChildProps;
-export function withDeleteABonus<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  DeleteABonusMutation,
-  DeleteABonusMutationVariables,
-  DeleteABonusProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, DeleteABonusMutation, DeleteABonusMutationVariables, DeleteABonusProps<TChildProps, TDataName>>(DeleteABonusDocument, {
-      alias: 'deleteABonus',
-      ...operationOptions
-    });
-};
-
-/**
- * __useDeleteABonusMutation__
- *
- * To run a mutation, you first call `useDeleteABonusMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useDeleteABonusMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [deleteABonusMutation, { data, loading, error }] = useDeleteABonusMutation({
- *   variables: {
- *      where: // value for 'where'
- *   },
- * });
- */
-export function useDeleteABonusMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<DeleteABonusMutation, DeleteABonusMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<DeleteABonusMutation, DeleteABonusMutationVariables>(DeleteABonusDocument, options);
-      }
-export type DeleteABonusMutationHookResult = ReturnType<typeof useDeleteABonusMutation>;
-export type DeleteABonusMutationResult = Apollo.MutationResult<DeleteABonusMutation>;
-export type DeleteABonusMutationOptions = Apollo.BaseMutationOptions<DeleteABonusMutation, DeleteABonusMutationVariables>;
-export const UpdateABonusDocument = gql`
-    mutation updateABonus($data: BonusUpdateInput!, $where: BonusWhereUniqueInput!) {
-  updateOneBonus(data: $data, where: $where) {
-    ...BonusFragment
-  }
-}
-    ${BonusFragmentFragmentDoc}`;
-export type UpdateABonusMutationFn = Apollo.MutationFunction<UpdateABonusMutation, UpdateABonusMutationVariables>;
-export type UpdateABonusComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<UpdateABonusMutation, UpdateABonusMutationVariables>, 'mutation'>;
-
-    export const UpdateABonusComponent = (props: UpdateABonusComponentProps) => (
-      <ApolloReactComponents.Mutation<UpdateABonusMutation, UpdateABonusMutationVariables> mutation={UpdateABonusDocument} {...props} />
-    );
-    
-export type UpdateABonusProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<UpdateABonusMutation, UpdateABonusMutationVariables>
-    } & TChildProps;
-export function withUpdateABonus<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  UpdateABonusMutation,
-  UpdateABonusMutationVariables,
-  UpdateABonusProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, UpdateABonusMutation, UpdateABonusMutationVariables, UpdateABonusProps<TChildProps, TDataName>>(UpdateABonusDocument, {
-      alias: 'updateABonus',
-      ...operationOptions
-    });
-};
-
-/**
- * __useUpdateABonusMutation__
- *
- * To run a mutation, you first call `useUpdateABonusMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateABonusMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateABonusMutation, { data, loading, error }] = useUpdateABonusMutation({
- *   variables: {
- *      data: // value for 'data'
- *      where: // value for 'where'
- *   },
- * });
- */
-export function useUpdateABonusMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateABonusMutation, UpdateABonusMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<UpdateABonusMutation, UpdateABonusMutationVariables>(UpdateABonusDocument, options);
-      }
-export type UpdateABonusMutationHookResult = ReturnType<typeof useUpdateABonusMutation>;
-export type UpdateABonusMutationResult = Apollo.MutationResult<UpdateABonusMutation>;
-export type UpdateABonusMutationOptions = Apollo.BaseMutationOptions<UpdateABonusMutation, UpdateABonusMutationVariables>;
-export const CreateBranchDocument = gql`
-    mutation createBranch($data: BranchCreateInput!) {
-  createOneBranch(data: $data) {
-    ...BranchFragment
-  }
-}
-    ${BranchFragmentFragmentDoc}`;
-export type CreateBranchMutationFn = Apollo.MutationFunction<CreateBranchMutation, CreateBranchMutationVariables>;
-export type CreateBranchComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateBranchMutation, CreateBranchMutationVariables>, 'mutation'>;
-
-    export const CreateBranchComponent = (props: CreateBranchComponentProps) => (
-      <ApolloReactComponents.Mutation<CreateBranchMutation, CreateBranchMutationVariables> mutation={CreateBranchDocument} {...props} />
-    );
-    
-export type CreateBranchProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<CreateBranchMutation, CreateBranchMutationVariables>
-    } & TChildProps;
-export function withCreateBranch<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  CreateBranchMutation,
-  CreateBranchMutationVariables,
-  CreateBranchProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, CreateBranchMutation, CreateBranchMutationVariables, CreateBranchProps<TChildProps, TDataName>>(CreateBranchDocument, {
-      alias: 'createBranch',
-      ...operationOptions
-    });
-};
-
-/**
- * __useCreateBranchMutation__
- *
- * To run a mutation, you first call `useCreateBranchMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateBranchMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createBranchMutation, { data, loading, error }] = useCreateBranchMutation({
- *   variables: {
- *      data: // value for 'data'
- *   },
- * });
- */
-export function useCreateBranchMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateBranchMutation, CreateBranchMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<CreateBranchMutation, CreateBranchMutationVariables>(CreateBranchDocument, options);
-      }
-export type CreateBranchMutationHookResult = ReturnType<typeof useCreateBranchMutation>;
-export type CreateBranchMutationResult = Apollo.MutationResult<CreateBranchMutation>;
-export type CreateBranchMutationOptions = Apollo.BaseMutationOptions<CreateBranchMutation, CreateBranchMutationVariables>;
-export const CreateABranchDocument = gql`
-    mutation createABranch($data: BranchCreateInput!) {
-  createBranch(data: $data) {
-    ...BranchFragment
-  }
-}
-    ${BranchFragmentFragmentDoc}`;
-export type CreateABranchMutationFn = Apollo.MutationFunction<CreateABranchMutation, CreateABranchMutationVariables>;
-export type CreateABranchComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateABranchMutation, CreateABranchMutationVariables>, 'mutation'>;
-
-    export const CreateABranchComponent = (props: CreateABranchComponentProps) => (
-      <ApolloReactComponents.Mutation<CreateABranchMutation, CreateABranchMutationVariables> mutation={CreateABranchDocument} {...props} />
-    );
-    
-export type CreateABranchProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<CreateABranchMutation, CreateABranchMutationVariables>
-    } & TChildProps;
-export function withCreateABranch<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  CreateABranchMutation,
-  CreateABranchMutationVariables,
-  CreateABranchProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, CreateABranchMutation, CreateABranchMutationVariables, CreateABranchProps<TChildProps, TDataName>>(CreateABranchDocument, {
-      alias: 'createABranch',
-      ...operationOptions
-    });
-};
-
-/**
- * __useCreateABranchMutation__
- *
- * To run a mutation, you first call `useCreateABranchMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateABranchMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createABranchMutation, { data, loading, error }] = useCreateABranchMutation({
- *   variables: {
- *      data: // value for 'data'
- *   },
- * });
- */
-export function useCreateABranchMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateABranchMutation, CreateABranchMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<CreateABranchMutation, CreateABranchMutationVariables>(CreateABranchDocument, options);
-      }
-export type CreateABranchMutationHookResult = ReturnType<typeof useCreateABranchMutation>;
-export type CreateABranchMutationResult = Apollo.MutationResult<CreateABranchMutation>;
-export type CreateABranchMutationOptions = Apollo.BaseMutationOptions<CreateABranchMutation, CreateABranchMutationVariables>;
-export const DeleteABranchDocument = gql`
-    mutation deleteABranch($where: BranchWhereUniqueInput!) {
-  deleteOneBranch(where: $where) {
-    id
-  }
-}
-    `;
-export type DeleteABranchMutationFn = Apollo.MutationFunction<DeleteABranchMutation, DeleteABranchMutationVariables>;
-export type DeleteABranchComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<DeleteABranchMutation, DeleteABranchMutationVariables>, 'mutation'>;
-
-    export const DeleteABranchComponent = (props: DeleteABranchComponentProps) => (
-      <ApolloReactComponents.Mutation<DeleteABranchMutation, DeleteABranchMutationVariables> mutation={DeleteABranchDocument} {...props} />
-    );
-    
-export type DeleteABranchProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<DeleteABranchMutation, DeleteABranchMutationVariables>
-    } & TChildProps;
-export function withDeleteABranch<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  DeleteABranchMutation,
-  DeleteABranchMutationVariables,
-  DeleteABranchProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, DeleteABranchMutation, DeleteABranchMutationVariables, DeleteABranchProps<TChildProps, TDataName>>(DeleteABranchDocument, {
-      alias: 'deleteABranch',
-      ...operationOptions
-    });
-};
-
-/**
- * __useDeleteABranchMutation__
- *
- * To run a mutation, you first call `useDeleteABranchMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useDeleteABranchMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [deleteABranchMutation, { data, loading, error }] = useDeleteABranchMutation({
- *   variables: {
- *      where: // value for 'where'
- *   },
- * });
- */
-export function useDeleteABranchMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<DeleteABranchMutation, DeleteABranchMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<DeleteABranchMutation, DeleteABranchMutationVariables>(DeleteABranchDocument, options);
-      }
-export type DeleteABranchMutationHookResult = ReturnType<typeof useDeleteABranchMutation>;
-export type DeleteABranchMutationResult = Apollo.MutationResult<DeleteABranchMutation>;
-export type DeleteABranchMutationOptions = Apollo.BaseMutationOptions<DeleteABranchMutation, DeleteABranchMutationVariables>;
-export const UpdateABranchDocument = gql`
-    mutation updateABranch($data: BranchUpdateInput!, $where: BranchWhereUniqueInput!) {
-  updateOneBranch(data: $data, where: $where) {
-    ...BranchFragment
-  }
-}
-    ${BranchFragmentFragmentDoc}`;
-export type UpdateABranchMutationFn = Apollo.MutationFunction<UpdateABranchMutation, UpdateABranchMutationVariables>;
-export type UpdateABranchComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<UpdateABranchMutation, UpdateABranchMutationVariables>, 'mutation'>;
-
-    export const UpdateABranchComponent = (props: UpdateABranchComponentProps) => (
-      <ApolloReactComponents.Mutation<UpdateABranchMutation, UpdateABranchMutationVariables> mutation={UpdateABranchDocument} {...props} />
-    );
-    
-export type UpdateABranchProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<UpdateABranchMutation, UpdateABranchMutationVariables>
-    } & TChildProps;
-export function withUpdateABranch<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  UpdateABranchMutation,
-  UpdateABranchMutationVariables,
-  UpdateABranchProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, UpdateABranchMutation, UpdateABranchMutationVariables, UpdateABranchProps<TChildProps, TDataName>>(UpdateABranchDocument, {
-      alias: 'updateABranch',
-      ...operationOptions
-    });
-};
-
-/**
- * __useUpdateABranchMutation__
- *
- * To run a mutation, you first call `useUpdateABranchMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateABranchMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateABranchMutation, { data, loading, error }] = useUpdateABranchMutation({
- *   variables: {
- *      data: // value for 'data'
- *      where: // value for 'where'
- *   },
- * });
- */
-export function useUpdateABranchMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateABranchMutation, UpdateABranchMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<UpdateABranchMutation, UpdateABranchMutationVariables>(UpdateABranchDocument, options);
-      }
-export type UpdateABranchMutationHookResult = ReturnType<typeof useUpdateABranchMutation>;
-export type UpdateABranchMutationResult = Apollo.MutationResult<UpdateABranchMutation>;
-export type UpdateABranchMutationOptions = Apollo.BaseMutationOptions<UpdateABranchMutation, UpdateABranchMutationVariables>;
-export const CreateBranchEmployeeDocument = gql`
-    mutation createBranchEmployee($data: BranchEmployeeCreateInput!) {
-  createOneBranchEmployee(data: $data) {
-    ...BranchEmployeeFragment
-  }
-}
-    ${BranchEmployeeFragmentFragmentDoc}`;
-export type CreateBranchEmployeeMutationFn = Apollo.MutationFunction<CreateBranchEmployeeMutation, CreateBranchEmployeeMutationVariables>;
-export type CreateBranchEmployeeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateBranchEmployeeMutation, CreateBranchEmployeeMutationVariables>, 'mutation'>;
-
-    export const CreateBranchEmployeeComponent = (props: CreateBranchEmployeeComponentProps) => (
-      <ApolloReactComponents.Mutation<CreateBranchEmployeeMutation, CreateBranchEmployeeMutationVariables> mutation={CreateBranchEmployeeDocument} {...props} />
-    );
-    
-export type CreateBranchEmployeeProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<CreateBranchEmployeeMutation, CreateBranchEmployeeMutationVariables>
-    } & TChildProps;
-export function withCreateBranchEmployee<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  CreateBranchEmployeeMutation,
-  CreateBranchEmployeeMutationVariables,
-  CreateBranchEmployeeProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, CreateBranchEmployeeMutation, CreateBranchEmployeeMutationVariables, CreateBranchEmployeeProps<TChildProps, TDataName>>(CreateBranchEmployeeDocument, {
-      alias: 'createBranchEmployee',
-      ...operationOptions
-    });
-};
-
-/**
- * __useCreateBranchEmployeeMutation__
- *
- * To run a mutation, you first call `useCreateBranchEmployeeMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateBranchEmployeeMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createBranchEmployeeMutation, { data, loading, error }] = useCreateBranchEmployeeMutation({
- *   variables: {
- *      data: // value for 'data'
- *   },
- * });
- */
-export function useCreateBranchEmployeeMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateBranchEmployeeMutation, CreateBranchEmployeeMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<CreateBranchEmployeeMutation, CreateBranchEmployeeMutationVariables>(CreateBranchEmployeeDocument, options);
-      }
-export type CreateBranchEmployeeMutationHookResult = ReturnType<typeof useCreateBranchEmployeeMutation>;
-export type CreateBranchEmployeeMutationResult = Apollo.MutationResult<CreateBranchEmployeeMutation>;
-export type CreateBranchEmployeeMutationOptions = Apollo.BaseMutationOptions<CreateBranchEmployeeMutation, CreateBranchEmployeeMutationVariables>;
-export const CreateABranchEmployeeDocument = gql`
-    mutation createABranchEmployee($data: BranchEmployeeCreateInput!) {
-  createBranchEmployee(data: $data) {
-    ...BranchEmployeeFragment
-  }
-}
-    ${BranchEmployeeFragmentFragmentDoc}`;
-export type CreateABranchEmployeeMutationFn = Apollo.MutationFunction<CreateABranchEmployeeMutation, CreateABranchEmployeeMutationVariables>;
-export type CreateABranchEmployeeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateABranchEmployeeMutation, CreateABranchEmployeeMutationVariables>, 'mutation'>;
-
-    export const CreateABranchEmployeeComponent = (props: CreateABranchEmployeeComponentProps) => (
-      <ApolloReactComponents.Mutation<CreateABranchEmployeeMutation, CreateABranchEmployeeMutationVariables> mutation={CreateABranchEmployeeDocument} {...props} />
-    );
-    
-export type CreateABranchEmployeeProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<CreateABranchEmployeeMutation, CreateABranchEmployeeMutationVariables>
-    } & TChildProps;
-export function withCreateABranchEmployee<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  CreateABranchEmployeeMutation,
-  CreateABranchEmployeeMutationVariables,
-  CreateABranchEmployeeProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, CreateABranchEmployeeMutation, CreateABranchEmployeeMutationVariables, CreateABranchEmployeeProps<TChildProps, TDataName>>(CreateABranchEmployeeDocument, {
-      alias: 'createABranchEmployee',
-      ...operationOptions
-    });
-};
-
-/**
- * __useCreateABranchEmployeeMutation__
- *
- * To run a mutation, you first call `useCreateABranchEmployeeMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateABranchEmployeeMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createABranchEmployeeMutation, { data, loading, error }] = useCreateABranchEmployeeMutation({
- *   variables: {
- *      data: // value for 'data'
- *   },
- * });
- */
-export function useCreateABranchEmployeeMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateABranchEmployeeMutation, CreateABranchEmployeeMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<CreateABranchEmployeeMutation, CreateABranchEmployeeMutationVariables>(CreateABranchEmployeeDocument, options);
-      }
-export type CreateABranchEmployeeMutationHookResult = ReturnType<typeof useCreateABranchEmployeeMutation>;
-export type CreateABranchEmployeeMutationResult = Apollo.MutationResult<CreateABranchEmployeeMutation>;
-export type CreateABranchEmployeeMutationOptions = Apollo.BaseMutationOptions<CreateABranchEmployeeMutation, CreateABranchEmployeeMutationVariables>;
-export const DeleteABranchEmployeeDocument = gql`
-    mutation deleteABranchEmployee($where: BranchEmployeeWhereUniqueInput!) {
-  deleteOneBranchEmployee(where: $where) {
-    id
-  }
-}
-    `;
-export type DeleteABranchEmployeeMutationFn = Apollo.MutationFunction<DeleteABranchEmployeeMutation, DeleteABranchEmployeeMutationVariables>;
-export type DeleteABranchEmployeeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<DeleteABranchEmployeeMutation, DeleteABranchEmployeeMutationVariables>, 'mutation'>;
-
-    export const DeleteABranchEmployeeComponent = (props: DeleteABranchEmployeeComponentProps) => (
-      <ApolloReactComponents.Mutation<DeleteABranchEmployeeMutation, DeleteABranchEmployeeMutationVariables> mutation={DeleteABranchEmployeeDocument} {...props} />
-    );
-    
-export type DeleteABranchEmployeeProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<DeleteABranchEmployeeMutation, DeleteABranchEmployeeMutationVariables>
-    } & TChildProps;
-export function withDeleteABranchEmployee<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  DeleteABranchEmployeeMutation,
-  DeleteABranchEmployeeMutationVariables,
-  DeleteABranchEmployeeProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, DeleteABranchEmployeeMutation, DeleteABranchEmployeeMutationVariables, DeleteABranchEmployeeProps<TChildProps, TDataName>>(DeleteABranchEmployeeDocument, {
-      alias: 'deleteABranchEmployee',
-      ...operationOptions
-    });
-};
-
-/**
- * __useDeleteABranchEmployeeMutation__
- *
- * To run a mutation, you first call `useDeleteABranchEmployeeMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useDeleteABranchEmployeeMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [deleteABranchEmployeeMutation, { data, loading, error }] = useDeleteABranchEmployeeMutation({
- *   variables: {
- *      where: // value for 'where'
- *   },
- * });
- */
-export function useDeleteABranchEmployeeMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<DeleteABranchEmployeeMutation, DeleteABranchEmployeeMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<DeleteABranchEmployeeMutation, DeleteABranchEmployeeMutationVariables>(DeleteABranchEmployeeDocument, options);
-      }
-export type DeleteABranchEmployeeMutationHookResult = ReturnType<typeof useDeleteABranchEmployeeMutation>;
-export type DeleteABranchEmployeeMutationResult = Apollo.MutationResult<DeleteABranchEmployeeMutation>;
-export type DeleteABranchEmployeeMutationOptions = Apollo.BaseMutationOptions<DeleteABranchEmployeeMutation, DeleteABranchEmployeeMutationVariables>;
-export const UpdateABranchEmployeeDocument = gql`
-    mutation updateABranchEmployee($data: BranchEmployeeUpdateInput!, $where: BranchEmployeeWhereUniqueInput!) {
-  updateOneBranchEmployee(data: $data, where: $where) {
-    ...BranchEmployeeFragment
-  }
-}
-    ${BranchEmployeeFragmentFragmentDoc}`;
-export type UpdateABranchEmployeeMutationFn = Apollo.MutationFunction<UpdateABranchEmployeeMutation, UpdateABranchEmployeeMutationVariables>;
-export type UpdateABranchEmployeeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<UpdateABranchEmployeeMutation, UpdateABranchEmployeeMutationVariables>, 'mutation'>;
-
-    export const UpdateABranchEmployeeComponent = (props: UpdateABranchEmployeeComponentProps) => (
-      <ApolloReactComponents.Mutation<UpdateABranchEmployeeMutation, UpdateABranchEmployeeMutationVariables> mutation={UpdateABranchEmployeeDocument} {...props} />
-    );
-    
-export type UpdateABranchEmployeeProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<UpdateABranchEmployeeMutation, UpdateABranchEmployeeMutationVariables>
-    } & TChildProps;
-export function withUpdateABranchEmployee<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  UpdateABranchEmployeeMutation,
-  UpdateABranchEmployeeMutationVariables,
-  UpdateABranchEmployeeProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, UpdateABranchEmployeeMutation, UpdateABranchEmployeeMutationVariables, UpdateABranchEmployeeProps<TChildProps, TDataName>>(UpdateABranchEmployeeDocument, {
-      alias: 'updateABranchEmployee',
-      ...operationOptions
-    });
-};
-
-/**
- * __useUpdateABranchEmployeeMutation__
- *
- * To run a mutation, you first call `useUpdateABranchEmployeeMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateABranchEmployeeMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateABranchEmployeeMutation, { data, loading, error }] = useUpdateABranchEmployeeMutation({
- *   variables: {
- *      data: // value for 'data'
- *      where: // value for 'where'
- *   },
- * });
- */
-export function useUpdateABranchEmployeeMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateABranchEmployeeMutation, UpdateABranchEmployeeMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<UpdateABranchEmployeeMutation, UpdateABranchEmployeeMutationVariables>(UpdateABranchEmployeeDocument, options);
-      }
-export type UpdateABranchEmployeeMutationHookResult = ReturnType<typeof useUpdateABranchEmployeeMutation>;
-export type UpdateABranchEmployeeMutationResult = Apollo.MutationResult<UpdateABranchEmployeeMutation>;
-export type UpdateABranchEmployeeMutationOptions = Apollo.BaseMutationOptions<UpdateABranchEmployeeMutation, UpdateABranchEmployeeMutationVariables>;
 export const CreateCartDocument = gql`
     mutation createCart($data: CartCreateInput!) {
   createOneCart(data: $data) {
@@ -7371,215 +4542,6 @@ export function useUpdateAFinancialYearMutation(baseOptions?: ApolloReactHooks.M
 export type UpdateAFinancialYearMutationHookResult = ReturnType<typeof useUpdateAFinancialYearMutation>;
 export type UpdateAFinancialYearMutationResult = Apollo.MutationResult<UpdateAFinancialYearMutation>;
 export type UpdateAFinancialYearMutationOptions = Apollo.BaseMutationOptions<UpdateAFinancialYearMutation, UpdateAFinancialYearMutationVariables>;
-export const CreateInventoryDocument = gql`
-    mutation createInventory($data: InventoryCreateInput!) {
-  createOneInventory(data: $data) {
-    ...InventoryFragment
-  }
-}
-    ${InventoryFragmentFragmentDoc}`;
-export type CreateInventoryMutationFn = Apollo.MutationFunction<CreateInventoryMutation, CreateInventoryMutationVariables>;
-export type CreateInventoryComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateInventoryMutation, CreateInventoryMutationVariables>, 'mutation'>;
-
-    export const CreateInventoryComponent = (props: CreateInventoryComponentProps) => (
-      <ApolloReactComponents.Mutation<CreateInventoryMutation, CreateInventoryMutationVariables> mutation={CreateInventoryDocument} {...props} />
-    );
-    
-export type CreateInventoryProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<CreateInventoryMutation, CreateInventoryMutationVariables>
-    } & TChildProps;
-export function withCreateInventory<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  CreateInventoryMutation,
-  CreateInventoryMutationVariables,
-  CreateInventoryProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, CreateInventoryMutation, CreateInventoryMutationVariables, CreateInventoryProps<TChildProps, TDataName>>(CreateInventoryDocument, {
-      alias: 'createInventory',
-      ...operationOptions
-    });
-};
-
-/**
- * __useCreateInventoryMutation__
- *
- * To run a mutation, you first call `useCreateInventoryMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateInventoryMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createInventoryMutation, { data, loading, error }] = useCreateInventoryMutation({
- *   variables: {
- *      data: // value for 'data'
- *   },
- * });
- */
-export function useCreateInventoryMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateInventoryMutation, CreateInventoryMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<CreateInventoryMutation, CreateInventoryMutationVariables>(CreateInventoryDocument, options);
-      }
-export type CreateInventoryMutationHookResult = ReturnType<typeof useCreateInventoryMutation>;
-export type CreateInventoryMutationResult = Apollo.MutationResult<CreateInventoryMutation>;
-export type CreateInventoryMutationOptions = Apollo.BaseMutationOptions<CreateInventoryMutation, CreateInventoryMutationVariables>;
-export const CreateAInventoryDocument = gql`
-    mutation createAInventory($data: InventoryCreateInput!) {
-  createInventory(data: $data) {
-    ...InventoryFragment
-  }
-}
-    ${InventoryFragmentFragmentDoc}`;
-export type CreateAInventoryMutationFn = Apollo.MutationFunction<CreateAInventoryMutation, CreateAInventoryMutationVariables>;
-export type CreateAInventoryComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateAInventoryMutation, CreateAInventoryMutationVariables>, 'mutation'>;
-
-    export const CreateAInventoryComponent = (props: CreateAInventoryComponentProps) => (
-      <ApolloReactComponents.Mutation<CreateAInventoryMutation, CreateAInventoryMutationVariables> mutation={CreateAInventoryDocument} {...props} />
-    );
-    
-export type CreateAInventoryProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<CreateAInventoryMutation, CreateAInventoryMutationVariables>
-    } & TChildProps;
-export function withCreateAInventory<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  CreateAInventoryMutation,
-  CreateAInventoryMutationVariables,
-  CreateAInventoryProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, CreateAInventoryMutation, CreateAInventoryMutationVariables, CreateAInventoryProps<TChildProps, TDataName>>(CreateAInventoryDocument, {
-      alias: 'createAInventory',
-      ...operationOptions
-    });
-};
-
-/**
- * __useCreateAInventoryMutation__
- *
- * To run a mutation, you first call `useCreateAInventoryMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateAInventoryMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createAInventoryMutation, { data, loading, error }] = useCreateAInventoryMutation({
- *   variables: {
- *      data: // value for 'data'
- *   },
- * });
- */
-export function useCreateAInventoryMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateAInventoryMutation, CreateAInventoryMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<CreateAInventoryMutation, CreateAInventoryMutationVariables>(CreateAInventoryDocument, options);
-      }
-export type CreateAInventoryMutationHookResult = ReturnType<typeof useCreateAInventoryMutation>;
-export type CreateAInventoryMutationResult = Apollo.MutationResult<CreateAInventoryMutation>;
-export type CreateAInventoryMutationOptions = Apollo.BaseMutationOptions<CreateAInventoryMutation, CreateAInventoryMutationVariables>;
-export const DeleteAInventoryDocument = gql`
-    mutation deleteAInventory($where: InventoryWhereUniqueInput!) {
-  deleteOneInventory(where: $where) {
-    id
-  }
-}
-    `;
-export type DeleteAInventoryMutationFn = Apollo.MutationFunction<DeleteAInventoryMutation, DeleteAInventoryMutationVariables>;
-export type DeleteAInventoryComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<DeleteAInventoryMutation, DeleteAInventoryMutationVariables>, 'mutation'>;
-
-    export const DeleteAInventoryComponent = (props: DeleteAInventoryComponentProps) => (
-      <ApolloReactComponents.Mutation<DeleteAInventoryMutation, DeleteAInventoryMutationVariables> mutation={DeleteAInventoryDocument} {...props} />
-    );
-    
-export type DeleteAInventoryProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<DeleteAInventoryMutation, DeleteAInventoryMutationVariables>
-    } & TChildProps;
-export function withDeleteAInventory<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  DeleteAInventoryMutation,
-  DeleteAInventoryMutationVariables,
-  DeleteAInventoryProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, DeleteAInventoryMutation, DeleteAInventoryMutationVariables, DeleteAInventoryProps<TChildProps, TDataName>>(DeleteAInventoryDocument, {
-      alias: 'deleteAInventory',
-      ...operationOptions
-    });
-};
-
-/**
- * __useDeleteAInventoryMutation__
- *
- * To run a mutation, you first call `useDeleteAInventoryMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useDeleteAInventoryMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [deleteAInventoryMutation, { data, loading, error }] = useDeleteAInventoryMutation({
- *   variables: {
- *      where: // value for 'where'
- *   },
- * });
- */
-export function useDeleteAInventoryMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<DeleteAInventoryMutation, DeleteAInventoryMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<DeleteAInventoryMutation, DeleteAInventoryMutationVariables>(DeleteAInventoryDocument, options);
-      }
-export type DeleteAInventoryMutationHookResult = ReturnType<typeof useDeleteAInventoryMutation>;
-export type DeleteAInventoryMutationResult = Apollo.MutationResult<DeleteAInventoryMutation>;
-export type DeleteAInventoryMutationOptions = Apollo.BaseMutationOptions<DeleteAInventoryMutation, DeleteAInventoryMutationVariables>;
-export const UpdateAInventoryDocument = gql`
-    mutation updateAInventory($data: InventoryUpdateInput!, $where: InventoryWhereUniqueInput!) {
-  updateOneInventory(data: $data, where: $where) {
-    ...InventoryFragment
-  }
-}
-    ${InventoryFragmentFragmentDoc}`;
-export type UpdateAInventoryMutationFn = Apollo.MutationFunction<UpdateAInventoryMutation, UpdateAInventoryMutationVariables>;
-export type UpdateAInventoryComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<UpdateAInventoryMutation, UpdateAInventoryMutationVariables>, 'mutation'>;
-
-    export const UpdateAInventoryComponent = (props: UpdateAInventoryComponentProps) => (
-      <ApolloReactComponents.Mutation<UpdateAInventoryMutation, UpdateAInventoryMutationVariables> mutation={UpdateAInventoryDocument} {...props} />
-    );
-    
-export type UpdateAInventoryProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
-      [key in TDataName]: Apollo.MutationFunction<UpdateAInventoryMutation, UpdateAInventoryMutationVariables>
-    } & TChildProps;
-export function withUpdateAInventory<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  UpdateAInventoryMutation,
-  UpdateAInventoryMutationVariables,
-  UpdateAInventoryProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withMutation<TProps, UpdateAInventoryMutation, UpdateAInventoryMutationVariables, UpdateAInventoryProps<TChildProps, TDataName>>(UpdateAInventoryDocument, {
-      alias: 'updateAInventory',
-      ...operationOptions
-    });
-};
-
-/**
- * __useUpdateAInventoryMutation__
- *
- * To run a mutation, you first call `useUpdateAInventoryMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateAInventoryMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateAInventoryMutation, { data, loading, error }] = useUpdateAInventoryMutation({
- *   variables: {
- *      data: // value for 'data'
- *      where: // value for 'where'
- *   },
- * });
- */
-export function useUpdateAInventoryMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateAInventoryMutation, UpdateAInventoryMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<UpdateAInventoryMutation, UpdateAInventoryMutationVariables>(UpdateAInventoryDocument, options);
-      }
-export type UpdateAInventoryMutationHookResult = ReturnType<typeof useUpdateAInventoryMutation>;
-export type UpdateAInventoryMutationResult = Apollo.MutationResult<UpdateAInventoryMutation>;
-export type UpdateAInventoryMutationOptions = Apollo.BaseMutationOptions<UpdateAInventoryMutation, UpdateAInventoryMutationVariables>;
 export const CreateOrderDocument = gql`
     mutation createOrder($data: OrderCreateInput!) {
   createOneOrder(data: $data) {
@@ -7998,6 +4960,215 @@ export function useUpdateAnOrderDetailMutation(baseOptions?: ApolloReactHooks.Mu
 export type UpdateAnOrderDetailMutationHookResult = ReturnType<typeof useUpdateAnOrderDetailMutation>;
 export type UpdateAnOrderDetailMutationResult = Apollo.MutationResult<UpdateAnOrderDetailMutation>;
 export type UpdateAnOrderDetailMutationOptions = Apollo.BaseMutationOptions<UpdateAnOrderDetailMutation, UpdateAnOrderDetailMutationVariables>;
+export const CreateOrderTypeDocument = gql`
+    mutation createOrderType($data: OrderTypeCreateInput!) {
+  createOneOrderType(data: $data) {
+    ...OrderTypeFragment
+  }
+}
+    ${OrderTypeFragmentFragmentDoc}`;
+export type CreateOrderTypeMutationFn = Apollo.MutationFunction<CreateOrderTypeMutation, CreateOrderTypeMutationVariables>;
+export type CreateOrderTypeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateOrderTypeMutation, CreateOrderTypeMutationVariables>, 'mutation'>;
+
+    export const CreateOrderTypeComponent = (props: CreateOrderTypeComponentProps) => (
+      <ApolloReactComponents.Mutation<CreateOrderTypeMutation, CreateOrderTypeMutationVariables> mutation={CreateOrderTypeDocument} {...props} />
+    );
+    
+export type CreateOrderTypeProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: Apollo.MutationFunction<CreateOrderTypeMutation, CreateOrderTypeMutationVariables>
+    } & TChildProps;
+export function withCreateOrderType<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  CreateOrderTypeMutation,
+  CreateOrderTypeMutationVariables,
+  CreateOrderTypeProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, CreateOrderTypeMutation, CreateOrderTypeMutationVariables, CreateOrderTypeProps<TChildProps, TDataName>>(CreateOrderTypeDocument, {
+      alias: 'createOrderType',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useCreateOrderTypeMutation__
+ *
+ * To run a mutation, you first call `useCreateOrderTypeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateOrderTypeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createOrderTypeMutation, { data, loading, error }] = useCreateOrderTypeMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateOrderTypeMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateOrderTypeMutation, CreateOrderTypeMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<CreateOrderTypeMutation, CreateOrderTypeMutationVariables>(CreateOrderTypeDocument, options);
+      }
+export type CreateOrderTypeMutationHookResult = ReturnType<typeof useCreateOrderTypeMutation>;
+export type CreateOrderTypeMutationResult = Apollo.MutationResult<CreateOrderTypeMutation>;
+export type CreateOrderTypeMutationOptions = Apollo.BaseMutationOptions<CreateOrderTypeMutation, CreateOrderTypeMutationVariables>;
+export const CreateAOrderTypeDocument = gql`
+    mutation createAOrderType($data: OrderTypeCreateInput!) {
+  createOrderType(data: $data) {
+    ...OrderTypeFragment
+  }
+}
+    ${OrderTypeFragmentFragmentDoc}`;
+export type CreateAOrderTypeMutationFn = Apollo.MutationFunction<CreateAOrderTypeMutation, CreateAOrderTypeMutationVariables>;
+export type CreateAOrderTypeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateAOrderTypeMutation, CreateAOrderTypeMutationVariables>, 'mutation'>;
+
+    export const CreateAOrderTypeComponent = (props: CreateAOrderTypeComponentProps) => (
+      <ApolloReactComponents.Mutation<CreateAOrderTypeMutation, CreateAOrderTypeMutationVariables> mutation={CreateAOrderTypeDocument} {...props} />
+    );
+    
+export type CreateAOrderTypeProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: Apollo.MutationFunction<CreateAOrderTypeMutation, CreateAOrderTypeMutationVariables>
+    } & TChildProps;
+export function withCreateAOrderType<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  CreateAOrderTypeMutation,
+  CreateAOrderTypeMutationVariables,
+  CreateAOrderTypeProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, CreateAOrderTypeMutation, CreateAOrderTypeMutationVariables, CreateAOrderTypeProps<TChildProps, TDataName>>(CreateAOrderTypeDocument, {
+      alias: 'createAOrderType',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useCreateAOrderTypeMutation__
+ *
+ * To run a mutation, you first call `useCreateAOrderTypeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateAOrderTypeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createAOrderTypeMutation, { data, loading, error }] = useCreateAOrderTypeMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateAOrderTypeMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateAOrderTypeMutation, CreateAOrderTypeMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<CreateAOrderTypeMutation, CreateAOrderTypeMutationVariables>(CreateAOrderTypeDocument, options);
+      }
+export type CreateAOrderTypeMutationHookResult = ReturnType<typeof useCreateAOrderTypeMutation>;
+export type CreateAOrderTypeMutationResult = Apollo.MutationResult<CreateAOrderTypeMutation>;
+export type CreateAOrderTypeMutationOptions = Apollo.BaseMutationOptions<CreateAOrderTypeMutation, CreateAOrderTypeMutationVariables>;
+export const DeleteAOrderTypeDocument = gql`
+    mutation deleteAOrderType($where: OrderTypeWhereUniqueInput!) {
+  deleteOneOrderType(where: $where) {
+    id
+  }
+}
+    `;
+export type DeleteAOrderTypeMutationFn = Apollo.MutationFunction<DeleteAOrderTypeMutation, DeleteAOrderTypeMutationVariables>;
+export type DeleteAOrderTypeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<DeleteAOrderTypeMutation, DeleteAOrderTypeMutationVariables>, 'mutation'>;
+
+    export const DeleteAOrderTypeComponent = (props: DeleteAOrderTypeComponentProps) => (
+      <ApolloReactComponents.Mutation<DeleteAOrderTypeMutation, DeleteAOrderTypeMutationVariables> mutation={DeleteAOrderTypeDocument} {...props} />
+    );
+    
+export type DeleteAOrderTypeProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: Apollo.MutationFunction<DeleteAOrderTypeMutation, DeleteAOrderTypeMutationVariables>
+    } & TChildProps;
+export function withDeleteAOrderType<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  DeleteAOrderTypeMutation,
+  DeleteAOrderTypeMutationVariables,
+  DeleteAOrderTypeProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, DeleteAOrderTypeMutation, DeleteAOrderTypeMutationVariables, DeleteAOrderTypeProps<TChildProps, TDataName>>(DeleteAOrderTypeDocument, {
+      alias: 'deleteAOrderType',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useDeleteAOrderTypeMutation__
+ *
+ * To run a mutation, you first call `useDeleteAOrderTypeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteAOrderTypeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteAOrderTypeMutation, { data, loading, error }] = useDeleteAOrderTypeMutation({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useDeleteAOrderTypeMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<DeleteAOrderTypeMutation, DeleteAOrderTypeMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<DeleteAOrderTypeMutation, DeleteAOrderTypeMutationVariables>(DeleteAOrderTypeDocument, options);
+      }
+export type DeleteAOrderTypeMutationHookResult = ReturnType<typeof useDeleteAOrderTypeMutation>;
+export type DeleteAOrderTypeMutationResult = Apollo.MutationResult<DeleteAOrderTypeMutation>;
+export type DeleteAOrderTypeMutationOptions = Apollo.BaseMutationOptions<DeleteAOrderTypeMutation, DeleteAOrderTypeMutationVariables>;
+export const UpdateAOrderTypeDocument = gql`
+    mutation updateAOrderType($data: OrderTypeUpdateInput!, $where: OrderTypeWhereUniqueInput!) {
+  updateOneOrderType(data: $data, where: $where) {
+    ...OrderTypeFragment
+  }
+}
+    ${OrderTypeFragmentFragmentDoc}`;
+export type UpdateAOrderTypeMutationFn = Apollo.MutationFunction<UpdateAOrderTypeMutation, UpdateAOrderTypeMutationVariables>;
+export type UpdateAOrderTypeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<UpdateAOrderTypeMutation, UpdateAOrderTypeMutationVariables>, 'mutation'>;
+
+    export const UpdateAOrderTypeComponent = (props: UpdateAOrderTypeComponentProps) => (
+      <ApolloReactComponents.Mutation<UpdateAOrderTypeMutation, UpdateAOrderTypeMutationVariables> mutation={UpdateAOrderTypeDocument} {...props} />
+    );
+    
+export type UpdateAOrderTypeProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: Apollo.MutationFunction<UpdateAOrderTypeMutation, UpdateAOrderTypeMutationVariables>
+    } & TChildProps;
+export function withUpdateAOrderType<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  UpdateAOrderTypeMutation,
+  UpdateAOrderTypeMutationVariables,
+  UpdateAOrderTypeProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, UpdateAOrderTypeMutation, UpdateAOrderTypeMutationVariables, UpdateAOrderTypeProps<TChildProps, TDataName>>(UpdateAOrderTypeDocument, {
+      alias: 'updateAOrderType',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useUpdateAOrderTypeMutation__
+ *
+ * To run a mutation, you first call `useUpdateAOrderTypeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateAOrderTypeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateAOrderTypeMutation, { data, loading, error }] = useUpdateAOrderTypeMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useUpdateAOrderTypeMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateAOrderTypeMutation, UpdateAOrderTypeMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<UpdateAOrderTypeMutation, UpdateAOrderTypeMutationVariables>(UpdateAOrderTypeDocument, options);
+      }
+export type UpdateAOrderTypeMutationHookResult = ReturnType<typeof useUpdateAOrderTypeMutation>;
+export type UpdateAOrderTypeMutationResult = Apollo.MutationResult<UpdateAOrderTypeMutation>;
+export type UpdateAOrderTypeMutationOptions = Apollo.BaseMutationOptions<UpdateAOrderTypeMutation, UpdateAOrderTypeMutationVariables>;
 export const CreateProductDocument = gql`
     mutation createProduct($data: ProductCreateInput!) {
   createOneProduct(data: $data) {
@@ -8207,1044 +5378,6 @@ export function useUpdateAProductMutation(baseOptions?: ApolloReactHooks.Mutatio
 export type UpdateAProductMutationHookResult = ReturnType<typeof useUpdateAProductMutation>;
 export type UpdateAProductMutationResult = Apollo.MutationResult<UpdateAProductMutation>;
 export type UpdateAProductMutationOptions = Apollo.BaseMutationOptions<UpdateAProductMutation, UpdateAProductMutationVariables>;
-export const AllAnnualBranchEmployeesDocument = gql`
-    query AllAnnualBranchEmployees {
-  annualBranchEmployees {
-    ...AnnualBranchEmployeeFragment
-  }
-}
-    ${AnnualBranchEmployeeFragmentFragmentDoc}`;
-export type AllAnnualBranchEmployeesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<AllAnnualBranchEmployeesQuery, AllAnnualBranchEmployeesQueryVariables>, 'query'>;
-
-    export const AllAnnualBranchEmployeesComponent = (props: AllAnnualBranchEmployeesComponentProps) => (
-      <ApolloReactComponents.Query<AllAnnualBranchEmployeesQuery, AllAnnualBranchEmployeesQueryVariables> query={AllAnnualBranchEmployeesDocument} {...props} />
-    );
-    
-export type AllAnnualBranchEmployeesProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<AllAnnualBranchEmployeesQuery, AllAnnualBranchEmployeesQueryVariables>
-    } & TChildProps;
-export function withAllAnnualBranchEmployees<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  AllAnnualBranchEmployeesQuery,
-  AllAnnualBranchEmployeesQueryVariables,
-  AllAnnualBranchEmployeesProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, AllAnnualBranchEmployeesQuery, AllAnnualBranchEmployeesQueryVariables, AllAnnualBranchEmployeesProps<TChildProps, TDataName>>(AllAnnualBranchEmployeesDocument, {
-      alias: 'allAnnualBranchEmployees',
-      ...operationOptions
-    });
-};
-
-/**
- * __useAllAnnualBranchEmployeesQuery__
- *
- * To run a query within a React component, call `useAllAnnualBranchEmployeesQuery` and pass it any options that fit your needs.
- * When your component renders, `useAllAnnualBranchEmployeesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useAllAnnualBranchEmployeesQuery({
- *   variables: {
- *   },
- * });
- */
-export function useAllAnnualBranchEmployeesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<AllAnnualBranchEmployeesQuery, AllAnnualBranchEmployeesQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<AllAnnualBranchEmployeesQuery, AllAnnualBranchEmployeesQueryVariables>(AllAnnualBranchEmployeesDocument, options);
-      }
-export function useAllAnnualBranchEmployeesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<AllAnnualBranchEmployeesQuery, AllAnnualBranchEmployeesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<AllAnnualBranchEmployeesQuery, AllAnnualBranchEmployeesQueryVariables>(AllAnnualBranchEmployeesDocument, options);
-        }
-export type AllAnnualBranchEmployeesQueryHookResult = ReturnType<typeof useAllAnnualBranchEmployeesQuery>;
-export type AllAnnualBranchEmployeesLazyQueryHookResult = ReturnType<typeof useAllAnnualBranchEmployeesLazyQuery>;
-export type AllAnnualBranchEmployeesQueryResult = Apollo.QueryResult<AllAnnualBranchEmployeesQuery, AllAnnualBranchEmployeesQueryVariables>;
-export const SingleAnnualBranchEmployeeDocument = gql`
-    query SingleAnnualBranchEmployee($where: AnnualBranchEmployeeWhereUniqueInput!) {
-  annualBranchEmployee(where: $where) {
-    ...AnnualBranchEmployeeFragment
-  }
-}
-    ${AnnualBranchEmployeeFragmentFragmentDoc}`;
-export type SingleAnnualBranchEmployeeComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<SingleAnnualBranchEmployeeQuery, SingleAnnualBranchEmployeeQueryVariables>, 'query'> & ({ variables: SingleAnnualBranchEmployeeQueryVariables; skip?: boolean; } | { skip: boolean; });
-
-    export const SingleAnnualBranchEmployeeComponent = (props: SingleAnnualBranchEmployeeComponentProps) => (
-      <ApolloReactComponents.Query<SingleAnnualBranchEmployeeQuery, SingleAnnualBranchEmployeeQueryVariables> query={SingleAnnualBranchEmployeeDocument} {...props} />
-    );
-    
-export type SingleAnnualBranchEmployeeProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<SingleAnnualBranchEmployeeQuery, SingleAnnualBranchEmployeeQueryVariables>
-    } & TChildProps;
-export function withSingleAnnualBranchEmployee<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  SingleAnnualBranchEmployeeQuery,
-  SingleAnnualBranchEmployeeQueryVariables,
-  SingleAnnualBranchEmployeeProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, SingleAnnualBranchEmployeeQuery, SingleAnnualBranchEmployeeQueryVariables, SingleAnnualBranchEmployeeProps<TChildProps, TDataName>>(SingleAnnualBranchEmployeeDocument, {
-      alias: 'singleAnnualBranchEmployee',
-      ...operationOptions
-    });
-};
-
-/**
- * __useSingleAnnualBranchEmployeeQuery__
- *
- * To run a query within a React component, call `useSingleAnnualBranchEmployeeQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleAnnualBranchEmployeeQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSingleAnnualBranchEmployeeQuery({
- *   variables: {
- *      where: // value for 'where'
- *   },
- * });
- */
-export function useSingleAnnualBranchEmployeeQuery(baseOptions: ApolloReactHooks.QueryHookOptions<SingleAnnualBranchEmployeeQuery, SingleAnnualBranchEmployeeQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<SingleAnnualBranchEmployeeQuery, SingleAnnualBranchEmployeeQueryVariables>(SingleAnnualBranchEmployeeDocument, options);
-      }
-export function useSingleAnnualBranchEmployeeLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleAnnualBranchEmployeeQuery, SingleAnnualBranchEmployeeQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<SingleAnnualBranchEmployeeQuery, SingleAnnualBranchEmployeeQueryVariables>(SingleAnnualBranchEmployeeDocument, options);
-        }
-export type SingleAnnualBranchEmployeeQueryHookResult = ReturnType<typeof useSingleAnnualBranchEmployeeQuery>;
-export type SingleAnnualBranchEmployeeLazyQueryHookResult = ReturnType<typeof useSingleAnnualBranchEmployeeLazyQuery>;
-export type SingleAnnualBranchEmployeeQueryResult = Apollo.QueryResult<SingleAnnualBranchEmployeeQuery, SingleAnnualBranchEmployeeQueryVariables>;
-export const SingleAnnualBranchEmployeeByIdDocument = gql`
-    query SingleAnnualBranchEmployeeById($id: String!) {
-  annualBranchEmployeeById(id: $id) {
-    ...AnnualBranchEmployeeFragment
-  }
-}
-    ${AnnualBranchEmployeeFragmentFragmentDoc}`;
-export type SingleAnnualBranchEmployeeByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<SingleAnnualBranchEmployeeByIdQuery, SingleAnnualBranchEmployeeByIdQueryVariables>, 'query'> & ({ variables: SingleAnnualBranchEmployeeByIdQueryVariables; skip?: boolean; } | { skip: boolean; });
-
-    export const SingleAnnualBranchEmployeeByIdComponent = (props: SingleAnnualBranchEmployeeByIdComponentProps) => (
-      <ApolloReactComponents.Query<SingleAnnualBranchEmployeeByIdQuery, SingleAnnualBranchEmployeeByIdQueryVariables> query={SingleAnnualBranchEmployeeByIdDocument} {...props} />
-    );
-    
-export type SingleAnnualBranchEmployeeByIdProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<SingleAnnualBranchEmployeeByIdQuery, SingleAnnualBranchEmployeeByIdQueryVariables>
-    } & TChildProps;
-export function withSingleAnnualBranchEmployeeById<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  SingleAnnualBranchEmployeeByIdQuery,
-  SingleAnnualBranchEmployeeByIdQueryVariables,
-  SingleAnnualBranchEmployeeByIdProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, SingleAnnualBranchEmployeeByIdQuery, SingleAnnualBranchEmployeeByIdQueryVariables, SingleAnnualBranchEmployeeByIdProps<TChildProps, TDataName>>(SingleAnnualBranchEmployeeByIdDocument, {
-      alias: 'singleAnnualBranchEmployeeById',
-      ...operationOptions
-    });
-};
-
-/**
- * __useSingleAnnualBranchEmployeeByIdQuery__
- *
- * To run a query within a React component, call `useSingleAnnualBranchEmployeeByIdQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleAnnualBranchEmployeeByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSingleAnnualBranchEmployeeByIdQuery({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function useSingleAnnualBranchEmployeeByIdQuery(baseOptions: ApolloReactHooks.QueryHookOptions<SingleAnnualBranchEmployeeByIdQuery, SingleAnnualBranchEmployeeByIdQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<SingleAnnualBranchEmployeeByIdQuery, SingleAnnualBranchEmployeeByIdQueryVariables>(SingleAnnualBranchEmployeeByIdDocument, options);
-      }
-export function useSingleAnnualBranchEmployeeByIdLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleAnnualBranchEmployeeByIdQuery, SingleAnnualBranchEmployeeByIdQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<SingleAnnualBranchEmployeeByIdQuery, SingleAnnualBranchEmployeeByIdQueryVariables>(SingleAnnualBranchEmployeeByIdDocument, options);
-        }
-export type SingleAnnualBranchEmployeeByIdQueryHookResult = ReturnType<typeof useSingleAnnualBranchEmployeeByIdQuery>;
-export type SingleAnnualBranchEmployeeByIdLazyQueryHookResult = ReturnType<typeof useSingleAnnualBranchEmployeeByIdLazyQuery>;
-export type SingleAnnualBranchEmployeeByIdQueryResult = Apollo.QueryResult<SingleAnnualBranchEmployeeByIdQuery, SingleAnnualBranchEmployeeByIdQueryVariables>;
-export const SingleAnnualBranchEmployeeByBranchEmployeeAndYearDocument = gql`
-    query SingleAnnualBranchEmployeeByBranchEmployeeAndYear($financialYearId: String!, $branchEmployeeId: String!) {
-  annualBranchEmployeeByBranchEmployeeAndYear(
-    financialYearId: $financialYearId
-    branchEmployeeId: $branchEmployeeId
-  ) {
-    ...AnnualBranchEmployeeFragment
-  }
-}
-    ${AnnualBranchEmployeeFragmentFragmentDoc}`;
-export type SingleAnnualBranchEmployeeByBranchEmployeeAndYearComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<SingleAnnualBranchEmployeeByBranchEmployeeAndYearQuery, SingleAnnualBranchEmployeeByBranchEmployeeAndYearQueryVariables>, 'query'> & ({ variables: SingleAnnualBranchEmployeeByBranchEmployeeAndYearQueryVariables; skip?: boolean; } | { skip: boolean; });
-
-    export const SingleAnnualBranchEmployeeByBranchEmployeeAndYearComponent = (props: SingleAnnualBranchEmployeeByBranchEmployeeAndYearComponentProps) => (
-      <ApolloReactComponents.Query<SingleAnnualBranchEmployeeByBranchEmployeeAndYearQuery, SingleAnnualBranchEmployeeByBranchEmployeeAndYearQueryVariables> query={SingleAnnualBranchEmployeeByBranchEmployeeAndYearDocument} {...props} />
-    );
-    
-export type SingleAnnualBranchEmployeeByBranchEmployeeAndYearProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<SingleAnnualBranchEmployeeByBranchEmployeeAndYearQuery, SingleAnnualBranchEmployeeByBranchEmployeeAndYearQueryVariables>
-    } & TChildProps;
-export function withSingleAnnualBranchEmployeeByBranchEmployeeAndYear<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  SingleAnnualBranchEmployeeByBranchEmployeeAndYearQuery,
-  SingleAnnualBranchEmployeeByBranchEmployeeAndYearQueryVariables,
-  SingleAnnualBranchEmployeeByBranchEmployeeAndYearProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, SingleAnnualBranchEmployeeByBranchEmployeeAndYearQuery, SingleAnnualBranchEmployeeByBranchEmployeeAndYearQueryVariables, SingleAnnualBranchEmployeeByBranchEmployeeAndYearProps<TChildProps, TDataName>>(SingleAnnualBranchEmployeeByBranchEmployeeAndYearDocument, {
-      alias: 'singleAnnualBranchEmployeeByBranchEmployeeAndYear',
-      ...operationOptions
-    });
-};
-
-/**
- * __useSingleAnnualBranchEmployeeByBranchEmployeeAndYearQuery__
- *
- * To run a query within a React component, call `useSingleAnnualBranchEmployeeByBranchEmployeeAndYearQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleAnnualBranchEmployeeByBranchEmployeeAndYearQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSingleAnnualBranchEmployeeByBranchEmployeeAndYearQuery({
- *   variables: {
- *      financialYearId: // value for 'financialYearId'
- *      branchEmployeeId: // value for 'branchEmployeeId'
- *   },
- * });
- */
-export function useSingleAnnualBranchEmployeeByBranchEmployeeAndYearQuery(baseOptions: ApolloReactHooks.QueryHookOptions<SingleAnnualBranchEmployeeByBranchEmployeeAndYearQuery, SingleAnnualBranchEmployeeByBranchEmployeeAndYearQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<SingleAnnualBranchEmployeeByBranchEmployeeAndYearQuery, SingleAnnualBranchEmployeeByBranchEmployeeAndYearQueryVariables>(SingleAnnualBranchEmployeeByBranchEmployeeAndYearDocument, options);
-      }
-export function useSingleAnnualBranchEmployeeByBranchEmployeeAndYearLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleAnnualBranchEmployeeByBranchEmployeeAndYearQuery, SingleAnnualBranchEmployeeByBranchEmployeeAndYearQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<SingleAnnualBranchEmployeeByBranchEmployeeAndYearQuery, SingleAnnualBranchEmployeeByBranchEmployeeAndYearQueryVariables>(SingleAnnualBranchEmployeeByBranchEmployeeAndYearDocument, options);
-        }
-export type SingleAnnualBranchEmployeeByBranchEmployeeAndYearQueryHookResult = ReturnType<typeof useSingleAnnualBranchEmployeeByBranchEmployeeAndYearQuery>;
-export type SingleAnnualBranchEmployeeByBranchEmployeeAndYearLazyQueryHookResult = ReturnType<typeof useSingleAnnualBranchEmployeeByBranchEmployeeAndYearLazyQuery>;
-export type SingleAnnualBranchEmployeeByBranchEmployeeAndYearQueryResult = Apollo.QueryResult<SingleAnnualBranchEmployeeByBranchEmployeeAndYearQuery, SingleAnnualBranchEmployeeByBranchEmployeeAndYearQueryVariables>;
-export const AllAnnualClientsDocument = gql`
-    query AllAnnualClients {
-  annualClients {
-    ...AnnualClientFragment
-  }
-}
-    ${AnnualClientFragmentFragmentDoc}`;
-export type AllAnnualClientsComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<AllAnnualClientsQuery, AllAnnualClientsQueryVariables>, 'query'>;
-
-    export const AllAnnualClientsComponent = (props: AllAnnualClientsComponentProps) => (
-      <ApolloReactComponents.Query<AllAnnualClientsQuery, AllAnnualClientsQueryVariables> query={AllAnnualClientsDocument} {...props} />
-    );
-    
-export type AllAnnualClientsProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<AllAnnualClientsQuery, AllAnnualClientsQueryVariables>
-    } & TChildProps;
-export function withAllAnnualClients<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  AllAnnualClientsQuery,
-  AllAnnualClientsQueryVariables,
-  AllAnnualClientsProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, AllAnnualClientsQuery, AllAnnualClientsQueryVariables, AllAnnualClientsProps<TChildProps, TDataName>>(AllAnnualClientsDocument, {
-      alias: 'allAnnualClients',
-      ...operationOptions
-    });
-};
-
-/**
- * __useAllAnnualClientsQuery__
- *
- * To run a query within a React component, call `useAllAnnualClientsQuery` and pass it any options that fit your needs.
- * When your component renders, `useAllAnnualClientsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useAllAnnualClientsQuery({
- *   variables: {
- *   },
- * });
- */
-export function useAllAnnualClientsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<AllAnnualClientsQuery, AllAnnualClientsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<AllAnnualClientsQuery, AllAnnualClientsQueryVariables>(AllAnnualClientsDocument, options);
-      }
-export function useAllAnnualClientsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<AllAnnualClientsQuery, AllAnnualClientsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<AllAnnualClientsQuery, AllAnnualClientsQueryVariables>(AllAnnualClientsDocument, options);
-        }
-export type AllAnnualClientsQueryHookResult = ReturnType<typeof useAllAnnualClientsQuery>;
-export type AllAnnualClientsLazyQueryHookResult = ReturnType<typeof useAllAnnualClientsLazyQuery>;
-export type AllAnnualClientsQueryResult = Apollo.QueryResult<AllAnnualClientsQuery, AllAnnualClientsQueryVariables>;
-export const SingleAnnualClientDocument = gql`
-    query SingleAnnualClient($where: AnnualClientWhereUniqueInput!) {
-  annualClient(where: $where) {
-    ...AnnualClientFragment
-  }
-}
-    ${AnnualClientFragmentFragmentDoc}`;
-export type SingleAnnualClientComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<SingleAnnualClientQuery, SingleAnnualClientQueryVariables>, 'query'> & ({ variables: SingleAnnualClientQueryVariables; skip?: boolean; } | { skip: boolean; });
-
-    export const SingleAnnualClientComponent = (props: SingleAnnualClientComponentProps) => (
-      <ApolloReactComponents.Query<SingleAnnualClientQuery, SingleAnnualClientQueryVariables> query={SingleAnnualClientDocument} {...props} />
-    );
-    
-export type SingleAnnualClientProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<SingleAnnualClientQuery, SingleAnnualClientQueryVariables>
-    } & TChildProps;
-export function withSingleAnnualClient<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  SingleAnnualClientQuery,
-  SingleAnnualClientQueryVariables,
-  SingleAnnualClientProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, SingleAnnualClientQuery, SingleAnnualClientQueryVariables, SingleAnnualClientProps<TChildProps, TDataName>>(SingleAnnualClientDocument, {
-      alias: 'singleAnnualClient',
-      ...operationOptions
-    });
-};
-
-/**
- * __useSingleAnnualClientQuery__
- *
- * To run a query within a React component, call `useSingleAnnualClientQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleAnnualClientQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSingleAnnualClientQuery({
- *   variables: {
- *      where: // value for 'where'
- *   },
- * });
- */
-export function useSingleAnnualClientQuery(baseOptions: ApolloReactHooks.QueryHookOptions<SingleAnnualClientQuery, SingleAnnualClientQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<SingleAnnualClientQuery, SingleAnnualClientQueryVariables>(SingleAnnualClientDocument, options);
-      }
-export function useSingleAnnualClientLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleAnnualClientQuery, SingleAnnualClientQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<SingleAnnualClientQuery, SingleAnnualClientQueryVariables>(SingleAnnualClientDocument, options);
-        }
-export type SingleAnnualClientQueryHookResult = ReturnType<typeof useSingleAnnualClientQuery>;
-export type SingleAnnualClientLazyQueryHookResult = ReturnType<typeof useSingleAnnualClientLazyQuery>;
-export type SingleAnnualClientQueryResult = Apollo.QueryResult<SingleAnnualClientQuery, SingleAnnualClientQueryVariables>;
-export const SingleAnnualClientByIdDocument = gql`
-    query SingleAnnualClientById($id: String!) {
-  annualClientById(id: $id) {
-    ...AnnualClientFragment
-  }
-}
-    ${AnnualClientFragmentFragmentDoc}`;
-export type SingleAnnualClientByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<SingleAnnualClientByIdQuery, SingleAnnualClientByIdQueryVariables>, 'query'> & ({ variables: SingleAnnualClientByIdQueryVariables; skip?: boolean; } | { skip: boolean; });
-
-    export const SingleAnnualClientByIdComponent = (props: SingleAnnualClientByIdComponentProps) => (
-      <ApolloReactComponents.Query<SingleAnnualClientByIdQuery, SingleAnnualClientByIdQueryVariables> query={SingleAnnualClientByIdDocument} {...props} />
-    );
-    
-export type SingleAnnualClientByIdProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<SingleAnnualClientByIdQuery, SingleAnnualClientByIdQueryVariables>
-    } & TChildProps;
-export function withSingleAnnualClientById<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  SingleAnnualClientByIdQuery,
-  SingleAnnualClientByIdQueryVariables,
-  SingleAnnualClientByIdProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, SingleAnnualClientByIdQuery, SingleAnnualClientByIdQueryVariables, SingleAnnualClientByIdProps<TChildProps, TDataName>>(SingleAnnualClientByIdDocument, {
-      alias: 'singleAnnualClientById',
-      ...operationOptions
-    });
-};
-
-/**
- * __useSingleAnnualClientByIdQuery__
- *
- * To run a query within a React component, call `useSingleAnnualClientByIdQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleAnnualClientByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSingleAnnualClientByIdQuery({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function useSingleAnnualClientByIdQuery(baseOptions: ApolloReactHooks.QueryHookOptions<SingleAnnualClientByIdQuery, SingleAnnualClientByIdQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<SingleAnnualClientByIdQuery, SingleAnnualClientByIdQueryVariables>(SingleAnnualClientByIdDocument, options);
-      }
-export function useSingleAnnualClientByIdLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleAnnualClientByIdQuery, SingleAnnualClientByIdQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<SingleAnnualClientByIdQuery, SingleAnnualClientByIdQueryVariables>(SingleAnnualClientByIdDocument, options);
-        }
-export type SingleAnnualClientByIdQueryHookResult = ReturnType<typeof useSingleAnnualClientByIdQuery>;
-export type SingleAnnualClientByIdLazyQueryHookResult = ReturnType<typeof useSingleAnnualClientByIdLazyQuery>;
-export type SingleAnnualClientByIdQueryResult = Apollo.QueryResult<SingleAnnualClientByIdQuery, SingleAnnualClientByIdQueryVariables>;
-export const SingleAnnualClientByYearClientDocument = gql`
-    query SingleAnnualClientByYearClient($yearClient: String!) {
-  annualClientByYearClient(yearClient: $yearClient) {
-    ...AnnualClientFragment
-  }
-}
-    ${AnnualClientFragmentFragmentDoc}`;
-export type SingleAnnualClientByYearClientComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<SingleAnnualClientByYearClientQuery, SingleAnnualClientByYearClientQueryVariables>, 'query'> & ({ variables: SingleAnnualClientByYearClientQueryVariables; skip?: boolean; } | { skip: boolean; });
-
-    export const SingleAnnualClientByYearClientComponent = (props: SingleAnnualClientByYearClientComponentProps) => (
-      <ApolloReactComponents.Query<SingleAnnualClientByYearClientQuery, SingleAnnualClientByYearClientQueryVariables> query={SingleAnnualClientByYearClientDocument} {...props} />
-    );
-    
-export type SingleAnnualClientByYearClientProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<SingleAnnualClientByYearClientQuery, SingleAnnualClientByYearClientQueryVariables>
-    } & TChildProps;
-export function withSingleAnnualClientByYearClient<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  SingleAnnualClientByYearClientQuery,
-  SingleAnnualClientByYearClientQueryVariables,
-  SingleAnnualClientByYearClientProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, SingleAnnualClientByYearClientQuery, SingleAnnualClientByYearClientQueryVariables, SingleAnnualClientByYearClientProps<TChildProps, TDataName>>(SingleAnnualClientByYearClientDocument, {
-      alias: 'singleAnnualClientByYearClient',
-      ...operationOptions
-    });
-};
-
-/**
- * __useSingleAnnualClientByYearClientQuery__
- *
- * To run a query within a React component, call `useSingleAnnualClientByYearClientQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleAnnualClientByYearClientQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSingleAnnualClientByYearClientQuery({
- *   variables: {
- *      yearClient: // value for 'yearClient'
- *   },
- * });
- */
-export function useSingleAnnualClientByYearClientQuery(baseOptions: ApolloReactHooks.QueryHookOptions<SingleAnnualClientByYearClientQuery, SingleAnnualClientByYearClientQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<SingleAnnualClientByYearClientQuery, SingleAnnualClientByYearClientQueryVariables>(SingleAnnualClientByYearClientDocument, options);
-      }
-export function useSingleAnnualClientByYearClientLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleAnnualClientByYearClientQuery, SingleAnnualClientByYearClientQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<SingleAnnualClientByYearClientQuery, SingleAnnualClientByYearClientQueryVariables>(SingleAnnualClientByYearClientDocument, options);
-        }
-export type SingleAnnualClientByYearClientQueryHookResult = ReturnType<typeof useSingleAnnualClientByYearClientQuery>;
-export type SingleAnnualClientByYearClientLazyQueryHookResult = ReturnType<typeof useSingleAnnualClientByYearClientLazyQuery>;
-export type SingleAnnualClientByYearClientQueryResult = Apollo.QueryResult<SingleAnnualClientByYearClientQuery, SingleAnnualClientByYearClientQueryVariables>;
-export const SingleAnnualClientByPhoneAndYearDocument = gql`
-    query SingleAnnualClientByPhoneAndYear($clientId: String!, $financialYearId: String!) {
-  annualClientByPhoneAndYear(
-    clientId: $clientId
-    financialYearId: $financialYearId
-  ) {
-    ...AnnualClientFragment
-    Client {
-      ...ClientFragment
-    }
-    FinancialYear {
-      ...FinancialYearFragment
-    }
-  }
-}
-    ${AnnualClientFragmentFragmentDoc}
-${ClientFragmentFragmentDoc}
-${FinancialYearFragmentFragmentDoc}`;
-export type SingleAnnualClientByPhoneAndYearComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<SingleAnnualClientByPhoneAndYearQuery, SingleAnnualClientByPhoneAndYearQueryVariables>, 'query'> & ({ variables: SingleAnnualClientByPhoneAndYearQueryVariables; skip?: boolean; } | { skip: boolean; });
-
-    export const SingleAnnualClientByPhoneAndYearComponent = (props: SingleAnnualClientByPhoneAndYearComponentProps) => (
-      <ApolloReactComponents.Query<SingleAnnualClientByPhoneAndYearQuery, SingleAnnualClientByPhoneAndYearQueryVariables> query={SingleAnnualClientByPhoneAndYearDocument} {...props} />
-    );
-    
-export type SingleAnnualClientByPhoneAndYearProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<SingleAnnualClientByPhoneAndYearQuery, SingleAnnualClientByPhoneAndYearQueryVariables>
-    } & TChildProps;
-export function withSingleAnnualClientByPhoneAndYear<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  SingleAnnualClientByPhoneAndYearQuery,
-  SingleAnnualClientByPhoneAndYearQueryVariables,
-  SingleAnnualClientByPhoneAndYearProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, SingleAnnualClientByPhoneAndYearQuery, SingleAnnualClientByPhoneAndYearQueryVariables, SingleAnnualClientByPhoneAndYearProps<TChildProps, TDataName>>(SingleAnnualClientByPhoneAndYearDocument, {
-      alias: 'singleAnnualClientByPhoneAndYear',
-      ...operationOptions
-    });
-};
-
-/**
- * __useSingleAnnualClientByPhoneAndYearQuery__
- *
- * To run a query within a React component, call `useSingleAnnualClientByPhoneAndYearQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleAnnualClientByPhoneAndYearQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSingleAnnualClientByPhoneAndYearQuery({
- *   variables: {
- *      clientId: // value for 'clientId'
- *      financialYearId: // value for 'financialYearId'
- *   },
- * });
- */
-export function useSingleAnnualClientByPhoneAndYearQuery(baseOptions: ApolloReactHooks.QueryHookOptions<SingleAnnualClientByPhoneAndYearQuery, SingleAnnualClientByPhoneAndYearQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<SingleAnnualClientByPhoneAndYearQuery, SingleAnnualClientByPhoneAndYearQueryVariables>(SingleAnnualClientByPhoneAndYearDocument, options);
-      }
-export function useSingleAnnualClientByPhoneAndYearLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleAnnualClientByPhoneAndYearQuery, SingleAnnualClientByPhoneAndYearQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<SingleAnnualClientByPhoneAndYearQuery, SingleAnnualClientByPhoneAndYearQueryVariables>(SingleAnnualClientByPhoneAndYearDocument, options);
-        }
-export type SingleAnnualClientByPhoneAndYearQueryHookResult = ReturnType<typeof useSingleAnnualClientByPhoneAndYearQuery>;
-export type SingleAnnualClientByPhoneAndYearLazyQueryHookResult = ReturnType<typeof useSingleAnnualClientByPhoneAndYearLazyQuery>;
-export type SingleAnnualClientByPhoneAndYearQueryResult = Apollo.QueryResult<SingleAnnualClientByPhoneAndYearQuery, SingleAnnualClientByPhoneAndYearQueryVariables>;
-export const AllBonusesDocument = gql`
-    query AllBonuses {
-  bonuses {
-    ...BonusFragment
-  }
-}
-    ${BonusFragmentFragmentDoc}`;
-export type AllBonusesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<AllBonusesQuery, AllBonusesQueryVariables>, 'query'>;
-
-    export const AllBonusesComponent = (props: AllBonusesComponentProps) => (
-      <ApolloReactComponents.Query<AllBonusesQuery, AllBonusesQueryVariables> query={AllBonusesDocument} {...props} />
-    );
-    
-export type AllBonusesProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<AllBonusesQuery, AllBonusesQueryVariables>
-    } & TChildProps;
-export function withAllBonuses<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  AllBonusesQuery,
-  AllBonusesQueryVariables,
-  AllBonusesProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, AllBonusesQuery, AllBonusesQueryVariables, AllBonusesProps<TChildProps, TDataName>>(AllBonusesDocument, {
-      alias: 'allBonuses',
-      ...operationOptions
-    });
-};
-
-/**
- * __useAllBonusesQuery__
- *
- * To run a query within a React component, call `useAllBonusesQuery` and pass it any options that fit your needs.
- * When your component renders, `useAllBonusesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useAllBonusesQuery({
- *   variables: {
- *   },
- * });
- */
-export function useAllBonusesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<AllBonusesQuery, AllBonusesQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<AllBonusesQuery, AllBonusesQueryVariables>(AllBonusesDocument, options);
-      }
-export function useAllBonusesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<AllBonusesQuery, AllBonusesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<AllBonusesQuery, AllBonusesQueryVariables>(AllBonusesDocument, options);
-        }
-export type AllBonusesQueryHookResult = ReturnType<typeof useAllBonusesQuery>;
-export type AllBonusesLazyQueryHookResult = ReturnType<typeof useAllBonusesLazyQuery>;
-export type AllBonusesQueryResult = Apollo.QueryResult<AllBonusesQuery, AllBonusesQueryVariables>;
-export const SingleBonusDocument = gql`
-    query SingleBonus($where: BonusWhereUniqueInput!) {
-  bonus(where: $where) {
-    ...BonusFragment
-  }
-}
-    ${BonusFragmentFragmentDoc}`;
-export type SingleBonusComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<SingleBonusQuery, SingleBonusQueryVariables>, 'query'> & ({ variables: SingleBonusQueryVariables; skip?: boolean; } | { skip: boolean; });
-
-    export const SingleBonusComponent = (props: SingleBonusComponentProps) => (
-      <ApolloReactComponents.Query<SingleBonusQuery, SingleBonusQueryVariables> query={SingleBonusDocument} {...props} />
-    );
-    
-export type SingleBonusProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<SingleBonusQuery, SingleBonusQueryVariables>
-    } & TChildProps;
-export function withSingleBonus<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  SingleBonusQuery,
-  SingleBonusQueryVariables,
-  SingleBonusProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, SingleBonusQuery, SingleBonusQueryVariables, SingleBonusProps<TChildProps, TDataName>>(SingleBonusDocument, {
-      alias: 'singleBonus',
-      ...operationOptions
-    });
-};
-
-/**
- * __useSingleBonusQuery__
- *
- * To run a query within a React component, call `useSingleBonusQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleBonusQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSingleBonusQuery({
- *   variables: {
- *      where: // value for 'where'
- *   },
- * });
- */
-export function useSingleBonusQuery(baseOptions: ApolloReactHooks.QueryHookOptions<SingleBonusQuery, SingleBonusQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<SingleBonusQuery, SingleBonusQueryVariables>(SingleBonusDocument, options);
-      }
-export function useSingleBonusLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleBonusQuery, SingleBonusQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<SingleBonusQuery, SingleBonusQueryVariables>(SingleBonusDocument, options);
-        }
-export type SingleBonusQueryHookResult = ReturnType<typeof useSingleBonusQuery>;
-export type SingleBonusLazyQueryHookResult = ReturnType<typeof useSingleBonusLazyQuery>;
-export type SingleBonusQueryResult = Apollo.QueryResult<SingleBonusQuery, SingleBonusQueryVariables>;
-export const SingleBonusByIdDocument = gql`
-    query SingleBonusById($id: String!) {
-  bonusById(id: $id) {
-    ...BonusFragment
-  }
-}
-    ${BonusFragmentFragmentDoc}`;
-export type SingleBonusByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<SingleBonusByIdQuery, SingleBonusByIdQueryVariables>, 'query'> & ({ variables: SingleBonusByIdQueryVariables; skip?: boolean; } | { skip: boolean; });
-
-    export const SingleBonusByIdComponent = (props: SingleBonusByIdComponentProps) => (
-      <ApolloReactComponents.Query<SingleBonusByIdQuery, SingleBonusByIdQueryVariables> query={SingleBonusByIdDocument} {...props} />
-    );
-    
-export type SingleBonusByIdProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<SingleBonusByIdQuery, SingleBonusByIdQueryVariables>
-    } & TChildProps;
-export function withSingleBonusById<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  SingleBonusByIdQuery,
-  SingleBonusByIdQueryVariables,
-  SingleBonusByIdProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, SingleBonusByIdQuery, SingleBonusByIdQueryVariables, SingleBonusByIdProps<TChildProps, TDataName>>(SingleBonusByIdDocument, {
-      alias: 'singleBonusById',
-      ...operationOptions
-    });
-};
-
-/**
- * __useSingleBonusByIdQuery__
- *
- * To run a query within a React component, call `useSingleBonusByIdQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleBonusByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSingleBonusByIdQuery({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function useSingleBonusByIdQuery(baseOptions: ApolloReactHooks.QueryHookOptions<SingleBonusByIdQuery, SingleBonusByIdQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<SingleBonusByIdQuery, SingleBonusByIdQueryVariables>(SingleBonusByIdDocument, options);
-      }
-export function useSingleBonusByIdLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleBonusByIdQuery, SingleBonusByIdQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<SingleBonusByIdQuery, SingleBonusByIdQueryVariables>(SingleBonusByIdDocument, options);
-        }
-export type SingleBonusByIdQueryHookResult = ReturnType<typeof useSingleBonusByIdQuery>;
-export type SingleBonusByIdLazyQueryHookResult = ReturnType<typeof useSingleBonusByIdLazyQuery>;
-export type SingleBonusByIdQueryResult = Apollo.QueryResult<SingleBonusByIdQuery, SingleBonusByIdQueryVariables>;
-export const AllBranchesDocument = gql`
-    query AllBranches {
-  branches {
-    ...BranchFragment
-  }
-}
-    ${BranchFragmentFragmentDoc}`;
-export type AllBranchesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<AllBranchesQuery, AllBranchesQueryVariables>, 'query'>;
-
-    export const AllBranchesComponent = (props: AllBranchesComponentProps) => (
-      <ApolloReactComponents.Query<AllBranchesQuery, AllBranchesQueryVariables> query={AllBranchesDocument} {...props} />
-    );
-    
-export type AllBranchesProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<AllBranchesQuery, AllBranchesQueryVariables>
-    } & TChildProps;
-export function withAllBranches<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  AllBranchesQuery,
-  AllBranchesQueryVariables,
-  AllBranchesProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, AllBranchesQuery, AllBranchesQueryVariables, AllBranchesProps<TChildProps, TDataName>>(AllBranchesDocument, {
-      alias: 'allBranches',
-      ...operationOptions
-    });
-};
-
-/**
- * __useAllBranchesQuery__
- *
- * To run a query within a React component, call `useAllBranchesQuery` and pass it any options that fit your needs.
- * When your component renders, `useAllBranchesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useAllBranchesQuery({
- *   variables: {
- *   },
- * });
- */
-export function useAllBranchesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<AllBranchesQuery, AllBranchesQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<AllBranchesQuery, AllBranchesQueryVariables>(AllBranchesDocument, options);
-      }
-export function useAllBranchesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<AllBranchesQuery, AllBranchesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<AllBranchesQuery, AllBranchesQueryVariables>(AllBranchesDocument, options);
-        }
-export type AllBranchesQueryHookResult = ReturnType<typeof useAllBranchesQuery>;
-export type AllBranchesLazyQueryHookResult = ReturnType<typeof useAllBranchesLazyQuery>;
-export type AllBranchesQueryResult = Apollo.QueryResult<AllBranchesQuery, AllBranchesQueryVariables>;
-export const SingleBranchDocument = gql`
-    query SingleBranch($where: BranchWhereUniqueInput!) {
-  branch(where: $where) {
-    ...BranchFragment
-  }
-}
-    ${BranchFragmentFragmentDoc}`;
-export type SingleBranchComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<SingleBranchQuery, SingleBranchQueryVariables>, 'query'> & ({ variables: SingleBranchQueryVariables; skip?: boolean; } | { skip: boolean; });
-
-    export const SingleBranchComponent = (props: SingleBranchComponentProps) => (
-      <ApolloReactComponents.Query<SingleBranchQuery, SingleBranchQueryVariables> query={SingleBranchDocument} {...props} />
-    );
-    
-export type SingleBranchProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<SingleBranchQuery, SingleBranchQueryVariables>
-    } & TChildProps;
-export function withSingleBranch<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  SingleBranchQuery,
-  SingleBranchQueryVariables,
-  SingleBranchProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, SingleBranchQuery, SingleBranchQueryVariables, SingleBranchProps<TChildProps, TDataName>>(SingleBranchDocument, {
-      alias: 'singleBranch',
-      ...operationOptions
-    });
-};
-
-/**
- * __useSingleBranchQuery__
- *
- * To run a query within a React component, call `useSingleBranchQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleBranchQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSingleBranchQuery({
- *   variables: {
- *      where: // value for 'where'
- *   },
- * });
- */
-export function useSingleBranchQuery(baseOptions: ApolloReactHooks.QueryHookOptions<SingleBranchQuery, SingleBranchQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<SingleBranchQuery, SingleBranchQueryVariables>(SingleBranchDocument, options);
-      }
-export function useSingleBranchLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleBranchQuery, SingleBranchQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<SingleBranchQuery, SingleBranchQueryVariables>(SingleBranchDocument, options);
-        }
-export type SingleBranchQueryHookResult = ReturnType<typeof useSingleBranchQuery>;
-export type SingleBranchLazyQueryHookResult = ReturnType<typeof useSingleBranchLazyQuery>;
-export type SingleBranchQueryResult = Apollo.QueryResult<SingleBranchQuery, SingleBranchQueryVariables>;
-export const SingleBranchByBranchCodeDocument = gql`
-    query SingleBranchByBranchCode($branchCode: String!) {
-  branchByBranchCode(branchCode: $branchCode) {
-    ...BranchFragment
-  }
-}
-    ${BranchFragmentFragmentDoc}`;
-export type SingleBranchByBranchCodeComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<SingleBranchByBranchCodeQuery, SingleBranchByBranchCodeQueryVariables>, 'query'> & ({ variables: SingleBranchByBranchCodeQueryVariables; skip?: boolean; } | { skip: boolean; });
-
-    export const SingleBranchByBranchCodeComponent = (props: SingleBranchByBranchCodeComponentProps) => (
-      <ApolloReactComponents.Query<SingleBranchByBranchCodeQuery, SingleBranchByBranchCodeQueryVariables> query={SingleBranchByBranchCodeDocument} {...props} />
-    );
-    
-export type SingleBranchByBranchCodeProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<SingleBranchByBranchCodeQuery, SingleBranchByBranchCodeQueryVariables>
-    } & TChildProps;
-export function withSingleBranchByBranchCode<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  SingleBranchByBranchCodeQuery,
-  SingleBranchByBranchCodeQueryVariables,
-  SingleBranchByBranchCodeProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, SingleBranchByBranchCodeQuery, SingleBranchByBranchCodeQueryVariables, SingleBranchByBranchCodeProps<TChildProps, TDataName>>(SingleBranchByBranchCodeDocument, {
-      alias: 'singleBranchByBranchCode',
-      ...operationOptions
-    });
-};
-
-/**
- * __useSingleBranchByBranchCodeQuery__
- *
- * To run a query within a React component, call `useSingleBranchByBranchCodeQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleBranchByBranchCodeQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSingleBranchByBranchCodeQuery({
- *   variables: {
- *      branchCode: // value for 'branchCode'
- *   },
- * });
- */
-export function useSingleBranchByBranchCodeQuery(baseOptions: ApolloReactHooks.QueryHookOptions<SingleBranchByBranchCodeQuery, SingleBranchByBranchCodeQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<SingleBranchByBranchCodeQuery, SingleBranchByBranchCodeQueryVariables>(SingleBranchByBranchCodeDocument, options);
-      }
-export function useSingleBranchByBranchCodeLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleBranchByBranchCodeQuery, SingleBranchByBranchCodeQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<SingleBranchByBranchCodeQuery, SingleBranchByBranchCodeQueryVariables>(SingleBranchByBranchCodeDocument, options);
-        }
-export type SingleBranchByBranchCodeQueryHookResult = ReturnType<typeof useSingleBranchByBranchCodeQuery>;
-export type SingleBranchByBranchCodeLazyQueryHookResult = ReturnType<typeof useSingleBranchByBranchCodeLazyQuery>;
-export type SingleBranchByBranchCodeQueryResult = Apollo.QueryResult<SingleBranchByBranchCodeQuery, SingleBranchByBranchCodeQueryVariables>;
-export const AllBranchEmployeesDocument = gql`
-    query AllBranchEmployees {
-  branchEmployees {
-    ...BranchEmployeeFragment
-  }
-}
-    ${BranchEmployeeFragmentFragmentDoc}`;
-export type AllBranchEmployeesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<AllBranchEmployeesQuery, AllBranchEmployeesQueryVariables>, 'query'>;
-
-    export const AllBranchEmployeesComponent = (props: AllBranchEmployeesComponentProps) => (
-      <ApolloReactComponents.Query<AllBranchEmployeesQuery, AllBranchEmployeesQueryVariables> query={AllBranchEmployeesDocument} {...props} />
-    );
-    
-export type AllBranchEmployeesProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<AllBranchEmployeesQuery, AllBranchEmployeesQueryVariables>
-    } & TChildProps;
-export function withAllBranchEmployees<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  AllBranchEmployeesQuery,
-  AllBranchEmployeesQueryVariables,
-  AllBranchEmployeesProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, AllBranchEmployeesQuery, AllBranchEmployeesQueryVariables, AllBranchEmployeesProps<TChildProps, TDataName>>(AllBranchEmployeesDocument, {
-      alias: 'allBranchEmployees',
-      ...operationOptions
-    });
-};
-
-/**
- * __useAllBranchEmployeesQuery__
- *
- * To run a query within a React component, call `useAllBranchEmployeesQuery` and pass it any options that fit your needs.
- * When your component renders, `useAllBranchEmployeesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useAllBranchEmployeesQuery({
- *   variables: {
- *   },
- * });
- */
-export function useAllBranchEmployeesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<AllBranchEmployeesQuery, AllBranchEmployeesQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<AllBranchEmployeesQuery, AllBranchEmployeesQueryVariables>(AllBranchEmployeesDocument, options);
-      }
-export function useAllBranchEmployeesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<AllBranchEmployeesQuery, AllBranchEmployeesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<AllBranchEmployeesQuery, AllBranchEmployeesQueryVariables>(AllBranchEmployeesDocument, options);
-        }
-export type AllBranchEmployeesQueryHookResult = ReturnType<typeof useAllBranchEmployeesQuery>;
-export type AllBranchEmployeesLazyQueryHookResult = ReturnType<typeof useAllBranchEmployeesLazyQuery>;
-export type AllBranchEmployeesQueryResult = Apollo.QueryResult<AllBranchEmployeesQuery, AllBranchEmployeesQueryVariables>;
-export const SingleBranchEmployeeDocument = gql`
-    query SingleBranchEmployee($where: BranchEmployeeWhereUniqueInput!) {
-  branchEmployee(where: $where) {
-    ...BranchEmployeeFragment
-  }
-}
-    ${BranchEmployeeFragmentFragmentDoc}`;
-export type SingleBranchEmployeeComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<SingleBranchEmployeeQuery, SingleBranchEmployeeQueryVariables>, 'query'> & ({ variables: SingleBranchEmployeeQueryVariables; skip?: boolean; } | { skip: boolean; });
-
-    export const SingleBranchEmployeeComponent = (props: SingleBranchEmployeeComponentProps) => (
-      <ApolloReactComponents.Query<SingleBranchEmployeeQuery, SingleBranchEmployeeQueryVariables> query={SingleBranchEmployeeDocument} {...props} />
-    );
-    
-export type SingleBranchEmployeeProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<SingleBranchEmployeeQuery, SingleBranchEmployeeQueryVariables>
-    } & TChildProps;
-export function withSingleBranchEmployee<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  SingleBranchEmployeeQuery,
-  SingleBranchEmployeeQueryVariables,
-  SingleBranchEmployeeProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, SingleBranchEmployeeQuery, SingleBranchEmployeeQueryVariables, SingleBranchEmployeeProps<TChildProps, TDataName>>(SingleBranchEmployeeDocument, {
-      alias: 'singleBranchEmployee',
-      ...operationOptions
-    });
-};
-
-/**
- * __useSingleBranchEmployeeQuery__
- *
- * To run a query within a React component, call `useSingleBranchEmployeeQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleBranchEmployeeQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSingleBranchEmployeeQuery({
- *   variables: {
- *      where: // value for 'where'
- *   },
- * });
- */
-export function useSingleBranchEmployeeQuery(baseOptions: ApolloReactHooks.QueryHookOptions<SingleBranchEmployeeQuery, SingleBranchEmployeeQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<SingleBranchEmployeeQuery, SingleBranchEmployeeQueryVariables>(SingleBranchEmployeeDocument, options);
-      }
-export function useSingleBranchEmployeeLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleBranchEmployeeQuery, SingleBranchEmployeeQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<SingleBranchEmployeeQuery, SingleBranchEmployeeQueryVariables>(SingleBranchEmployeeDocument, options);
-        }
-export type SingleBranchEmployeeQueryHookResult = ReturnType<typeof useSingleBranchEmployeeQuery>;
-export type SingleBranchEmployeeLazyQueryHookResult = ReturnType<typeof useSingleBranchEmployeeLazyQuery>;
-export type SingleBranchEmployeeQueryResult = Apollo.QueryResult<SingleBranchEmployeeQuery, SingleBranchEmployeeQueryVariables>;
-export const SingleBranchEmployeeByIdDocument = gql`
-    query SingleBranchEmployeeById($id: String!) {
-  branchEmployeeById(id: $id) {
-    ...BranchEmployeeFragment
-  }
-}
-    ${BranchEmployeeFragmentFragmentDoc}`;
-export type SingleBranchEmployeeByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<SingleBranchEmployeeByIdQuery, SingleBranchEmployeeByIdQueryVariables>, 'query'> & ({ variables: SingleBranchEmployeeByIdQueryVariables; skip?: boolean; } | { skip: boolean; });
-
-    export const SingleBranchEmployeeByIdComponent = (props: SingleBranchEmployeeByIdComponentProps) => (
-      <ApolloReactComponents.Query<SingleBranchEmployeeByIdQuery, SingleBranchEmployeeByIdQueryVariables> query={SingleBranchEmployeeByIdDocument} {...props} />
-    );
-    
-export type SingleBranchEmployeeByIdProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<SingleBranchEmployeeByIdQuery, SingleBranchEmployeeByIdQueryVariables>
-    } & TChildProps;
-export function withSingleBranchEmployeeById<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  SingleBranchEmployeeByIdQuery,
-  SingleBranchEmployeeByIdQueryVariables,
-  SingleBranchEmployeeByIdProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, SingleBranchEmployeeByIdQuery, SingleBranchEmployeeByIdQueryVariables, SingleBranchEmployeeByIdProps<TChildProps, TDataName>>(SingleBranchEmployeeByIdDocument, {
-      alias: 'singleBranchEmployeeById',
-      ...operationOptions
-    });
-};
-
-/**
- * __useSingleBranchEmployeeByIdQuery__
- *
- * To run a query within a React component, call `useSingleBranchEmployeeByIdQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleBranchEmployeeByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSingleBranchEmployeeByIdQuery({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function useSingleBranchEmployeeByIdQuery(baseOptions: ApolloReactHooks.QueryHookOptions<SingleBranchEmployeeByIdQuery, SingleBranchEmployeeByIdQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<SingleBranchEmployeeByIdQuery, SingleBranchEmployeeByIdQueryVariables>(SingleBranchEmployeeByIdDocument, options);
-      }
-export function useSingleBranchEmployeeByIdLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleBranchEmployeeByIdQuery, SingleBranchEmployeeByIdQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<SingleBranchEmployeeByIdQuery, SingleBranchEmployeeByIdQueryVariables>(SingleBranchEmployeeByIdDocument, options);
-        }
-export type SingleBranchEmployeeByIdQueryHookResult = ReturnType<typeof useSingleBranchEmployeeByIdQuery>;
-export type SingleBranchEmployeeByIdLazyQueryHookResult = ReturnType<typeof useSingleBranchEmployeeByIdLazyQuery>;
-export type SingleBranchEmployeeByIdQueryResult = Apollo.QueryResult<SingleBranchEmployeeByIdQuery, SingleBranchEmployeeByIdQueryVariables>;
-export const SingleBranchEmployeeByEmployeeIdAndBranchIdDocument = gql`
-    query SingleBranchEmployeeByEmployeeIdAndBranchId($employeeId: String!, $branchId: String!) {
-  branchEmployeeByEmplIdAndBranchId(employeeId: $employeeId, branchId: $branchId) {
-    ...BranchEmployeeFragment
-  }
-}
-    ${BranchEmployeeFragmentFragmentDoc}`;
-export type SingleBranchEmployeeByEmployeeIdAndBranchIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<SingleBranchEmployeeByEmployeeIdAndBranchIdQuery, SingleBranchEmployeeByEmployeeIdAndBranchIdQueryVariables>, 'query'> & ({ variables: SingleBranchEmployeeByEmployeeIdAndBranchIdQueryVariables; skip?: boolean; } | { skip: boolean; });
-
-    export const SingleBranchEmployeeByEmployeeIdAndBranchIdComponent = (props: SingleBranchEmployeeByEmployeeIdAndBranchIdComponentProps) => (
-      <ApolloReactComponents.Query<SingleBranchEmployeeByEmployeeIdAndBranchIdQuery, SingleBranchEmployeeByEmployeeIdAndBranchIdQueryVariables> query={SingleBranchEmployeeByEmployeeIdAndBranchIdDocument} {...props} />
-    );
-    
-export type SingleBranchEmployeeByEmployeeIdAndBranchIdProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<SingleBranchEmployeeByEmployeeIdAndBranchIdQuery, SingleBranchEmployeeByEmployeeIdAndBranchIdQueryVariables>
-    } & TChildProps;
-export function withSingleBranchEmployeeByEmployeeIdAndBranchId<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  SingleBranchEmployeeByEmployeeIdAndBranchIdQuery,
-  SingleBranchEmployeeByEmployeeIdAndBranchIdQueryVariables,
-  SingleBranchEmployeeByEmployeeIdAndBranchIdProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, SingleBranchEmployeeByEmployeeIdAndBranchIdQuery, SingleBranchEmployeeByEmployeeIdAndBranchIdQueryVariables, SingleBranchEmployeeByEmployeeIdAndBranchIdProps<TChildProps, TDataName>>(SingleBranchEmployeeByEmployeeIdAndBranchIdDocument, {
-      alias: 'singleBranchEmployeeByEmployeeIdAndBranchId',
-      ...operationOptions
-    });
-};
-
-/**
- * __useSingleBranchEmployeeByEmployeeIdAndBranchIdQuery__
- *
- * To run a query within a React component, call `useSingleBranchEmployeeByEmployeeIdAndBranchIdQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleBranchEmployeeByEmployeeIdAndBranchIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSingleBranchEmployeeByEmployeeIdAndBranchIdQuery({
- *   variables: {
- *      employeeId: // value for 'employeeId'
- *      branchId: // value for 'branchId'
- *   },
- * });
- */
-export function useSingleBranchEmployeeByEmployeeIdAndBranchIdQuery(baseOptions: ApolloReactHooks.QueryHookOptions<SingleBranchEmployeeByEmployeeIdAndBranchIdQuery, SingleBranchEmployeeByEmployeeIdAndBranchIdQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<SingleBranchEmployeeByEmployeeIdAndBranchIdQuery, SingleBranchEmployeeByEmployeeIdAndBranchIdQueryVariables>(SingleBranchEmployeeByEmployeeIdAndBranchIdDocument, options);
-      }
-export function useSingleBranchEmployeeByEmployeeIdAndBranchIdLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleBranchEmployeeByEmployeeIdAndBranchIdQuery, SingleBranchEmployeeByEmployeeIdAndBranchIdQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<SingleBranchEmployeeByEmployeeIdAndBranchIdQuery, SingleBranchEmployeeByEmployeeIdAndBranchIdQueryVariables>(SingleBranchEmployeeByEmployeeIdAndBranchIdDocument, options);
-        }
-export type SingleBranchEmployeeByEmployeeIdAndBranchIdQueryHookResult = ReturnType<typeof useSingleBranchEmployeeByEmployeeIdAndBranchIdQuery>;
-export type SingleBranchEmployeeByEmployeeIdAndBranchIdLazyQueryHookResult = ReturnType<typeof useSingleBranchEmployeeByEmployeeIdAndBranchIdLazyQuery>;
-export type SingleBranchEmployeeByEmployeeIdAndBranchIdQueryResult = Apollo.QueryResult<SingleBranchEmployeeByEmployeeIdAndBranchIdQuery, SingleBranchEmployeeByEmployeeIdAndBranchIdQueryVariables>;
 export const AllCartsDocument = gql`
     query AllCarts {
   carts {
@@ -9406,64 +5539,61 @@ export function useSingleCartByIdLazyQuery(baseOptions?: ApolloReactHooks.LazyQu
 export type SingleCartByIdQueryHookResult = ReturnType<typeof useSingleCartByIdQuery>;
 export type SingleCartByIdLazyQueryHookResult = ReturnType<typeof useSingleCartByIdLazyQuery>;
 export type SingleCartByIdQueryResult = Apollo.QueryResult<SingleCartByIdQuery, SingleCartByIdQueryVariables>;
-export const CartByAnnualClientIdAndEmployeeIdDocument = gql`
-    query cartByAnnualClientIdAndEmployeeId($annualClientId: String!, $annualBranchEmployeeId: String!) {
-  cartByAnnualClientIdAndEmplId(
-    annualClientId: $annualClientId
-    annualBranchEmployeeId: $annualBranchEmployeeId
-  ) {
+export const CartByClientIdAndEmployeeIdDocument = gql`
+    query cartByClientIdAndEmployeeId($clientId: String!, $employeeId: String!) {
+  cartByClientIdAndEmplId(clientId: $clientId, employeeId: $employeeId) {
     ...CartFragment
   }
 }
     ${CartFragmentFragmentDoc}`;
-export type CartByAnnualClientIdAndEmployeeIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<CartByAnnualClientIdAndEmployeeIdQuery, CartByAnnualClientIdAndEmployeeIdQueryVariables>, 'query'> & ({ variables: CartByAnnualClientIdAndEmployeeIdQueryVariables; skip?: boolean; } | { skip: boolean; });
+export type CartByClientIdAndEmployeeIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<CartByClientIdAndEmployeeIdQuery, CartByClientIdAndEmployeeIdQueryVariables>, 'query'> & ({ variables: CartByClientIdAndEmployeeIdQueryVariables; skip?: boolean; } | { skip: boolean; });
 
-    export const CartByAnnualClientIdAndEmployeeIdComponent = (props: CartByAnnualClientIdAndEmployeeIdComponentProps) => (
-      <ApolloReactComponents.Query<CartByAnnualClientIdAndEmployeeIdQuery, CartByAnnualClientIdAndEmployeeIdQueryVariables> query={CartByAnnualClientIdAndEmployeeIdDocument} {...props} />
+    export const CartByClientIdAndEmployeeIdComponent = (props: CartByClientIdAndEmployeeIdComponentProps) => (
+      <ApolloReactComponents.Query<CartByClientIdAndEmployeeIdQuery, CartByClientIdAndEmployeeIdQueryVariables> query={CartByClientIdAndEmployeeIdDocument} {...props} />
     );
     
-export type CartByAnnualClientIdAndEmployeeIdProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<CartByAnnualClientIdAndEmployeeIdQuery, CartByAnnualClientIdAndEmployeeIdQueryVariables>
+export type CartByClientIdAndEmployeeIdProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<CartByClientIdAndEmployeeIdQuery, CartByClientIdAndEmployeeIdQueryVariables>
     } & TChildProps;
-export function withCartByAnnualClientIdAndEmployeeId<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+export function withCartByClientIdAndEmployeeId<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
   TProps,
-  CartByAnnualClientIdAndEmployeeIdQuery,
-  CartByAnnualClientIdAndEmployeeIdQueryVariables,
-  CartByAnnualClientIdAndEmployeeIdProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, CartByAnnualClientIdAndEmployeeIdQuery, CartByAnnualClientIdAndEmployeeIdQueryVariables, CartByAnnualClientIdAndEmployeeIdProps<TChildProps, TDataName>>(CartByAnnualClientIdAndEmployeeIdDocument, {
-      alias: 'cartByAnnualClientIdAndEmployeeId',
+  CartByClientIdAndEmployeeIdQuery,
+  CartByClientIdAndEmployeeIdQueryVariables,
+  CartByClientIdAndEmployeeIdProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, CartByClientIdAndEmployeeIdQuery, CartByClientIdAndEmployeeIdQueryVariables, CartByClientIdAndEmployeeIdProps<TChildProps, TDataName>>(CartByClientIdAndEmployeeIdDocument, {
+      alias: 'cartByClientIdAndEmployeeId',
       ...operationOptions
     });
 };
 
 /**
- * __useCartByAnnualClientIdAndEmployeeIdQuery__
+ * __useCartByClientIdAndEmployeeIdQuery__
  *
- * To run a query within a React component, call `useCartByAnnualClientIdAndEmployeeIdQuery` and pass it any options that fit your needs.
- * When your component renders, `useCartByAnnualClientIdAndEmployeeIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useCartByClientIdAndEmployeeIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCartByClientIdAndEmployeeIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useCartByAnnualClientIdAndEmployeeIdQuery({
+ * const { data, loading, error } = useCartByClientIdAndEmployeeIdQuery({
  *   variables: {
- *      annualClientId: // value for 'annualClientId'
- *      annualBranchEmployeeId: // value for 'annualBranchEmployeeId'
+ *      clientId: // value for 'clientId'
+ *      employeeId: // value for 'employeeId'
  *   },
  * });
  */
-export function useCartByAnnualClientIdAndEmployeeIdQuery(baseOptions: ApolloReactHooks.QueryHookOptions<CartByAnnualClientIdAndEmployeeIdQuery, CartByAnnualClientIdAndEmployeeIdQueryVariables>) {
+export function useCartByClientIdAndEmployeeIdQuery(baseOptions: ApolloReactHooks.QueryHookOptions<CartByClientIdAndEmployeeIdQuery, CartByClientIdAndEmployeeIdQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<CartByAnnualClientIdAndEmployeeIdQuery, CartByAnnualClientIdAndEmployeeIdQueryVariables>(CartByAnnualClientIdAndEmployeeIdDocument, options);
+        return ApolloReactHooks.useQuery<CartByClientIdAndEmployeeIdQuery, CartByClientIdAndEmployeeIdQueryVariables>(CartByClientIdAndEmployeeIdDocument, options);
       }
-export function useCartByAnnualClientIdAndEmployeeIdLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<CartByAnnualClientIdAndEmployeeIdQuery, CartByAnnualClientIdAndEmployeeIdQueryVariables>) {
+export function useCartByClientIdAndEmployeeIdLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<CartByClientIdAndEmployeeIdQuery, CartByClientIdAndEmployeeIdQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<CartByAnnualClientIdAndEmployeeIdQuery, CartByAnnualClientIdAndEmployeeIdQueryVariables>(CartByAnnualClientIdAndEmployeeIdDocument, options);
+          return ApolloReactHooks.useLazyQuery<CartByClientIdAndEmployeeIdQuery, CartByClientIdAndEmployeeIdQueryVariables>(CartByClientIdAndEmployeeIdDocument, options);
         }
-export type CartByAnnualClientIdAndEmployeeIdQueryHookResult = ReturnType<typeof useCartByAnnualClientIdAndEmployeeIdQuery>;
-export type CartByAnnualClientIdAndEmployeeIdLazyQueryHookResult = ReturnType<typeof useCartByAnnualClientIdAndEmployeeIdLazyQuery>;
-export type CartByAnnualClientIdAndEmployeeIdQueryResult = Apollo.QueryResult<CartByAnnualClientIdAndEmployeeIdQuery, CartByAnnualClientIdAndEmployeeIdQueryVariables>;
+export type CartByClientIdAndEmployeeIdQueryHookResult = ReturnType<typeof useCartByClientIdAndEmployeeIdQuery>;
+export type CartByClientIdAndEmployeeIdLazyQueryHookResult = ReturnType<typeof useCartByClientIdAndEmployeeIdLazyQuery>;
+export type CartByClientIdAndEmployeeIdQueryResult = Apollo.QueryResult<CartByClientIdAndEmployeeIdQuery, CartByClientIdAndEmployeeIdQueryVariables>;
 export const AllCategoriesDocument = gql`
     query AllCategories {
   categories {
@@ -10645,167 +6775,6 @@ export function useRecentSingleFinancialYearLazyQuery(baseOptions?: ApolloReactH
 export type RecentSingleFinancialYearQueryHookResult = ReturnType<typeof useRecentSingleFinancialYearQuery>;
 export type RecentSingleFinancialYearLazyQueryHookResult = ReturnType<typeof useRecentSingleFinancialYearLazyQuery>;
 export type RecentSingleFinancialYearQueryResult = Apollo.QueryResult<RecentSingleFinancialYearQuery, RecentSingleFinancialYearQueryVariables>;
-export const AllInventorysDocument = gql`
-    query AllInventorys {
-  inventories {
-    ...InventoryFragment
-  }
-}
-    ${InventoryFragmentFragmentDoc}`;
-export type AllInventorysComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<AllInventorysQuery, AllInventorysQueryVariables>, 'query'>;
-
-    export const AllInventorysComponent = (props: AllInventorysComponentProps) => (
-      <ApolloReactComponents.Query<AllInventorysQuery, AllInventorysQueryVariables> query={AllInventorysDocument} {...props} />
-    );
-    
-export type AllInventorysProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<AllInventorysQuery, AllInventorysQueryVariables>
-    } & TChildProps;
-export function withAllInventorys<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  AllInventorysQuery,
-  AllInventorysQueryVariables,
-  AllInventorysProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, AllInventorysQuery, AllInventorysQueryVariables, AllInventorysProps<TChildProps, TDataName>>(AllInventorysDocument, {
-      alias: 'allInventorys',
-      ...operationOptions
-    });
-};
-
-/**
- * __useAllInventorysQuery__
- *
- * To run a query within a React component, call `useAllInventorysQuery` and pass it any options that fit your needs.
- * When your component renders, `useAllInventorysQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useAllInventorysQuery({
- *   variables: {
- *   },
- * });
- */
-export function useAllInventorysQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<AllInventorysQuery, AllInventorysQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<AllInventorysQuery, AllInventorysQueryVariables>(AllInventorysDocument, options);
-      }
-export function useAllInventorysLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<AllInventorysQuery, AllInventorysQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<AllInventorysQuery, AllInventorysQueryVariables>(AllInventorysDocument, options);
-        }
-export type AllInventorysQueryHookResult = ReturnType<typeof useAllInventorysQuery>;
-export type AllInventorysLazyQueryHookResult = ReturnType<typeof useAllInventorysLazyQuery>;
-export type AllInventorysQueryResult = Apollo.QueryResult<AllInventorysQuery, AllInventorysQueryVariables>;
-export const SingleInventoryDocument = gql`
-    query SingleInventory($where: InventoryWhereUniqueInput!) {
-  inventory(where: $where) {
-    ...InventoryFragment
-  }
-}
-    ${InventoryFragmentFragmentDoc}`;
-export type SingleInventoryComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<SingleInventoryQuery, SingleInventoryQueryVariables>, 'query'> & ({ variables: SingleInventoryQueryVariables; skip?: boolean; } | { skip: boolean; });
-
-    export const SingleInventoryComponent = (props: SingleInventoryComponentProps) => (
-      <ApolloReactComponents.Query<SingleInventoryQuery, SingleInventoryQueryVariables> query={SingleInventoryDocument} {...props} />
-    );
-    
-export type SingleInventoryProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<SingleInventoryQuery, SingleInventoryQueryVariables>
-    } & TChildProps;
-export function withSingleInventory<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  SingleInventoryQuery,
-  SingleInventoryQueryVariables,
-  SingleInventoryProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, SingleInventoryQuery, SingleInventoryQueryVariables, SingleInventoryProps<TChildProps, TDataName>>(SingleInventoryDocument, {
-      alias: 'singleInventory',
-      ...operationOptions
-    });
-};
-
-/**
- * __useSingleInventoryQuery__
- *
- * To run a query within a React component, call `useSingleInventoryQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleInventoryQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSingleInventoryQuery({
- *   variables: {
- *      where: // value for 'where'
- *   },
- * });
- */
-export function useSingleInventoryQuery(baseOptions: ApolloReactHooks.QueryHookOptions<SingleInventoryQuery, SingleInventoryQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<SingleInventoryQuery, SingleInventoryQueryVariables>(SingleInventoryDocument, options);
-      }
-export function useSingleInventoryLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleInventoryQuery, SingleInventoryQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<SingleInventoryQuery, SingleInventoryQueryVariables>(SingleInventoryDocument, options);
-        }
-export type SingleInventoryQueryHookResult = ReturnType<typeof useSingleInventoryQuery>;
-export type SingleInventoryLazyQueryHookResult = ReturnType<typeof useSingleInventoryLazyQuery>;
-export type SingleInventoryQueryResult = Apollo.QueryResult<SingleInventoryQuery, SingleInventoryQueryVariables>;
-export const SingleInventoryByIdDocument = gql`
-    query SingleInventoryById($id: String!) {
-  inventoryById(id: $id) {
-    ...InventoryFragment
-  }
-}
-    ${InventoryFragmentFragmentDoc}`;
-export type SingleInventoryByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<SingleInventoryByIdQuery, SingleInventoryByIdQueryVariables>, 'query'> & ({ variables: SingleInventoryByIdQueryVariables; skip?: boolean; } | { skip: boolean; });
-
-    export const SingleInventoryByIdComponent = (props: SingleInventoryByIdComponentProps) => (
-      <ApolloReactComponents.Query<SingleInventoryByIdQuery, SingleInventoryByIdQueryVariables> query={SingleInventoryByIdDocument} {...props} />
-    );
-    
-export type SingleInventoryByIdProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<SingleInventoryByIdQuery, SingleInventoryByIdQueryVariables>
-    } & TChildProps;
-export function withSingleInventoryById<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  SingleInventoryByIdQuery,
-  SingleInventoryByIdQueryVariables,
-  SingleInventoryByIdProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, SingleInventoryByIdQuery, SingleInventoryByIdQueryVariables, SingleInventoryByIdProps<TChildProps, TDataName>>(SingleInventoryByIdDocument, {
-      alias: 'singleInventoryById',
-      ...operationOptions
-    });
-};
-
-/**
- * __useSingleInventoryByIdQuery__
- *
- * To run a query within a React component, call `useSingleInventoryByIdQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleInventoryByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSingleInventoryByIdQuery({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function useSingleInventoryByIdQuery(baseOptions: ApolloReactHooks.QueryHookOptions<SingleInventoryByIdQuery, SingleInventoryByIdQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useQuery<SingleInventoryByIdQuery, SingleInventoryByIdQueryVariables>(SingleInventoryByIdDocument, options);
-      }
-export function useSingleInventoryByIdLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleInventoryByIdQuery, SingleInventoryByIdQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return ApolloReactHooks.useLazyQuery<SingleInventoryByIdQuery, SingleInventoryByIdQueryVariables>(SingleInventoryByIdDocument, options);
-        }
-export type SingleInventoryByIdQueryHookResult = ReturnType<typeof useSingleInventoryByIdQuery>;
-export type SingleInventoryByIdLazyQueryHookResult = ReturnType<typeof useSingleInventoryByIdLazyQuery>;
-export type SingleInventoryByIdQueryResult = Apollo.QueryResult<SingleInventoryByIdQuery, SingleInventoryByIdQueryVariables>;
 export const AllOrderDetailDocument = gql`
     query AllOrderDetail {
   orderDetails {
@@ -11020,6 +6989,167 @@ export function useSingleOrderLazyQuery(baseOptions?: ApolloReactHooks.LazyQuery
 export type SingleOrderQueryHookResult = ReturnType<typeof useSingleOrderQuery>;
 export type SingleOrderLazyQueryHookResult = ReturnType<typeof useSingleOrderLazyQuery>;
 export type SingleOrderQueryResult = Apollo.QueryResult<SingleOrderQuery, SingleOrderQueryVariables>;
+export const AllOrderTypesDocument = gql`
+    query AllOrderTypes {
+  orderTypes {
+    ...OrderTypeFragment
+  }
+}
+    ${OrderTypeFragmentFragmentDoc}`;
+export type AllOrderTypesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<AllOrderTypesQuery, AllOrderTypesQueryVariables>, 'query'>;
+
+    export const AllOrderTypesComponent = (props: AllOrderTypesComponentProps) => (
+      <ApolloReactComponents.Query<AllOrderTypesQuery, AllOrderTypesQueryVariables> query={AllOrderTypesDocument} {...props} />
+    );
+    
+export type AllOrderTypesProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<AllOrderTypesQuery, AllOrderTypesQueryVariables>
+    } & TChildProps;
+export function withAllOrderTypes<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  AllOrderTypesQuery,
+  AllOrderTypesQueryVariables,
+  AllOrderTypesProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, AllOrderTypesQuery, AllOrderTypesQueryVariables, AllOrderTypesProps<TChildProps, TDataName>>(AllOrderTypesDocument, {
+      alias: 'allOrderTypes',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useAllOrderTypesQuery__
+ *
+ * To run a query within a React component, call `useAllOrderTypesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAllOrderTypesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAllOrderTypesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAllOrderTypesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<AllOrderTypesQuery, AllOrderTypesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<AllOrderTypesQuery, AllOrderTypesQueryVariables>(AllOrderTypesDocument, options);
+      }
+export function useAllOrderTypesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<AllOrderTypesQuery, AllOrderTypesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<AllOrderTypesQuery, AllOrderTypesQueryVariables>(AllOrderTypesDocument, options);
+        }
+export type AllOrderTypesQueryHookResult = ReturnType<typeof useAllOrderTypesQuery>;
+export type AllOrderTypesLazyQueryHookResult = ReturnType<typeof useAllOrderTypesLazyQuery>;
+export type AllOrderTypesQueryResult = Apollo.QueryResult<AllOrderTypesQuery, AllOrderTypesQueryVariables>;
+export const SingleOrderTypeDocument = gql`
+    query SingleOrderType($where: OrderTypeWhereUniqueInput!) {
+  orderType(where: $where) {
+    ...OrderTypeFragment
+  }
+}
+    ${OrderTypeFragmentFragmentDoc}`;
+export type SingleOrderTypeComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<SingleOrderTypeQuery, SingleOrderTypeQueryVariables>, 'query'> & ({ variables: SingleOrderTypeQueryVariables; skip?: boolean; } | { skip: boolean; });
+
+    export const SingleOrderTypeComponent = (props: SingleOrderTypeComponentProps) => (
+      <ApolloReactComponents.Query<SingleOrderTypeQuery, SingleOrderTypeQueryVariables> query={SingleOrderTypeDocument} {...props} />
+    );
+    
+export type SingleOrderTypeProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<SingleOrderTypeQuery, SingleOrderTypeQueryVariables>
+    } & TChildProps;
+export function withSingleOrderType<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  SingleOrderTypeQuery,
+  SingleOrderTypeQueryVariables,
+  SingleOrderTypeProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, SingleOrderTypeQuery, SingleOrderTypeQueryVariables, SingleOrderTypeProps<TChildProps, TDataName>>(SingleOrderTypeDocument, {
+      alias: 'singleOrderType',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useSingleOrderTypeQuery__
+ *
+ * To run a query within a React component, call `useSingleOrderTypeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSingleOrderTypeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSingleOrderTypeQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useSingleOrderTypeQuery(baseOptions: ApolloReactHooks.QueryHookOptions<SingleOrderTypeQuery, SingleOrderTypeQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<SingleOrderTypeQuery, SingleOrderTypeQueryVariables>(SingleOrderTypeDocument, options);
+      }
+export function useSingleOrderTypeLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleOrderTypeQuery, SingleOrderTypeQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<SingleOrderTypeQuery, SingleOrderTypeQueryVariables>(SingleOrderTypeDocument, options);
+        }
+export type SingleOrderTypeQueryHookResult = ReturnType<typeof useSingleOrderTypeQuery>;
+export type SingleOrderTypeLazyQueryHookResult = ReturnType<typeof useSingleOrderTypeLazyQuery>;
+export type SingleOrderTypeQueryResult = Apollo.QueryResult<SingleOrderTypeQuery, SingleOrderTypeQueryVariables>;
+export const SingleOrderTypeByIdDocument = gql`
+    query SingleOrderTypeById($id: String!) {
+  orderTypeById(id: $id) {
+    ...OrderTypeFragment
+  }
+}
+    ${OrderTypeFragmentFragmentDoc}`;
+export type SingleOrderTypeByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<SingleOrderTypeByIdQuery, SingleOrderTypeByIdQueryVariables>, 'query'> & ({ variables: SingleOrderTypeByIdQueryVariables; skip?: boolean; } | { skip: boolean; });
+
+    export const SingleOrderTypeByIdComponent = (props: SingleOrderTypeByIdComponentProps) => (
+      <ApolloReactComponents.Query<SingleOrderTypeByIdQuery, SingleOrderTypeByIdQueryVariables> query={SingleOrderTypeByIdDocument} {...props} />
+    );
+    
+export type SingleOrderTypeByIdProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<SingleOrderTypeByIdQuery, SingleOrderTypeByIdQueryVariables>
+    } & TChildProps;
+export function withSingleOrderTypeById<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  SingleOrderTypeByIdQuery,
+  SingleOrderTypeByIdQueryVariables,
+  SingleOrderTypeByIdProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, SingleOrderTypeByIdQuery, SingleOrderTypeByIdQueryVariables, SingleOrderTypeByIdProps<TChildProps, TDataName>>(SingleOrderTypeByIdDocument, {
+      alias: 'singleOrderTypeById',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useSingleOrderTypeByIdQuery__
+ *
+ * To run a query within a React component, call `useSingleOrderTypeByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSingleOrderTypeByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSingleOrderTypeByIdQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useSingleOrderTypeByIdQuery(baseOptions: ApolloReactHooks.QueryHookOptions<SingleOrderTypeByIdQuery, SingleOrderTypeByIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<SingleOrderTypeByIdQuery, SingleOrderTypeByIdQueryVariables>(SingleOrderTypeByIdDocument, options);
+      }
+export function useSingleOrderTypeByIdLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleOrderTypeByIdQuery, SingleOrderTypeByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<SingleOrderTypeByIdQuery, SingleOrderTypeByIdQueryVariables>(SingleOrderTypeByIdDocument, options);
+        }
+export type SingleOrderTypeByIdQueryHookResult = ReturnType<typeof useSingleOrderTypeByIdQuery>;
+export type SingleOrderTypeByIdLazyQueryHookResult = ReturnType<typeof useSingleOrderTypeByIdLazyQuery>;
+export type SingleOrderTypeByIdQueryResult = Apollo.QueryResult<SingleOrderTypeByIdQuery, SingleOrderTypeByIdQueryVariables>;
 export const AllProductsDocument = gql`
     query AllProducts {
   products {
@@ -11313,46 +7443,32 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  AnnualBranchEmployee: ResolverTypeWrapper<AnnualBranchEmployee>;
-  String: ResolverTypeWrapper<Scalars['String']>;
-  Int: ResolverTypeWrapper<Scalars['Int']>;
-  AnnualClient: ResolverTypeWrapper<AnnualClient>;
-  Bonus: ResolverTypeWrapper<Bonus>;
-  Branch: ResolverTypeWrapper<Branch>;
-  BranchEmployee: ResolverTypeWrapper<BranchEmployee>;
   Cart: ResolverTypeWrapper<Cart>;
+  String: ResolverTypeWrapper<Scalars['String']>;
   Float: ResolverTypeWrapper<Scalars['Float']>;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
   Category: ResolverTypeWrapper<Category>;
   Client: ResolverTypeWrapper<Client>;
   Employee: ResolverTypeWrapper<Employee>;
   EmployeeStatus: ResolverTypeWrapper<EmployeeStatus>;
   Finance: ResolverTypeWrapper<Finance>;
   FinancialYear: ResolverTypeWrapper<FinancialYear>;
-  Inventory: ResolverTypeWrapper<Inventory>;
   Order: ResolverTypeWrapper<Order>;
   OrderDetail: ResolverTypeWrapper<OrderDetail>;
+  OrderType: ResolverTypeWrapper<OrderType>;
   Product: ResolverTypeWrapper<Product>;
-  OrderWhereUniqueInput: OrderWhereUniqueInput;
-  CartWhereUniqueInput: CartWhereUniqueInput;
-  BranchEmployeeWhereUniqueInput: BranchEmployeeWhereUniqueInput;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
   ProductWhereUniqueInput: ProductWhereUniqueInput;
-  AnnualBranchEmployeeWhereUniqueInput: AnnualBranchEmployeeWhereUniqueInput;
-  AnnualClientWhereUniqueInput: AnnualClientWhereUniqueInput;
   FinanceWhereUniqueInput: FinanceWhereUniqueInput;
   OrderDetailWhereUniqueInput: OrderDetailWhereUniqueInput;
+  CartWhereUniqueInput: CartWhereUniqueInput;
+  CategoryWhereUniqueInput: CategoryWhereUniqueInput;
   ClientWhereUniqueInput: ClientWhereUniqueInput;
-  BonusWhereUniqueInput: BonusWhereUniqueInput;
-  BranchWhereUniqueInput: BranchWhereUniqueInput;
-  FinancialYearWhereUniqueInput: FinancialYearWhereUniqueInput;
   EmployeeWhereUniqueInput: EmployeeWhereUniqueInput;
   EmployeeStatusWhereUniqueInput: EmployeeStatusWhereUniqueInput;
-  InventoryWhereUniqueInput: InventoryWhereUniqueInput;
-  CategoryWhereUniqueInput: CategoryWhereUniqueInput;
-  AnnualBranchEmployeeCreateInput: AnnualBranchEmployeeCreateInput;
-  AnnualBranchEmployeeUpdateInput: AnnualBranchEmployeeUpdateInput;
-  AnnualClientCreateInput: AnnualClientCreateInput;
-  AnnualClientUpdateInput: AnnualClientUpdateInput;
+  FinancialYearWhereUniqueInput: FinancialYearWhereUniqueInput;
+  OrderWhereUniqueInput: OrderWhereUniqueInput;
+  OrderTypeWhereUniqueInput: OrderTypeWhereUniqueInput;
   CartCreateInput: CartCreateInput;
   CartUpdateInput: CartUpdateInput;
   CategoryCreateInput: CategoryCreateInput;
@@ -11363,12 +7479,8 @@ export type ResolversTypes = {
   OrderDetailUpdateInput: OrderDetailUpdateInput;
   OrderCreateInput: OrderCreateInput;
   OrderUpdateInput: OrderUpdateInput;
-  BonusCreateInput: BonusCreateInput;
-  BonusUpdateInput: BonusUpdateInput;
-  BranchCreateInput: BranchCreateInput;
-  BranchUpdateInput: BranchUpdateInput;
-  BranchEmployeeCreateInput: BranchEmployeeCreateInput;
-  BranchEmployeeUpdateInput: BranchEmployeeUpdateInput;
+  OrderTypeCreateInput: OrderTypeCreateInput;
+  OrderTypeUpdateInput: OrderTypeUpdateInput;
   FinancialYearCreateInput: FinancialYearCreateInput;
   FinancialYearUpdateInput: FinancialYearUpdateInput;
   EmployeeCreateInput: EmployeeCreateInput;
@@ -11377,71 +7489,40 @@ export type ResolversTypes = {
   EmployeeStatusUpdateInput: EmployeeStatusUpdateInput;
   FinanceCreateInput: FinanceCreateInput;
   FinanceUpdateInput: FinanceUpdateInput;
-  InventoryCreateInput: InventoryCreateInput;
-  InventoryUpdateInput: InventoryUpdateInput;
   ProductCreateInput: ProductCreateInput;
   ProductUpdateInput: ProductUpdateInput;
-  OrderCreateNestedManyWithoutAnnualBranchEmployeeInput: OrderCreateNestedManyWithoutAnnualBranchEmployeeInput;
-  CartCreateNestedManyWithoutAnnualBranchEmployeeInput: CartCreateNestedManyWithoutAnnualBranchEmployeeInput;
-  BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput: BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput;
-  FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput: FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput;
-  StringFieldUpdateOperationsInput: StringFieldUpdateOperationsInput;
-  DateTimeFieldUpdateOperationsInput: DateTimeFieldUpdateOperationsInput;
-  OrderUpdateManyWithoutAnnualBranchEmployeeInput: OrderUpdateManyWithoutAnnualBranchEmployeeInput;
-  CartUpdateManyWithoutAnnualBranchEmployeeInput: CartUpdateManyWithoutAnnualBranchEmployeeInput;
-  BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput: BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
-  FinancialYearUpdateOneWithoutAnnBranchEmplsInput: FinancialYearUpdateOneWithoutAnnBranchEmplsInput;
-  OrderCreateNestedManyWithoutAnnualClientInput: OrderCreateNestedManyWithoutAnnualClientInput;
-  CartCreateNestedManyWithoutAnnualClientInput: CartCreateNestedManyWithoutAnnualClientInput;
-  ClientCreateNestedOneWithoutAnnClientsInput: ClientCreateNestedOneWithoutAnnClientsInput;
-  FinancialYearCreateNestedOneWithoutAnnClientsInput: FinancialYearCreateNestedOneWithoutAnnClientsInput;
-  OrderUpdateManyWithoutAnnualClientInput: OrderUpdateManyWithoutAnnualClientInput;
-  CartUpdateManyWithoutAnnualClientInput: CartUpdateManyWithoutAnnualClientInput;
-  ClientUpdateOneWithoutAnnClientsInput: ClientUpdateOneWithoutAnnClientsInput;
-  FinancialYearUpdateOneWithoutAnnClientsInput: FinancialYearUpdateOneWithoutAnnClientsInput;
   ProductCreateNestedOneWithoutCartsInput: ProductCreateNestedOneWithoutCartsInput;
-  AnnualClientCreateNestedOneWithoutCartsInput: AnnualClientCreateNestedOneWithoutCartsInput;
-  AnnualBranchEmployeeCreateNestedOneWithoutCartsInput: AnnualBranchEmployeeCreateNestedOneWithoutCartsInput;
+  ClientCreateNestedOneWithoutCartsInput: ClientCreateNestedOneWithoutCartsInput;
+  EmployeeCreateNestedOneWithoutCartsInput: EmployeeCreateNestedOneWithoutCartsInput;
+  StringFieldUpdateOperationsInput: StringFieldUpdateOperationsInput;
   FloatFieldUpdateOperationsInput: FloatFieldUpdateOperationsInput;
   IntFieldUpdateOperationsInput: IntFieldUpdateOperationsInput;
+  DateTimeFieldUpdateOperationsInput: DateTimeFieldUpdateOperationsInput;
   ProductUpdateOneRequiredWithoutCartsInput: ProductUpdateOneRequiredWithoutCartsInput;
-  AnnualClientUpdateOneWithoutCartsInput: AnnualClientUpdateOneWithoutCartsInput;
-  AnnualBranchEmployeeUpdateOneWithoutCartsInput: AnnualBranchEmployeeUpdateOneWithoutCartsInput;
+  ClientUpdateOneRequiredWithoutCartsInput: ClientUpdateOneRequiredWithoutCartsInput;
+  EmployeeUpdateOneRequiredWithoutCartsInput: EmployeeUpdateOneRequiredWithoutCartsInput;
   ProductCreateNestedManyWithoutCategoryInput: ProductCreateNestedManyWithoutCategoryInput;
   ProductUpdateManyWithoutCategoryInput: ProductUpdateManyWithoutCategoryInput;
-  AnnualClientCreateNestedManyWithoutClientInput: AnnualClientCreateNestedManyWithoutClientInput;
-  AnnualClientUpdateManyWithoutClientInput: AnnualClientUpdateManyWithoutClientInput;
+  CartCreateNestedManyWithoutClientInput: CartCreateNestedManyWithoutClientInput;
+  OrderCreateNestedManyWithoutClientInput: OrderCreateNestedManyWithoutClientInput;
+  CartUpdateManyWithoutClientInput: CartUpdateManyWithoutClientInput;
+  OrderUpdateManyWithoutClientInput: OrderUpdateManyWithoutClientInput;
   OrderCreateNestedOneWithoutOrderDetailsInput: OrderCreateNestedOneWithoutOrderDetailsInput;
   ProductCreateNestedOneWithoutOrderDetailsInput: ProductCreateNestedOneWithoutOrderDetailsInput;
   OrderUpdateOneRequiredWithoutOrderDetailsInput: OrderUpdateOneRequiredWithoutOrderDetailsInput;
   ProductUpdateOneRequiredWithoutOrderDetailsInput: ProductUpdateOneRequiredWithoutOrderDetailsInput;
   OrderDetailCreateNestedManyWithoutOrderInput: OrderDetailCreateNestedManyWithoutOrderInput;
   FinanceCreateNestedManyWithoutOrderInput: FinanceCreateNestedManyWithoutOrderInput;
-  AnnualClientCreateNestedOneWithoutOrdersInput: AnnualClientCreateNestedOneWithoutOrdersInput;
-  AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput: AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput;
+  ClientCreateNestedOneWithoutOrdersInput: ClientCreateNestedOneWithoutOrdersInput;
+  EmployeeCreateNestedOneWithoutOrdersInput: EmployeeCreateNestedOneWithoutOrdersInput;
   OrderDetailUpdateManyWithoutOrderInput: OrderDetailUpdateManyWithoutOrderInput;
   FinanceUpdateManyWithoutOrderInput: FinanceUpdateManyWithoutOrderInput;
-  AnnualClientUpdateOneWithoutOrdersInput: AnnualClientUpdateOneWithoutOrdersInput;
-  AnnualBranchEmployeeUpdateOneWithoutOrdersInput: AnnualBranchEmployeeUpdateOneWithoutOrdersInput;
-  BranchEmployeeCreateNestedManyWithoutBranchInput: BranchEmployeeCreateNestedManyWithoutBranchInput;
-  BranchEmployeeUpdateManyWithoutBranchInput: BranchEmployeeUpdateManyWithoutBranchInput;
-  AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput: AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput;
-  EmployeeCreateNestedOneWithoutBranchEmplsInput: EmployeeCreateNestedOneWithoutBranchEmplsInput;
-  BranchCreateNestedOneWithoutBranchEmplsInput: BranchCreateNestedOneWithoutBranchEmplsInput;
-  EmployeeStatusCreateNestedOneWithoutBranchEmplsInput: EmployeeStatusCreateNestedOneWithoutBranchEmplsInput;
-  AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput: AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput;
-  EmployeeUpdateOneRequiredWithoutBranchEmplsInput: EmployeeUpdateOneRequiredWithoutBranchEmplsInput;
-  BranchUpdateOneRequiredWithoutBranchEmplsInput: BranchUpdateOneRequiredWithoutBranchEmplsInput;
-  EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput: EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput;
-  AnnualBranchEmployeeCreateNestedManyWithoutFinancialYearInput: AnnualBranchEmployeeCreateNestedManyWithoutFinancialYearInput;
-  AnnualClientCreateNestedManyWithoutFinancialYearInput: AnnualClientCreateNestedManyWithoutFinancialYearInput;
-  AnnualBranchEmployeeUpdateManyWithoutFinancialYearInput: AnnualBranchEmployeeUpdateManyWithoutFinancialYearInput;
-  AnnualClientUpdateManyWithoutFinancialYearInput: AnnualClientUpdateManyWithoutFinancialYearInput;
-  BranchEmployeeCreateNestedManyWithoutEmployeeInput: BranchEmployeeCreateNestedManyWithoutEmployeeInput;
-  BranchEmployeeUpdateManyWithoutEmployeeInput: BranchEmployeeUpdateManyWithoutEmployeeInput;
-  BranchEmployeeCreateNestedManyWithoutEmployeeStatusInput: BranchEmployeeCreateNestedManyWithoutEmployeeStatusInput;
-  BranchEmployeeUpdateManyWithoutEmployeeStatusInput: BranchEmployeeUpdateManyWithoutEmployeeStatusInput;
+  ClientUpdateOneRequiredWithoutOrdersInput: ClientUpdateOneRequiredWithoutOrdersInput;
+  EmployeeUpdateOneRequiredWithoutOrdersInput: EmployeeUpdateOneRequiredWithoutOrdersInput;
+  CartCreateNestedManyWithoutEmployeeInput: CartCreateNestedManyWithoutEmployeeInput;
+  OrderCreateNestedManyWithoutEmployeeInput: OrderCreateNestedManyWithoutEmployeeInput;
+  CartUpdateManyWithoutEmployeeInput: CartUpdateManyWithoutEmployeeInput;
+  OrderUpdateManyWithoutEmployeeInput: OrderUpdateManyWithoutEmployeeInput;
   OrderCreateNestedOneWithoutFinancesInput: OrderCreateNestedOneWithoutFinancesInput;
   OrderUpdateOneRequiredWithoutFinancesInput: OrderUpdateOneRequiredWithoutFinancesInput;
   CartCreateNestedManyWithoutProductInput: CartCreateNestedManyWithoutProductInput;
@@ -11449,75 +7530,41 @@ export type ResolversTypes = {
   CategoryCreateNestedOneWithoutProductsInput: CategoryCreateNestedOneWithoutProductsInput;
   CartUpdateManyWithoutProductInput: CartUpdateManyWithoutProductInput;
   OrderDetailUpdateManyWithoutProductInput: OrderDetailUpdateManyWithoutProductInput;
-  CategoryUpdateOneWithoutProductsInput: CategoryUpdateOneWithoutProductsInput;
-  OrderCreateWithoutAnnualBranchEmployeeInput: OrderCreateWithoutAnnualBranchEmployeeInput;
-  OrderCreateOrConnectWithoutAnnualBranchEmployeeInput: OrderCreateOrConnectWithoutAnnualBranchEmployeeInput;
-  OrderCreateManyAnnualBranchEmployeeInputEnvelope: OrderCreateManyAnnualBranchEmployeeInputEnvelope;
-  CartCreateWithoutAnnualBranchEmployeeInput: CartCreateWithoutAnnualBranchEmployeeInput;
-  CartCreateOrConnectWithoutAnnualBranchEmployeeInput: CartCreateOrConnectWithoutAnnualBranchEmployeeInput;
-  CartCreateManyAnnualBranchEmployeeInputEnvelope: CartCreateManyAnnualBranchEmployeeInputEnvelope;
-  BranchEmployeeCreateWithoutAnnBranchEmployeeInput: BranchEmployeeCreateWithoutAnnBranchEmployeeInput;
-  BranchEmployeeCreateOrConnectWithoutAnnBranchEmployeeInput: BranchEmployeeCreateOrConnectWithoutAnnBranchEmployeeInput;
-  FinancialYearCreateWithoutAnnBranchEmplsInput: FinancialYearCreateWithoutAnnBranchEmplsInput;
-  FinancialYearCreateOrConnectWithoutAnnBranchEmplsInput: FinancialYearCreateOrConnectWithoutAnnBranchEmplsInput;
-  OrderUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput: OrderUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput;
-  OrderUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput: OrderUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput;
-  OrderUpdateManyWithWhereWithoutAnnualBranchEmployeeInput: OrderUpdateManyWithWhereWithoutAnnualBranchEmployeeInput;
-  OrderScalarWhereInput: OrderScalarWhereInput;
-  CartUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput: CartUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput;
-  CartUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput: CartUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput;
-  CartUpdateManyWithWhereWithoutAnnualBranchEmployeeInput: CartUpdateManyWithWhereWithoutAnnualBranchEmployeeInput;
-  CartScalarWhereInput: CartScalarWhereInput;
-  BranchEmployeeUpsertWithoutAnnBranchEmployeeInput: BranchEmployeeUpsertWithoutAnnBranchEmployeeInput;
-  BranchEmployeeUpdateWithoutAnnBranchEmployeeInput: BranchEmployeeUpdateWithoutAnnBranchEmployeeInput;
-  FinancialYearUpsertWithoutAnnBranchEmplsInput: FinancialYearUpsertWithoutAnnBranchEmplsInput;
-  FinancialYearUpdateWithoutAnnBranchEmplsInput: FinancialYearUpdateWithoutAnnBranchEmplsInput;
-  OrderCreateWithoutAnnualClientInput: OrderCreateWithoutAnnualClientInput;
-  OrderCreateOrConnectWithoutAnnualClientInput: OrderCreateOrConnectWithoutAnnualClientInput;
-  OrderCreateManyAnnualClientInputEnvelope: OrderCreateManyAnnualClientInputEnvelope;
-  CartCreateWithoutAnnualClientInput: CartCreateWithoutAnnualClientInput;
-  CartCreateOrConnectWithoutAnnualClientInput: CartCreateOrConnectWithoutAnnualClientInput;
-  CartCreateManyAnnualClientInputEnvelope: CartCreateManyAnnualClientInputEnvelope;
-  ClientCreateWithoutAnnClientsInput: ClientCreateWithoutAnnClientsInput;
-  ClientCreateOrConnectWithoutAnnClientsInput: ClientCreateOrConnectWithoutAnnClientsInput;
-  FinancialYearCreateWithoutAnnClientsInput: FinancialYearCreateWithoutAnnClientsInput;
-  FinancialYearCreateOrConnectWithoutAnnClientsInput: FinancialYearCreateOrConnectWithoutAnnClientsInput;
-  OrderUpsertWithWhereUniqueWithoutAnnualClientInput: OrderUpsertWithWhereUniqueWithoutAnnualClientInput;
-  OrderUpdateWithWhereUniqueWithoutAnnualClientInput: OrderUpdateWithWhereUniqueWithoutAnnualClientInput;
-  OrderUpdateManyWithWhereWithoutAnnualClientInput: OrderUpdateManyWithWhereWithoutAnnualClientInput;
-  CartUpsertWithWhereUniqueWithoutAnnualClientInput: CartUpsertWithWhereUniqueWithoutAnnualClientInput;
-  CartUpdateWithWhereUniqueWithoutAnnualClientInput: CartUpdateWithWhereUniqueWithoutAnnualClientInput;
-  CartUpdateManyWithWhereWithoutAnnualClientInput: CartUpdateManyWithWhereWithoutAnnualClientInput;
-  ClientUpsertWithoutAnnClientsInput: ClientUpsertWithoutAnnClientsInput;
-  ClientUpdateWithoutAnnClientsInput: ClientUpdateWithoutAnnClientsInput;
-  FinancialYearUpsertWithoutAnnClientsInput: FinancialYearUpsertWithoutAnnClientsInput;
-  FinancialYearUpdateWithoutAnnClientsInput: FinancialYearUpdateWithoutAnnClientsInput;
+  CategoryUpdateOneRequiredWithoutProductsInput: CategoryUpdateOneRequiredWithoutProductsInput;
   ProductCreateWithoutCartsInput: ProductCreateWithoutCartsInput;
   ProductCreateOrConnectWithoutCartsInput: ProductCreateOrConnectWithoutCartsInput;
-  AnnualClientCreateWithoutCartsInput: AnnualClientCreateWithoutCartsInput;
-  AnnualClientCreateOrConnectWithoutCartsInput: AnnualClientCreateOrConnectWithoutCartsInput;
-  AnnualBranchEmployeeCreateWithoutCartsInput: AnnualBranchEmployeeCreateWithoutCartsInput;
-  AnnualBranchEmployeeCreateOrConnectWithoutCartsInput: AnnualBranchEmployeeCreateOrConnectWithoutCartsInput;
+  ClientCreateWithoutCartsInput: ClientCreateWithoutCartsInput;
+  ClientCreateOrConnectWithoutCartsInput: ClientCreateOrConnectWithoutCartsInput;
+  EmployeeCreateWithoutCartsInput: EmployeeCreateWithoutCartsInput;
+  EmployeeCreateOrConnectWithoutCartsInput: EmployeeCreateOrConnectWithoutCartsInput;
   ProductUpsertWithoutCartsInput: ProductUpsertWithoutCartsInput;
   ProductUpdateWithoutCartsInput: ProductUpdateWithoutCartsInput;
-  AnnualClientUpsertWithoutCartsInput: AnnualClientUpsertWithoutCartsInput;
-  AnnualClientUpdateWithoutCartsInput: AnnualClientUpdateWithoutCartsInput;
-  AnnualBranchEmployeeUpsertWithoutCartsInput: AnnualBranchEmployeeUpsertWithoutCartsInput;
-  AnnualBranchEmployeeUpdateWithoutCartsInput: AnnualBranchEmployeeUpdateWithoutCartsInput;
+  ClientUpsertWithoutCartsInput: ClientUpsertWithoutCartsInput;
+  ClientUpdateWithoutCartsInput: ClientUpdateWithoutCartsInput;
+  EmployeeUpsertWithoutCartsInput: EmployeeUpsertWithoutCartsInput;
+  EmployeeUpdateWithoutCartsInput: EmployeeUpdateWithoutCartsInput;
   ProductCreateWithoutCategoryInput: ProductCreateWithoutCategoryInput;
   ProductCreateOrConnectWithoutCategoryInput: ProductCreateOrConnectWithoutCategoryInput;
   ProductCreateManyCategoryInputEnvelope: ProductCreateManyCategoryInputEnvelope;
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   ProductUpsertWithWhereUniqueWithoutCategoryInput: ProductUpsertWithWhereUniqueWithoutCategoryInput;
   ProductUpdateWithWhereUniqueWithoutCategoryInput: ProductUpdateWithWhereUniqueWithoutCategoryInput;
   ProductUpdateManyWithWhereWithoutCategoryInput: ProductUpdateManyWithWhereWithoutCategoryInput;
   ProductScalarWhereInput: ProductScalarWhereInput;
-  AnnualClientCreateWithoutClientInput: AnnualClientCreateWithoutClientInput;
-  AnnualClientCreateOrConnectWithoutClientInput: AnnualClientCreateOrConnectWithoutClientInput;
-  AnnualClientCreateManyClientInputEnvelope: AnnualClientCreateManyClientInputEnvelope;
-  AnnualClientUpsertWithWhereUniqueWithoutClientInput: AnnualClientUpsertWithWhereUniqueWithoutClientInput;
-  AnnualClientUpdateWithWhereUniqueWithoutClientInput: AnnualClientUpdateWithWhereUniqueWithoutClientInput;
-  AnnualClientUpdateManyWithWhereWithoutClientInput: AnnualClientUpdateManyWithWhereWithoutClientInput;
-  AnnualClientScalarWhereInput: AnnualClientScalarWhereInput;
+  CartCreateWithoutClientInput: CartCreateWithoutClientInput;
+  CartCreateOrConnectWithoutClientInput: CartCreateOrConnectWithoutClientInput;
+  CartCreateManyClientInputEnvelope: CartCreateManyClientInputEnvelope;
+  OrderCreateWithoutClientInput: OrderCreateWithoutClientInput;
+  OrderCreateOrConnectWithoutClientInput: OrderCreateOrConnectWithoutClientInput;
+  OrderCreateManyClientInputEnvelope: OrderCreateManyClientInputEnvelope;
+  CartUpsertWithWhereUniqueWithoutClientInput: CartUpsertWithWhereUniqueWithoutClientInput;
+  CartUpdateWithWhereUniqueWithoutClientInput: CartUpdateWithWhereUniqueWithoutClientInput;
+  CartUpdateManyWithWhereWithoutClientInput: CartUpdateManyWithWhereWithoutClientInput;
+  CartScalarWhereInput: CartScalarWhereInput;
+  OrderUpsertWithWhereUniqueWithoutClientInput: OrderUpsertWithWhereUniqueWithoutClientInput;
+  OrderUpdateWithWhereUniqueWithoutClientInput: OrderUpdateWithWhereUniqueWithoutClientInput;
+  OrderUpdateManyWithWhereWithoutClientInput: OrderUpdateManyWithWhereWithoutClientInput;
+  OrderScalarWhereInput: OrderScalarWhereInput;
   OrderCreateWithoutOrderDetailsInput: OrderCreateWithoutOrderDetailsInput;
   OrderCreateOrConnectWithoutOrderDetailsInput: OrderCreateOrConnectWithoutOrderDetailsInput;
   ProductCreateWithoutOrderDetailsInput: ProductCreateWithoutOrderDetailsInput;
@@ -11532,10 +7579,10 @@ export type ResolversTypes = {
   FinanceCreateWithoutOrderInput: FinanceCreateWithoutOrderInput;
   FinanceCreateOrConnectWithoutOrderInput: FinanceCreateOrConnectWithoutOrderInput;
   FinanceCreateManyOrderInputEnvelope: FinanceCreateManyOrderInputEnvelope;
-  AnnualClientCreateWithoutOrdersInput: AnnualClientCreateWithoutOrdersInput;
-  AnnualClientCreateOrConnectWithoutOrdersInput: AnnualClientCreateOrConnectWithoutOrdersInput;
-  AnnualBranchEmployeeCreateWithoutOrdersInput: AnnualBranchEmployeeCreateWithoutOrdersInput;
-  AnnualBranchEmployeeCreateOrConnectWithoutOrdersInput: AnnualBranchEmployeeCreateOrConnectWithoutOrdersInput;
+  ClientCreateWithoutOrdersInput: ClientCreateWithoutOrdersInput;
+  ClientCreateOrConnectWithoutOrdersInput: ClientCreateOrConnectWithoutOrdersInput;
+  EmployeeCreateWithoutOrdersInput: EmployeeCreateWithoutOrdersInput;
+  EmployeeCreateOrConnectWithoutOrdersInput: EmployeeCreateOrConnectWithoutOrdersInput;
   OrderDetailUpsertWithWhereUniqueWithoutOrderInput: OrderDetailUpsertWithWhereUniqueWithoutOrderInput;
   OrderDetailUpdateWithWhereUniqueWithoutOrderInput: OrderDetailUpdateWithWhereUniqueWithoutOrderInput;
   OrderDetailUpdateManyWithWhereWithoutOrderInput: OrderDetailUpdateManyWithWhereWithoutOrderInput;
@@ -11544,60 +7591,22 @@ export type ResolversTypes = {
   FinanceUpdateWithWhereUniqueWithoutOrderInput: FinanceUpdateWithWhereUniqueWithoutOrderInput;
   FinanceUpdateManyWithWhereWithoutOrderInput: FinanceUpdateManyWithWhereWithoutOrderInput;
   FinanceScalarWhereInput: FinanceScalarWhereInput;
-  AnnualClientUpsertWithoutOrdersInput: AnnualClientUpsertWithoutOrdersInput;
-  AnnualClientUpdateWithoutOrdersInput: AnnualClientUpdateWithoutOrdersInput;
-  AnnualBranchEmployeeUpsertWithoutOrdersInput: AnnualBranchEmployeeUpsertWithoutOrdersInput;
-  AnnualBranchEmployeeUpdateWithoutOrdersInput: AnnualBranchEmployeeUpdateWithoutOrdersInput;
-  BranchEmployeeCreateWithoutBranchInput: BranchEmployeeCreateWithoutBranchInput;
-  BranchEmployeeCreateOrConnectWithoutBranchInput: BranchEmployeeCreateOrConnectWithoutBranchInput;
-  BranchEmployeeCreateManyBranchInputEnvelope: BranchEmployeeCreateManyBranchInputEnvelope;
-  BranchEmployeeUpsertWithWhereUniqueWithoutBranchInput: BranchEmployeeUpsertWithWhereUniqueWithoutBranchInput;
-  BranchEmployeeUpdateWithWhereUniqueWithoutBranchInput: BranchEmployeeUpdateWithWhereUniqueWithoutBranchInput;
-  BranchEmployeeUpdateManyWithWhereWithoutBranchInput: BranchEmployeeUpdateManyWithWhereWithoutBranchInput;
-  BranchEmployeeScalarWhereInput: BranchEmployeeScalarWhereInput;
-  AnnualBranchEmployeeCreateWithoutBranchEmployeeInput: AnnualBranchEmployeeCreateWithoutBranchEmployeeInput;
-  AnnualBranchEmployeeCreateOrConnectWithoutBranchEmployeeInput: AnnualBranchEmployeeCreateOrConnectWithoutBranchEmployeeInput;
-  AnnualBranchEmployeeCreateManyBranchEmployeeInputEnvelope: AnnualBranchEmployeeCreateManyBranchEmployeeInputEnvelope;
-  EmployeeCreateWithoutBranchEmplsInput: EmployeeCreateWithoutBranchEmplsInput;
-  EmployeeCreateOrConnectWithoutBranchEmplsInput: EmployeeCreateOrConnectWithoutBranchEmplsInput;
-  BranchCreateWithoutBranchEmplsInput: BranchCreateWithoutBranchEmplsInput;
-  BranchCreateOrConnectWithoutBranchEmplsInput: BranchCreateOrConnectWithoutBranchEmplsInput;
-  EmployeeStatusCreateWithoutBranchEmplsInput: EmployeeStatusCreateWithoutBranchEmplsInput;
-  EmployeeStatusCreateOrConnectWithoutBranchEmplsInput: EmployeeStatusCreateOrConnectWithoutBranchEmplsInput;
-  AnnualBranchEmployeeUpsertWithWhereUniqueWithoutBranchEmployeeInput: AnnualBranchEmployeeUpsertWithWhereUniqueWithoutBranchEmployeeInput;
-  AnnualBranchEmployeeUpdateWithWhereUniqueWithoutBranchEmployeeInput: AnnualBranchEmployeeUpdateWithWhereUniqueWithoutBranchEmployeeInput;
-  AnnualBranchEmployeeUpdateManyWithWhereWithoutBranchEmployeeInput: AnnualBranchEmployeeUpdateManyWithWhereWithoutBranchEmployeeInput;
-  AnnualBranchEmployeeScalarWhereInput: AnnualBranchEmployeeScalarWhereInput;
-  EmployeeUpsertWithoutBranchEmplsInput: EmployeeUpsertWithoutBranchEmplsInput;
-  EmployeeUpdateWithoutBranchEmplsInput: EmployeeUpdateWithoutBranchEmplsInput;
-  BranchUpsertWithoutBranchEmplsInput: BranchUpsertWithoutBranchEmplsInput;
-  BranchUpdateWithoutBranchEmplsInput: BranchUpdateWithoutBranchEmplsInput;
-  EmployeeStatusUpsertWithoutBranchEmplsInput: EmployeeStatusUpsertWithoutBranchEmplsInput;
-  EmployeeStatusUpdateWithoutBranchEmplsInput: EmployeeStatusUpdateWithoutBranchEmplsInput;
-  AnnualBranchEmployeeCreateWithoutFinancialYearInput: AnnualBranchEmployeeCreateWithoutFinancialYearInput;
-  AnnualBranchEmployeeCreateOrConnectWithoutFinancialYearInput: AnnualBranchEmployeeCreateOrConnectWithoutFinancialYearInput;
-  AnnualBranchEmployeeCreateManyFinancialYearInputEnvelope: AnnualBranchEmployeeCreateManyFinancialYearInputEnvelope;
-  AnnualClientCreateWithoutFinancialYearInput: AnnualClientCreateWithoutFinancialYearInput;
-  AnnualClientCreateOrConnectWithoutFinancialYearInput: AnnualClientCreateOrConnectWithoutFinancialYearInput;
-  AnnualClientCreateManyFinancialYearInputEnvelope: AnnualClientCreateManyFinancialYearInputEnvelope;
-  AnnualBranchEmployeeUpsertWithWhereUniqueWithoutFinancialYearInput: AnnualBranchEmployeeUpsertWithWhereUniqueWithoutFinancialYearInput;
-  AnnualBranchEmployeeUpdateWithWhereUniqueWithoutFinancialYearInput: AnnualBranchEmployeeUpdateWithWhereUniqueWithoutFinancialYearInput;
-  AnnualBranchEmployeeUpdateManyWithWhereWithoutFinancialYearInput: AnnualBranchEmployeeUpdateManyWithWhereWithoutFinancialYearInput;
-  AnnualClientUpsertWithWhereUniqueWithoutFinancialYearInput: AnnualClientUpsertWithWhereUniqueWithoutFinancialYearInput;
-  AnnualClientUpdateWithWhereUniqueWithoutFinancialYearInput: AnnualClientUpdateWithWhereUniqueWithoutFinancialYearInput;
-  AnnualClientUpdateManyWithWhereWithoutFinancialYearInput: AnnualClientUpdateManyWithWhereWithoutFinancialYearInput;
-  BranchEmployeeCreateWithoutEmployeeInput: BranchEmployeeCreateWithoutEmployeeInput;
-  BranchEmployeeCreateOrConnectWithoutEmployeeInput: BranchEmployeeCreateOrConnectWithoutEmployeeInput;
-  BranchEmployeeCreateManyEmployeeInputEnvelope: BranchEmployeeCreateManyEmployeeInputEnvelope;
-  BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeInput: BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeInput;
-  BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeInput: BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeInput;
-  BranchEmployeeUpdateManyWithWhereWithoutEmployeeInput: BranchEmployeeUpdateManyWithWhereWithoutEmployeeInput;
-  BranchEmployeeCreateWithoutEmployeeStatusInput: BranchEmployeeCreateWithoutEmployeeStatusInput;
-  BranchEmployeeCreateOrConnectWithoutEmployeeStatusInput: BranchEmployeeCreateOrConnectWithoutEmployeeStatusInput;
-  BranchEmployeeCreateManyEmployeeStatusInputEnvelope: BranchEmployeeCreateManyEmployeeStatusInputEnvelope;
-  BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeStatusInput: BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeStatusInput;
-  BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeStatusInput: BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeStatusInput;
-  BranchEmployeeUpdateManyWithWhereWithoutEmployeeStatusInput: BranchEmployeeUpdateManyWithWhereWithoutEmployeeStatusInput;
+  ClientUpsertWithoutOrdersInput: ClientUpsertWithoutOrdersInput;
+  ClientUpdateWithoutOrdersInput: ClientUpdateWithoutOrdersInput;
+  EmployeeUpsertWithoutOrdersInput: EmployeeUpsertWithoutOrdersInput;
+  EmployeeUpdateWithoutOrdersInput: EmployeeUpdateWithoutOrdersInput;
+  CartCreateWithoutEmployeeInput: CartCreateWithoutEmployeeInput;
+  CartCreateOrConnectWithoutEmployeeInput: CartCreateOrConnectWithoutEmployeeInput;
+  CartCreateManyEmployeeInputEnvelope: CartCreateManyEmployeeInputEnvelope;
+  OrderCreateWithoutEmployeeInput: OrderCreateWithoutEmployeeInput;
+  OrderCreateOrConnectWithoutEmployeeInput: OrderCreateOrConnectWithoutEmployeeInput;
+  OrderCreateManyEmployeeInputEnvelope: OrderCreateManyEmployeeInputEnvelope;
+  CartUpsertWithWhereUniqueWithoutEmployeeInput: CartUpsertWithWhereUniqueWithoutEmployeeInput;
+  CartUpdateWithWhereUniqueWithoutEmployeeInput: CartUpdateWithWhereUniqueWithoutEmployeeInput;
+  CartUpdateManyWithWhereWithoutEmployeeInput: CartUpdateManyWithWhereWithoutEmployeeInput;
+  OrderUpsertWithWhereUniqueWithoutEmployeeInput: OrderUpsertWithWhereUniqueWithoutEmployeeInput;
+  OrderUpdateWithWhereUniqueWithoutEmployeeInput: OrderUpdateWithWhereUniqueWithoutEmployeeInput;
+  OrderUpdateManyWithWhereWithoutEmployeeInput: OrderUpdateManyWithWhereWithoutEmployeeInput;
   OrderCreateWithoutFinancesInput: OrderCreateWithoutFinancesInput;
   OrderCreateOrConnectWithoutFinancesInput: OrderCreateOrConnectWithoutFinancesInput;
   OrderUpsertWithoutFinancesInput: OrderUpsertWithoutFinancesInput;
@@ -11618,47 +7627,29 @@ export type ResolversTypes = {
   OrderDetailUpdateManyWithWhereWithoutProductInput: OrderDetailUpdateManyWithWhereWithoutProductInput;
   CategoryUpsertWithoutProductsInput: CategoryUpsertWithoutProductsInput;
   CategoryUpdateWithoutProductsInput: CategoryUpdateWithoutProductsInput;
-  OrderCreateManyAnnualBranchEmployeeInput: OrderCreateManyAnnualBranchEmployeeInput;
-  CartCreateManyAnnualBranchEmployeeInput: CartCreateManyAnnualBranchEmployeeInput;
-  OrderUpdateWithoutAnnualBranchEmployeeInput: OrderUpdateWithoutAnnualBranchEmployeeInput;
-  OrderUpdateManyMutationInput: OrderUpdateManyMutationInput;
-  StringFilter: StringFilter;
-  IntFilter: IntFilter;
-  DateTimeFilter: DateTimeFilter;
-  StringNullableFilter: StringNullableFilter;
-  CartUpdateWithoutAnnualBranchEmployeeInput: CartUpdateWithoutAnnualBranchEmployeeInput;
-  CartUpdateManyMutationInput: CartUpdateManyMutationInput;
-  FloatFilter: FloatFilter;
-  OrderCreateManyAnnualClientInput: OrderCreateManyAnnualClientInput;
-  CartCreateManyAnnualClientInput: CartCreateManyAnnualClientInput;
-  OrderUpdateWithoutAnnualClientInput: OrderUpdateWithoutAnnualClientInput;
-  CartUpdateWithoutAnnualClientInput: CartUpdateWithoutAnnualClientInput;
   ProductCreateManyCategoryInput: ProductCreateManyCategoryInput;
   ProductUpdateWithoutCategoryInput: ProductUpdateWithoutCategoryInput;
   ProductUpdateManyMutationInput: ProductUpdateManyMutationInput;
-  AnnualClientCreateManyClientInput: AnnualClientCreateManyClientInput;
-  AnnualClientUpdateWithoutClientInput: AnnualClientUpdateWithoutClientInput;
-  AnnualClientUpdateManyMutationInput: AnnualClientUpdateManyMutationInput;
+  StringFilter: StringFilter;
+  IntFilter: IntFilter;
+  DateTimeFilter: DateTimeFilter;
+  CartCreateManyClientInput: CartCreateManyClientInput;
+  OrderCreateManyClientInput: OrderCreateManyClientInput;
+  CartUpdateWithoutClientInput: CartUpdateWithoutClientInput;
+  CartUpdateManyMutationInput: CartUpdateManyMutationInput;
+  FloatFilter: FloatFilter;
+  OrderUpdateWithoutClientInput: OrderUpdateWithoutClientInput;
+  OrderUpdateManyMutationInput: OrderUpdateManyMutationInput;
   OrderDetailCreateManyOrderInput: OrderDetailCreateManyOrderInput;
   FinanceCreateManyOrderInput: FinanceCreateManyOrderInput;
   OrderDetailUpdateWithoutOrderInput: OrderDetailUpdateWithoutOrderInput;
   OrderDetailUpdateManyMutationInput: OrderDetailUpdateManyMutationInput;
   FinanceUpdateWithoutOrderInput: FinanceUpdateWithoutOrderInput;
   FinanceUpdateManyMutationInput: FinanceUpdateManyMutationInput;
-  BranchEmployeeCreateManyBranchInput: BranchEmployeeCreateManyBranchInput;
-  BranchEmployeeUpdateWithoutBranchInput: BranchEmployeeUpdateWithoutBranchInput;
-  BranchEmployeeUpdateManyMutationInput: BranchEmployeeUpdateManyMutationInput;
-  AnnualBranchEmployeeCreateManyBranchEmployeeInput: AnnualBranchEmployeeCreateManyBranchEmployeeInput;
-  AnnualBranchEmployeeUpdateWithoutBranchEmployeeInput: AnnualBranchEmployeeUpdateWithoutBranchEmployeeInput;
-  AnnualBranchEmployeeUpdateManyMutationInput: AnnualBranchEmployeeUpdateManyMutationInput;
-  AnnualBranchEmployeeCreateManyFinancialYearInput: AnnualBranchEmployeeCreateManyFinancialYearInput;
-  AnnualClientCreateManyFinancialYearInput: AnnualClientCreateManyFinancialYearInput;
-  AnnualBranchEmployeeUpdateWithoutFinancialYearInput: AnnualBranchEmployeeUpdateWithoutFinancialYearInput;
-  AnnualClientUpdateWithoutFinancialYearInput: AnnualClientUpdateWithoutFinancialYearInput;
-  BranchEmployeeCreateManyEmployeeInput: BranchEmployeeCreateManyEmployeeInput;
-  BranchEmployeeUpdateWithoutEmployeeInput: BranchEmployeeUpdateWithoutEmployeeInput;
-  BranchEmployeeCreateManyEmployeeStatusInput: BranchEmployeeCreateManyEmployeeStatusInput;
-  BranchEmployeeUpdateWithoutEmployeeStatusInput: BranchEmployeeUpdateWithoutEmployeeStatusInput;
+  CartCreateManyEmployeeInput: CartCreateManyEmployeeInput;
+  OrderCreateManyEmployeeInput: OrderCreateManyEmployeeInput;
+  CartUpdateWithoutEmployeeInput: CartUpdateWithoutEmployeeInput;
+  OrderUpdateWithoutEmployeeInput: OrderUpdateWithoutEmployeeInput;
   CartCreateManyProductInput: CartCreateManyProductInput;
   OrderDetailCreateManyProductInput: OrderDetailCreateManyProductInput;
   CartUpdateWithoutProductInput: CartUpdateWithoutProductInput;
@@ -11667,7 +7658,6 @@ export type ResolversTypes = {
   NestedStringFilter: NestedStringFilter;
   NestedIntFilter: NestedIntFilter;
   NestedDateTimeFilter: NestedDateTimeFilter;
-  NestedStringNullableFilter: NestedStringNullableFilter;
   NestedFloatFilter: NestedFloatFilter;
   Query: ResolverTypeWrapper<{}>;
   Mutation: ResolverTypeWrapper<{}>;
@@ -11675,46 +7665,32 @@ export type ResolversTypes = {
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
-  AnnualBranchEmployee: AnnualBranchEmployee;
-  String: Scalars['String'];
-  Int: Scalars['Int'];
-  AnnualClient: AnnualClient;
-  Bonus: Bonus;
-  Branch: Branch;
-  BranchEmployee: BranchEmployee;
   Cart: Cart;
+  String: Scalars['String'];
   Float: Scalars['Float'];
+  Int: Scalars['Int'];
   Category: Category;
   Client: Client;
   Employee: Employee;
   EmployeeStatus: EmployeeStatus;
   Finance: Finance;
   FinancialYear: FinancialYear;
-  Inventory: Inventory;
   Order: Order;
   OrderDetail: OrderDetail;
+  OrderType: OrderType;
   Product: Product;
-  OrderWhereUniqueInput: OrderWhereUniqueInput;
-  CartWhereUniqueInput: CartWhereUniqueInput;
-  BranchEmployeeWhereUniqueInput: BranchEmployeeWhereUniqueInput;
   DateTime: Scalars['DateTime'];
   ProductWhereUniqueInput: ProductWhereUniqueInput;
-  AnnualBranchEmployeeWhereUniqueInput: AnnualBranchEmployeeWhereUniqueInput;
-  AnnualClientWhereUniqueInput: AnnualClientWhereUniqueInput;
   FinanceWhereUniqueInput: FinanceWhereUniqueInput;
   OrderDetailWhereUniqueInput: OrderDetailWhereUniqueInput;
+  CartWhereUniqueInput: CartWhereUniqueInput;
+  CategoryWhereUniqueInput: CategoryWhereUniqueInput;
   ClientWhereUniqueInput: ClientWhereUniqueInput;
-  BonusWhereUniqueInput: BonusWhereUniqueInput;
-  BranchWhereUniqueInput: BranchWhereUniqueInput;
-  FinancialYearWhereUniqueInput: FinancialYearWhereUniqueInput;
   EmployeeWhereUniqueInput: EmployeeWhereUniqueInput;
   EmployeeStatusWhereUniqueInput: EmployeeStatusWhereUniqueInput;
-  InventoryWhereUniqueInput: InventoryWhereUniqueInput;
-  CategoryWhereUniqueInput: CategoryWhereUniqueInput;
-  AnnualBranchEmployeeCreateInput: AnnualBranchEmployeeCreateInput;
-  AnnualBranchEmployeeUpdateInput: AnnualBranchEmployeeUpdateInput;
-  AnnualClientCreateInput: AnnualClientCreateInput;
-  AnnualClientUpdateInput: AnnualClientUpdateInput;
+  FinancialYearWhereUniqueInput: FinancialYearWhereUniqueInput;
+  OrderWhereUniqueInput: OrderWhereUniqueInput;
+  OrderTypeWhereUniqueInput: OrderTypeWhereUniqueInput;
   CartCreateInput: CartCreateInput;
   CartUpdateInput: CartUpdateInput;
   CategoryCreateInput: CategoryCreateInput;
@@ -11725,12 +7701,8 @@ export type ResolversParentTypes = {
   OrderDetailUpdateInput: OrderDetailUpdateInput;
   OrderCreateInput: OrderCreateInput;
   OrderUpdateInput: OrderUpdateInput;
-  BonusCreateInput: BonusCreateInput;
-  BonusUpdateInput: BonusUpdateInput;
-  BranchCreateInput: BranchCreateInput;
-  BranchUpdateInput: BranchUpdateInput;
-  BranchEmployeeCreateInput: BranchEmployeeCreateInput;
-  BranchEmployeeUpdateInput: BranchEmployeeUpdateInput;
+  OrderTypeCreateInput: OrderTypeCreateInput;
+  OrderTypeUpdateInput: OrderTypeUpdateInput;
   FinancialYearCreateInput: FinancialYearCreateInput;
   FinancialYearUpdateInput: FinancialYearUpdateInput;
   EmployeeCreateInput: EmployeeCreateInput;
@@ -11739,71 +7711,40 @@ export type ResolversParentTypes = {
   EmployeeStatusUpdateInput: EmployeeStatusUpdateInput;
   FinanceCreateInput: FinanceCreateInput;
   FinanceUpdateInput: FinanceUpdateInput;
-  InventoryCreateInput: InventoryCreateInput;
-  InventoryUpdateInput: InventoryUpdateInput;
   ProductCreateInput: ProductCreateInput;
   ProductUpdateInput: ProductUpdateInput;
-  OrderCreateNestedManyWithoutAnnualBranchEmployeeInput: OrderCreateNestedManyWithoutAnnualBranchEmployeeInput;
-  CartCreateNestedManyWithoutAnnualBranchEmployeeInput: CartCreateNestedManyWithoutAnnualBranchEmployeeInput;
-  BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput: BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput;
-  FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput: FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput;
-  StringFieldUpdateOperationsInput: StringFieldUpdateOperationsInput;
-  DateTimeFieldUpdateOperationsInput: DateTimeFieldUpdateOperationsInput;
-  OrderUpdateManyWithoutAnnualBranchEmployeeInput: OrderUpdateManyWithoutAnnualBranchEmployeeInput;
-  CartUpdateManyWithoutAnnualBranchEmployeeInput: CartUpdateManyWithoutAnnualBranchEmployeeInput;
-  BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput: BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput;
-  Boolean: Scalars['Boolean'];
-  FinancialYearUpdateOneWithoutAnnBranchEmplsInput: FinancialYearUpdateOneWithoutAnnBranchEmplsInput;
-  OrderCreateNestedManyWithoutAnnualClientInput: OrderCreateNestedManyWithoutAnnualClientInput;
-  CartCreateNestedManyWithoutAnnualClientInput: CartCreateNestedManyWithoutAnnualClientInput;
-  ClientCreateNestedOneWithoutAnnClientsInput: ClientCreateNestedOneWithoutAnnClientsInput;
-  FinancialYearCreateNestedOneWithoutAnnClientsInput: FinancialYearCreateNestedOneWithoutAnnClientsInput;
-  OrderUpdateManyWithoutAnnualClientInput: OrderUpdateManyWithoutAnnualClientInput;
-  CartUpdateManyWithoutAnnualClientInput: CartUpdateManyWithoutAnnualClientInput;
-  ClientUpdateOneWithoutAnnClientsInput: ClientUpdateOneWithoutAnnClientsInput;
-  FinancialYearUpdateOneWithoutAnnClientsInput: FinancialYearUpdateOneWithoutAnnClientsInput;
   ProductCreateNestedOneWithoutCartsInput: ProductCreateNestedOneWithoutCartsInput;
-  AnnualClientCreateNestedOneWithoutCartsInput: AnnualClientCreateNestedOneWithoutCartsInput;
-  AnnualBranchEmployeeCreateNestedOneWithoutCartsInput: AnnualBranchEmployeeCreateNestedOneWithoutCartsInput;
+  ClientCreateNestedOneWithoutCartsInput: ClientCreateNestedOneWithoutCartsInput;
+  EmployeeCreateNestedOneWithoutCartsInput: EmployeeCreateNestedOneWithoutCartsInput;
+  StringFieldUpdateOperationsInput: StringFieldUpdateOperationsInput;
   FloatFieldUpdateOperationsInput: FloatFieldUpdateOperationsInput;
   IntFieldUpdateOperationsInput: IntFieldUpdateOperationsInput;
+  DateTimeFieldUpdateOperationsInput: DateTimeFieldUpdateOperationsInput;
   ProductUpdateOneRequiredWithoutCartsInput: ProductUpdateOneRequiredWithoutCartsInput;
-  AnnualClientUpdateOneWithoutCartsInput: AnnualClientUpdateOneWithoutCartsInput;
-  AnnualBranchEmployeeUpdateOneWithoutCartsInput: AnnualBranchEmployeeUpdateOneWithoutCartsInput;
+  ClientUpdateOneRequiredWithoutCartsInput: ClientUpdateOneRequiredWithoutCartsInput;
+  EmployeeUpdateOneRequiredWithoutCartsInput: EmployeeUpdateOneRequiredWithoutCartsInput;
   ProductCreateNestedManyWithoutCategoryInput: ProductCreateNestedManyWithoutCategoryInput;
   ProductUpdateManyWithoutCategoryInput: ProductUpdateManyWithoutCategoryInput;
-  AnnualClientCreateNestedManyWithoutClientInput: AnnualClientCreateNestedManyWithoutClientInput;
-  AnnualClientUpdateManyWithoutClientInput: AnnualClientUpdateManyWithoutClientInput;
+  CartCreateNestedManyWithoutClientInput: CartCreateNestedManyWithoutClientInput;
+  OrderCreateNestedManyWithoutClientInput: OrderCreateNestedManyWithoutClientInput;
+  CartUpdateManyWithoutClientInput: CartUpdateManyWithoutClientInput;
+  OrderUpdateManyWithoutClientInput: OrderUpdateManyWithoutClientInput;
   OrderCreateNestedOneWithoutOrderDetailsInput: OrderCreateNestedOneWithoutOrderDetailsInput;
   ProductCreateNestedOneWithoutOrderDetailsInput: ProductCreateNestedOneWithoutOrderDetailsInput;
   OrderUpdateOneRequiredWithoutOrderDetailsInput: OrderUpdateOneRequiredWithoutOrderDetailsInput;
   ProductUpdateOneRequiredWithoutOrderDetailsInput: ProductUpdateOneRequiredWithoutOrderDetailsInput;
   OrderDetailCreateNestedManyWithoutOrderInput: OrderDetailCreateNestedManyWithoutOrderInput;
   FinanceCreateNestedManyWithoutOrderInput: FinanceCreateNestedManyWithoutOrderInput;
-  AnnualClientCreateNestedOneWithoutOrdersInput: AnnualClientCreateNestedOneWithoutOrdersInput;
-  AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput: AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput;
+  ClientCreateNestedOneWithoutOrdersInput: ClientCreateNestedOneWithoutOrdersInput;
+  EmployeeCreateNestedOneWithoutOrdersInput: EmployeeCreateNestedOneWithoutOrdersInput;
   OrderDetailUpdateManyWithoutOrderInput: OrderDetailUpdateManyWithoutOrderInput;
   FinanceUpdateManyWithoutOrderInput: FinanceUpdateManyWithoutOrderInput;
-  AnnualClientUpdateOneWithoutOrdersInput: AnnualClientUpdateOneWithoutOrdersInput;
-  AnnualBranchEmployeeUpdateOneWithoutOrdersInput: AnnualBranchEmployeeUpdateOneWithoutOrdersInput;
-  BranchEmployeeCreateNestedManyWithoutBranchInput: BranchEmployeeCreateNestedManyWithoutBranchInput;
-  BranchEmployeeUpdateManyWithoutBranchInput: BranchEmployeeUpdateManyWithoutBranchInput;
-  AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput: AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput;
-  EmployeeCreateNestedOneWithoutBranchEmplsInput: EmployeeCreateNestedOneWithoutBranchEmplsInput;
-  BranchCreateNestedOneWithoutBranchEmplsInput: BranchCreateNestedOneWithoutBranchEmplsInput;
-  EmployeeStatusCreateNestedOneWithoutBranchEmplsInput: EmployeeStatusCreateNestedOneWithoutBranchEmplsInput;
-  AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput: AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput;
-  EmployeeUpdateOneRequiredWithoutBranchEmplsInput: EmployeeUpdateOneRequiredWithoutBranchEmplsInput;
-  BranchUpdateOneRequiredWithoutBranchEmplsInput: BranchUpdateOneRequiredWithoutBranchEmplsInput;
-  EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput: EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput;
-  AnnualBranchEmployeeCreateNestedManyWithoutFinancialYearInput: AnnualBranchEmployeeCreateNestedManyWithoutFinancialYearInput;
-  AnnualClientCreateNestedManyWithoutFinancialYearInput: AnnualClientCreateNestedManyWithoutFinancialYearInput;
-  AnnualBranchEmployeeUpdateManyWithoutFinancialYearInput: AnnualBranchEmployeeUpdateManyWithoutFinancialYearInput;
-  AnnualClientUpdateManyWithoutFinancialYearInput: AnnualClientUpdateManyWithoutFinancialYearInput;
-  BranchEmployeeCreateNestedManyWithoutEmployeeInput: BranchEmployeeCreateNestedManyWithoutEmployeeInput;
-  BranchEmployeeUpdateManyWithoutEmployeeInput: BranchEmployeeUpdateManyWithoutEmployeeInput;
-  BranchEmployeeCreateNestedManyWithoutEmployeeStatusInput: BranchEmployeeCreateNestedManyWithoutEmployeeStatusInput;
-  BranchEmployeeUpdateManyWithoutEmployeeStatusInput: BranchEmployeeUpdateManyWithoutEmployeeStatusInput;
+  ClientUpdateOneRequiredWithoutOrdersInput: ClientUpdateOneRequiredWithoutOrdersInput;
+  EmployeeUpdateOneRequiredWithoutOrdersInput: EmployeeUpdateOneRequiredWithoutOrdersInput;
+  CartCreateNestedManyWithoutEmployeeInput: CartCreateNestedManyWithoutEmployeeInput;
+  OrderCreateNestedManyWithoutEmployeeInput: OrderCreateNestedManyWithoutEmployeeInput;
+  CartUpdateManyWithoutEmployeeInput: CartUpdateManyWithoutEmployeeInput;
+  OrderUpdateManyWithoutEmployeeInput: OrderUpdateManyWithoutEmployeeInput;
   OrderCreateNestedOneWithoutFinancesInput: OrderCreateNestedOneWithoutFinancesInput;
   OrderUpdateOneRequiredWithoutFinancesInput: OrderUpdateOneRequiredWithoutFinancesInput;
   CartCreateNestedManyWithoutProductInput: CartCreateNestedManyWithoutProductInput;
@@ -11811,75 +7752,41 @@ export type ResolversParentTypes = {
   CategoryCreateNestedOneWithoutProductsInput: CategoryCreateNestedOneWithoutProductsInput;
   CartUpdateManyWithoutProductInput: CartUpdateManyWithoutProductInput;
   OrderDetailUpdateManyWithoutProductInput: OrderDetailUpdateManyWithoutProductInput;
-  CategoryUpdateOneWithoutProductsInput: CategoryUpdateOneWithoutProductsInput;
-  OrderCreateWithoutAnnualBranchEmployeeInput: OrderCreateWithoutAnnualBranchEmployeeInput;
-  OrderCreateOrConnectWithoutAnnualBranchEmployeeInput: OrderCreateOrConnectWithoutAnnualBranchEmployeeInput;
-  OrderCreateManyAnnualBranchEmployeeInputEnvelope: OrderCreateManyAnnualBranchEmployeeInputEnvelope;
-  CartCreateWithoutAnnualBranchEmployeeInput: CartCreateWithoutAnnualBranchEmployeeInput;
-  CartCreateOrConnectWithoutAnnualBranchEmployeeInput: CartCreateOrConnectWithoutAnnualBranchEmployeeInput;
-  CartCreateManyAnnualBranchEmployeeInputEnvelope: CartCreateManyAnnualBranchEmployeeInputEnvelope;
-  BranchEmployeeCreateWithoutAnnBranchEmployeeInput: BranchEmployeeCreateWithoutAnnBranchEmployeeInput;
-  BranchEmployeeCreateOrConnectWithoutAnnBranchEmployeeInput: BranchEmployeeCreateOrConnectWithoutAnnBranchEmployeeInput;
-  FinancialYearCreateWithoutAnnBranchEmplsInput: FinancialYearCreateWithoutAnnBranchEmplsInput;
-  FinancialYearCreateOrConnectWithoutAnnBranchEmplsInput: FinancialYearCreateOrConnectWithoutAnnBranchEmplsInput;
-  OrderUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput: OrderUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput;
-  OrderUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput: OrderUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput;
-  OrderUpdateManyWithWhereWithoutAnnualBranchEmployeeInput: OrderUpdateManyWithWhereWithoutAnnualBranchEmployeeInput;
-  OrderScalarWhereInput: OrderScalarWhereInput;
-  CartUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput: CartUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput;
-  CartUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput: CartUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput;
-  CartUpdateManyWithWhereWithoutAnnualBranchEmployeeInput: CartUpdateManyWithWhereWithoutAnnualBranchEmployeeInput;
-  CartScalarWhereInput: CartScalarWhereInput;
-  BranchEmployeeUpsertWithoutAnnBranchEmployeeInput: BranchEmployeeUpsertWithoutAnnBranchEmployeeInput;
-  BranchEmployeeUpdateWithoutAnnBranchEmployeeInput: BranchEmployeeUpdateWithoutAnnBranchEmployeeInput;
-  FinancialYearUpsertWithoutAnnBranchEmplsInput: FinancialYearUpsertWithoutAnnBranchEmplsInput;
-  FinancialYearUpdateWithoutAnnBranchEmplsInput: FinancialYearUpdateWithoutAnnBranchEmplsInput;
-  OrderCreateWithoutAnnualClientInput: OrderCreateWithoutAnnualClientInput;
-  OrderCreateOrConnectWithoutAnnualClientInput: OrderCreateOrConnectWithoutAnnualClientInput;
-  OrderCreateManyAnnualClientInputEnvelope: OrderCreateManyAnnualClientInputEnvelope;
-  CartCreateWithoutAnnualClientInput: CartCreateWithoutAnnualClientInput;
-  CartCreateOrConnectWithoutAnnualClientInput: CartCreateOrConnectWithoutAnnualClientInput;
-  CartCreateManyAnnualClientInputEnvelope: CartCreateManyAnnualClientInputEnvelope;
-  ClientCreateWithoutAnnClientsInput: ClientCreateWithoutAnnClientsInput;
-  ClientCreateOrConnectWithoutAnnClientsInput: ClientCreateOrConnectWithoutAnnClientsInput;
-  FinancialYearCreateWithoutAnnClientsInput: FinancialYearCreateWithoutAnnClientsInput;
-  FinancialYearCreateOrConnectWithoutAnnClientsInput: FinancialYearCreateOrConnectWithoutAnnClientsInput;
-  OrderUpsertWithWhereUniqueWithoutAnnualClientInput: OrderUpsertWithWhereUniqueWithoutAnnualClientInput;
-  OrderUpdateWithWhereUniqueWithoutAnnualClientInput: OrderUpdateWithWhereUniqueWithoutAnnualClientInput;
-  OrderUpdateManyWithWhereWithoutAnnualClientInput: OrderUpdateManyWithWhereWithoutAnnualClientInput;
-  CartUpsertWithWhereUniqueWithoutAnnualClientInput: CartUpsertWithWhereUniqueWithoutAnnualClientInput;
-  CartUpdateWithWhereUniqueWithoutAnnualClientInput: CartUpdateWithWhereUniqueWithoutAnnualClientInput;
-  CartUpdateManyWithWhereWithoutAnnualClientInput: CartUpdateManyWithWhereWithoutAnnualClientInput;
-  ClientUpsertWithoutAnnClientsInput: ClientUpsertWithoutAnnClientsInput;
-  ClientUpdateWithoutAnnClientsInput: ClientUpdateWithoutAnnClientsInput;
-  FinancialYearUpsertWithoutAnnClientsInput: FinancialYearUpsertWithoutAnnClientsInput;
-  FinancialYearUpdateWithoutAnnClientsInput: FinancialYearUpdateWithoutAnnClientsInput;
+  CategoryUpdateOneRequiredWithoutProductsInput: CategoryUpdateOneRequiredWithoutProductsInput;
   ProductCreateWithoutCartsInput: ProductCreateWithoutCartsInput;
   ProductCreateOrConnectWithoutCartsInput: ProductCreateOrConnectWithoutCartsInput;
-  AnnualClientCreateWithoutCartsInput: AnnualClientCreateWithoutCartsInput;
-  AnnualClientCreateOrConnectWithoutCartsInput: AnnualClientCreateOrConnectWithoutCartsInput;
-  AnnualBranchEmployeeCreateWithoutCartsInput: AnnualBranchEmployeeCreateWithoutCartsInput;
-  AnnualBranchEmployeeCreateOrConnectWithoutCartsInput: AnnualBranchEmployeeCreateOrConnectWithoutCartsInput;
+  ClientCreateWithoutCartsInput: ClientCreateWithoutCartsInput;
+  ClientCreateOrConnectWithoutCartsInput: ClientCreateOrConnectWithoutCartsInput;
+  EmployeeCreateWithoutCartsInput: EmployeeCreateWithoutCartsInput;
+  EmployeeCreateOrConnectWithoutCartsInput: EmployeeCreateOrConnectWithoutCartsInput;
   ProductUpsertWithoutCartsInput: ProductUpsertWithoutCartsInput;
   ProductUpdateWithoutCartsInput: ProductUpdateWithoutCartsInput;
-  AnnualClientUpsertWithoutCartsInput: AnnualClientUpsertWithoutCartsInput;
-  AnnualClientUpdateWithoutCartsInput: AnnualClientUpdateWithoutCartsInput;
-  AnnualBranchEmployeeUpsertWithoutCartsInput: AnnualBranchEmployeeUpsertWithoutCartsInput;
-  AnnualBranchEmployeeUpdateWithoutCartsInput: AnnualBranchEmployeeUpdateWithoutCartsInput;
+  ClientUpsertWithoutCartsInput: ClientUpsertWithoutCartsInput;
+  ClientUpdateWithoutCartsInput: ClientUpdateWithoutCartsInput;
+  EmployeeUpsertWithoutCartsInput: EmployeeUpsertWithoutCartsInput;
+  EmployeeUpdateWithoutCartsInput: EmployeeUpdateWithoutCartsInput;
   ProductCreateWithoutCategoryInput: ProductCreateWithoutCategoryInput;
   ProductCreateOrConnectWithoutCategoryInput: ProductCreateOrConnectWithoutCategoryInput;
   ProductCreateManyCategoryInputEnvelope: ProductCreateManyCategoryInputEnvelope;
+  Boolean: Scalars['Boolean'];
   ProductUpsertWithWhereUniqueWithoutCategoryInput: ProductUpsertWithWhereUniqueWithoutCategoryInput;
   ProductUpdateWithWhereUniqueWithoutCategoryInput: ProductUpdateWithWhereUniqueWithoutCategoryInput;
   ProductUpdateManyWithWhereWithoutCategoryInput: ProductUpdateManyWithWhereWithoutCategoryInput;
   ProductScalarWhereInput: ProductScalarWhereInput;
-  AnnualClientCreateWithoutClientInput: AnnualClientCreateWithoutClientInput;
-  AnnualClientCreateOrConnectWithoutClientInput: AnnualClientCreateOrConnectWithoutClientInput;
-  AnnualClientCreateManyClientInputEnvelope: AnnualClientCreateManyClientInputEnvelope;
-  AnnualClientUpsertWithWhereUniqueWithoutClientInput: AnnualClientUpsertWithWhereUniqueWithoutClientInput;
-  AnnualClientUpdateWithWhereUniqueWithoutClientInput: AnnualClientUpdateWithWhereUniqueWithoutClientInput;
-  AnnualClientUpdateManyWithWhereWithoutClientInput: AnnualClientUpdateManyWithWhereWithoutClientInput;
-  AnnualClientScalarWhereInput: AnnualClientScalarWhereInput;
+  CartCreateWithoutClientInput: CartCreateWithoutClientInput;
+  CartCreateOrConnectWithoutClientInput: CartCreateOrConnectWithoutClientInput;
+  CartCreateManyClientInputEnvelope: CartCreateManyClientInputEnvelope;
+  OrderCreateWithoutClientInput: OrderCreateWithoutClientInput;
+  OrderCreateOrConnectWithoutClientInput: OrderCreateOrConnectWithoutClientInput;
+  OrderCreateManyClientInputEnvelope: OrderCreateManyClientInputEnvelope;
+  CartUpsertWithWhereUniqueWithoutClientInput: CartUpsertWithWhereUniqueWithoutClientInput;
+  CartUpdateWithWhereUniqueWithoutClientInput: CartUpdateWithWhereUniqueWithoutClientInput;
+  CartUpdateManyWithWhereWithoutClientInput: CartUpdateManyWithWhereWithoutClientInput;
+  CartScalarWhereInput: CartScalarWhereInput;
+  OrderUpsertWithWhereUniqueWithoutClientInput: OrderUpsertWithWhereUniqueWithoutClientInput;
+  OrderUpdateWithWhereUniqueWithoutClientInput: OrderUpdateWithWhereUniqueWithoutClientInput;
+  OrderUpdateManyWithWhereWithoutClientInput: OrderUpdateManyWithWhereWithoutClientInput;
+  OrderScalarWhereInput: OrderScalarWhereInput;
   OrderCreateWithoutOrderDetailsInput: OrderCreateWithoutOrderDetailsInput;
   OrderCreateOrConnectWithoutOrderDetailsInput: OrderCreateOrConnectWithoutOrderDetailsInput;
   ProductCreateWithoutOrderDetailsInput: ProductCreateWithoutOrderDetailsInput;
@@ -11894,10 +7801,10 @@ export type ResolversParentTypes = {
   FinanceCreateWithoutOrderInput: FinanceCreateWithoutOrderInput;
   FinanceCreateOrConnectWithoutOrderInput: FinanceCreateOrConnectWithoutOrderInput;
   FinanceCreateManyOrderInputEnvelope: FinanceCreateManyOrderInputEnvelope;
-  AnnualClientCreateWithoutOrdersInput: AnnualClientCreateWithoutOrdersInput;
-  AnnualClientCreateOrConnectWithoutOrdersInput: AnnualClientCreateOrConnectWithoutOrdersInput;
-  AnnualBranchEmployeeCreateWithoutOrdersInput: AnnualBranchEmployeeCreateWithoutOrdersInput;
-  AnnualBranchEmployeeCreateOrConnectWithoutOrdersInput: AnnualBranchEmployeeCreateOrConnectWithoutOrdersInput;
+  ClientCreateWithoutOrdersInput: ClientCreateWithoutOrdersInput;
+  ClientCreateOrConnectWithoutOrdersInput: ClientCreateOrConnectWithoutOrdersInput;
+  EmployeeCreateWithoutOrdersInput: EmployeeCreateWithoutOrdersInput;
+  EmployeeCreateOrConnectWithoutOrdersInput: EmployeeCreateOrConnectWithoutOrdersInput;
   OrderDetailUpsertWithWhereUniqueWithoutOrderInput: OrderDetailUpsertWithWhereUniqueWithoutOrderInput;
   OrderDetailUpdateWithWhereUniqueWithoutOrderInput: OrderDetailUpdateWithWhereUniqueWithoutOrderInput;
   OrderDetailUpdateManyWithWhereWithoutOrderInput: OrderDetailUpdateManyWithWhereWithoutOrderInput;
@@ -11906,60 +7813,22 @@ export type ResolversParentTypes = {
   FinanceUpdateWithWhereUniqueWithoutOrderInput: FinanceUpdateWithWhereUniqueWithoutOrderInput;
   FinanceUpdateManyWithWhereWithoutOrderInput: FinanceUpdateManyWithWhereWithoutOrderInput;
   FinanceScalarWhereInput: FinanceScalarWhereInput;
-  AnnualClientUpsertWithoutOrdersInput: AnnualClientUpsertWithoutOrdersInput;
-  AnnualClientUpdateWithoutOrdersInput: AnnualClientUpdateWithoutOrdersInput;
-  AnnualBranchEmployeeUpsertWithoutOrdersInput: AnnualBranchEmployeeUpsertWithoutOrdersInput;
-  AnnualBranchEmployeeUpdateWithoutOrdersInput: AnnualBranchEmployeeUpdateWithoutOrdersInput;
-  BranchEmployeeCreateWithoutBranchInput: BranchEmployeeCreateWithoutBranchInput;
-  BranchEmployeeCreateOrConnectWithoutBranchInput: BranchEmployeeCreateOrConnectWithoutBranchInput;
-  BranchEmployeeCreateManyBranchInputEnvelope: BranchEmployeeCreateManyBranchInputEnvelope;
-  BranchEmployeeUpsertWithWhereUniqueWithoutBranchInput: BranchEmployeeUpsertWithWhereUniqueWithoutBranchInput;
-  BranchEmployeeUpdateWithWhereUniqueWithoutBranchInput: BranchEmployeeUpdateWithWhereUniqueWithoutBranchInput;
-  BranchEmployeeUpdateManyWithWhereWithoutBranchInput: BranchEmployeeUpdateManyWithWhereWithoutBranchInput;
-  BranchEmployeeScalarWhereInput: BranchEmployeeScalarWhereInput;
-  AnnualBranchEmployeeCreateWithoutBranchEmployeeInput: AnnualBranchEmployeeCreateWithoutBranchEmployeeInput;
-  AnnualBranchEmployeeCreateOrConnectWithoutBranchEmployeeInput: AnnualBranchEmployeeCreateOrConnectWithoutBranchEmployeeInput;
-  AnnualBranchEmployeeCreateManyBranchEmployeeInputEnvelope: AnnualBranchEmployeeCreateManyBranchEmployeeInputEnvelope;
-  EmployeeCreateWithoutBranchEmplsInput: EmployeeCreateWithoutBranchEmplsInput;
-  EmployeeCreateOrConnectWithoutBranchEmplsInput: EmployeeCreateOrConnectWithoutBranchEmplsInput;
-  BranchCreateWithoutBranchEmplsInput: BranchCreateWithoutBranchEmplsInput;
-  BranchCreateOrConnectWithoutBranchEmplsInput: BranchCreateOrConnectWithoutBranchEmplsInput;
-  EmployeeStatusCreateWithoutBranchEmplsInput: EmployeeStatusCreateWithoutBranchEmplsInput;
-  EmployeeStatusCreateOrConnectWithoutBranchEmplsInput: EmployeeStatusCreateOrConnectWithoutBranchEmplsInput;
-  AnnualBranchEmployeeUpsertWithWhereUniqueWithoutBranchEmployeeInput: AnnualBranchEmployeeUpsertWithWhereUniqueWithoutBranchEmployeeInput;
-  AnnualBranchEmployeeUpdateWithWhereUniqueWithoutBranchEmployeeInput: AnnualBranchEmployeeUpdateWithWhereUniqueWithoutBranchEmployeeInput;
-  AnnualBranchEmployeeUpdateManyWithWhereWithoutBranchEmployeeInput: AnnualBranchEmployeeUpdateManyWithWhereWithoutBranchEmployeeInput;
-  AnnualBranchEmployeeScalarWhereInput: AnnualBranchEmployeeScalarWhereInput;
-  EmployeeUpsertWithoutBranchEmplsInput: EmployeeUpsertWithoutBranchEmplsInput;
-  EmployeeUpdateWithoutBranchEmplsInput: EmployeeUpdateWithoutBranchEmplsInput;
-  BranchUpsertWithoutBranchEmplsInput: BranchUpsertWithoutBranchEmplsInput;
-  BranchUpdateWithoutBranchEmplsInput: BranchUpdateWithoutBranchEmplsInput;
-  EmployeeStatusUpsertWithoutBranchEmplsInput: EmployeeStatusUpsertWithoutBranchEmplsInput;
-  EmployeeStatusUpdateWithoutBranchEmplsInput: EmployeeStatusUpdateWithoutBranchEmplsInput;
-  AnnualBranchEmployeeCreateWithoutFinancialYearInput: AnnualBranchEmployeeCreateWithoutFinancialYearInput;
-  AnnualBranchEmployeeCreateOrConnectWithoutFinancialYearInput: AnnualBranchEmployeeCreateOrConnectWithoutFinancialYearInput;
-  AnnualBranchEmployeeCreateManyFinancialYearInputEnvelope: AnnualBranchEmployeeCreateManyFinancialYearInputEnvelope;
-  AnnualClientCreateWithoutFinancialYearInput: AnnualClientCreateWithoutFinancialYearInput;
-  AnnualClientCreateOrConnectWithoutFinancialYearInput: AnnualClientCreateOrConnectWithoutFinancialYearInput;
-  AnnualClientCreateManyFinancialYearInputEnvelope: AnnualClientCreateManyFinancialYearInputEnvelope;
-  AnnualBranchEmployeeUpsertWithWhereUniqueWithoutFinancialYearInput: AnnualBranchEmployeeUpsertWithWhereUniqueWithoutFinancialYearInput;
-  AnnualBranchEmployeeUpdateWithWhereUniqueWithoutFinancialYearInput: AnnualBranchEmployeeUpdateWithWhereUniqueWithoutFinancialYearInput;
-  AnnualBranchEmployeeUpdateManyWithWhereWithoutFinancialYearInput: AnnualBranchEmployeeUpdateManyWithWhereWithoutFinancialYearInput;
-  AnnualClientUpsertWithWhereUniqueWithoutFinancialYearInput: AnnualClientUpsertWithWhereUniqueWithoutFinancialYearInput;
-  AnnualClientUpdateWithWhereUniqueWithoutFinancialYearInput: AnnualClientUpdateWithWhereUniqueWithoutFinancialYearInput;
-  AnnualClientUpdateManyWithWhereWithoutFinancialYearInput: AnnualClientUpdateManyWithWhereWithoutFinancialYearInput;
-  BranchEmployeeCreateWithoutEmployeeInput: BranchEmployeeCreateWithoutEmployeeInput;
-  BranchEmployeeCreateOrConnectWithoutEmployeeInput: BranchEmployeeCreateOrConnectWithoutEmployeeInput;
-  BranchEmployeeCreateManyEmployeeInputEnvelope: BranchEmployeeCreateManyEmployeeInputEnvelope;
-  BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeInput: BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeInput;
-  BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeInput: BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeInput;
-  BranchEmployeeUpdateManyWithWhereWithoutEmployeeInput: BranchEmployeeUpdateManyWithWhereWithoutEmployeeInput;
-  BranchEmployeeCreateWithoutEmployeeStatusInput: BranchEmployeeCreateWithoutEmployeeStatusInput;
-  BranchEmployeeCreateOrConnectWithoutEmployeeStatusInput: BranchEmployeeCreateOrConnectWithoutEmployeeStatusInput;
-  BranchEmployeeCreateManyEmployeeStatusInputEnvelope: BranchEmployeeCreateManyEmployeeStatusInputEnvelope;
-  BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeStatusInput: BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeStatusInput;
-  BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeStatusInput: BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeStatusInput;
-  BranchEmployeeUpdateManyWithWhereWithoutEmployeeStatusInput: BranchEmployeeUpdateManyWithWhereWithoutEmployeeStatusInput;
+  ClientUpsertWithoutOrdersInput: ClientUpsertWithoutOrdersInput;
+  ClientUpdateWithoutOrdersInput: ClientUpdateWithoutOrdersInput;
+  EmployeeUpsertWithoutOrdersInput: EmployeeUpsertWithoutOrdersInput;
+  EmployeeUpdateWithoutOrdersInput: EmployeeUpdateWithoutOrdersInput;
+  CartCreateWithoutEmployeeInput: CartCreateWithoutEmployeeInput;
+  CartCreateOrConnectWithoutEmployeeInput: CartCreateOrConnectWithoutEmployeeInput;
+  CartCreateManyEmployeeInputEnvelope: CartCreateManyEmployeeInputEnvelope;
+  OrderCreateWithoutEmployeeInput: OrderCreateWithoutEmployeeInput;
+  OrderCreateOrConnectWithoutEmployeeInput: OrderCreateOrConnectWithoutEmployeeInput;
+  OrderCreateManyEmployeeInputEnvelope: OrderCreateManyEmployeeInputEnvelope;
+  CartUpsertWithWhereUniqueWithoutEmployeeInput: CartUpsertWithWhereUniqueWithoutEmployeeInput;
+  CartUpdateWithWhereUniqueWithoutEmployeeInput: CartUpdateWithWhereUniqueWithoutEmployeeInput;
+  CartUpdateManyWithWhereWithoutEmployeeInput: CartUpdateManyWithWhereWithoutEmployeeInput;
+  OrderUpsertWithWhereUniqueWithoutEmployeeInput: OrderUpsertWithWhereUniqueWithoutEmployeeInput;
+  OrderUpdateWithWhereUniqueWithoutEmployeeInput: OrderUpdateWithWhereUniqueWithoutEmployeeInput;
+  OrderUpdateManyWithWhereWithoutEmployeeInput: OrderUpdateManyWithWhereWithoutEmployeeInput;
   OrderCreateWithoutFinancesInput: OrderCreateWithoutFinancesInput;
   OrderCreateOrConnectWithoutFinancesInput: OrderCreateOrConnectWithoutFinancesInput;
   OrderUpsertWithoutFinancesInput: OrderUpsertWithoutFinancesInput;
@@ -11980,47 +7849,29 @@ export type ResolversParentTypes = {
   OrderDetailUpdateManyWithWhereWithoutProductInput: OrderDetailUpdateManyWithWhereWithoutProductInput;
   CategoryUpsertWithoutProductsInput: CategoryUpsertWithoutProductsInput;
   CategoryUpdateWithoutProductsInput: CategoryUpdateWithoutProductsInput;
-  OrderCreateManyAnnualBranchEmployeeInput: OrderCreateManyAnnualBranchEmployeeInput;
-  CartCreateManyAnnualBranchEmployeeInput: CartCreateManyAnnualBranchEmployeeInput;
-  OrderUpdateWithoutAnnualBranchEmployeeInput: OrderUpdateWithoutAnnualBranchEmployeeInput;
-  OrderUpdateManyMutationInput: OrderUpdateManyMutationInput;
-  StringFilter: StringFilter;
-  IntFilter: IntFilter;
-  DateTimeFilter: DateTimeFilter;
-  StringNullableFilter: StringNullableFilter;
-  CartUpdateWithoutAnnualBranchEmployeeInput: CartUpdateWithoutAnnualBranchEmployeeInput;
-  CartUpdateManyMutationInput: CartUpdateManyMutationInput;
-  FloatFilter: FloatFilter;
-  OrderCreateManyAnnualClientInput: OrderCreateManyAnnualClientInput;
-  CartCreateManyAnnualClientInput: CartCreateManyAnnualClientInput;
-  OrderUpdateWithoutAnnualClientInput: OrderUpdateWithoutAnnualClientInput;
-  CartUpdateWithoutAnnualClientInput: CartUpdateWithoutAnnualClientInput;
   ProductCreateManyCategoryInput: ProductCreateManyCategoryInput;
   ProductUpdateWithoutCategoryInput: ProductUpdateWithoutCategoryInput;
   ProductUpdateManyMutationInput: ProductUpdateManyMutationInput;
-  AnnualClientCreateManyClientInput: AnnualClientCreateManyClientInput;
-  AnnualClientUpdateWithoutClientInput: AnnualClientUpdateWithoutClientInput;
-  AnnualClientUpdateManyMutationInput: AnnualClientUpdateManyMutationInput;
+  StringFilter: StringFilter;
+  IntFilter: IntFilter;
+  DateTimeFilter: DateTimeFilter;
+  CartCreateManyClientInput: CartCreateManyClientInput;
+  OrderCreateManyClientInput: OrderCreateManyClientInput;
+  CartUpdateWithoutClientInput: CartUpdateWithoutClientInput;
+  CartUpdateManyMutationInput: CartUpdateManyMutationInput;
+  FloatFilter: FloatFilter;
+  OrderUpdateWithoutClientInput: OrderUpdateWithoutClientInput;
+  OrderUpdateManyMutationInput: OrderUpdateManyMutationInput;
   OrderDetailCreateManyOrderInput: OrderDetailCreateManyOrderInput;
   FinanceCreateManyOrderInput: FinanceCreateManyOrderInput;
   OrderDetailUpdateWithoutOrderInput: OrderDetailUpdateWithoutOrderInput;
   OrderDetailUpdateManyMutationInput: OrderDetailUpdateManyMutationInput;
   FinanceUpdateWithoutOrderInput: FinanceUpdateWithoutOrderInput;
   FinanceUpdateManyMutationInput: FinanceUpdateManyMutationInput;
-  BranchEmployeeCreateManyBranchInput: BranchEmployeeCreateManyBranchInput;
-  BranchEmployeeUpdateWithoutBranchInput: BranchEmployeeUpdateWithoutBranchInput;
-  BranchEmployeeUpdateManyMutationInput: BranchEmployeeUpdateManyMutationInput;
-  AnnualBranchEmployeeCreateManyBranchEmployeeInput: AnnualBranchEmployeeCreateManyBranchEmployeeInput;
-  AnnualBranchEmployeeUpdateWithoutBranchEmployeeInput: AnnualBranchEmployeeUpdateWithoutBranchEmployeeInput;
-  AnnualBranchEmployeeUpdateManyMutationInput: AnnualBranchEmployeeUpdateManyMutationInput;
-  AnnualBranchEmployeeCreateManyFinancialYearInput: AnnualBranchEmployeeCreateManyFinancialYearInput;
-  AnnualClientCreateManyFinancialYearInput: AnnualClientCreateManyFinancialYearInput;
-  AnnualBranchEmployeeUpdateWithoutFinancialYearInput: AnnualBranchEmployeeUpdateWithoutFinancialYearInput;
-  AnnualClientUpdateWithoutFinancialYearInput: AnnualClientUpdateWithoutFinancialYearInput;
-  BranchEmployeeCreateManyEmployeeInput: BranchEmployeeCreateManyEmployeeInput;
-  BranchEmployeeUpdateWithoutEmployeeInput: BranchEmployeeUpdateWithoutEmployeeInput;
-  BranchEmployeeCreateManyEmployeeStatusInput: BranchEmployeeCreateManyEmployeeStatusInput;
-  BranchEmployeeUpdateWithoutEmployeeStatusInput: BranchEmployeeUpdateWithoutEmployeeStatusInput;
+  CartCreateManyEmployeeInput: CartCreateManyEmployeeInput;
+  OrderCreateManyEmployeeInput: OrderCreateManyEmployeeInput;
+  CartUpdateWithoutEmployeeInput: CartUpdateWithoutEmployeeInput;
+  OrderUpdateWithoutEmployeeInput: OrderUpdateWithoutEmployeeInput;
   CartCreateManyProductInput: CartCreateManyProductInput;
   OrderDetailCreateManyProductInput: OrderDetailCreateManyProductInput;
   CartUpdateWithoutProductInput: CartUpdateWithoutProductInput;
@@ -12028,64 +7879,17 @@ export type ResolversParentTypes = {
   NestedStringFilter: NestedStringFilter;
   NestedIntFilter: NestedIntFilter;
   NestedDateTimeFilter: NestedDateTimeFilter;
-  NestedStringNullableFilter: NestedStringNullableFilter;
   NestedFloatFilter: NestedFloatFilter;
   Query: {};
   Mutation: {};
 };
 
-export type AnnualBranchEmployeeResolvers<ContextType = any, ParentType extends ResolversParentTypes['AnnualBranchEmployee'] = ResolversParentTypes['AnnualBranchEmployee']> = {
-  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  BranchEmployee?: Resolver<Maybe<ResolversTypes['BranchEmployee']>, ParentType, ContextType>;
-  FinancialYear?: Resolver<Maybe<ResolversTypes['FinancialYear']>, ParentType, ContextType>;
-  orders?: Resolver<Array<ResolversTypes['Order']>, ParentType, ContextType, RequireFields<AnnualBranchEmployeeOrdersArgs, never>>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type AnnualClientResolvers<ContextType = any, ParentType extends ResolversParentTypes['AnnualClient'] = ResolversParentTypes['AnnualClient']> = {
-  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  Client?: Resolver<Maybe<ResolversTypes['Client']>, ParentType, ContextType>;
-  FinancialYear?: Resolver<Maybe<ResolversTypes['FinancialYear']>, ParentType, ContextType>;
-  orders?: Resolver<Array<ResolversTypes['Order']>, ParentType, ContextType, RequireFields<AnnualClientOrdersArgs, never>>;
-  carts?: Resolver<Array<ResolversTypes['Cart']>, ParentType, ContextType, RequireFields<AnnualClientCartsArgs, never>>;
-  clientId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  financialYearId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type BonusResolvers<ContextType = any, ParentType extends ResolversParentTypes['Bonus'] = ResolversParentTypes['Bonus']> = {
-  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  bonusName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type BranchResolvers<ContextType = any, ParentType extends ResolversParentTypes['Branch'] = ResolversParentTypes['Branch']> = {
-  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  branchName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  branchEmpls?: Resolver<Array<ResolversTypes['BranchEmployee']>, ParentType, ContextType, RequireFields<BranchBranchEmplsArgs, never>>;
-  branchCode?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type BranchEmployeeResolvers<ContextType = any, ParentType extends ResolversParentTypes['BranchEmployee'] = ResolversParentTypes['BranchEmployee']> = {
-  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  endDate?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
-  startDate?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
-  Employee?: Resolver<ResolversTypes['Employee'], ParentType, ContextType>;
-  EmployeeStatus?: Resolver<ResolversTypes['EmployeeStatus'], ParentType, ContextType>;
-  Branch?: Resolver<ResolversTypes['Branch'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
 export type CartResolvers<ContextType = any, ParentType extends ResolversParentTypes['Cart'] = ResolversParentTypes['Cart']> = {
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  AnnualClient?: Resolver<Maybe<ResolversTypes['AnnualClient']>, ParentType, ContextType>;
   orderDate?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   qtty?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
   pdtCost?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   salesPrice?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  AnnualBranchEmployee?: Resolver<Maybe<ResolversTypes['AnnualBranchEmployee']>, ParentType, ContextType>;
-  annualBranchEmployeeId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   Product?: Resolver<ResolversTypes['Product'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -12108,7 +7912,6 @@ export type ClientResolvers<ContextType = any, ParentType extends ResolversParen
 export type EmployeeResolvers<ContextType = any, ParentType extends ResolversParentTypes['Employee'] = ResolversParentTypes['Employee']> = {
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   employeeNames?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  branchEmpls?: Resolver<Array<ResolversTypes['BranchEmployee']>, ParentType, ContextType, RequireFields<EmployeeBranchEmplsArgs, never>>;
   employeePhoneNumb?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   employeeCode?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -12130,15 +7933,7 @@ export type FinanceResolvers<ContextType = any, ParentType extends ResolversPare
 
 export type FinancialYearResolvers<ContextType = any, ParentType extends ResolversParentTypes['FinancialYear'] = ResolversParentTypes['FinancialYear']> = {
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  annBranchEmpls?: Resolver<Array<ResolversTypes['AnnualBranchEmployee']>, ParentType, ContextType, RequireFields<FinancialYearAnnBranchEmplsArgs, never>>;
   yearName?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  annClients?: Resolver<Array<ResolversTypes['AnnualClient']>, ParentType, ContextType, RequireFields<FinancialYearAnnClientsArgs, never>>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type InventoryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Inventory'] = ResolversParentTypes['Inventory']> = {
-  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  qttyInHand?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -12146,10 +7941,6 @@ export type OrderResolvers<ContextType = any, ParentType extends ResolversParent
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   orderDate?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   orderTotal?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  AnnualBranchEmployee?: Resolver<Maybe<ResolversTypes['AnnualBranchEmployee']>, ParentType, ContextType>;
-  annualBranchEmployeeId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  AnnualClient?: Resolver<Maybe<ResolversTypes['AnnualClient']>, ParentType, ContextType>;
-  annualClientId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   finances?: Resolver<Array<ResolversTypes['Finance']>, ParentType, ContextType, RequireFields<OrderFinancesArgs, never>>;
   totalPaid?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   orderDetails?: Resolver<Array<ResolversTypes['OrderDetail']>, ParentType, ContextType, RequireFields<OrderOrderDetailsArgs, never>>;
@@ -12169,13 +7960,20 @@ export type OrderDetailResolvers<ContextType = any, ParentType extends Resolvers
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type OrderTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['OrderType'] = ResolversParentTypes['OrderType']> = {
+  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  orderTypeName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  orderTypeCode?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type ProductResolvers<ContextType = any, ParentType extends ResolversParentTypes['Product'] = ResolversParentTypes['Product']> = {
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   pdtName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   pdtCode?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  Category?: Resolver<Maybe<ResolversTypes['Category']>, ParentType, ContextType>;
+  Category?: Resolver<ResolversTypes['Category'], ParentType, ContextType>;
   carts?: Resolver<Array<ResolversTypes['Cart']>, ParentType, ContextType, RequireFields<ProductCartsArgs, never>>;
-  categoryId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  categoryId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   unitPrice?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   orderDetails?: Resolver<Array<ResolversTypes['OrderDetail']>, ParentType, ContextType, RequireFields<ProductOrderDetailsArgs, never>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -12186,43 +7984,17 @@ export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 }
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  annualBranchEmployee?: Resolver<Maybe<ResolversTypes['AnnualBranchEmployee']>, ParentType, ContextType, RequireFields<QueryAnnualBranchEmployeeArgs, 'where'>>;
-  annualBranchEmployees?: Resolver<Array<ResolversTypes['AnnualBranchEmployee']>, ParentType, ContextType, RequireFields<QueryAnnualBranchEmployeesArgs, never>>;
-  annualBranchEmployeeById?: Resolver<Maybe<ResolversTypes['AnnualBranchEmployee']>, ParentType, ContextType, RequireFields<QueryAnnualBranchEmployeeByIdArgs, never>>;
-  annualBranchEmployeeByBranchEmployeeAndYear?: Resolver<Maybe<ResolversTypes['AnnualBranchEmployee']>, ParentType, ContextType, RequireFields<QueryAnnualBranchEmployeeByBranchEmployeeAndYearArgs, never>>;
-  annualClient?: Resolver<Maybe<ResolversTypes['AnnualClient']>, ParentType, ContextType, RequireFields<QueryAnnualClientArgs, 'where'>>;
-  annualClients?: Resolver<Array<ResolversTypes['AnnualClient']>, ParentType, ContextType, RequireFields<QueryAnnualClientsArgs, never>>;
-  annualClientById?: Resolver<Maybe<ResolversTypes['AnnualClient']>, ParentType, ContextType, RequireFields<QueryAnnualClientByIdArgs, never>>;
-  annualClientByPhoneAndYear?: Resolver<Maybe<ResolversTypes['AnnualClient']>, ParentType, ContextType, RequireFields<QueryAnnualClientByPhoneAndYearArgs, never>>;
-  annualClientByYearClient?: Resolver<Maybe<ResolversTypes['AnnualClient']>, ParentType, ContextType, RequireFields<QueryAnnualClientByYearClientArgs, never>>;
   cart?: Resolver<Maybe<ResolversTypes['Cart']>, ParentType, ContextType, RequireFields<QueryCartArgs, 'where'>>;
   carts?: Resolver<Array<ResolversTypes['Cart']>, ParentType, ContextType, RequireFields<QueryCartsArgs, never>>;
   cartById?: Resolver<Maybe<ResolversTypes['Cart']>, ParentType, ContextType, RequireFields<QueryCartByIdArgs, never>>;
-  cartByAnnualClientIdAndEmplId?: Resolver<Maybe<Array<Maybe<ResolversTypes['Cart']>>>, ParentType, ContextType, RequireFields<QueryCartByAnnualClientIdAndEmplIdArgs, never>>;
+  cartByClientIdAndEmplId?: Resolver<Maybe<Array<Maybe<ResolversTypes['Cart']>>>, ParentType, ContextType, RequireFields<QueryCartByClientIdAndEmplIdArgs, never>>;
+  category?: Resolver<Maybe<ResolversTypes['Category']>, ParentType, ContextType, RequireFields<QueryCategoryArgs, 'where'>>;
+  categories?: Resolver<Array<ResolversTypes['Category']>, ParentType, ContextType, RequireFields<QueryCategoriesArgs, never>>;
+  categoryById?: Resolver<Maybe<ResolversTypes['Category']>, ParentType, ContextType, RequireFields<QueryCategoryByIdArgs, never>>;
   client?: Resolver<Maybe<ResolversTypes['Client']>, ParentType, ContextType, RequireFields<QueryClientArgs, 'where'>>;
   clients?: Resolver<Maybe<Array<Maybe<ResolversTypes['Client']>>>, ParentType, ContextType>;
   clientByPhoneNumber?: Resolver<Maybe<ResolversTypes['Client']>, ParentType, ContextType, RequireFields<QueryClientByPhoneNumberArgs, never>>;
   clientById?: Resolver<Maybe<Array<Maybe<ResolversTypes['Client']>>>, ParentType, ContextType, RequireFields<QueryClientByIdArgs, never>>;
-  orderDetail?: Resolver<Maybe<ResolversTypes['OrderDetail']>, ParentType, ContextType, RequireFields<QueryOrderDetailArgs, 'where'>>;
-  orderDetails?: Resolver<Array<ResolversTypes['OrderDetail']>, ParentType, ContextType, RequireFields<QueryOrderDetailsArgs, never>>;
-  order?: Resolver<Maybe<ResolversTypes['Order']>, ParentType, ContextType, RequireFields<QueryOrderArgs, 'where'>>;
-  orders?: Resolver<Maybe<Array<Maybe<ResolversTypes['Order']>>>, ParentType, ContextType>;
-  orderById?: Resolver<Maybe<ResolversTypes['Order']>, ParentType, ContextType, RequireFields<QueryOrderByIdArgs, never>>;
-  bonus?: Resolver<Maybe<ResolversTypes['Bonus']>, ParentType, ContextType, RequireFields<QueryBonusArgs, 'where'>>;
-  bonuses?: Resolver<Array<ResolversTypes['Bonus']>, ParentType, ContextType, RequireFields<QueryBonusesArgs, never>>;
-  bonusById?: Resolver<Maybe<ResolversTypes['Bonus']>, ParentType, ContextType, RequireFields<QueryBonusByIdArgs, never>>;
-  branch?: Resolver<Maybe<ResolversTypes['Branch']>, ParentType, ContextType, RequireFields<QueryBranchArgs, 'where'>>;
-  branches?: Resolver<Array<ResolversTypes['Branch']>, ParentType, ContextType, RequireFields<QueryBranchesArgs, never>>;
-  branchById?: Resolver<Maybe<ResolversTypes['Branch']>, ParentType, ContextType, RequireFields<QueryBranchByIdArgs, never>>;
-  branchByBranchCode?: Resolver<Maybe<ResolversTypes['Branch']>, ParentType, ContextType, RequireFields<QueryBranchByBranchCodeArgs, never>>;
-  branchEmployee?: Resolver<Maybe<ResolversTypes['BranchEmployee']>, ParentType, ContextType, RequireFields<QueryBranchEmployeeArgs, 'where'>>;
-  branchEmployees?: Resolver<Array<ResolversTypes['BranchEmployee']>, ParentType, ContextType, RequireFields<QueryBranchEmployeesArgs, never>>;
-  branchEmployeeById?: Resolver<Maybe<ResolversTypes['BranchEmployee']>, ParentType, ContextType, RequireFields<QueryBranchEmployeeByIdArgs, never>>;
-  branchEmployeeByEmplIdAndBranchId?: Resolver<Maybe<ResolversTypes['BranchEmployee']>, ParentType, ContextType, RequireFields<QueryBranchEmployeeByEmplIdAndBranchIdArgs, never>>;
-  financialYear?: Resolver<Maybe<ResolversTypes['FinancialYear']>, ParentType, ContextType, RequireFields<QueryFinancialYearArgs, 'where'>>;
-  financialYears?: Resolver<Maybe<ResolversTypes['FinancialYear']>, ParentType, ContextType, RequireFields<QueryFinancialYearsArgs, never>>;
-  financialYearById?: Resolver<Maybe<ResolversTypes['FinancialYear']>, ParentType, ContextType, RequireFields<QueryFinancialYearByIdArgs, never>>;
-  recentFinancialYear?: Resolver<Maybe<ResolversTypes['FinancialYear']>, ParentType, ContextType>;
   employee?: Resolver<Maybe<ResolversTypes['Employee']>, ParentType, ContextType, RequireFields<QueryEmployeeArgs, 'where'>>;
   employees?: Resolver<Array<ResolversTypes['Employee']>, ParentType, ContextType, RequireFields<QueryEmployeesArgs, never>>;
   employeeById?: Resolver<Maybe<ResolversTypes['Employee']>, ParentType, ContextType, RequireFields<QueryEmployeeByIdArgs, never>>;
@@ -12234,12 +8006,18 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   finance?: Resolver<Maybe<ResolversTypes['Finance']>, ParentType, ContextType, RequireFields<QueryFinanceArgs, 'where'>>;
   finances?: Resolver<Array<ResolversTypes['Finance']>, ParentType, ContextType, RequireFields<QueryFinancesArgs, never>>;
   financeById?: Resolver<Maybe<ResolversTypes['Finance']>, ParentType, ContextType, RequireFields<QueryFinanceByIdArgs, never>>;
-  inventory?: Resolver<Maybe<ResolversTypes['Inventory']>, ParentType, ContextType, RequireFields<QueryInventoryArgs, 'where'>>;
-  inventories?: Resolver<Array<ResolversTypes['Inventory']>, ParentType, ContextType, RequireFields<QueryInventoriesArgs, never>>;
-  inventoryById?: Resolver<Maybe<ResolversTypes['Inventory']>, ParentType, ContextType, RequireFields<QueryInventoryByIdArgs, never>>;
-  category?: Resolver<Maybe<ResolversTypes['Category']>, ParentType, ContextType, RequireFields<QueryCategoryArgs, 'where'>>;
-  categories?: Resolver<Array<ResolversTypes['Category']>, ParentType, ContextType, RequireFields<QueryCategoriesArgs, never>>;
-  categoryById?: Resolver<Maybe<ResolversTypes['Category']>, ParentType, ContextType, RequireFields<QueryCategoryByIdArgs, never>>;
+  financialYear?: Resolver<Maybe<ResolversTypes['FinancialYear']>, ParentType, ContextType, RequireFields<QueryFinancialYearArgs, 'where'>>;
+  financialYears?: Resolver<Maybe<ResolversTypes['FinancialYear']>, ParentType, ContextType, RequireFields<QueryFinancialYearsArgs, never>>;
+  financialYearById?: Resolver<Maybe<ResolversTypes['FinancialYear']>, ParentType, ContextType, RequireFields<QueryFinancialYearByIdArgs, never>>;
+  recentFinancialYear?: Resolver<Maybe<ResolversTypes['FinancialYear']>, ParentType, ContextType>;
+  order?: Resolver<Maybe<ResolversTypes['Order']>, ParentType, ContextType, RequireFields<QueryOrderArgs, 'where'>>;
+  orders?: Resolver<Maybe<Array<Maybe<ResolversTypes['Order']>>>, ParentType, ContextType>;
+  orderById?: Resolver<Maybe<ResolversTypes['Order']>, ParentType, ContextType, RequireFields<QueryOrderByIdArgs, never>>;
+  orderDetail?: Resolver<Maybe<ResolversTypes['OrderDetail']>, ParentType, ContextType, RequireFields<QueryOrderDetailArgs, 'where'>>;
+  orderDetails?: Resolver<Array<ResolversTypes['OrderDetail']>, ParentType, ContextType, RequireFields<QueryOrderDetailsArgs, never>>;
+  orderType?: Resolver<Maybe<ResolversTypes['OrderType']>, ParentType, ContextType, RequireFields<QueryOrderTypeArgs, 'where'>>;
+  orderTypes?: Resolver<Array<ResolversTypes['OrderType']>, ParentType, ContextType, RequireFields<QueryOrderTypesArgs, never>>;
+  orderTypeById?: Resolver<Maybe<ResolversTypes['OrderType']>, ParentType, ContextType, RequireFields<QueryOrderTypeByIdArgs, never>>;
   product?: Resolver<Maybe<ResolversTypes['Product']>, ParentType, ContextType, RequireFields<QueryProductArgs, 'where'>>;
   products?: Resolver<Maybe<Array<Maybe<ResolversTypes['Product']>>>, ParentType, ContextType>;
   productById?: Resolver<Maybe<ResolversTypes['Product']>, ParentType, ContextType, RequireFields<QueryProductByIdArgs, never>>;
@@ -12247,16 +8025,6 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  createOneAnnualBranchEmployee?: Resolver<ResolversTypes['AnnualBranchEmployee'], ParentType, ContextType, RequireFields<MutationCreateOneAnnualBranchEmployeeArgs, 'data'>>;
-  deleteOneAnnualBranchEmployee?: Resolver<Maybe<ResolversTypes['AnnualBranchEmployee']>, ParentType, ContextType, RequireFields<MutationDeleteOneAnnualBranchEmployeeArgs, 'where'>>;
-  updateOneAnnualBranchEmployee?: Resolver<Maybe<ResolversTypes['AnnualBranchEmployee']>, ParentType, ContextType, RequireFields<MutationUpdateOneAnnualBranchEmployeeArgs, 'data' | 'where'>>;
-  createAnnualBranchEmployee?: Resolver<Maybe<ResolversTypes['AnnualBranchEmployee']>, ParentType, ContextType, RequireFields<MutationCreateAnnualBranchEmployeeArgs, 'data'>>;
-  deleteAnnualBranchEmployee?: Resolver<Maybe<ResolversTypes['AnnualBranchEmployee']>, ParentType, ContextType, RequireFields<MutationDeleteAnnualBranchEmployeeArgs, 'where'>>;
-  createOneAnnualClient?: Resolver<ResolversTypes['AnnualClient'], ParentType, ContextType, RequireFields<MutationCreateOneAnnualClientArgs, 'data'>>;
-  deleteOneAnnualClient?: Resolver<Maybe<ResolversTypes['AnnualClient']>, ParentType, ContextType, RequireFields<MutationDeleteOneAnnualClientArgs, 'where'>>;
-  updateOneAnnualClient?: Resolver<Maybe<ResolversTypes['AnnualClient']>, ParentType, ContextType, RequireFields<MutationUpdateOneAnnualClientArgs, 'data' | 'where'>>;
-  createAnnualClient?: Resolver<Maybe<ResolversTypes['AnnualClient']>, ParentType, ContextType, RequireFields<MutationCreateAnnualClientArgs, 'data'>>;
-  deleteAnnualClient?: Resolver<Maybe<ResolversTypes['AnnualClient']>, ParentType, ContextType, RequireFields<MutationDeleteAnnualClientArgs, 'where'>>;
   createOneCart?: Resolver<ResolversTypes['Cart'], ParentType, ContextType, RequireFields<MutationCreateOneCartArgs, 'data'>>;
   deleteOneCart?: Resolver<Maybe<ResolversTypes['Cart']>, ParentType, ContextType, RequireFields<MutationDeleteOneCartArgs, 'where'>>;
   updateOneCart?: Resolver<Maybe<ResolversTypes['Cart']>, ParentType, ContextType, RequireFields<MutationUpdateOneCartArgs, 'data' | 'where'>>;
@@ -12282,21 +8050,11 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   updateOneOrder?: Resolver<Maybe<ResolversTypes['Order']>, ParentType, ContextType, RequireFields<MutationUpdateOneOrderArgs, 'data' | 'where'>>;
   createOrder?: Resolver<Maybe<ResolversTypes['Order']>, ParentType, ContextType, RequireFields<MutationCreateOrderArgs, 'data'>>;
   deleteOrder?: Resolver<Maybe<ResolversTypes['Order']>, ParentType, ContextType, RequireFields<MutationDeleteOrderArgs, 'where'>>;
-  createOneBonus?: Resolver<ResolversTypes['Bonus'], ParentType, ContextType, RequireFields<MutationCreateOneBonusArgs, 'data'>>;
-  deleteOneBonus?: Resolver<Maybe<ResolversTypes['Bonus']>, ParentType, ContextType, RequireFields<MutationDeleteOneBonusArgs, 'where'>>;
-  updateOneBonus?: Resolver<Maybe<ResolversTypes['Bonus']>, ParentType, ContextType, RequireFields<MutationUpdateOneBonusArgs, 'data' | 'where'>>;
-  createBonus?: Resolver<Maybe<ResolversTypes['Bonus']>, ParentType, ContextType, RequireFields<MutationCreateBonusArgs, 'data'>>;
-  deleteBonus?: Resolver<Maybe<ResolversTypes['Bonus']>, ParentType, ContextType, RequireFields<MutationDeleteBonusArgs, 'where'>>;
-  createOneBranch?: Resolver<ResolversTypes['Branch'], ParentType, ContextType, RequireFields<MutationCreateOneBranchArgs, 'data'>>;
-  deleteOneBranch?: Resolver<Maybe<ResolversTypes['Branch']>, ParentType, ContextType, RequireFields<MutationDeleteOneBranchArgs, 'where'>>;
-  updateOneBranch?: Resolver<Maybe<ResolversTypes['Branch']>, ParentType, ContextType, RequireFields<MutationUpdateOneBranchArgs, 'data' | 'where'>>;
-  createBranch?: Resolver<Maybe<ResolversTypes['Branch']>, ParentType, ContextType, RequireFields<MutationCreateBranchArgs, 'data'>>;
-  deleteBranch?: Resolver<Maybe<ResolversTypes['Branch']>, ParentType, ContextType, RequireFields<MutationDeleteBranchArgs, 'where'>>;
-  createOneBranchEmployee?: Resolver<ResolversTypes['BranchEmployee'], ParentType, ContextType, RequireFields<MutationCreateOneBranchEmployeeArgs, 'data'>>;
-  deleteOneBranchEmployee?: Resolver<Maybe<ResolversTypes['BranchEmployee']>, ParentType, ContextType, RequireFields<MutationDeleteOneBranchEmployeeArgs, 'where'>>;
-  updateOneBranchEmployee?: Resolver<Maybe<ResolversTypes['BranchEmployee']>, ParentType, ContextType, RequireFields<MutationUpdateOneBranchEmployeeArgs, 'data' | 'where'>>;
-  createBranchEmployee?: Resolver<Maybe<ResolversTypes['BranchEmployee']>, ParentType, ContextType, RequireFields<MutationCreateBranchEmployeeArgs, 'data'>>;
-  deleteBranchEmployee?: Resolver<Maybe<ResolversTypes['BranchEmployee']>, ParentType, ContextType, RequireFields<MutationDeleteBranchEmployeeArgs, 'where'>>;
+  createOneOrderType?: Resolver<ResolversTypes['OrderType'], ParentType, ContextType, RequireFields<MutationCreateOneOrderTypeArgs, 'data'>>;
+  deleteOneOrderType?: Resolver<Maybe<ResolversTypes['OrderType']>, ParentType, ContextType, RequireFields<MutationDeleteOneOrderTypeArgs, 'where'>>;
+  updateOneOrderType?: Resolver<Maybe<ResolversTypes['OrderType']>, ParentType, ContextType, RequireFields<MutationUpdateOneOrderTypeArgs, 'data' | 'where'>>;
+  createOrderType?: Resolver<Maybe<ResolversTypes['OrderType']>, ParentType, ContextType, RequireFields<MutationCreateOrderTypeArgs, 'data'>>;
+  deleteOrderType?: Resolver<Maybe<ResolversTypes['OrderType']>, ParentType, ContextType, RequireFields<MutationDeleteOrderTypeArgs, 'where'>>;
   createOneFinancialYear?: Resolver<ResolversTypes['FinancialYear'], ParentType, ContextType, RequireFields<MutationCreateOneFinancialYearArgs, 'data'>>;
   deleteOneFinancialYear?: Resolver<Maybe<ResolversTypes['FinancialYear']>, ParentType, ContextType, RequireFields<MutationDeleteOneFinancialYearArgs, 'where'>>;
   updateOneFinancialYear?: Resolver<Maybe<ResolversTypes['FinancialYear']>, ParentType, ContextType, RequireFields<MutationUpdateOneFinancialYearArgs, 'data' | 'where'>>;
@@ -12317,11 +8075,6 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   updateOneFinance?: Resolver<Maybe<ResolversTypes['Finance']>, ParentType, ContextType, RequireFields<MutationUpdateOneFinanceArgs, 'data' | 'where'>>;
   createFinance?: Resolver<Maybe<ResolversTypes['Finance']>, ParentType, ContextType, RequireFields<MutationCreateFinanceArgs, 'data'>>;
   deleteFinance?: Resolver<Maybe<ResolversTypes['Finance']>, ParentType, ContextType, RequireFields<MutationDeleteFinanceArgs, 'where'>>;
-  createOneInventory?: Resolver<ResolversTypes['Inventory'], ParentType, ContextType, RequireFields<MutationCreateOneInventoryArgs, 'data'>>;
-  deleteOneInventory?: Resolver<Maybe<ResolversTypes['Inventory']>, ParentType, ContextType, RequireFields<MutationDeleteOneInventoryArgs, 'where'>>;
-  updateOneInventory?: Resolver<Maybe<ResolversTypes['Inventory']>, ParentType, ContextType, RequireFields<MutationUpdateOneInventoryArgs, 'data' | 'where'>>;
-  createInventory?: Resolver<Maybe<ResolversTypes['Inventory']>, ParentType, ContextType, RequireFields<MutationCreateInventoryArgs, 'data'>>;
-  deleteInventory?: Resolver<Maybe<ResolversTypes['Inventory']>, ParentType, ContextType, RequireFields<MutationDeleteInventoryArgs, 'where'>>;
   createOneProduct?: Resolver<ResolversTypes['Product'], ParentType, ContextType, RequireFields<MutationCreateOneProductArgs, 'data'>>;
   deleteOneProduct?: Resolver<Maybe<ResolversTypes['Product']>, ParentType, ContextType, RequireFields<MutationDeleteOneProductArgs, 'where'>>;
   updateOneProduct?: Resolver<Maybe<ResolversTypes['Product']>, ParentType, ContextType, RequireFields<MutationUpdateOneProductArgs, 'data' | 'where'>>;
@@ -12330,11 +8083,6 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 };
 
 export type Resolvers<ContextType = any> = {
-  AnnualBranchEmployee?: AnnualBranchEmployeeResolvers<ContextType>;
-  AnnualClient?: AnnualClientResolvers<ContextType>;
-  Bonus?: BonusResolvers<ContextType>;
-  Branch?: BranchResolvers<ContextType>;
-  BranchEmployee?: BranchEmployeeResolvers<ContextType>;
   Cart?: CartResolvers<ContextType>;
   Category?: CategoryResolvers<ContextType>;
   Client?: ClientResolvers<ContextType>;
@@ -12342,9 +8090,9 @@ export type Resolvers<ContextType = any> = {
   EmployeeStatus?: EmployeeStatusResolvers<ContextType>;
   Finance?: FinanceResolvers<ContextType>;
   FinancialYear?: FinancialYearResolvers<ContextType>;
-  Inventory?: InventoryResolvers<ContextType>;
   Order?: OrderResolvers<ContextType>;
   OrderDetail?: OrderDetailResolvers<ContextType>;
+  OrderType?: OrderTypeResolvers<ContextType>;
   Product?: ProductResolvers<ContextType>;
   DateTime?: GraphQLScalarType;
   Query?: QueryResolvers<ContextType>;

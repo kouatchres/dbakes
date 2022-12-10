@@ -20,8 +20,8 @@ import {
   useTable
 } from 'react-table';
 import {
-  AllClientsDocument,
-  useDeleteAClientMutation
+  AllCategoriesDocument,
+  useDeleteACategoryMutation
 } from '../../../generated/graphql';
 import TablePaginationActions from '../table/TablePaginationActions';
 import TableToolbar from '../table/TableToolbar';
@@ -30,8 +30,8 @@ import ConfirmDialog from '../utils/ConfirmDialog';
 import Notification from '../utils/Notification';
 import SygefexTheme from '../utils/SygefexTheme';
 import UpdatePopup from '../utils/UpdatePopup';
-import CreateClient from './createBranchEmployee';
-import UpdateClient from './UpdateBranchEmployee';
+import CreateCategory from './createCategory';
+import UpdateCategory from './UpdateCategory';
 
 const useStyles = makeStyles(theme =>
   createStyles({
@@ -114,7 +114,7 @@ const defaultColumn = {
   Cell: EditableCell
 };
 
-const ClientEnhancedTable = ({
+const CategoryEnhancedTable = ({
   columns,
   data,
   isUpdatePopupOpen,
@@ -166,18 +166,20 @@ const ClientEnhancedTable = ({
     setIsAddPopupOpen(!isAddPopupOpen);
   };
 
-  const [deleteAClientMutation, { data: dataClientDelete, loading, error }] =
-    useDeleteAClientMutation();
+  const [
+    deleteACategoryMutation,
+    { data: dataCategoryDelete, loading, error }
+  ] = useDeleteACategoryMutation();
 
-  const handleDeleteClientConfirm = () => {
-    deleteAClientMutation({
+  const handleDeleteCategoryConfirm = () => {
+    deleteACategoryMutation({
       variables: { where: { id: isDeletePopupOpen.id } },
-      refetchQueries: [{ query: AllClientsDocument }]
+      refetchQueries: [{ query: AllCategoriesDocument }]
     });
 
     setNotify({
       isOpen: true,
-      message: 'Client sucessfully deleted',
+      message: 'Category sucessfully deleted',
       type: 'success'
     });
     handleDeletePopupChange();
@@ -278,30 +280,30 @@ const ClientEnhancedTable = ({
           </TableRow>
         </TableFooter>
         <ConfirmDialog
-          title="Client Deletion"
-          content="Do you realy wanto delete this client?"
+          title="Category Deletion"
+          content="Do you realy want to delete this client?"
           isOpen={isDeletePopupOpen.isOpen}
           onClose={handleDeletePopupChange}
-          onConfirm={handleDeleteClientConfirm}
+          onConfirm={handleDeleteCategoryConfirm}
         />
         <AddPopup
           maxWidth="sm"
-          title="New Client"
+          title="New Category"
           isOpen={isAddPopupOpen}
           onClose={handleAddPopupChange}
         >
-          <CreateClient />
+          <CreateCategory />
         </AddPopup>
         <UpdatePopup
-          title="Update Client"
+          title="Update Category"
           isOpen={isUpdatePopupOpen.isOpen}
           onClose={handleUpdatePopupChange}
         >
-          <UpdateClient id={isUpdatePopupOpen.id} />
+          <UpdateCategory id={isUpdatePopupOpen.id} />
         </UpdatePopup>
       </MaUTable>
       <Notification notify={notify} setNotify={setNotify} />
     </TableContainer>
   );
 };
-export default ClientEnhancedTable;
+export default CategoryEnhancedTable;

@@ -1,15 +1,9 @@
 import {
   CartCreateInput,
   RecentSingleFinancialYearDocument,
-  SingleAnnualBranchEmployeeByBranchEmployeeAndYearDocument,
-  SingleBranchByBranchCodeDocument,
-  SingleBranchEmployeeByEmployeeIdAndBranchIdDocument,
   SingleEmployeeByCodeDocument,
   useCreateACartMutation,
   useRecentSingleFinancialYearLazyQuery,
-  useSingleAnnualBranchEmployeeByBranchEmployeeAndYearLazyQuery,
-  useSingleBranchByBranchCodeLazyQuery,
-  useSingleBranchEmployeeByEmployeeIdAndBranchIdLazyQuery,
   useSingleEmployeeByCodeLazyQuery
 } from '@/graphql';
 import {
@@ -21,7 +15,7 @@ import {
 } from '@material-ui/core';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { TextField } from 'material-ui-formik-components';
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import DisplayError from '../../ErrorMessage';
 import RouterLink from '../layout/routerLink';
@@ -36,7 +30,7 @@ const validationSchema = Yup.object().shape({
   // pdtCost: Yup.number().required('Amount of the supplierProduct bought required')
 });
 
-const CreateCart = (props: any) => {
+const CreateCart = () => {
   // const classes = useStyles();
 
   const initialState = {
@@ -58,18 +52,8 @@ const CreateCart = (props: any) => {
     pdtCost: 0.0,
     salesPrice: 0,
     Product: {},
-    AnnualClient: {},
-    AnnualBranchEmployee: {}
-  };
-
-  const [SingleBranchByBranchCodeQuery, { data: branchData }] =
-    useSingleBranchByBranchCodeLazyQuery({
-      query: SingleBranchByBranchCodeDocument
-    });
-
-  const { branchName, id: branchID } = branchData?.branchByBranchCode ?? {
-    branchName: '',
-    id: ''
+    Client: {},
+    Employee: {}
   };
 
   const [RecentSingleFinancialYearQuery, { data: recentYearData }] =
@@ -95,48 +79,30 @@ const CreateCart = (props: any) => {
     id: ''
   };
 
-  const [
-    SingleBranchEmployeeByEmployeeIdAndBranchIdQuery,
-    { data: branchEmployeeData }
-  ] = useSingleBranchEmployeeByEmployeeIdAndBranchIdLazyQuery({
-    query: SingleBranchEmployeeByEmployeeIdAndBranchIdDocument
-  });
+  // const { id: branchEmployeeID } =
+  //   branchEmployeeData?.branchEmployeeByEmplIdAndBranchId ?? {
+  //     id: ''
+  //   };
 
-  useEffect(() => {
-    SingleBranchEmployeeByEmployeeIdAndBranchIdQuery({
-      variables: {
-        branchId: branchID,
-        employeeId: employeeID
-      }
-    });
-  }, [branchID, employeeID]);
+  // const [
+  //   SingleEmployeeByBranchEmployeeAndYearQuery,
+  //   { data: SingleEmployeeData }
+  // ] = useSingleEmployeeByBranchEmployeeAndYearLazyQuery({
+  //   query: SingleEmployeeByBranchEmployeeAndYearDocument
+  // });
 
-  console.log({ branchEmployeeData });
+  // useEffect(() => {
+  //   SingleEmployeeByBranchEmployeeAndYearQuery({
+  //     variables: {
+  //       branchEmployeeId: branchEmployeeID,
+  //       financialYearId: yearID
+  //     }
+  //   });
+  // }, [branchEmployeeID, yearID]);
 
-  const { id: branchEmployeeID } =
-    branchEmployeeData?.branchEmployeeByEmplIdAndBranchId ?? {
-      id: ''
-    };
+  // console.log({ SingleEmployeeData });
 
-  const [
-    SingleAnnualBranchEmployeeByBranchEmployeeAndYearQuery,
-    { data: SingleAnnualBranchEmployeeData }
-  ] = useSingleAnnualBranchEmployeeByBranchEmployeeAndYearLazyQuery({
-    query: SingleAnnualBranchEmployeeByBranchEmployeeAndYearDocument
-  });
-
-  useEffect(() => {
-    SingleAnnualBranchEmployeeByBranchEmployeeAndYearQuery({
-      variables: {
-        branchEmployeeId: branchEmployeeID,
-        financialYearId: yearID
-      }
-    });
-  }, [branchEmployeeID, yearID]);
-
-  console.log({ SingleAnnualBranchEmployeeData });
-
-  console.log({ branchData });
+  // console.log({ branchData });
 
   const [createACartMutation, { error: cartItemErr }] =
     useCreateACartMutation();
@@ -155,10 +121,9 @@ const CreateCart = (props: any) => {
           variables: {
             data: {
               ...values,
-              AnnualBranchEmployee: {
+              Employee: {
                 connect: {
-                  id: SingleAnnualBranchEmployeeData
-                    ?.annualBranchEmployeeByBranchEmployeeAndYear?.id
+                  id: emplData?.employeeByCode?.id
                 }
               },
               Product: { connect: { id: getPdtCost[0] } }
@@ -231,42 +196,6 @@ const CreateCart = (props: any) => {
                         </Tooltip>
                       </Grid>
                     </Grid>
-                    <Grid
-                      container
-                      spacing={1}
-                      direction="row"
-                      justify="center"
-                    >
-                      <Grid item xs={4}>
-                        <Field
-                          name="branchCode"
-                          component={TextField}
-                          type="password"
-                          label="Branch code"
-                          disabled={isSubmitting}
-                          fullWidth="true"
-                          onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                            SingleBranchByBranchCodeQuery({
-                              variables: {
-                                branchCode: event.target.value
-                              }
-                            });
-                          }}
-                          helpertext={<ErrorMessage name="branchCode" />}
-                        />
-                      </Grid>
-                      <Grid item xs={8}>
-                        <Field
-                          name="branchName"
-                          component={TextField}
-                          type="text"
-                          value={branchName || ''}
-                          label="Branch Name"
-                          disabled
-                          helpertext={<ErrorMessage name="branchName" />}
-                        />
-                      </Grid>
-                    </Grid>
 
                     <Grid
                       container
@@ -322,10 +251,7 @@ const CreateCart = (props: any) => {
                             href={{
                               pathname: '/components/cart/nextCart',
                               query: {
-                                annualBranchEmployeeId:
-                                  SingleAnnualBranchEmployeeData
-                                    ?.annualBranchEmployeeByBranchEmployeeAndYear
-                                    ?.id
+                                employeeId: emplData?.employeeByCode?.id
                               }
                             }}
                             passHref

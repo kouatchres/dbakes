@@ -3,7 +3,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit';
 import { PrismaClient } from '@prisma/client';
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import safeJsonStringify from 'safe-json-stringify';
 import { calcClientTotal, totalQttySold } from '../utils/Functions';
 import GlassCard from '../utils/GlassCard';
@@ -19,17 +19,17 @@ const CartItemList = ({ clientCartItems, query }) => {
     isOpen: false,
     id: ''
   });
-  const annClientItem = clientCartItems?.AnnualClient?.annualClientId;
+  const annClientItem = clientCartItems?.Client?.clientId;
 
   const getCartItems = clientCartItems?.map(cartItem => ({
     productName: cartItem?.Product?.pdtName,
-    clientName: cartItem?.AnnualClient?.Client?.clientNames,
+    clientName: cartItem?.Client?.clientNames,
     ...cartItem
   }));
 
   console.log({ getCartItems });
   const getClientFullName =
-    getCartItems[0] && getCartItems[0]?.AnnualClient?.Client?.clientNames;
+    getCartItems[0] && getCartItems[0]?.Client?.Client?.clientNames;
   console.log({ getClientFullName });
   const cartItemCols = [
     {
@@ -129,8 +129,8 @@ const CartItemList = ({ clientCartItems, query }) => {
           handleDeletePopupChange={handleDeletePopupChange}
           calcClientTotal={calcClientTotal(clientCartItemData)}
           totalQttySold={totalQttySold(clientCartItemData)}
-          annualClientId={getCartItems[0]?.AnnualClient?.id}
-          annualBranchEmployeeId={getCartItems[0]?.annualBranchEmployeeId}
+          clientId={getCartItems[0]?.Client?.id}
+          employeeId={getCartItems[0]?.employeeId}
         />
       </GlassCard>
     </div>
@@ -140,24 +140,20 @@ const CartItemList = ({ clientCartItems, query }) => {
 const prisma = new PrismaClient();
 
 export const getServerSideProps = async ({ query }) => {
-  const annualClientID = query && query?.annualClientId;
-  const annualBranchEmployeeID = query?.annualBranchEmployeeId;
+  const clientID = query && query?.clientId;
+  const employeeID = query?.employeeId;
 
   console.log('this is the query details');
   console.log({ query });
   const getClientCart = await prisma.cart.findMany({
     where: {
-      annualClientId: annualClientID,
-      annualBranchEmployeeId: annualBranchEmployeeID
+      clientId: clientID,
+      employeeId: employeeID
     },
     include: {
       Product: true,
-      AnnualClient: {
-        include: {
-          FinancialYear: true,
-          Client: true
-        }
-      }
+      Client: true,
+      Employee: true
     }
   });
 

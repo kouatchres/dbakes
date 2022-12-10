@@ -8,12 +8,12 @@ import {
 } from '@material-ui/core';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { TextField } from 'material-ui-formik-components/TextField';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import {
   ProductUpdateInput,
-  SingleProductByIdDocument,
-  useSingleProductByIdLazyQuery,
+  SingleProductDocument,
+  useSingleProductLazyQuery,
   useUpdateAProductMutation
 } from '../../../generated/graphql';
 import GlassCard from '../utils/GlassCard';
@@ -26,7 +26,7 @@ const validationSchema = Yup.object().shape({
   pdtCode: Yup.string().required('Product code required')
 });
 
-const UpdateProduct = (props: { id: string }) => {
+const UpdateProduct = (props:{id:string}) => {
   const getPdtID = props?.id;
   const [notify, setNotify] = useState({
     isOpen: false,
@@ -34,16 +34,16 @@ const UpdateProduct = (props: { id: string }) => {
     type: ''
   });
 
-  const [SingleProductByIdQuery, { data: dataProducts }] =
-    useSingleProductByIdLazyQuery({
-      query: SingleProductByIdDocument
+  const [SingleProductQuery, { data: dataProducts }] =
+    useSingleProductLazyQuery({
+      query: SingleProductDocument
     });
 
   useEffect(() => {
-    SingleProductByIdQuery({ variables: { id: getPdtID } });
+    SingleProductQuery({ variables: {where:{ id: getPdtID} } });
   }, [getPdtID]);
 
-  console.log(dataProducts?.productById);
+  console.log(dataProducts?.product);
 
   const initialValues: ProductUpdateInput = {
     pdtName: '' || undefined,
@@ -57,7 +57,7 @@ const UpdateProduct = (props: { id: string }) => {
   console.log({ productData });
   return (
     <Formik
-      initialValues={dataProducts?.productById || initialValues}
+      initialValues={dataProducts?.product || initialValues}
       enableReinitialize={true}
       validationSchema={validationSchema}
       onSubmit={async (values, { setSubmitting, resetForm }) => {

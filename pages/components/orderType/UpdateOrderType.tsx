@@ -8,72 +8,72 @@ import {
 } from '@material-ui/core';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { TextField } from 'material-ui-formik-components/TextField';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import {
-  BranchUpdateInput,
-  SingleBranchDocument,
-  useSingleBranchByIdLazyQuery,
-  useUpdateABranchMutation
+  CategoryUpdateInput,
+  SingleCategoryDocument,
+  useSingleCategoryLazyQuery,
+  useUpdateACategoryMutation
 } from '../../../generated/graphql';
 import GlassCard from '../utils/GlassCard';
 import Notification from '../utils/Notification';
 import SygefexTheme from '../utils/SygefexTheme';
 
 const validationSchema = Yup.object().shape({
-  branchNames: Yup.string().required('Branch Name required'),
-  branchPhoneNumb: Yup.number().required('Branch phone required')
+  categoryName: Yup.string().required('Category Name required')
 });
 
-const UpdateBranch = (props: { id: string }) => {
-  const getBranchID = props?.id;
+const UpdateCategory = (props: { id: string }) => {
+  const getCategoryID = props?.id;
   const [notify, setNotify] = useState({
     isOpen: false,
     message: '',
     type: ''
   });
 
-  const [SingleBranchByIdQuery, { data: dataBranch }] =
-    useSingleBranchByIdLazyQuery({
-      query: SingleBranchDocument
+  const [SingleCategoryQuery, { data: dataCategory }] =
+    useSingleCategoryLazyQuery({
+      query: SingleCategoryDocument
     });
 
   useEffect(() => {
-    SingleBranchByIdQuery({ variables: { id: getBranchID } });
-  }, [getBranchID]);
+    SingleCategoryQuery({ variables: { where:{id: getCategoryID }} });
+  }, [getCategoryID]);
 
-  console.log(dataBranch?.branchById);
+  console.log(dataCategory?.category);
 
-  const initialValues: BranchUpdateInput = {
-    branchName: '' || undefined,
+  const initialValues: CategoryUpdateInput = {
+    categoryName: '' || undefined,
+    categoryCode: '' || undefined,
     id: '' || undefined
   };
 
-  const [updateABranchMutation] = useUpdateABranchMutation();
+  const [updateACategoryMutation] = useUpdateACategoryMutation();
   return (
     <Formik
-      initialValues={dataBranch?.branchById || initialValues}
+      initialValues={dataCategory?.category || initialValues}
       enableReinitialize={true}
       validationSchema={validationSchema}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
-        const res = await updateABranchMutation({
+        const res = await updateACategoryMutation({
           variables: {
             data: {
-              branchName: { set: String(values?.branchName) }
+              categoryName: { set: String(values?.categoryName) }
             },
-            where: { id: getBranchID }
+            where: { id: getCategoryID }
           }
 
           //   update: (cache, { data }) => {
-          //     const allBranchsList = cache.readQuery({
-          //       query: AllBranchsDocument
+          //     const allCategorysList = cache.readQuery({
+          //       query: AllCategorysDocument
           //     });
-          //     // allBranchsList?.Branchs = [...allBranchsList?.Branchs, updateOneBranch];
+          //     // allCategorysList?.Categorys = [...allCategorysList?.Categorys, updateOneCategory];
           //     console.log('running the update query');
-          //     console.log({ allBranchsList });
+          //     console.log({ allCategorysList });
           //     cache.writeQuery({
-          //       query: AllBranchsDocument,
-          //       data: [allBranchsList, data?.updateOneBranch]
+          //       query: AllCategorysDocument,
+          //       data: [allCategorysList, data?.updateOneCategory]
           //     });
           //   }
         });
@@ -123,7 +123,7 @@ const UpdateBranch = (props: { id: string }) => {
                     <Grid item>
                       <Tooltip
                         placement="top"
-                        title="Enrégistrer une nouvelle Poste"
+                        title="Update Category"
                       >
                         <Typography
                           color="primary"
@@ -135,7 +135,7 @@ const UpdateBranch = (props: { id: string }) => {
                             fontSize: 'clamp(0.6rem, 3vw + 0.5rem, 2rem)'
                           }}
                         >
-                          Update Branch
+                          Update Category
                         </Typography>
                       </Tooltip>
                     </Grid>
@@ -143,21 +143,21 @@ const UpdateBranch = (props: { id: string }) => {
                   <Grid container direction="column">
                     <Grid item>
                       <Field
-                        name="branchNames"
+                        name="categoryName"
                         component={TextField}
                         type="text"
-                        label="Branch Name"
+                        label="Category Name"
                         disabled={isSubmitting}
-                        helpertext={<ErrorMessage name="branchNames" />}
+                        helpertext={<ErrorMessage name="categoryName" />}
                       />
 
                       <Field
-                        name="branchPhoneNumb"
+                        name="categoryCode"
                         component={TextField}
-                        type="number"
-                        label="Branch Phone Number"
+                        type="text"
+                        label="Category Code"
                         disabled={isSubmitting}
-                        helpertext={<ErrorMessage name="branchPhoneNumb" />}
+                        helpertext={<ErrorMessage name="categoryCode" />}
                       />
                       <Notification notify={notify} setNotify={setNotify} />
                       <div style={{ placeItems: 'center', display: 'grid' }}>
@@ -176,4 +176,4 @@ const UpdateBranch = (props: { id: string }) => {
     </Formik>
   );
 };
-export default UpdateBranch;
+export default UpdateCategory;

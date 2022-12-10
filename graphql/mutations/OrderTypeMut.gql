@@ -1,0 +1,28 @@
+#import OrderTypeFragment from "../fragments/OrderTypeFragment.gql"
+
+mutation createOrderType($data: OrderTypeCreateInput!) {
+  createOneOrderType(data: $data) {
+    ...OrderTypeFragment
+  }
+}
+
+mutation createAOrderType($data: OrderTypeCreateInput!) {
+  createOrderType(data: $data) {
+    ...OrderTypeFragment
+  }
+}
+
+mutation deleteAOrderType($where: OrderTypeWhereUniqueInput!) {
+  deleteOneOrderType(where: $where) {
+    id
+  }
+}
+
+mutation updateAOrderType(
+  $data: OrderTypeUpdateInput!
+  $where: OrderTypeWhereUniqueInput!
+) {
+  updateOneOrderType(data: $data, where: $where) {
+    ...OrderTypeFragment
+  }
+}

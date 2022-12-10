@@ -31,7 +31,7 @@ const validationSchema = Yup.object().shape({
   pdtCode: Yup.string().required('Product code must be supplied')
 });
 
-const CreateProduct = (props: any) => {
+const CreateProduct = () => {
   // const classes = useStyles();
 
   const initialState = {
@@ -51,7 +51,9 @@ const CreateProduct = (props: any) => {
     pdtCode: '',
     unitPrice: 0,
     carts: {},
-    orderDetails: {}
+    orderDetails: {},
+    Category: {},
+    qttyInHand: 0
   };
 
   const [AllCategoriesQuery, { data: categoryData }] =
@@ -61,7 +63,7 @@ const CreateProduct = (props: any) => {
     AllCategoriesQuery();
   }, []);
 
-  const pdtOptions =
+  const categoryOptions =
     categoryData?.categories?.map(category => ({
       value: category?.id,
       label: category?.categoryName
@@ -93,6 +95,7 @@ const CreateProduct = (props: any) => {
           variables: {
             data: {
               ...values,
+              qttyInHand: 0,
               Category: {
                 connect: { id: String(inputValues?.categoryID) }
               }
@@ -189,7 +192,7 @@ const CreateProduct = (props: any) => {
                           component={Select}
                           type="text"
                           autoFocus={true}
-                          options={pdtOptions}
+                          options={categoryOptions}
                           label="Category"
                           onChange={(
                             event: React.ChangeEvent<HTMLInputElement>

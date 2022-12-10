@@ -3,20 +3,12 @@ import {
   AllProductsByCategoryIdDocument,
   CartCreateInput,
   RecentSingleFinancialYearDocument,
-  SingleAnnualBranchEmployeeByBranchEmployeeAndYearDocument,
-  SingleAnnualClientByPhoneAndYearDocument,
-  SingleBranchByBranchCodeDocument,
-  SingleBranchEmployeeByEmployeeIdAndBranchIdDocument,
   SingleClientByPhoneNumberDocument,
   SingleEmployeeByCodeDocument,
   useAllCategoriesLazyQuery,
   useAllProductsByCategoryIdLazyQuery,
   useCreateACartMutation,
   useRecentSingleFinancialYearLazyQuery,
-  useSingleAnnualBranchEmployeeByBranchEmployeeAndYearLazyQuery,
-  useSingleAnnualClientByPhoneAndYearLazyQuery,
-  useSingleBranchByBranchCodeLazyQuery,
-  useSingleBranchEmployeeByEmployeeIdAndBranchIdLazyQuery,
   useSingleClientByPhoneNumberLazyQuery,
   useSingleEmployeeByCodeLazyQuery
 } from '@/graphql';
@@ -46,7 +38,7 @@ const validationSchema = Yup.object().shape({
   // pdtCost: Yup.number().required('Amount of the supplierProduct bought required')
 });
 
-const CreateCart = (props: any) => {
+const CreateCart = () => {
   // const classes = useStyles();
 
   const initialState = {
@@ -68,18 +60,8 @@ const CreateCart = (props: any) => {
     pdtCost: 0.0,
     salesPrice: 0,
     Product: {},
-    AnnualClient: {},
-    AnnualBranchEmployee: {}
-  };
-
-  const [SingleBranchByBranchCodeQuery, { data: branchData }] =
-    useSingleBranchByBranchCodeLazyQuery({
-      query: SingleBranchByBranchCodeDocument
-    });
-
-  const { branchName, id: branchID } = branchData?.branchByBranchCode ?? {
-    branchName: '',
-    id: ''
+    Client: {},
+    Employee: {}
   };
 
   const [RecentSingleFinancialYearQuery, { data: recentYearData }] =
@@ -117,78 +99,12 @@ const CreateCart = (props: any) => {
     id: ''
   };
 
-  // const [SingleEmployeeByCodeQuery, { data: emplData }] =
-  //   useSingleEmployeeByPhoneNumberLazyQuery({
-  //     query: SingleEmployeeByCodeQuery
-  //   });
-
-  // const { employeeNames, id: employeeID } = emplData?.employeeByPhoneNumber ?? {
-  //   employeeNames: '',
-  //   id: ''
-  // };
-
   const { id: yearID } = recentYearData?.recentFinancialYear ?? {
     id: ''
   };
 
-  console.log({ yearID, clientID });
+  console.log({ yearID, clientID, employeeID });
   console.log({ emplData });
-
-  const [SingleAnnualClientByPhoneAndYearQuery, { data: singleAnnualClient }] =
-    useSingleAnnualClientByPhoneAndYearLazyQuery({
-      query: SingleAnnualClientByPhoneAndYearDocument
-    });
-
-  useEffect(() => {
-    SingleAnnualClientByPhoneAndYearQuery({
-      variables: {
-        clientId: clientID,
-        financialYearId: yearID
-      }
-    });
-  }, [clientID, yearID]);
-
-  const [
-    SingleBranchEmployeeByEmployeeIdAndBranchIdQuery,
-    { data: branchEmployeeData }
-  ] = useSingleBranchEmployeeByEmployeeIdAndBranchIdLazyQuery({
-    query: SingleBranchEmployeeByEmployeeIdAndBranchIdDocument
-  });
-
-  useEffect(() => {
-    SingleBranchEmployeeByEmployeeIdAndBranchIdQuery({
-      variables: {
-        branchId: branchID,
-        employeeId: employeeID
-      }
-    });
-  }, [branchID, employeeID]);
-
-  console.log({ branchEmployeeData });
-
-  const { id: branchEmployeeID } =
-    branchEmployeeData?.branchEmployeeByEmplIdAndBranchId ?? {
-      id: ''
-    };
-
-  const [
-    SingleAnnualBranchEmployeeByBranchEmployeeAndYearQuery,
-    { data: SingleAnnualBranchEmployeeData }
-  ] = useSingleAnnualBranchEmployeeByBranchEmployeeAndYearLazyQuery({
-    query: SingleAnnualBranchEmployeeByBranchEmployeeAndYearDocument
-  });
-
-  useEffect(() => {
-    SingleAnnualBranchEmployeeByBranchEmployeeAndYearQuery({
-      variables: {
-        branchEmployeeId: branchEmployeeID,
-        financialYearId: yearID
-      }
-    });
-  }, [branchEmployeeID, yearID]);
-
-  console.log({ singleAnnualClient });
-  console.log({ SingleAnnualBranchEmployeeData });
 
   const [AllProductsByCategoryIdQuery, { data: pdtsByCategoryData }] =
     useAllProductsByCategoryIdLazyQuery({
@@ -216,8 +132,6 @@ const CreateCart = (props: any) => {
       label: category?.categoryName
     })) ?? [];
 
-  console.log({ branchData });
-
   const [createACartMutation, { error: cartItemErr }] =
     useCreateACartMutation();
   const getPdtCost = inputValues?.pdtID.split('/');
@@ -238,17 +152,6 @@ const CreateCart = (props: any) => {
               orderDate: new Date(),
               qtty: values?.salesPrice / constPdtCost,
               pdtCost: constPdtCost, // cost of supplierProduct as bought from the supplier
-              AnnualClient: {
-                connect: {
-                  id: singleAnnualClient?.annualClientByPhoneAndYear?.id
-                }
-              },
-              AnnualBranchEmployee: {
-                connect: {
-                  id: SingleAnnualBranchEmployeeData
-                    ?.annualBranchEmployeeByBranchEmployeeAndYear?.id
-                }
-              },
               Product: { connect: { id: getPdtCost[0] } }
             }
           }
@@ -317,42 +220,6 @@ const CreateCart = (props: any) => {
                             Add to cart
                           </Typography>
                         </Tooltip>
-                      </Grid>
-                    </Grid>
-                    <Grid
-                      container
-                      spacing={1}
-                      direction="row"
-                      justify="center"
-                    >
-                      <Grid item xs={4}>
-                        <Field
-                          name="branchCode"
-                          component={TextField}
-                          type="password"
-                          label="Branch code"
-                          disabled={isSubmitting}
-                          fullWidth="true"
-                          onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                            SingleBranchByBranchCodeQuery({
-                              variables: {
-                                branchCode: event.target.value
-                              }
-                            });
-                          }}
-                          helpertext={<ErrorMessage name="branchCode" />}
-                        />
-                      </Grid>
-                      <Grid item xs={8}>
-                        <Field
-                          name="branchName"
-                          component={TextField}
-                          type="text"
-                          value={branchName || ''}
-                          label="Branch Name"
-                          disabled
-                          helpertext={<ErrorMessage name="branchName" />}
-                        />
                       </Grid>
                     </Grid>
 
@@ -514,13 +381,8 @@ const CreateCart = (props: any) => {
                             href={{
                               pathname: '/components/cart/cartItemList',
                               query: {
-                                annualClientId:
-                                  singleAnnualClient?.annualClientByPhoneAndYear
-                                    ?.id,
-                                annualBranchEmployeeId:
-                                  SingleAnnualBranchEmployeeData
-                                    ?.annualBranchEmployeeByBranchEmployeeAndYear
-                                    ?.id
+                                clientId: clientData?.clientByPhoneNumber?.id,
+                                employeeId: emplData?.employeeByCode?.id
                               }
                             }}
                           >

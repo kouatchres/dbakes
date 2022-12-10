@@ -19,7 +19,7 @@ import {
 } from '@material-ui/core';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { Select, TextField } from 'material-ui-formik-components';
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import * as Yup from 'yup';
@@ -35,7 +35,9 @@ const validationSchema = Yup.object().shape({
   // pdtCost: Yup.number().required('Amount of the supplierProduct bought required')
 });
 
-const CreateCart = (props: any) => {
+const CreateCart = (
+  props: InferGetServerSidePropsType<typeof getServerSideProps>
+) => {
   // const classes = useStyles();
 
   const initialState = {
@@ -43,7 +45,7 @@ const CreateCart = (props: any) => {
     categoryID: ''
   };
 
-  const { annualBranchEmployeeID, annualClientID } = props;
+  const { employeeID, annualClientID } = props;
   const { inputValues, handleInputChange } = useForm(initialState);
 
   const [notify, setNotify] = useState({
@@ -58,8 +60,8 @@ const CreateCart = (props: any) => {
     pdtCost: 0.0,
     salesPrice: 0,
     Product: {},
-    AnnualClient: {},
-    AnnualBranchEmployee: {}
+    Client: {},
+    Employee: {}
   };
 
   const [RecentSingleFinancialYearQuery, { data: recentYearData }] =
@@ -91,13 +93,13 @@ const CreateCart = (props: any) => {
     id: ''
   };
 
-  // const [SingleAnnualClientByPhoneAndYearQuery, { data: singleAnnualClient }] =
-  //   useSingleAnnualClientByPhoneAndYearLazyQuery({
-  //     query: SingleAnnualClientByPhoneAndYearDocument
+  // const [SingleClientByPhoneAndYearQuery, { data: singleClient }] =
+  //   useSingleClientByPhoneAndYearLazyQuery({
+  //     query: SingleClientByPhoneAndYearDocument
   //   });
 
   // useEffect(() => {
-  //   SingleAnnualClientByPhoneAndYearQuery({
+  //   SingleClientByPhoneAndYearQuery({
   //     variables: {
   //       clientId: clientID,
   //       financialYearId: yearID
@@ -151,15 +153,13 @@ const CreateCart = (props: any) => {
               orderDate: new Date(),
               qtty: values?.salesPrice / constPdtCost,
               pdtCost: constPdtCost, // cost of supplierProduct as bought from the supplier
-              AnnualClient: {
+              Client: {
                 connect: {
                   id: annualClientID
                 }
               },
-              AnnualBranchEmployee: {
-                connect: {
-                  id: annualBranchEmployeeID
-                }
+              Employee: {
+                connect: { id: employeeID }
               },
               Product: { connect: { id: getPdtCost[0] } }
             }
@@ -317,7 +317,7 @@ const CreateCart = (props: any) => {
                               pathname: '/components/cart/cartItemList',
                               query: {
                                 annualClientId: annualClientID,
-                                annualBranchEmployeeId: annualBranchEmployeeID
+                                employeeId: employeeID
                               }
                             }}
                           >
@@ -346,9 +346,9 @@ const CreateCart = (props: any) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const annualBranchEmployeeID = query?.annualBranchEmployeeId;
+  const employeeID = query?.employeeId;
   const annualClientID = query?.annualClientId;
 
-  return { props: { annualBranchEmployeeID, annualClientID } };
+  return { props: { employeeID, annualClientID } };
 };
 export default CreateCart;

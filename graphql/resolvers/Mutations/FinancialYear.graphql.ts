@@ -15,18 +15,7 @@ export const financialYear = extendType({
         data: nonNull(arg({ type: 'FinancialYearCreateInput' }))
       },
 
-      resolve: async (_, { data }, { prisma, userId }) => {
-        console.log({ userId });
-        const branchEmpls = await prisma.branchEmployee.findMany();
-        const allClients = await prisma.client.findMany();
-
-        const getBrEmpl = branchEmpls?.map((item: { id: string }) => ({
-          branchEmployeeId: item?.id
-        }));
-
-        const getClients = allClients?.map((item: { id: string }) => ({
-          clientId: item?.id
-        }));
+      resolve: async (_, { data }, { prisma }) => {
         const wasRegistered = (
           await prisma.financialYear.findMany({
             where: {
@@ -38,21 +27,7 @@ export const financialYear = extendType({
           throw new ApolloError('Financial Year already present');
         }
 
-        return await prisma.financialYear.create({
-          data: {
-            ...data,
-            annBranchEmpls: {
-              createMany: {
-                data: getBrEmpl
-              }
-            },
-            annClients: {
-              createMany: {
-                data: getClients
-              }
-            }
-          }
-        });
+        return await prisma.financialYear.create({ data });
       }
     });
 

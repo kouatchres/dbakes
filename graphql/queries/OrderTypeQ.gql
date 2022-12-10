@@ -1,0 +1,19 @@
+#import from "../fragments/OrderTypeFragment.gql"
+
+query AllOrderTypes {
+  orderTypes {
+    ...OrderTypeFragment
+  }
+}
+
+query SingleOrderType($where: OrderTypeWhereUniqueInput!) {
+  orderType(where: $where) {
+    ...OrderTypeFragment
+  }
+}
+
+query SingleOrderTypeById($id: String!) {
+  orderTypeById(id: $id) {
+    ...OrderTypeFragment
+  }
+}

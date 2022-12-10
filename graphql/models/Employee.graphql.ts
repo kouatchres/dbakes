@@ -5,7 +5,6 @@ export const Employee = objectType({
   definition(t) {
     t.model.id();
     t.model.employeeNames();
-    t.model.branchEmpls();
     t.model.employeePhoneNumb();
     t.model.employeeCode();
   }

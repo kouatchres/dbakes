@@ -1,0 +1,7 @@
+#import * from "./ProductFragment.gql"
+
+fragment OrderTypeFragment on OrderType {
+  orderTypeCode
+  orderTypeName
+  id
+}

@@ -1,8 +1,0 @@
-#import * from "./ProductFragment.gql"
-#import * from "./ClientFragment.gql"
-
-fragment BranchFragment on Branch {
-  branchName
-  branchCode
-  id
-}

@@ -11,7 +11,4 @@ fragment OrderFragment on Order {
   orderDetails {
     ...OrderDetailFragment
   }
-  AnnualClient {
-    ...AnnualClientFragment
-  }
 }

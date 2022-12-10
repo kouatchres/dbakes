@@ -19,844 +19,9 @@ declare global {
 }
 
 export interface NexusGenInputs {
-  AnnualBranchEmployeeCreateInput: { // input type
-    BranchEmployee?: NexusGenInputs['BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput'] | null; // BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput
-    FinancialYear?: NexusGenInputs['FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput'] | null; // FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput
-    carts?: NexusGenInputs['CartCreateNestedManyWithoutAnnualBranchEmployeeInput'] | null; // CartCreateNestedManyWithoutAnnualBranchEmployeeInput
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    orders?: NexusGenInputs['OrderCreateNestedManyWithoutAnnualBranchEmployeeInput'] | null; // OrderCreateNestedManyWithoutAnnualBranchEmployeeInput
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  AnnualBranchEmployeeCreateManyBranchEmployeeInput: { // input type
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    financialYearId?: string | null; // String
-    id?: string | null; // String
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  AnnualBranchEmployeeCreateManyBranchEmployeeInputEnvelope: { // input type
-    data?: NexusGenInputs['AnnualBranchEmployeeCreateManyBranchEmployeeInput'][] | null; // [AnnualBranchEmployeeCreateManyBranchEmployeeInput!]
-    skipDuplicates?: boolean | null; // Boolean
-  }
-  AnnualBranchEmployeeCreateManyFinancialYearInput: { // input type
-    branchEmployeeId?: string | null; // String
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  AnnualBranchEmployeeCreateManyFinancialYearInputEnvelope: { // input type
-    data?: NexusGenInputs['AnnualBranchEmployeeCreateManyFinancialYearInput'][] | null; // [AnnualBranchEmployeeCreateManyFinancialYearInput!]
-    skipDuplicates?: boolean | null; // Boolean
-  }
-  AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput: { // input type
-    connect?: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput'][] | null; // [AnnualBranchEmployeeWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['AnnualBranchEmployeeCreateOrConnectWithoutBranchEmployeeInput'][] | null; // [AnnualBranchEmployeeCreateOrConnectWithoutBranchEmployeeInput!]
-    create?: NexusGenInputs['AnnualBranchEmployeeCreateWithoutBranchEmployeeInput'][] | null; // [AnnualBranchEmployeeCreateWithoutBranchEmployeeInput!]
-    createMany?: NexusGenInputs['AnnualBranchEmployeeCreateManyBranchEmployeeInputEnvelope'] | null; // AnnualBranchEmployeeCreateManyBranchEmployeeInputEnvelope
-  }
-  AnnualBranchEmployeeCreateNestedManyWithoutFinancialYearInput: { // input type
-    connect?: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput'][] | null; // [AnnualBranchEmployeeWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['AnnualBranchEmployeeCreateOrConnectWithoutFinancialYearInput'][] | null; // [AnnualBranchEmployeeCreateOrConnectWithoutFinancialYearInput!]
-    create?: NexusGenInputs['AnnualBranchEmployeeCreateWithoutFinancialYearInput'][] | null; // [AnnualBranchEmployeeCreateWithoutFinancialYearInput!]
-    createMany?: NexusGenInputs['AnnualBranchEmployeeCreateManyFinancialYearInputEnvelope'] | null; // AnnualBranchEmployeeCreateManyFinancialYearInputEnvelope
-  }
-  AnnualBranchEmployeeCreateNestedOneWithoutCartsInput: { // input type
-    connect?: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput'] | null; // AnnualBranchEmployeeWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['AnnualBranchEmployeeCreateOrConnectWithoutCartsInput'] | null; // AnnualBranchEmployeeCreateOrConnectWithoutCartsInput
-    create?: NexusGenInputs['AnnualBranchEmployeeCreateWithoutCartsInput'] | null; // AnnualBranchEmployeeCreateWithoutCartsInput
-  }
-  AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput: { // input type
-    connect?: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput'] | null; // AnnualBranchEmployeeWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['AnnualBranchEmployeeCreateOrConnectWithoutOrdersInput'] | null; // AnnualBranchEmployeeCreateOrConnectWithoutOrdersInput
-    create?: NexusGenInputs['AnnualBranchEmployeeCreateWithoutOrdersInput'] | null; // AnnualBranchEmployeeCreateWithoutOrdersInput
-  }
-  AnnualBranchEmployeeCreateOrConnectWithoutBranchEmployeeInput: { // input type
-    create: NexusGenInputs['AnnualBranchEmployeeCreateWithoutBranchEmployeeInput']; // AnnualBranchEmployeeCreateWithoutBranchEmployeeInput!
-    where: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput']; // AnnualBranchEmployeeWhereUniqueInput!
-  }
-  AnnualBranchEmployeeCreateOrConnectWithoutCartsInput: { // input type
-    create: NexusGenInputs['AnnualBranchEmployeeCreateWithoutCartsInput']; // AnnualBranchEmployeeCreateWithoutCartsInput!
-    where: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput']; // AnnualBranchEmployeeWhereUniqueInput!
-  }
-  AnnualBranchEmployeeCreateOrConnectWithoutFinancialYearInput: { // input type
-    create: NexusGenInputs['AnnualBranchEmployeeCreateWithoutFinancialYearInput']; // AnnualBranchEmployeeCreateWithoutFinancialYearInput!
-    where: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput']; // AnnualBranchEmployeeWhereUniqueInput!
-  }
-  AnnualBranchEmployeeCreateOrConnectWithoutOrdersInput: { // input type
-    create: NexusGenInputs['AnnualBranchEmployeeCreateWithoutOrdersInput']; // AnnualBranchEmployeeCreateWithoutOrdersInput!
-    where: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput']; // AnnualBranchEmployeeWhereUniqueInput!
-  }
-  AnnualBranchEmployeeCreateWithoutBranchEmployeeInput: { // input type
-    FinancialYear?: NexusGenInputs['FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput'] | null; // FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput
-    carts?: NexusGenInputs['CartCreateNestedManyWithoutAnnualBranchEmployeeInput'] | null; // CartCreateNestedManyWithoutAnnualBranchEmployeeInput
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    orders?: NexusGenInputs['OrderCreateNestedManyWithoutAnnualBranchEmployeeInput'] | null; // OrderCreateNestedManyWithoutAnnualBranchEmployeeInput
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  AnnualBranchEmployeeCreateWithoutCartsInput: { // input type
-    BranchEmployee?: NexusGenInputs['BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput'] | null; // BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput
-    FinancialYear?: NexusGenInputs['FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput'] | null; // FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    orders?: NexusGenInputs['OrderCreateNestedManyWithoutAnnualBranchEmployeeInput'] | null; // OrderCreateNestedManyWithoutAnnualBranchEmployeeInput
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  AnnualBranchEmployeeCreateWithoutFinancialYearInput: { // input type
-    BranchEmployee?: NexusGenInputs['BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput'] | null; // BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput
-    carts?: NexusGenInputs['CartCreateNestedManyWithoutAnnualBranchEmployeeInput'] | null; // CartCreateNestedManyWithoutAnnualBranchEmployeeInput
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    orders?: NexusGenInputs['OrderCreateNestedManyWithoutAnnualBranchEmployeeInput'] | null; // OrderCreateNestedManyWithoutAnnualBranchEmployeeInput
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  AnnualBranchEmployeeCreateWithoutOrdersInput: { // input type
-    BranchEmployee?: NexusGenInputs['BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput'] | null; // BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput
-    FinancialYear?: NexusGenInputs['FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput'] | null; // FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput
-    carts?: NexusGenInputs['CartCreateNestedManyWithoutAnnualBranchEmployeeInput'] | null; // CartCreateNestedManyWithoutAnnualBranchEmployeeInput
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  AnnualBranchEmployeeScalarWhereInput: { // input type
-    AND?: NexusGenInputs['AnnualBranchEmployeeScalarWhereInput'][] | null; // [AnnualBranchEmployeeScalarWhereInput!]
-    NOT?: NexusGenInputs['AnnualBranchEmployeeScalarWhereInput'][] | null; // [AnnualBranchEmployeeScalarWhereInput!]
-    OR?: NexusGenInputs['AnnualBranchEmployeeScalarWhereInput'][] | null; // [AnnualBranchEmployeeScalarWhereInput!]
-    branchEmployeeId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    financialYearId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  AnnualBranchEmployeeUpdateInput: { // input type
-    BranchEmployee?: NexusGenInputs['BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput'] | null; // BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput
-    FinancialYear?: NexusGenInputs['FinancialYearUpdateOneWithoutAnnBranchEmplsInput'] | null; // FinancialYearUpdateOneWithoutAnnBranchEmplsInput
-    carts?: NexusGenInputs['CartUpdateManyWithoutAnnualBranchEmployeeInput'] | null; // CartUpdateManyWithoutAnnualBranchEmployeeInput
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    orders?: NexusGenInputs['OrderUpdateManyWithoutAnnualBranchEmployeeInput'] | null; // OrderUpdateManyWithoutAnnualBranchEmployeeInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  AnnualBranchEmployeeUpdateManyMutationInput: { // input type
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  AnnualBranchEmployeeUpdateManyWithWhereWithoutBranchEmployeeInput: { // input type
-    data: NexusGenInputs['AnnualBranchEmployeeUpdateManyMutationInput']; // AnnualBranchEmployeeUpdateManyMutationInput!
-    where: NexusGenInputs['AnnualBranchEmployeeScalarWhereInput']; // AnnualBranchEmployeeScalarWhereInput!
-  }
-  AnnualBranchEmployeeUpdateManyWithWhereWithoutFinancialYearInput: { // input type
-    data: NexusGenInputs['AnnualBranchEmployeeUpdateManyMutationInput']; // AnnualBranchEmployeeUpdateManyMutationInput!
-    where: NexusGenInputs['AnnualBranchEmployeeScalarWhereInput']; // AnnualBranchEmployeeScalarWhereInput!
-  }
-  AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput: { // input type
-    connect?: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput'][] | null; // [AnnualBranchEmployeeWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['AnnualBranchEmployeeCreateOrConnectWithoutBranchEmployeeInput'][] | null; // [AnnualBranchEmployeeCreateOrConnectWithoutBranchEmployeeInput!]
-    create?: NexusGenInputs['AnnualBranchEmployeeCreateWithoutBranchEmployeeInput'][] | null; // [AnnualBranchEmployeeCreateWithoutBranchEmployeeInput!]
-    createMany?: NexusGenInputs['AnnualBranchEmployeeCreateManyBranchEmployeeInputEnvelope'] | null; // AnnualBranchEmployeeCreateManyBranchEmployeeInputEnvelope
-    delete?: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput'][] | null; // [AnnualBranchEmployeeWhereUniqueInput!]
-    deleteMany?: NexusGenInputs['AnnualBranchEmployeeScalarWhereInput'][] | null; // [AnnualBranchEmployeeScalarWhereInput!]
-    disconnect?: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput'][] | null; // [AnnualBranchEmployeeWhereUniqueInput!]
-    set?: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput'][] | null; // [AnnualBranchEmployeeWhereUniqueInput!]
-    update?: NexusGenInputs['AnnualBranchEmployeeUpdateWithWhereUniqueWithoutBranchEmployeeInput'][] | null; // [AnnualBranchEmployeeUpdateWithWhereUniqueWithoutBranchEmployeeInput!]
-    updateMany?: NexusGenInputs['AnnualBranchEmployeeUpdateManyWithWhereWithoutBranchEmployeeInput'][] | null; // [AnnualBranchEmployeeUpdateManyWithWhereWithoutBranchEmployeeInput!]
-    upsert?: NexusGenInputs['AnnualBranchEmployeeUpsertWithWhereUniqueWithoutBranchEmployeeInput'][] | null; // [AnnualBranchEmployeeUpsertWithWhereUniqueWithoutBranchEmployeeInput!]
-  }
-  AnnualBranchEmployeeUpdateManyWithoutFinancialYearInput: { // input type
-    connect?: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput'][] | null; // [AnnualBranchEmployeeWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['AnnualBranchEmployeeCreateOrConnectWithoutFinancialYearInput'][] | null; // [AnnualBranchEmployeeCreateOrConnectWithoutFinancialYearInput!]
-    create?: NexusGenInputs['AnnualBranchEmployeeCreateWithoutFinancialYearInput'][] | null; // [AnnualBranchEmployeeCreateWithoutFinancialYearInput!]
-    createMany?: NexusGenInputs['AnnualBranchEmployeeCreateManyFinancialYearInputEnvelope'] | null; // AnnualBranchEmployeeCreateManyFinancialYearInputEnvelope
-    delete?: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput'][] | null; // [AnnualBranchEmployeeWhereUniqueInput!]
-    deleteMany?: NexusGenInputs['AnnualBranchEmployeeScalarWhereInput'][] | null; // [AnnualBranchEmployeeScalarWhereInput!]
-    disconnect?: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput'][] | null; // [AnnualBranchEmployeeWhereUniqueInput!]
-    set?: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput'][] | null; // [AnnualBranchEmployeeWhereUniqueInput!]
-    update?: NexusGenInputs['AnnualBranchEmployeeUpdateWithWhereUniqueWithoutFinancialYearInput'][] | null; // [AnnualBranchEmployeeUpdateWithWhereUniqueWithoutFinancialYearInput!]
-    updateMany?: NexusGenInputs['AnnualBranchEmployeeUpdateManyWithWhereWithoutFinancialYearInput'][] | null; // [AnnualBranchEmployeeUpdateManyWithWhereWithoutFinancialYearInput!]
-    upsert?: NexusGenInputs['AnnualBranchEmployeeUpsertWithWhereUniqueWithoutFinancialYearInput'][] | null; // [AnnualBranchEmployeeUpsertWithWhereUniqueWithoutFinancialYearInput!]
-  }
-  AnnualBranchEmployeeUpdateOneWithoutCartsInput: { // input type
-    connect?: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput'] | null; // AnnualBranchEmployeeWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['AnnualBranchEmployeeCreateOrConnectWithoutCartsInput'] | null; // AnnualBranchEmployeeCreateOrConnectWithoutCartsInput
-    create?: NexusGenInputs['AnnualBranchEmployeeCreateWithoutCartsInput'] | null; // AnnualBranchEmployeeCreateWithoutCartsInput
-    delete?: boolean | null; // Boolean
-    disconnect?: boolean | null; // Boolean
-    update?: NexusGenInputs['AnnualBranchEmployeeUpdateWithoutCartsInput'] | null; // AnnualBranchEmployeeUpdateWithoutCartsInput
-    upsert?: NexusGenInputs['AnnualBranchEmployeeUpsertWithoutCartsInput'] | null; // AnnualBranchEmployeeUpsertWithoutCartsInput
-  }
-  AnnualBranchEmployeeUpdateOneWithoutOrdersInput: { // input type
-    connect?: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput'] | null; // AnnualBranchEmployeeWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['AnnualBranchEmployeeCreateOrConnectWithoutOrdersInput'] | null; // AnnualBranchEmployeeCreateOrConnectWithoutOrdersInput
-    create?: NexusGenInputs['AnnualBranchEmployeeCreateWithoutOrdersInput'] | null; // AnnualBranchEmployeeCreateWithoutOrdersInput
-    delete?: boolean | null; // Boolean
-    disconnect?: boolean | null; // Boolean
-    update?: NexusGenInputs['AnnualBranchEmployeeUpdateWithoutOrdersInput'] | null; // AnnualBranchEmployeeUpdateWithoutOrdersInput
-    upsert?: NexusGenInputs['AnnualBranchEmployeeUpsertWithoutOrdersInput'] | null; // AnnualBranchEmployeeUpsertWithoutOrdersInput
-  }
-  AnnualBranchEmployeeUpdateWithWhereUniqueWithoutBranchEmployeeInput: { // input type
-    data: NexusGenInputs['AnnualBranchEmployeeUpdateWithoutBranchEmployeeInput']; // AnnualBranchEmployeeUpdateWithoutBranchEmployeeInput!
-    where: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput']; // AnnualBranchEmployeeWhereUniqueInput!
-  }
-  AnnualBranchEmployeeUpdateWithWhereUniqueWithoutFinancialYearInput: { // input type
-    data: NexusGenInputs['AnnualBranchEmployeeUpdateWithoutFinancialYearInput']; // AnnualBranchEmployeeUpdateWithoutFinancialYearInput!
-    where: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput']; // AnnualBranchEmployeeWhereUniqueInput!
-  }
-  AnnualBranchEmployeeUpdateWithoutBranchEmployeeInput: { // input type
-    FinancialYear?: NexusGenInputs['FinancialYearUpdateOneWithoutAnnBranchEmplsInput'] | null; // FinancialYearUpdateOneWithoutAnnBranchEmplsInput
-    carts?: NexusGenInputs['CartUpdateManyWithoutAnnualBranchEmployeeInput'] | null; // CartUpdateManyWithoutAnnualBranchEmployeeInput
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    orders?: NexusGenInputs['OrderUpdateManyWithoutAnnualBranchEmployeeInput'] | null; // OrderUpdateManyWithoutAnnualBranchEmployeeInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  AnnualBranchEmployeeUpdateWithoutCartsInput: { // input type
-    BranchEmployee?: NexusGenInputs['BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput'] | null; // BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput
-    FinancialYear?: NexusGenInputs['FinancialYearUpdateOneWithoutAnnBranchEmplsInput'] | null; // FinancialYearUpdateOneWithoutAnnBranchEmplsInput
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    orders?: NexusGenInputs['OrderUpdateManyWithoutAnnualBranchEmployeeInput'] | null; // OrderUpdateManyWithoutAnnualBranchEmployeeInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  AnnualBranchEmployeeUpdateWithoutFinancialYearInput: { // input type
-    BranchEmployee?: NexusGenInputs['BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput'] | null; // BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput
-    carts?: NexusGenInputs['CartUpdateManyWithoutAnnualBranchEmployeeInput'] | null; // CartUpdateManyWithoutAnnualBranchEmployeeInput
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    orders?: NexusGenInputs['OrderUpdateManyWithoutAnnualBranchEmployeeInput'] | null; // OrderUpdateManyWithoutAnnualBranchEmployeeInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  AnnualBranchEmployeeUpdateWithoutOrdersInput: { // input type
-    BranchEmployee?: NexusGenInputs['BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput'] | null; // BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput
-    FinancialYear?: NexusGenInputs['FinancialYearUpdateOneWithoutAnnBranchEmplsInput'] | null; // FinancialYearUpdateOneWithoutAnnBranchEmplsInput
-    carts?: NexusGenInputs['CartUpdateManyWithoutAnnualBranchEmployeeInput'] | null; // CartUpdateManyWithoutAnnualBranchEmployeeInput
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  AnnualBranchEmployeeUpsertWithWhereUniqueWithoutBranchEmployeeInput: { // input type
-    create: NexusGenInputs['AnnualBranchEmployeeCreateWithoutBranchEmployeeInput']; // AnnualBranchEmployeeCreateWithoutBranchEmployeeInput!
-    update: NexusGenInputs['AnnualBranchEmployeeUpdateWithoutBranchEmployeeInput']; // AnnualBranchEmployeeUpdateWithoutBranchEmployeeInput!
-    where: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput']; // AnnualBranchEmployeeWhereUniqueInput!
-  }
-  AnnualBranchEmployeeUpsertWithWhereUniqueWithoutFinancialYearInput: { // input type
-    create: NexusGenInputs['AnnualBranchEmployeeCreateWithoutFinancialYearInput']; // AnnualBranchEmployeeCreateWithoutFinancialYearInput!
-    update: NexusGenInputs['AnnualBranchEmployeeUpdateWithoutFinancialYearInput']; // AnnualBranchEmployeeUpdateWithoutFinancialYearInput!
-    where: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput']; // AnnualBranchEmployeeWhereUniqueInput!
-  }
-  AnnualBranchEmployeeUpsertWithoutCartsInput: { // input type
-    create: NexusGenInputs['AnnualBranchEmployeeCreateWithoutCartsInput']; // AnnualBranchEmployeeCreateWithoutCartsInput!
-    update: NexusGenInputs['AnnualBranchEmployeeUpdateWithoutCartsInput']; // AnnualBranchEmployeeUpdateWithoutCartsInput!
-  }
-  AnnualBranchEmployeeUpsertWithoutOrdersInput: { // input type
-    create: NexusGenInputs['AnnualBranchEmployeeCreateWithoutOrdersInput']; // AnnualBranchEmployeeCreateWithoutOrdersInput!
-    update: NexusGenInputs['AnnualBranchEmployeeUpdateWithoutOrdersInput']; // AnnualBranchEmployeeUpdateWithoutOrdersInput!
-  }
-  AnnualBranchEmployeeWhereUniqueInput: { // input type
-    id?: string | null; // String
-  }
-  AnnualClientCreateInput: { // input type
-    Client?: NexusGenInputs['ClientCreateNestedOneWithoutAnnClientsInput'] | null; // ClientCreateNestedOneWithoutAnnClientsInput
-    FinancialYear?: NexusGenInputs['FinancialYearCreateNestedOneWithoutAnnClientsInput'] | null; // FinancialYearCreateNestedOneWithoutAnnClientsInput
-    carts?: NexusGenInputs['CartCreateNestedManyWithoutAnnualClientInput'] | null; // CartCreateNestedManyWithoutAnnualClientInput
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    orders?: NexusGenInputs['OrderCreateNestedManyWithoutAnnualClientInput'] | null; // OrderCreateNestedManyWithoutAnnualClientInput
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  AnnualClientCreateManyClientInput: { // input type
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    financialYearId?: string | null; // String
-    id?: string | null; // String
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  AnnualClientCreateManyClientInputEnvelope: { // input type
-    data?: NexusGenInputs['AnnualClientCreateManyClientInput'][] | null; // [AnnualClientCreateManyClientInput!]
-    skipDuplicates?: boolean | null; // Boolean
-  }
-  AnnualClientCreateManyFinancialYearInput: { // input type
-    clientId?: string | null; // String
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  AnnualClientCreateManyFinancialYearInputEnvelope: { // input type
-    data?: NexusGenInputs['AnnualClientCreateManyFinancialYearInput'][] | null; // [AnnualClientCreateManyFinancialYearInput!]
-    skipDuplicates?: boolean | null; // Boolean
-  }
-  AnnualClientCreateNestedManyWithoutClientInput: { // input type
-    connect?: NexusGenInputs['AnnualClientWhereUniqueInput'][] | null; // [AnnualClientWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['AnnualClientCreateOrConnectWithoutClientInput'][] | null; // [AnnualClientCreateOrConnectWithoutClientInput!]
-    create?: NexusGenInputs['AnnualClientCreateWithoutClientInput'][] | null; // [AnnualClientCreateWithoutClientInput!]
-    createMany?: NexusGenInputs['AnnualClientCreateManyClientInputEnvelope'] | null; // AnnualClientCreateManyClientInputEnvelope
-  }
-  AnnualClientCreateNestedManyWithoutFinancialYearInput: { // input type
-    connect?: NexusGenInputs['AnnualClientWhereUniqueInput'][] | null; // [AnnualClientWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['AnnualClientCreateOrConnectWithoutFinancialYearInput'][] | null; // [AnnualClientCreateOrConnectWithoutFinancialYearInput!]
-    create?: NexusGenInputs['AnnualClientCreateWithoutFinancialYearInput'][] | null; // [AnnualClientCreateWithoutFinancialYearInput!]
-    createMany?: NexusGenInputs['AnnualClientCreateManyFinancialYearInputEnvelope'] | null; // AnnualClientCreateManyFinancialYearInputEnvelope
-  }
-  AnnualClientCreateNestedOneWithoutCartsInput: { // input type
-    connect?: NexusGenInputs['AnnualClientWhereUniqueInput'] | null; // AnnualClientWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['AnnualClientCreateOrConnectWithoutCartsInput'] | null; // AnnualClientCreateOrConnectWithoutCartsInput
-    create?: NexusGenInputs['AnnualClientCreateWithoutCartsInput'] | null; // AnnualClientCreateWithoutCartsInput
-  }
-  AnnualClientCreateNestedOneWithoutOrdersInput: { // input type
-    connect?: NexusGenInputs['AnnualClientWhereUniqueInput'] | null; // AnnualClientWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['AnnualClientCreateOrConnectWithoutOrdersInput'] | null; // AnnualClientCreateOrConnectWithoutOrdersInput
-    create?: NexusGenInputs['AnnualClientCreateWithoutOrdersInput'] | null; // AnnualClientCreateWithoutOrdersInput
-  }
-  AnnualClientCreateOrConnectWithoutCartsInput: { // input type
-    create: NexusGenInputs['AnnualClientCreateWithoutCartsInput']; // AnnualClientCreateWithoutCartsInput!
-    where: NexusGenInputs['AnnualClientWhereUniqueInput']; // AnnualClientWhereUniqueInput!
-  }
-  AnnualClientCreateOrConnectWithoutClientInput: { // input type
-    create: NexusGenInputs['AnnualClientCreateWithoutClientInput']; // AnnualClientCreateWithoutClientInput!
-    where: NexusGenInputs['AnnualClientWhereUniqueInput']; // AnnualClientWhereUniqueInput!
-  }
-  AnnualClientCreateOrConnectWithoutFinancialYearInput: { // input type
-    create: NexusGenInputs['AnnualClientCreateWithoutFinancialYearInput']; // AnnualClientCreateWithoutFinancialYearInput!
-    where: NexusGenInputs['AnnualClientWhereUniqueInput']; // AnnualClientWhereUniqueInput!
-  }
-  AnnualClientCreateOrConnectWithoutOrdersInput: { // input type
-    create: NexusGenInputs['AnnualClientCreateWithoutOrdersInput']; // AnnualClientCreateWithoutOrdersInput!
-    where: NexusGenInputs['AnnualClientWhereUniqueInput']; // AnnualClientWhereUniqueInput!
-  }
-  AnnualClientCreateWithoutCartsInput: { // input type
-    Client?: NexusGenInputs['ClientCreateNestedOneWithoutAnnClientsInput'] | null; // ClientCreateNestedOneWithoutAnnClientsInput
-    FinancialYear?: NexusGenInputs['FinancialYearCreateNestedOneWithoutAnnClientsInput'] | null; // FinancialYearCreateNestedOneWithoutAnnClientsInput
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    orders?: NexusGenInputs['OrderCreateNestedManyWithoutAnnualClientInput'] | null; // OrderCreateNestedManyWithoutAnnualClientInput
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  AnnualClientCreateWithoutClientInput: { // input type
-    FinancialYear?: NexusGenInputs['FinancialYearCreateNestedOneWithoutAnnClientsInput'] | null; // FinancialYearCreateNestedOneWithoutAnnClientsInput
-    carts?: NexusGenInputs['CartCreateNestedManyWithoutAnnualClientInput'] | null; // CartCreateNestedManyWithoutAnnualClientInput
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    orders?: NexusGenInputs['OrderCreateNestedManyWithoutAnnualClientInput'] | null; // OrderCreateNestedManyWithoutAnnualClientInput
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  AnnualClientCreateWithoutFinancialYearInput: { // input type
-    Client?: NexusGenInputs['ClientCreateNestedOneWithoutAnnClientsInput'] | null; // ClientCreateNestedOneWithoutAnnClientsInput
-    carts?: NexusGenInputs['CartCreateNestedManyWithoutAnnualClientInput'] | null; // CartCreateNestedManyWithoutAnnualClientInput
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    orders?: NexusGenInputs['OrderCreateNestedManyWithoutAnnualClientInput'] | null; // OrderCreateNestedManyWithoutAnnualClientInput
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  AnnualClientCreateWithoutOrdersInput: { // input type
-    Client?: NexusGenInputs['ClientCreateNestedOneWithoutAnnClientsInput'] | null; // ClientCreateNestedOneWithoutAnnClientsInput
-    FinancialYear?: NexusGenInputs['FinancialYearCreateNestedOneWithoutAnnClientsInput'] | null; // FinancialYearCreateNestedOneWithoutAnnClientsInput
-    carts?: NexusGenInputs['CartCreateNestedManyWithoutAnnualClientInput'] | null; // CartCreateNestedManyWithoutAnnualClientInput
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  AnnualClientScalarWhereInput: { // input type
-    AND?: NexusGenInputs['AnnualClientScalarWhereInput'][] | null; // [AnnualClientScalarWhereInput!]
-    NOT?: NexusGenInputs['AnnualClientScalarWhereInput'][] | null; // [AnnualClientScalarWhereInput!]
-    OR?: NexusGenInputs['AnnualClientScalarWhereInput'][] | null; // [AnnualClientScalarWhereInput!]
-    clientId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    financialYearId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  AnnualClientUpdateInput: { // input type
-    Client?: NexusGenInputs['ClientUpdateOneWithoutAnnClientsInput'] | null; // ClientUpdateOneWithoutAnnClientsInput
-    FinancialYear?: NexusGenInputs['FinancialYearUpdateOneWithoutAnnClientsInput'] | null; // FinancialYearUpdateOneWithoutAnnClientsInput
-    carts?: NexusGenInputs['CartUpdateManyWithoutAnnualClientInput'] | null; // CartUpdateManyWithoutAnnualClientInput
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    orders?: NexusGenInputs['OrderUpdateManyWithoutAnnualClientInput'] | null; // OrderUpdateManyWithoutAnnualClientInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  AnnualClientUpdateManyMutationInput: { // input type
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  AnnualClientUpdateManyWithWhereWithoutClientInput: { // input type
-    data: NexusGenInputs['AnnualClientUpdateManyMutationInput']; // AnnualClientUpdateManyMutationInput!
-    where: NexusGenInputs['AnnualClientScalarWhereInput']; // AnnualClientScalarWhereInput!
-  }
-  AnnualClientUpdateManyWithWhereWithoutFinancialYearInput: { // input type
-    data: NexusGenInputs['AnnualClientUpdateManyMutationInput']; // AnnualClientUpdateManyMutationInput!
-    where: NexusGenInputs['AnnualClientScalarWhereInput']; // AnnualClientScalarWhereInput!
-  }
-  AnnualClientUpdateManyWithoutClientInput: { // input type
-    connect?: NexusGenInputs['AnnualClientWhereUniqueInput'][] | null; // [AnnualClientWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['AnnualClientCreateOrConnectWithoutClientInput'][] | null; // [AnnualClientCreateOrConnectWithoutClientInput!]
-    create?: NexusGenInputs['AnnualClientCreateWithoutClientInput'][] | null; // [AnnualClientCreateWithoutClientInput!]
-    createMany?: NexusGenInputs['AnnualClientCreateManyClientInputEnvelope'] | null; // AnnualClientCreateManyClientInputEnvelope
-    delete?: NexusGenInputs['AnnualClientWhereUniqueInput'][] | null; // [AnnualClientWhereUniqueInput!]
-    deleteMany?: NexusGenInputs['AnnualClientScalarWhereInput'][] | null; // [AnnualClientScalarWhereInput!]
-    disconnect?: NexusGenInputs['AnnualClientWhereUniqueInput'][] | null; // [AnnualClientWhereUniqueInput!]
-    set?: NexusGenInputs['AnnualClientWhereUniqueInput'][] | null; // [AnnualClientWhereUniqueInput!]
-    update?: NexusGenInputs['AnnualClientUpdateWithWhereUniqueWithoutClientInput'][] | null; // [AnnualClientUpdateWithWhereUniqueWithoutClientInput!]
-    updateMany?: NexusGenInputs['AnnualClientUpdateManyWithWhereWithoutClientInput'][] | null; // [AnnualClientUpdateManyWithWhereWithoutClientInput!]
-    upsert?: NexusGenInputs['AnnualClientUpsertWithWhereUniqueWithoutClientInput'][] | null; // [AnnualClientUpsertWithWhereUniqueWithoutClientInput!]
-  }
-  AnnualClientUpdateManyWithoutFinancialYearInput: { // input type
-    connect?: NexusGenInputs['AnnualClientWhereUniqueInput'][] | null; // [AnnualClientWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['AnnualClientCreateOrConnectWithoutFinancialYearInput'][] | null; // [AnnualClientCreateOrConnectWithoutFinancialYearInput!]
-    create?: NexusGenInputs['AnnualClientCreateWithoutFinancialYearInput'][] | null; // [AnnualClientCreateWithoutFinancialYearInput!]
-    createMany?: NexusGenInputs['AnnualClientCreateManyFinancialYearInputEnvelope'] | null; // AnnualClientCreateManyFinancialYearInputEnvelope
-    delete?: NexusGenInputs['AnnualClientWhereUniqueInput'][] | null; // [AnnualClientWhereUniqueInput!]
-    deleteMany?: NexusGenInputs['AnnualClientScalarWhereInput'][] | null; // [AnnualClientScalarWhereInput!]
-    disconnect?: NexusGenInputs['AnnualClientWhereUniqueInput'][] | null; // [AnnualClientWhereUniqueInput!]
-    set?: NexusGenInputs['AnnualClientWhereUniqueInput'][] | null; // [AnnualClientWhereUniqueInput!]
-    update?: NexusGenInputs['AnnualClientUpdateWithWhereUniqueWithoutFinancialYearInput'][] | null; // [AnnualClientUpdateWithWhereUniqueWithoutFinancialYearInput!]
-    updateMany?: NexusGenInputs['AnnualClientUpdateManyWithWhereWithoutFinancialYearInput'][] | null; // [AnnualClientUpdateManyWithWhereWithoutFinancialYearInput!]
-    upsert?: NexusGenInputs['AnnualClientUpsertWithWhereUniqueWithoutFinancialYearInput'][] | null; // [AnnualClientUpsertWithWhereUniqueWithoutFinancialYearInput!]
-  }
-  AnnualClientUpdateOneWithoutCartsInput: { // input type
-    connect?: NexusGenInputs['AnnualClientWhereUniqueInput'] | null; // AnnualClientWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['AnnualClientCreateOrConnectWithoutCartsInput'] | null; // AnnualClientCreateOrConnectWithoutCartsInput
-    create?: NexusGenInputs['AnnualClientCreateWithoutCartsInput'] | null; // AnnualClientCreateWithoutCartsInput
-    delete?: boolean | null; // Boolean
-    disconnect?: boolean | null; // Boolean
-    update?: NexusGenInputs['AnnualClientUpdateWithoutCartsInput'] | null; // AnnualClientUpdateWithoutCartsInput
-    upsert?: NexusGenInputs['AnnualClientUpsertWithoutCartsInput'] | null; // AnnualClientUpsertWithoutCartsInput
-  }
-  AnnualClientUpdateOneWithoutOrdersInput: { // input type
-    connect?: NexusGenInputs['AnnualClientWhereUniqueInput'] | null; // AnnualClientWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['AnnualClientCreateOrConnectWithoutOrdersInput'] | null; // AnnualClientCreateOrConnectWithoutOrdersInput
-    create?: NexusGenInputs['AnnualClientCreateWithoutOrdersInput'] | null; // AnnualClientCreateWithoutOrdersInput
-    delete?: boolean | null; // Boolean
-    disconnect?: boolean | null; // Boolean
-    update?: NexusGenInputs['AnnualClientUpdateWithoutOrdersInput'] | null; // AnnualClientUpdateWithoutOrdersInput
-    upsert?: NexusGenInputs['AnnualClientUpsertWithoutOrdersInput'] | null; // AnnualClientUpsertWithoutOrdersInput
-  }
-  AnnualClientUpdateWithWhereUniqueWithoutClientInput: { // input type
-    data: NexusGenInputs['AnnualClientUpdateWithoutClientInput']; // AnnualClientUpdateWithoutClientInput!
-    where: NexusGenInputs['AnnualClientWhereUniqueInput']; // AnnualClientWhereUniqueInput!
-  }
-  AnnualClientUpdateWithWhereUniqueWithoutFinancialYearInput: { // input type
-    data: NexusGenInputs['AnnualClientUpdateWithoutFinancialYearInput']; // AnnualClientUpdateWithoutFinancialYearInput!
-    where: NexusGenInputs['AnnualClientWhereUniqueInput']; // AnnualClientWhereUniqueInput!
-  }
-  AnnualClientUpdateWithoutCartsInput: { // input type
-    Client?: NexusGenInputs['ClientUpdateOneWithoutAnnClientsInput'] | null; // ClientUpdateOneWithoutAnnClientsInput
-    FinancialYear?: NexusGenInputs['FinancialYearUpdateOneWithoutAnnClientsInput'] | null; // FinancialYearUpdateOneWithoutAnnClientsInput
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    orders?: NexusGenInputs['OrderUpdateManyWithoutAnnualClientInput'] | null; // OrderUpdateManyWithoutAnnualClientInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  AnnualClientUpdateWithoutClientInput: { // input type
-    FinancialYear?: NexusGenInputs['FinancialYearUpdateOneWithoutAnnClientsInput'] | null; // FinancialYearUpdateOneWithoutAnnClientsInput
-    carts?: NexusGenInputs['CartUpdateManyWithoutAnnualClientInput'] | null; // CartUpdateManyWithoutAnnualClientInput
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    orders?: NexusGenInputs['OrderUpdateManyWithoutAnnualClientInput'] | null; // OrderUpdateManyWithoutAnnualClientInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  AnnualClientUpdateWithoutFinancialYearInput: { // input type
-    Client?: NexusGenInputs['ClientUpdateOneWithoutAnnClientsInput'] | null; // ClientUpdateOneWithoutAnnClientsInput
-    carts?: NexusGenInputs['CartUpdateManyWithoutAnnualClientInput'] | null; // CartUpdateManyWithoutAnnualClientInput
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    orders?: NexusGenInputs['OrderUpdateManyWithoutAnnualClientInput'] | null; // OrderUpdateManyWithoutAnnualClientInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  AnnualClientUpdateWithoutOrdersInput: { // input type
-    Client?: NexusGenInputs['ClientUpdateOneWithoutAnnClientsInput'] | null; // ClientUpdateOneWithoutAnnClientsInput
-    FinancialYear?: NexusGenInputs['FinancialYearUpdateOneWithoutAnnClientsInput'] | null; // FinancialYearUpdateOneWithoutAnnClientsInput
-    carts?: NexusGenInputs['CartUpdateManyWithoutAnnualClientInput'] | null; // CartUpdateManyWithoutAnnualClientInput
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  AnnualClientUpsertWithWhereUniqueWithoutClientInput: { // input type
-    create: NexusGenInputs['AnnualClientCreateWithoutClientInput']; // AnnualClientCreateWithoutClientInput!
-    update: NexusGenInputs['AnnualClientUpdateWithoutClientInput']; // AnnualClientUpdateWithoutClientInput!
-    where: NexusGenInputs['AnnualClientWhereUniqueInput']; // AnnualClientWhereUniqueInput!
-  }
-  AnnualClientUpsertWithWhereUniqueWithoutFinancialYearInput: { // input type
-    create: NexusGenInputs['AnnualClientCreateWithoutFinancialYearInput']; // AnnualClientCreateWithoutFinancialYearInput!
-    update: NexusGenInputs['AnnualClientUpdateWithoutFinancialYearInput']; // AnnualClientUpdateWithoutFinancialYearInput!
-    where: NexusGenInputs['AnnualClientWhereUniqueInput']; // AnnualClientWhereUniqueInput!
-  }
-  AnnualClientUpsertWithoutCartsInput: { // input type
-    create: NexusGenInputs['AnnualClientCreateWithoutCartsInput']; // AnnualClientCreateWithoutCartsInput!
-    update: NexusGenInputs['AnnualClientUpdateWithoutCartsInput']; // AnnualClientUpdateWithoutCartsInput!
-  }
-  AnnualClientUpsertWithoutOrdersInput: { // input type
-    create: NexusGenInputs['AnnualClientCreateWithoutOrdersInput']; // AnnualClientCreateWithoutOrdersInput!
-    update: NexusGenInputs['AnnualClientUpdateWithoutOrdersInput']; // AnnualClientUpdateWithoutOrdersInput!
-  }
-  AnnualClientWhereUniqueInput: { // input type
-    id?: string | null; // String
-  }
-  BonusCreateInput: { // input type
-    bonusName: string; // String!
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  BonusUpdateInput: { // input type
-    bonusName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  BonusWhereUniqueInput: { // input type
-    id?: string | null; // String
-  }
-  BranchCreateInput: { // input type
-    branchCode: string; // String!
-    branchEmpls?: NexusGenInputs['BranchEmployeeCreateNestedManyWithoutBranchInput'] | null; // BranchEmployeeCreateNestedManyWithoutBranchInput
-    branchName: string; // String!
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  BranchCreateNestedOneWithoutBranchEmplsInput: { // input type
-    connect?: NexusGenInputs['BranchWhereUniqueInput'] | null; // BranchWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['BranchCreateOrConnectWithoutBranchEmplsInput'] | null; // BranchCreateOrConnectWithoutBranchEmplsInput
-    create?: NexusGenInputs['BranchCreateWithoutBranchEmplsInput'] | null; // BranchCreateWithoutBranchEmplsInput
-  }
-  BranchCreateOrConnectWithoutBranchEmplsInput: { // input type
-    create: NexusGenInputs['BranchCreateWithoutBranchEmplsInput']; // BranchCreateWithoutBranchEmplsInput!
-    where: NexusGenInputs['BranchWhereUniqueInput']; // BranchWhereUniqueInput!
-  }
-  BranchCreateWithoutBranchEmplsInput: { // input type
-    branchCode: string; // String!
-    branchName: string; // String!
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  BranchEmployeeCreateInput: { // input type
-    Branch: NexusGenInputs['BranchCreateNestedOneWithoutBranchEmplsInput']; // BranchCreateNestedOneWithoutBranchEmplsInput!
-    Employee: NexusGenInputs['EmployeeCreateNestedOneWithoutBranchEmplsInput']; // EmployeeCreateNestedOneWithoutBranchEmplsInput!
-    EmployeeStatus: NexusGenInputs['EmployeeStatusCreateNestedOneWithoutBranchEmplsInput']; // EmployeeStatusCreateNestedOneWithoutBranchEmplsInput!
-    annBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput'] | null; // AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    endDate?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    startDate?: NexusGenScalars['DateTime'] | null; // DateTime
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  BranchEmployeeCreateManyBranchInput: { // input type
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    employeeId: string; // String!
-    employeeStatusId: string; // String!
-    endDate?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    startDate?: NexusGenScalars['DateTime'] | null; // DateTime
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  BranchEmployeeCreateManyBranchInputEnvelope: { // input type
-    data?: NexusGenInputs['BranchEmployeeCreateManyBranchInput'][] | null; // [BranchEmployeeCreateManyBranchInput!]
-    skipDuplicates?: boolean | null; // Boolean
-  }
-  BranchEmployeeCreateManyEmployeeInput: { // input type
-    branchId: string; // String!
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    employeeStatusId: string; // String!
-    endDate?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    startDate?: NexusGenScalars['DateTime'] | null; // DateTime
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  BranchEmployeeCreateManyEmployeeInputEnvelope: { // input type
-    data?: NexusGenInputs['BranchEmployeeCreateManyEmployeeInput'][] | null; // [BranchEmployeeCreateManyEmployeeInput!]
-    skipDuplicates?: boolean | null; // Boolean
-  }
-  BranchEmployeeCreateManyEmployeeStatusInput: { // input type
-    branchId: string; // String!
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    employeeId: string; // String!
-    endDate?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    startDate?: NexusGenScalars['DateTime'] | null; // DateTime
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  BranchEmployeeCreateManyEmployeeStatusInputEnvelope: { // input type
-    data?: NexusGenInputs['BranchEmployeeCreateManyEmployeeStatusInput'][] | null; // [BranchEmployeeCreateManyEmployeeStatusInput!]
-    skipDuplicates?: boolean | null; // Boolean
-  }
-  BranchEmployeeCreateNestedManyWithoutBranchInput: { // input type
-    connect?: NexusGenInputs['BranchEmployeeWhereUniqueInput'][] | null; // [BranchEmployeeWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['BranchEmployeeCreateOrConnectWithoutBranchInput'][] | null; // [BranchEmployeeCreateOrConnectWithoutBranchInput!]
-    create?: NexusGenInputs['BranchEmployeeCreateWithoutBranchInput'][] | null; // [BranchEmployeeCreateWithoutBranchInput!]
-    createMany?: NexusGenInputs['BranchEmployeeCreateManyBranchInputEnvelope'] | null; // BranchEmployeeCreateManyBranchInputEnvelope
-  }
-  BranchEmployeeCreateNestedManyWithoutEmployeeInput: { // input type
-    connect?: NexusGenInputs['BranchEmployeeWhereUniqueInput'][] | null; // [BranchEmployeeWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['BranchEmployeeCreateOrConnectWithoutEmployeeInput'][] | null; // [BranchEmployeeCreateOrConnectWithoutEmployeeInput!]
-    create?: NexusGenInputs['BranchEmployeeCreateWithoutEmployeeInput'][] | null; // [BranchEmployeeCreateWithoutEmployeeInput!]
-    createMany?: NexusGenInputs['BranchEmployeeCreateManyEmployeeInputEnvelope'] | null; // BranchEmployeeCreateManyEmployeeInputEnvelope
-  }
-  BranchEmployeeCreateNestedManyWithoutEmployeeStatusInput: { // input type
-    connect?: NexusGenInputs['BranchEmployeeWhereUniqueInput'][] | null; // [BranchEmployeeWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['BranchEmployeeCreateOrConnectWithoutEmployeeStatusInput'][] | null; // [BranchEmployeeCreateOrConnectWithoutEmployeeStatusInput!]
-    create?: NexusGenInputs['BranchEmployeeCreateWithoutEmployeeStatusInput'][] | null; // [BranchEmployeeCreateWithoutEmployeeStatusInput!]
-    createMany?: NexusGenInputs['BranchEmployeeCreateManyEmployeeStatusInputEnvelope'] | null; // BranchEmployeeCreateManyEmployeeStatusInputEnvelope
-  }
-  BranchEmployeeCreateNestedOneWithoutAnnBranchEmployeeInput: { // input type
-    connect?: NexusGenInputs['BranchEmployeeWhereUniqueInput'] | null; // BranchEmployeeWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['BranchEmployeeCreateOrConnectWithoutAnnBranchEmployeeInput'] | null; // BranchEmployeeCreateOrConnectWithoutAnnBranchEmployeeInput
-    create?: NexusGenInputs['BranchEmployeeCreateWithoutAnnBranchEmployeeInput'] | null; // BranchEmployeeCreateWithoutAnnBranchEmployeeInput
-  }
-  BranchEmployeeCreateOrConnectWithoutAnnBranchEmployeeInput: { // input type
-    create: NexusGenInputs['BranchEmployeeCreateWithoutAnnBranchEmployeeInput']; // BranchEmployeeCreateWithoutAnnBranchEmployeeInput!
-    where: NexusGenInputs['BranchEmployeeWhereUniqueInput']; // BranchEmployeeWhereUniqueInput!
-  }
-  BranchEmployeeCreateOrConnectWithoutBranchInput: { // input type
-    create: NexusGenInputs['BranchEmployeeCreateWithoutBranchInput']; // BranchEmployeeCreateWithoutBranchInput!
-    where: NexusGenInputs['BranchEmployeeWhereUniqueInput']; // BranchEmployeeWhereUniqueInput!
-  }
-  BranchEmployeeCreateOrConnectWithoutEmployeeInput: { // input type
-    create: NexusGenInputs['BranchEmployeeCreateWithoutEmployeeInput']; // BranchEmployeeCreateWithoutEmployeeInput!
-    where: NexusGenInputs['BranchEmployeeWhereUniqueInput']; // BranchEmployeeWhereUniqueInput!
-  }
-  BranchEmployeeCreateOrConnectWithoutEmployeeStatusInput: { // input type
-    create: NexusGenInputs['BranchEmployeeCreateWithoutEmployeeStatusInput']; // BranchEmployeeCreateWithoutEmployeeStatusInput!
-    where: NexusGenInputs['BranchEmployeeWhereUniqueInput']; // BranchEmployeeWhereUniqueInput!
-  }
-  BranchEmployeeCreateWithoutAnnBranchEmployeeInput: { // input type
-    Branch: NexusGenInputs['BranchCreateNestedOneWithoutBranchEmplsInput']; // BranchCreateNestedOneWithoutBranchEmplsInput!
-    Employee: NexusGenInputs['EmployeeCreateNestedOneWithoutBranchEmplsInput']; // EmployeeCreateNestedOneWithoutBranchEmplsInput!
-    EmployeeStatus: NexusGenInputs['EmployeeStatusCreateNestedOneWithoutBranchEmplsInput']; // EmployeeStatusCreateNestedOneWithoutBranchEmplsInput!
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    endDate?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    startDate?: NexusGenScalars['DateTime'] | null; // DateTime
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  BranchEmployeeCreateWithoutBranchInput: { // input type
-    Employee: NexusGenInputs['EmployeeCreateNestedOneWithoutBranchEmplsInput']; // EmployeeCreateNestedOneWithoutBranchEmplsInput!
-    EmployeeStatus: NexusGenInputs['EmployeeStatusCreateNestedOneWithoutBranchEmplsInput']; // EmployeeStatusCreateNestedOneWithoutBranchEmplsInput!
-    annBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput'] | null; // AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    endDate?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    startDate?: NexusGenScalars['DateTime'] | null; // DateTime
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  BranchEmployeeCreateWithoutEmployeeInput: { // input type
-    Branch: NexusGenInputs['BranchCreateNestedOneWithoutBranchEmplsInput']; // BranchCreateNestedOneWithoutBranchEmplsInput!
-    EmployeeStatus: NexusGenInputs['EmployeeStatusCreateNestedOneWithoutBranchEmplsInput']; // EmployeeStatusCreateNestedOneWithoutBranchEmplsInput!
-    annBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput'] | null; // AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    endDate?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    startDate?: NexusGenScalars['DateTime'] | null; // DateTime
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  BranchEmployeeCreateWithoutEmployeeStatusInput: { // input type
-    Branch: NexusGenInputs['BranchCreateNestedOneWithoutBranchEmplsInput']; // BranchCreateNestedOneWithoutBranchEmplsInput!
-    Employee: NexusGenInputs['EmployeeCreateNestedOneWithoutBranchEmplsInput']; // EmployeeCreateNestedOneWithoutBranchEmplsInput!
-    annBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput'] | null; // AnnualBranchEmployeeCreateNestedManyWithoutBranchEmployeeInput
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    endDate?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    startDate?: NexusGenScalars['DateTime'] | null; // DateTime
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  BranchEmployeeScalarWhereInput: { // input type
-    AND?: NexusGenInputs['BranchEmployeeScalarWhereInput'][] | null; // [BranchEmployeeScalarWhereInput!]
-    NOT?: NexusGenInputs['BranchEmployeeScalarWhereInput'][] | null; // [BranchEmployeeScalarWhereInput!]
-    OR?: NexusGenInputs['BranchEmployeeScalarWhereInput'][] | null; // [BranchEmployeeScalarWhereInput!]
-    branchId?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    employeeId?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    employeeStatusId?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    endDate?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    startDate?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
-  BranchEmployeeUpdateInput: { // input type
-    Branch?: NexusGenInputs['BranchUpdateOneRequiredWithoutBranchEmplsInput'] | null; // BranchUpdateOneRequiredWithoutBranchEmplsInput
-    Employee?: NexusGenInputs['EmployeeUpdateOneRequiredWithoutBranchEmplsInput'] | null; // EmployeeUpdateOneRequiredWithoutBranchEmplsInput
-    EmployeeStatus?: NexusGenInputs['EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput'] | null; // EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput
-    annBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput'] | null; // AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    endDate?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    startDate?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  BranchEmployeeUpdateManyMutationInput: { // input type
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    endDate?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    startDate?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  BranchEmployeeUpdateManyWithWhereWithoutBranchInput: { // input type
-    data: NexusGenInputs['BranchEmployeeUpdateManyMutationInput']; // BranchEmployeeUpdateManyMutationInput!
-    where: NexusGenInputs['BranchEmployeeScalarWhereInput']; // BranchEmployeeScalarWhereInput!
-  }
-  BranchEmployeeUpdateManyWithWhereWithoutEmployeeInput: { // input type
-    data: NexusGenInputs['BranchEmployeeUpdateManyMutationInput']; // BranchEmployeeUpdateManyMutationInput!
-    where: NexusGenInputs['BranchEmployeeScalarWhereInput']; // BranchEmployeeScalarWhereInput!
-  }
-  BranchEmployeeUpdateManyWithWhereWithoutEmployeeStatusInput: { // input type
-    data: NexusGenInputs['BranchEmployeeUpdateManyMutationInput']; // BranchEmployeeUpdateManyMutationInput!
-    where: NexusGenInputs['BranchEmployeeScalarWhereInput']; // BranchEmployeeScalarWhereInput!
-  }
-  BranchEmployeeUpdateManyWithoutBranchInput: { // input type
-    connect?: NexusGenInputs['BranchEmployeeWhereUniqueInput'][] | null; // [BranchEmployeeWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['BranchEmployeeCreateOrConnectWithoutBranchInput'][] | null; // [BranchEmployeeCreateOrConnectWithoutBranchInput!]
-    create?: NexusGenInputs['BranchEmployeeCreateWithoutBranchInput'][] | null; // [BranchEmployeeCreateWithoutBranchInput!]
-    createMany?: NexusGenInputs['BranchEmployeeCreateManyBranchInputEnvelope'] | null; // BranchEmployeeCreateManyBranchInputEnvelope
-    delete?: NexusGenInputs['BranchEmployeeWhereUniqueInput'][] | null; // [BranchEmployeeWhereUniqueInput!]
-    deleteMany?: NexusGenInputs['BranchEmployeeScalarWhereInput'][] | null; // [BranchEmployeeScalarWhereInput!]
-    disconnect?: NexusGenInputs['BranchEmployeeWhereUniqueInput'][] | null; // [BranchEmployeeWhereUniqueInput!]
-    set?: NexusGenInputs['BranchEmployeeWhereUniqueInput'][] | null; // [BranchEmployeeWhereUniqueInput!]
-    update?: NexusGenInputs['BranchEmployeeUpdateWithWhereUniqueWithoutBranchInput'][] | null; // [BranchEmployeeUpdateWithWhereUniqueWithoutBranchInput!]
-    updateMany?: NexusGenInputs['BranchEmployeeUpdateManyWithWhereWithoutBranchInput'][] | null; // [BranchEmployeeUpdateManyWithWhereWithoutBranchInput!]
-    upsert?: NexusGenInputs['BranchEmployeeUpsertWithWhereUniqueWithoutBranchInput'][] | null; // [BranchEmployeeUpsertWithWhereUniqueWithoutBranchInput!]
-  }
-  BranchEmployeeUpdateManyWithoutEmployeeInput: { // input type
-    connect?: NexusGenInputs['BranchEmployeeWhereUniqueInput'][] | null; // [BranchEmployeeWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['BranchEmployeeCreateOrConnectWithoutEmployeeInput'][] | null; // [BranchEmployeeCreateOrConnectWithoutEmployeeInput!]
-    create?: NexusGenInputs['BranchEmployeeCreateWithoutEmployeeInput'][] | null; // [BranchEmployeeCreateWithoutEmployeeInput!]
-    createMany?: NexusGenInputs['BranchEmployeeCreateManyEmployeeInputEnvelope'] | null; // BranchEmployeeCreateManyEmployeeInputEnvelope
-    delete?: NexusGenInputs['BranchEmployeeWhereUniqueInput'][] | null; // [BranchEmployeeWhereUniqueInput!]
-    deleteMany?: NexusGenInputs['BranchEmployeeScalarWhereInput'][] | null; // [BranchEmployeeScalarWhereInput!]
-    disconnect?: NexusGenInputs['BranchEmployeeWhereUniqueInput'][] | null; // [BranchEmployeeWhereUniqueInput!]
-    set?: NexusGenInputs['BranchEmployeeWhereUniqueInput'][] | null; // [BranchEmployeeWhereUniqueInput!]
-    update?: NexusGenInputs['BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeInput'][] | null; // [BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeInput!]
-    updateMany?: NexusGenInputs['BranchEmployeeUpdateManyWithWhereWithoutEmployeeInput'][] | null; // [BranchEmployeeUpdateManyWithWhereWithoutEmployeeInput!]
-    upsert?: NexusGenInputs['BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeInput'][] | null; // [BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeInput!]
-  }
-  BranchEmployeeUpdateManyWithoutEmployeeStatusInput: { // input type
-    connect?: NexusGenInputs['BranchEmployeeWhereUniqueInput'][] | null; // [BranchEmployeeWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['BranchEmployeeCreateOrConnectWithoutEmployeeStatusInput'][] | null; // [BranchEmployeeCreateOrConnectWithoutEmployeeStatusInput!]
-    create?: NexusGenInputs['BranchEmployeeCreateWithoutEmployeeStatusInput'][] | null; // [BranchEmployeeCreateWithoutEmployeeStatusInput!]
-    createMany?: NexusGenInputs['BranchEmployeeCreateManyEmployeeStatusInputEnvelope'] | null; // BranchEmployeeCreateManyEmployeeStatusInputEnvelope
-    delete?: NexusGenInputs['BranchEmployeeWhereUniqueInput'][] | null; // [BranchEmployeeWhereUniqueInput!]
-    deleteMany?: NexusGenInputs['BranchEmployeeScalarWhereInput'][] | null; // [BranchEmployeeScalarWhereInput!]
-    disconnect?: NexusGenInputs['BranchEmployeeWhereUniqueInput'][] | null; // [BranchEmployeeWhereUniqueInput!]
-    set?: NexusGenInputs['BranchEmployeeWhereUniqueInput'][] | null; // [BranchEmployeeWhereUniqueInput!]
-    update?: NexusGenInputs['BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeStatusInput'][] | null; // [BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeStatusInput!]
-    updateMany?: NexusGenInputs['BranchEmployeeUpdateManyWithWhereWithoutEmployeeStatusInput'][] | null; // [BranchEmployeeUpdateManyWithWhereWithoutEmployeeStatusInput!]
-    upsert?: NexusGenInputs['BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeStatusInput'][] | null; // [BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeStatusInput!]
-  }
-  BranchEmployeeUpdateOneWithoutAnnBranchEmployeeInput: { // input type
-    connect?: NexusGenInputs['BranchEmployeeWhereUniqueInput'] | null; // BranchEmployeeWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['BranchEmployeeCreateOrConnectWithoutAnnBranchEmployeeInput'] | null; // BranchEmployeeCreateOrConnectWithoutAnnBranchEmployeeInput
-    create?: NexusGenInputs['BranchEmployeeCreateWithoutAnnBranchEmployeeInput'] | null; // BranchEmployeeCreateWithoutAnnBranchEmployeeInput
-    delete?: boolean | null; // Boolean
-    disconnect?: boolean | null; // Boolean
-    update?: NexusGenInputs['BranchEmployeeUpdateWithoutAnnBranchEmployeeInput'] | null; // BranchEmployeeUpdateWithoutAnnBranchEmployeeInput
-    upsert?: NexusGenInputs['BranchEmployeeUpsertWithoutAnnBranchEmployeeInput'] | null; // BranchEmployeeUpsertWithoutAnnBranchEmployeeInput
-  }
-  BranchEmployeeUpdateWithWhereUniqueWithoutBranchInput: { // input type
-    data: NexusGenInputs['BranchEmployeeUpdateWithoutBranchInput']; // BranchEmployeeUpdateWithoutBranchInput!
-    where: NexusGenInputs['BranchEmployeeWhereUniqueInput']; // BranchEmployeeWhereUniqueInput!
-  }
-  BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeInput: { // input type
-    data: NexusGenInputs['BranchEmployeeUpdateWithoutEmployeeInput']; // BranchEmployeeUpdateWithoutEmployeeInput!
-    where: NexusGenInputs['BranchEmployeeWhereUniqueInput']; // BranchEmployeeWhereUniqueInput!
-  }
-  BranchEmployeeUpdateWithWhereUniqueWithoutEmployeeStatusInput: { // input type
-    data: NexusGenInputs['BranchEmployeeUpdateWithoutEmployeeStatusInput']; // BranchEmployeeUpdateWithoutEmployeeStatusInput!
-    where: NexusGenInputs['BranchEmployeeWhereUniqueInput']; // BranchEmployeeWhereUniqueInput!
-  }
-  BranchEmployeeUpdateWithoutAnnBranchEmployeeInput: { // input type
-    Branch?: NexusGenInputs['BranchUpdateOneRequiredWithoutBranchEmplsInput'] | null; // BranchUpdateOneRequiredWithoutBranchEmplsInput
-    Employee?: NexusGenInputs['EmployeeUpdateOneRequiredWithoutBranchEmplsInput'] | null; // EmployeeUpdateOneRequiredWithoutBranchEmplsInput
-    EmployeeStatus?: NexusGenInputs['EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput'] | null; // EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    endDate?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    startDate?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  BranchEmployeeUpdateWithoutBranchInput: { // input type
-    Employee?: NexusGenInputs['EmployeeUpdateOneRequiredWithoutBranchEmplsInput'] | null; // EmployeeUpdateOneRequiredWithoutBranchEmplsInput
-    EmployeeStatus?: NexusGenInputs['EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput'] | null; // EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput
-    annBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput'] | null; // AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    endDate?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    startDate?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  BranchEmployeeUpdateWithoutEmployeeInput: { // input type
-    Branch?: NexusGenInputs['BranchUpdateOneRequiredWithoutBranchEmplsInput'] | null; // BranchUpdateOneRequiredWithoutBranchEmplsInput
-    EmployeeStatus?: NexusGenInputs['EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput'] | null; // EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput
-    annBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput'] | null; // AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    endDate?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    startDate?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  BranchEmployeeUpdateWithoutEmployeeStatusInput: { // input type
-    Branch?: NexusGenInputs['BranchUpdateOneRequiredWithoutBranchEmplsInput'] | null; // BranchUpdateOneRequiredWithoutBranchEmplsInput
-    Employee?: NexusGenInputs['EmployeeUpdateOneRequiredWithoutBranchEmplsInput'] | null; // EmployeeUpdateOneRequiredWithoutBranchEmplsInput
-    annBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput'] | null; // AnnualBranchEmployeeUpdateManyWithoutBranchEmployeeInput
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    endDate?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    startDate?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  BranchEmployeeUpsertWithWhereUniqueWithoutBranchInput: { // input type
-    create: NexusGenInputs['BranchEmployeeCreateWithoutBranchInput']; // BranchEmployeeCreateWithoutBranchInput!
-    update: NexusGenInputs['BranchEmployeeUpdateWithoutBranchInput']; // BranchEmployeeUpdateWithoutBranchInput!
-    where: NexusGenInputs['BranchEmployeeWhereUniqueInput']; // BranchEmployeeWhereUniqueInput!
-  }
-  BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeInput: { // input type
-    create: NexusGenInputs['BranchEmployeeCreateWithoutEmployeeInput']; // BranchEmployeeCreateWithoutEmployeeInput!
-    update: NexusGenInputs['BranchEmployeeUpdateWithoutEmployeeInput']; // BranchEmployeeUpdateWithoutEmployeeInput!
-    where: NexusGenInputs['BranchEmployeeWhereUniqueInput']; // BranchEmployeeWhereUniqueInput!
-  }
-  BranchEmployeeUpsertWithWhereUniqueWithoutEmployeeStatusInput: { // input type
-    create: NexusGenInputs['BranchEmployeeCreateWithoutEmployeeStatusInput']; // BranchEmployeeCreateWithoutEmployeeStatusInput!
-    update: NexusGenInputs['BranchEmployeeUpdateWithoutEmployeeStatusInput']; // BranchEmployeeUpdateWithoutEmployeeStatusInput!
-    where: NexusGenInputs['BranchEmployeeWhereUniqueInput']; // BranchEmployeeWhereUniqueInput!
-  }
-  BranchEmployeeUpsertWithoutAnnBranchEmployeeInput: { // input type
-    create: NexusGenInputs['BranchEmployeeCreateWithoutAnnBranchEmployeeInput']; // BranchEmployeeCreateWithoutAnnBranchEmployeeInput!
-    update: NexusGenInputs['BranchEmployeeUpdateWithoutAnnBranchEmployeeInput']; // BranchEmployeeUpdateWithoutAnnBranchEmployeeInput!
-  }
-  BranchEmployeeWhereUniqueInput: { // input type
-    id?: string | null; // String
-  }
-  BranchUpdateInput: { // input type
-    branchCode?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    branchEmpls?: NexusGenInputs['BranchEmployeeUpdateManyWithoutBranchInput'] | null; // BranchEmployeeUpdateManyWithoutBranchInput
-    branchName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  BranchUpdateOneRequiredWithoutBranchEmplsInput: { // input type
-    connect?: NexusGenInputs['BranchWhereUniqueInput'] | null; // BranchWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['BranchCreateOrConnectWithoutBranchEmplsInput'] | null; // BranchCreateOrConnectWithoutBranchEmplsInput
-    create?: NexusGenInputs['BranchCreateWithoutBranchEmplsInput'] | null; // BranchCreateWithoutBranchEmplsInput
-    update?: NexusGenInputs['BranchUpdateWithoutBranchEmplsInput'] | null; // BranchUpdateWithoutBranchEmplsInput
-    upsert?: NexusGenInputs['BranchUpsertWithoutBranchEmplsInput'] | null; // BranchUpsertWithoutBranchEmplsInput
-  }
-  BranchUpdateWithoutBranchEmplsInput: { // input type
-    branchCode?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    branchName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  BranchUpsertWithoutBranchEmplsInput: { // input type
-    create: NexusGenInputs['BranchCreateWithoutBranchEmplsInput']; // BranchCreateWithoutBranchEmplsInput!
-    update: NexusGenInputs['BranchUpdateWithoutBranchEmplsInput']; // BranchUpdateWithoutBranchEmplsInput!
-  }
-  BranchWhereUniqueInput: { // input type
-    branchCode?: string | null; // String
-    id?: string | null; // String
-  }
   CartCreateInput: { // input type
-    AnnualBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeCreateNestedOneWithoutCartsInput'] | null; // AnnualBranchEmployeeCreateNestedOneWithoutCartsInput
-    AnnualClient?: NexusGenInputs['AnnualClientCreateNestedOneWithoutCartsInput'] | null; // AnnualClientCreateNestedOneWithoutCartsInput
+    Client: NexusGenInputs['ClientCreateNestedOneWithoutCartsInput']; // ClientCreateNestedOneWithoutCartsInput!
+    Employee: NexusGenInputs['EmployeeCreateNestedOneWithoutCartsInput']; // EmployeeCreateNestedOneWithoutCartsInput!
     Product: NexusGenInputs['ProductCreateNestedOneWithoutCartsInput']; // ProductCreateNestedOneWithoutCartsInput!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: string | null; // String
@@ -866,9 +31,9 @@ export interface NexusGenInputs {
     salesPrice: number; // Int!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
-  CartCreateManyAnnualBranchEmployeeInput: { // input type
-    annualClientId?: string | null; // String
+  CartCreateManyClientInput: { // input type
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    employeeId: string; // String!
     id?: string | null; // String
     orderDate?: NexusGenScalars['DateTime'] | null; // DateTime
     pdtCost: number; // Int!
@@ -877,12 +42,12 @@ export interface NexusGenInputs {
     salesPrice: number; // Int!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
-  CartCreateManyAnnualBranchEmployeeInputEnvelope: { // input type
-    data?: NexusGenInputs['CartCreateManyAnnualBranchEmployeeInput'][] | null; // [CartCreateManyAnnualBranchEmployeeInput!]
+  CartCreateManyClientInputEnvelope: { // input type
+    data?: NexusGenInputs['CartCreateManyClientInput'][] | null; // [CartCreateManyClientInput!]
     skipDuplicates?: boolean | null; // Boolean
   }
-  CartCreateManyAnnualClientInput: { // input type
-    annualBranchEmployeeId?: string | null; // String
+  CartCreateManyEmployeeInput: { // input type
+    clientId: string; // String!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: string | null; // String
     orderDate?: NexusGenScalars['DateTime'] | null; // DateTime
@@ -892,14 +57,14 @@ export interface NexusGenInputs {
     salesPrice: number; // Int!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
-  CartCreateManyAnnualClientInputEnvelope: { // input type
-    data?: NexusGenInputs['CartCreateManyAnnualClientInput'][] | null; // [CartCreateManyAnnualClientInput!]
+  CartCreateManyEmployeeInputEnvelope: { // input type
+    data?: NexusGenInputs['CartCreateManyEmployeeInput'][] | null; // [CartCreateManyEmployeeInput!]
     skipDuplicates?: boolean | null; // Boolean
   }
   CartCreateManyProductInput: { // input type
-    annualBranchEmployeeId?: string | null; // String
-    annualClientId?: string | null; // String
+    clientId: string; // String!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    employeeId: string; // String!
     id?: string | null; // String
     orderDate?: NexusGenScalars['DateTime'] | null; // DateTime
     pdtCost: number; // Int!
@@ -911,17 +76,17 @@ export interface NexusGenInputs {
     data?: NexusGenInputs['CartCreateManyProductInput'][] | null; // [CartCreateManyProductInput!]
     skipDuplicates?: boolean | null; // Boolean
   }
-  CartCreateNestedManyWithoutAnnualBranchEmployeeInput: { // input type
+  CartCreateNestedManyWithoutClientInput: { // input type
     connect?: NexusGenInputs['CartWhereUniqueInput'][] | null; // [CartWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['CartCreateOrConnectWithoutAnnualBranchEmployeeInput'][] | null; // [CartCreateOrConnectWithoutAnnualBranchEmployeeInput!]
-    create?: NexusGenInputs['CartCreateWithoutAnnualBranchEmployeeInput'][] | null; // [CartCreateWithoutAnnualBranchEmployeeInput!]
-    createMany?: NexusGenInputs['CartCreateManyAnnualBranchEmployeeInputEnvelope'] | null; // CartCreateManyAnnualBranchEmployeeInputEnvelope
+    connectOrCreate?: NexusGenInputs['CartCreateOrConnectWithoutClientInput'][] | null; // [CartCreateOrConnectWithoutClientInput!]
+    create?: NexusGenInputs['CartCreateWithoutClientInput'][] | null; // [CartCreateWithoutClientInput!]
+    createMany?: NexusGenInputs['CartCreateManyClientInputEnvelope'] | null; // CartCreateManyClientInputEnvelope
   }
-  CartCreateNestedManyWithoutAnnualClientInput: { // input type
+  CartCreateNestedManyWithoutEmployeeInput: { // input type
     connect?: NexusGenInputs['CartWhereUniqueInput'][] | null; // [CartWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['CartCreateOrConnectWithoutAnnualClientInput'][] | null; // [CartCreateOrConnectWithoutAnnualClientInput!]
-    create?: NexusGenInputs['CartCreateWithoutAnnualClientInput'][] | null; // [CartCreateWithoutAnnualClientInput!]
-    createMany?: NexusGenInputs['CartCreateManyAnnualClientInputEnvelope'] | null; // CartCreateManyAnnualClientInputEnvelope
+    connectOrCreate?: NexusGenInputs['CartCreateOrConnectWithoutEmployeeInput'][] | null; // [CartCreateOrConnectWithoutEmployeeInput!]
+    create?: NexusGenInputs['CartCreateWithoutEmployeeInput'][] | null; // [CartCreateWithoutEmployeeInput!]
+    createMany?: NexusGenInputs['CartCreateManyEmployeeInputEnvelope'] | null; // CartCreateManyEmployeeInputEnvelope
   }
   CartCreateNestedManyWithoutProductInput: { // input type
     connect?: NexusGenInputs['CartWhereUniqueInput'][] | null; // [CartWhereUniqueInput!]
@@ -929,20 +94,20 @@ export interface NexusGenInputs {
     create?: NexusGenInputs['CartCreateWithoutProductInput'][] | null; // [CartCreateWithoutProductInput!]
     createMany?: NexusGenInputs['CartCreateManyProductInputEnvelope'] | null; // CartCreateManyProductInputEnvelope
   }
-  CartCreateOrConnectWithoutAnnualBranchEmployeeInput: { // input type
-    create: NexusGenInputs['CartCreateWithoutAnnualBranchEmployeeInput']; // CartCreateWithoutAnnualBranchEmployeeInput!
+  CartCreateOrConnectWithoutClientInput: { // input type
+    create: NexusGenInputs['CartCreateWithoutClientInput']; // CartCreateWithoutClientInput!
     where: NexusGenInputs['CartWhereUniqueInput']; // CartWhereUniqueInput!
   }
-  CartCreateOrConnectWithoutAnnualClientInput: { // input type
-    create: NexusGenInputs['CartCreateWithoutAnnualClientInput']; // CartCreateWithoutAnnualClientInput!
+  CartCreateOrConnectWithoutEmployeeInput: { // input type
+    create: NexusGenInputs['CartCreateWithoutEmployeeInput']; // CartCreateWithoutEmployeeInput!
     where: NexusGenInputs['CartWhereUniqueInput']; // CartWhereUniqueInput!
   }
   CartCreateOrConnectWithoutProductInput: { // input type
     create: NexusGenInputs['CartCreateWithoutProductInput']; // CartCreateWithoutProductInput!
     where: NexusGenInputs['CartWhereUniqueInput']; // CartWhereUniqueInput!
   }
-  CartCreateWithoutAnnualBranchEmployeeInput: { // input type
-    AnnualClient?: NexusGenInputs['AnnualClientCreateNestedOneWithoutCartsInput'] | null; // AnnualClientCreateNestedOneWithoutCartsInput
+  CartCreateWithoutClientInput: { // input type
+    Employee: NexusGenInputs['EmployeeCreateNestedOneWithoutCartsInput']; // EmployeeCreateNestedOneWithoutCartsInput!
     Product: NexusGenInputs['ProductCreateNestedOneWithoutCartsInput']; // ProductCreateNestedOneWithoutCartsInput!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: string | null; // String
@@ -952,8 +117,8 @@ export interface NexusGenInputs {
     salesPrice: number; // Int!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
-  CartCreateWithoutAnnualClientInput: { // input type
-    AnnualBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeCreateNestedOneWithoutCartsInput'] | null; // AnnualBranchEmployeeCreateNestedOneWithoutCartsInput
+  CartCreateWithoutEmployeeInput: { // input type
+    Client: NexusGenInputs['ClientCreateNestedOneWithoutCartsInput']; // ClientCreateNestedOneWithoutCartsInput!
     Product: NexusGenInputs['ProductCreateNestedOneWithoutCartsInput']; // ProductCreateNestedOneWithoutCartsInput!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: string | null; // String
@@ -964,8 +129,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
   CartCreateWithoutProductInput: { // input type
-    AnnualBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeCreateNestedOneWithoutCartsInput'] | null; // AnnualBranchEmployeeCreateNestedOneWithoutCartsInput
-    AnnualClient?: NexusGenInputs['AnnualClientCreateNestedOneWithoutCartsInput'] | null; // AnnualClientCreateNestedOneWithoutCartsInput
+    Client: NexusGenInputs['ClientCreateNestedOneWithoutCartsInput']; // ClientCreateNestedOneWithoutCartsInput!
+    Employee: NexusGenInputs['EmployeeCreateNestedOneWithoutCartsInput']; // EmployeeCreateNestedOneWithoutCartsInput!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: string | null; // String
     orderDate?: NexusGenScalars['DateTime'] | null; // DateTime
@@ -978,9 +143,9 @@ export interface NexusGenInputs {
     AND?: NexusGenInputs['CartScalarWhereInput'][] | null; // [CartScalarWhereInput!]
     NOT?: NexusGenInputs['CartScalarWhereInput'][] | null; // [CartScalarWhereInput!]
     OR?: NexusGenInputs['CartScalarWhereInput'][] | null; // [CartScalarWhereInput!]
-    annualBranchEmployeeId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    annualClientId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    clientId?: NexusGenInputs['StringFilter'] | null; // StringFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    employeeId?: NexusGenInputs['StringFilter'] | null; // StringFilter
     id?: NexusGenInputs['StringFilter'] | null; // StringFilter
     orderDate?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     pdtCost?: NexusGenInputs['IntFilter'] | null; // IntFilter
@@ -990,8 +155,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
   }
   CartUpdateInput: { // input type
-    AnnualBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeUpdateOneWithoutCartsInput'] | null; // AnnualBranchEmployeeUpdateOneWithoutCartsInput
-    AnnualClient?: NexusGenInputs['AnnualClientUpdateOneWithoutCartsInput'] | null; // AnnualClientUpdateOneWithoutCartsInput
+    Client?: NexusGenInputs['ClientUpdateOneRequiredWithoutCartsInput'] | null; // ClientUpdateOneRequiredWithoutCartsInput
+    Employee?: NexusGenInputs['EmployeeUpdateOneRequiredWithoutCartsInput'] | null; // EmployeeUpdateOneRequiredWithoutCartsInput
     Product?: NexusGenInputs['ProductUpdateOneRequiredWithoutCartsInput'] | null; // ProductUpdateOneRequiredWithoutCartsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
@@ -1010,11 +175,11 @@ export interface NexusGenInputs {
     salesPrice?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
-  CartUpdateManyWithWhereWithoutAnnualBranchEmployeeInput: { // input type
+  CartUpdateManyWithWhereWithoutClientInput: { // input type
     data: NexusGenInputs['CartUpdateManyMutationInput']; // CartUpdateManyMutationInput!
     where: NexusGenInputs['CartScalarWhereInput']; // CartScalarWhereInput!
   }
-  CartUpdateManyWithWhereWithoutAnnualClientInput: { // input type
+  CartUpdateManyWithWhereWithoutEmployeeInput: { // input type
     data: NexusGenInputs['CartUpdateManyMutationInput']; // CartUpdateManyMutationInput!
     where: NexusGenInputs['CartScalarWhereInput']; // CartScalarWhereInput!
   }
@@ -1022,31 +187,31 @@ export interface NexusGenInputs {
     data: NexusGenInputs['CartUpdateManyMutationInput']; // CartUpdateManyMutationInput!
     where: NexusGenInputs['CartScalarWhereInput']; // CartScalarWhereInput!
   }
-  CartUpdateManyWithoutAnnualBranchEmployeeInput: { // input type
+  CartUpdateManyWithoutClientInput: { // input type
     connect?: NexusGenInputs['CartWhereUniqueInput'][] | null; // [CartWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['CartCreateOrConnectWithoutAnnualBranchEmployeeInput'][] | null; // [CartCreateOrConnectWithoutAnnualBranchEmployeeInput!]
-    create?: NexusGenInputs['CartCreateWithoutAnnualBranchEmployeeInput'][] | null; // [CartCreateWithoutAnnualBranchEmployeeInput!]
-    createMany?: NexusGenInputs['CartCreateManyAnnualBranchEmployeeInputEnvelope'] | null; // CartCreateManyAnnualBranchEmployeeInputEnvelope
+    connectOrCreate?: NexusGenInputs['CartCreateOrConnectWithoutClientInput'][] | null; // [CartCreateOrConnectWithoutClientInput!]
+    create?: NexusGenInputs['CartCreateWithoutClientInput'][] | null; // [CartCreateWithoutClientInput!]
+    createMany?: NexusGenInputs['CartCreateManyClientInputEnvelope'] | null; // CartCreateManyClientInputEnvelope
     delete?: NexusGenInputs['CartWhereUniqueInput'][] | null; // [CartWhereUniqueInput!]
     deleteMany?: NexusGenInputs['CartScalarWhereInput'][] | null; // [CartScalarWhereInput!]
     disconnect?: NexusGenInputs['CartWhereUniqueInput'][] | null; // [CartWhereUniqueInput!]
     set?: NexusGenInputs['CartWhereUniqueInput'][] | null; // [CartWhereUniqueInput!]
-    update?: NexusGenInputs['CartUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput'][] | null; // [CartUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput!]
-    updateMany?: NexusGenInputs['CartUpdateManyWithWhereWithoutAnnualBranchEmployeeInput'][] | null; // [CartUpdateManyWithWhereWithoutAnnualBranchEmployeeInput!]
-    upsert?: NexusGenInputs['CartUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput'][] | null; // [CartUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput!]
+    update?: NexusGenInputs['CartUpdateWithWhereUniqueWithoutClientInput'][] | null; // [CartUpdateWithWhereUniqueWithoutClientInput!]
+    updateMany?: NexusGenInputs['CartUpdateManyWithWhereWithoutClientInput'][] | null; // [CartUpdateManyWithWhereWithoutClientInput!]
+    upsert?: NexusGenInputs['CartUpsertWithWhereUniqueWithoutClientInput'][] | null; // [CartUpsertWithWhereUniqueWithoutClientInput!]
   }
-  CartUpdateManyWithoutAnnualClientInput: { // input type
+  CartUpdateManyWithoutEmployeeInput: { // input type
     connect?: NexusGenInputs['CartWhereUniqueInput'][] | null; // [CartWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['CartCreateOrConnectWithoutAnnualClientInput'][] | null; // [CartCreateOrConnectWithoutAnnualClientInput!]
-    create?: NexusGenInputs['CartCreateWithoutAnnualClientInput'][] | null; // [CartCreateWithoutAnnualClientInput!]
-    createMany?: NexusGenInputs['CartCreateManyAnnualClientInputEnvelope'] | null; // CartCreateManyAnnualClientInputEnvelope
+    connectOrCreate?: NexusGenInputs['CartCreateOrConnectWithoutEmployeeInput'][] | null; // [CartCreateOrConnectWithoutEmployeeInput!]
+    create?: NexusGenInputs['CartCreateWithoutEmployeeInput'][] | null; // [CartCreateWithoutEmployeeInput!]
+    createMany?: NexusGenInputs['CartCreateManyEmployeeInputEnvelope'] | null; // CartCreateManyEmployeeInputEnvelope
     delete?: NexusGenInputs['CartWhereUniqueInput'][] | null; // [CartWhereUniqueInput!]
     deleteMany?: NexusGenInputs['CartScalarWhereInput'][] | null; // [CartScalarWhereInput!]
     disconnect?: NexusGenInputs['CartWhereUniqueInput'][] | null; // [CartWhereUniqueInput!]
     set?: NexusGenInputs['CartWhereUniqueInput'][] | null; // [CartWhereUniqueInput!]
-    update?: NexusGenInputs['CartUpdateWithWhereUniqueWithoutAnnualClientInput'][] | null; // [CartUpdateWithWhereUniqueWithoutAnnualClientInput!]
-    updateMany?: NexusGenInputs['CartUpdateManyWithWhereWithoutAnnualClientInput'][] | null; // [CartUpdateManyWithWhereWithoutAnnualClientInput!]
-    upsert?: NexusGenInputs['CartUpsertWithWhereUniqueWithoutAnnualClientInput'][] | null; // [CartUpsertWithWhereUniqueWithoutAnnualClientInput!]
+    update?: NexusGenInputs['CartUpdateWithWhereUniqueWithoutEmployeeInput'][] | null; // [CartUpdateWithWhereUniqueWithoutEmployeeInput!]
+    updateMany?: NexusGenInputs['CartUpdateManyWithWhereWithoutEmployeeInput'][] | null; // [CartUpdateManyWithWhereWithoutEmployeeInput!]
+    upsert?: NexusGenInputs['CartUpsertWithWhereUniqueWithoutEmployeeInput'][] | null; // [CartUpsertWithWhereUniqueWithoutEmployeeInput!]
   }
   CartUpdateManyWithoutProductInput: { // input type
     connect?: NexusGenInputs['CartWhereUniqueInput'][] | null; // [CartWhereUniqueInput!]
@@ -1061,20 +226,20 @@ export interface NexusGenInputs {
     updateMany?: NexusGenInputs['CartUpdateManyWithWhereWithoutProductInput'][] | null; // [CartUpdateManyWithWhereWithoutProductInput!]
     upsert?: NexusGenInputs['CartUpsertWithWhereUniqueWithoutProductInput'][] | null; // [CartUpsertWithWhereUniqueWithoutProductInput!]
   }
-  CartUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput: { // input type
-    data: NexusGenInputs['CartUpdateWithoutAnnualBranchEmployeeInput']; // CartUpdateWithoutAnnualBranchEmployeeInput!
+  CartUpdateWithWhereUniqueWithoutClientInput: { // input type
+    data: NexusGenInputs['CartUpdateWithoutClientInput']; // CartUpdateWithoutClientInput!
     where: NexusGenInputs['CartWhereUniqueInput']; // CartWhereUniqueInput!
   }
-  CartUpdateWithWhereUniqueWithoutAnnualClientInput: { // input type
-    data: NexusGenInputs['CartUpdateWithoutAnnualClientInput']; // CartUpdateWithoutAnnualClientInput!
+  CartUpdateWithWhereUniqueWithoutEmployeeInput: { // input type
+    data: NexusGenInputs['CartUpdateWithoutEmployeeInput']; // CartUpdateWithoutEmployeeInput!
     where: NexusGenInputs['CartWhereUniqueInput']; // CartWhereUniqueInput!
   }
   CartUpdateWithWhereUniqueWithoutProductInput: { // input type
     data: NexusGenInputs['CartUpdateWithoutProductInput']; // CartUpdateWithoutProductInput!
     where: NexusGenInputs['CartWhereUniqueInput']; // CartWhereUniqueInput!
   }
-  CartUpdateWithoutAnnualBranchEmployeeInput: { // input type
-    AnnualClient?: NexusGenInputs['AnnualClientUpdateOneWithoutCartsInput'] | null; // AnnualClientUpdateOneWithoutCartsInput
+  CartUpdateWithoutClientInput: { // input type
+    Employee?: NexusGenInputs['EmployeeUpdateOneRequiredWithoutCartsInput'] | null; // EmployeeUpdateOneRequiredWithoutCartsInput
     Product?: NexusGenInputs['ProductUpdateOneRequiredWithoutCartsInput'] | null; // ProductUpdateOneRequiredWithoutCartsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
@@ -1084,8 +249,8 @@ export interface NexusGenInputs {
     salesPrice?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
-  CartUpdateWithoutAnnualClientInput: { // input type
-    AnnualBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeUpdateOneWithoutCartsInput'] | null; // AnnualBranchEmployeeUpdateOneWithoutCartsInput
+  CartUpdateWithoutEmployeeInput: { // input type
+    Client?: NexusGenInputs['ClientUpdateOneRequiredWithoutCartsInput'] | null; // ClientUpdateOneRequiredWithoutCartsInput
     Product?: NexusGenInputs['ProductUpdateOneRequiredWithoutCartsInput'] | null; // ProductUpdateOneRequiredWithoutCartsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
@@ -1096,8 +261,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
   CartUpdateWithoutProductInput: { // input type
-    AnnualBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeUpdateOneWithoutCartsInput'] | null; // AnnualBranchEmployeeUpdateOneWithoutCartsInput
-    AnnualClient?: NexusGenInputs['AnnualClientUpdateOneWithoutCartsInput'] | null; // AnnualClientUpdateOneWithoutCartsInput
+    Client?: NexusGenInputs['ClientUpdateOneRequiredWithoutCartsInput'] | null; // ClientUpdateOneRequiredWithoutCartsInput
+    Employee?: NexusGenInputs['EmployeeUpdateOneRequiredWithoutCartsInput'] | null; // EmployeeUpdateOneRequiredWithoutCartsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     orderDate?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
@@ -1106,14 +271,14 @@ export interface NexusGenInputs {
     salesPrice?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
-  CartUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput: { // input type
-    create: NexusGenInputs['CartCreateWithoutAnnualBranchEmployeeInput']; // CartCreateWithoutAnnualBranchEmployeeInput!
-    update: NexusGenInputs['CartUpdateWithoutAnnualBranchEmployeeInput']; // CartUpdateWithoutAnnualBranchEmployeeInput!
+  CartUpsertWithWhereUniqueWithoutClientInput: { // input type
+    create: NexusGenInputs['CartCreateWithoutClientInput']; // CartCreateWithoutClientInput!
+    update: NexusGenInputs['CartUpdateWithoutClientInput']; // CartUpdateWithoutClientInput!
     where: NexusGenInputs['CartWhereUniqueInput']; // CartWhereUniqueInput!
   }
-  CartUpsertWithWhereUniqueWithoutAnnualClientInput: { // input type
-    create: NexusGenInputs['CartCreateWithoutAnnualClientInput']; // CartCreateWithoutAnnualClientInput!
-    update: NexusGenInputs['CartUpdateWithoutAnnualClientInput']; // CartUpdateWithoutAnnualClientInput!
+  CartUpsertWithWhereUniqueWithoutEmployeeInput: { // input type
+    create: NexusGenInputs['CartCreateWithoutEmployeeInput']; // CartCreateWithoutEmployeeInput!
+    update: NexusGenInputs['CartUpdateWithoutEmployeeInput']; // CartUpdateWithoutEmployeeInput!
     where: NexusGenInputs['CartWhereUniqueInput']; // CartWhereUniqueInput!
   }
   CartUpsertWithWhereUniqueWithoutProductInput: { // input type
@@ -1156,12 +321,10 @@ export interface NexusGenInputs {
     products?: NexusGenInputs['ProductUpdateManyWithoutCategoryInput'] | null; // ProductUpdateManyWithoutCategoryInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
-  CategoryUpdateOneWithoutProductsInput: { // input type
+  CategoryUpdateOneRequiredWithoutProductsInput: { // input type
     connect?: NexusGenInputs['CategoryWhereUniqueInput'] | null; // CategoryWhereUniqueInput
     connectOrCreate?: NexusGenInputs['CategoryCreateOrConnectWithoutProductsInput'] | null; // CategoryCreateOrConnectWithoutProductsInput
     create?: NexusGenInputs['CategoryCreateWithoutProductsInput'] | null; // CategoryCreateWithoutProductsInput
-    delete?: boolean | null; // Boolean
-    disconnect?: boolean | null; // Boolean
     update?: NexusGenInputs['CategoryUpdateWithoutProductsInput'] | null; // CategoryUpdateWithoutProductsInput
     upsert?: NexusGenInputs['CategoryUpsertWithoutProductsInput'] | null; // CategoryUpsertWithoutProductsInput
   }
@@ -1180,23 +343,42 @@ export interface NexusGenInputs {
     id?: string | null; // String
   }
   ClientCreateInput: { // input type
-    annClients?: NexusGenInputs['AnnualClientCreateNestedManyWithoutClientInput'] | null; // AnnualClientCreateNestedManyWithoutClientInput
+    carts?: NexusGenInputs['CartCreateNestedManyWithoutClientInput'] | null; // CartCreateNestedManyWithoutClientInput
     clientNames: string; // String!
     clientPhoneNumb: number; // Int!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: string | null; // String
+    orders?: NexusGenInputs['OrderCreateNestedManyWithoutClientInput'] | null; // OrderCreateNestedManyWithoutClientInput
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
-  ClientCreateNestedOneWithoutAnnClientsInput: { // input type
+  ClientCreateNestedOneWithoutCartsInput: { // input type
     connect?: NexusGenInputs['ClientWhereUniqueInput'] | null; // ClientWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['ClientCreateOrConnectWithoutAnnClientsInput'] | null; // ClientCreateOrConnectWithoutAnnClientsInput
-    create?: NexusGenInputs['ClientCreateWithoutAnnClientsInput'] | null; // ClientCreateWithoutAnnClientsInput
+    connectOrCreate?: NexusGenInputs['ClientCreateOrConnectWithoutCartsInput'] | null; // ClientCreateOrConnectWithoutCartsInput
+    create?: NexusGenInputs['ClientCreateWithoutCartsInput'] | null; // ClientCreateWithoutCartsInput
   }
-  ClientCreateOrConnectWithoutAnnClientsInput: { // input type
-    create: NexusGenInputs['ClientCreateWithoutAnnClientsInput']; // ClientCreateWithoutAnnClientsInput!
+  ClientCreateNestedOneWithoutOrdersInput: { // input type
+    connect?: NexusGenInputs['ClientWhereUniqueInput'] | null; // ClientWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ClientCreateOrConnectWithoutOrdersInput'] | null; // ClientCreateOrConnectWithoutOrdersInput
+    create?: NexusGenInputs['ClientCreateWithoutOrdersInput'] | null; // ClientCreateWithoutOrdersInput
+  }
+  ClientCreateOrConnectWithoutCartsInput: { // input type
+    create: NexusGenInputs['ClientCreateWithoutCartsInput']; // ClientCreateWithoutCartsInput!
     where: NexusGenInputs['ClientWhereUniqueInput']; // ClientWhereUniqueInput!
   }
-  ClientCreateWithoutAnnClientsInput: { // input type
+  ClientCreateOrConnectWithoutOrdersInput: { // input type
+    create: NexusGenInputs['ClientCreateWithoutOrdersInput']; // ClientCreateWithoutOrdersInput!
+    where: NexusGenInputs['ClientWhereUniqueInput']; // ClientWhereUniqueInput!
+  }
+  ClientCreateWithoutCartsInput: { // input type
+    clientNames: string; // String!
+    clientPhoneNumb: number; // Int!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: string | null; // String
+    orders?: NexusGenInputs['OrderCreateNestedManyWithoutClientInput'] | null; // OrderCreateNestedManyWithoutClientInput
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  ClientCreateWithoutOrdersInput: { // input type
+    carts?: NexusGenInputs['CartCreateNestedManyWithoutClientInput'] | null; // CartCreateNestedManyWithoutClientInput
     clientNames: string; // String!
     clientPhoneNumb: number; // Int!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
@@ -1204,32 +386,51 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
   ClientUpdateInput: { // input type
-    annClients?: NexusGenInputs['AnnualClientUpdateManyWithoutClientInput'] | null; // AnnualClientUpdateManyWithoutClientInput
+    carts?: NexusGenInputs['CartUpdateManyWithoutClientInput'] | null; // CartUpdateManyWithoutClientInput
     clientNames?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     clientPhoneNumb?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    orders?: NexusGenInputs['OrderUpdateManyWithoutClientInput'] | null; // OrderUpdateManyWithoutClientInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
-  ClientUpdateOneWithoutAnnClientsInput: { // input type
+  ClientUpdateOneRequiredWithoutCartsInput: { // input type
     connect?: NexusGenInputs['ClientWhereUniqueInput'] | null; // ClientWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['ClientCreateOrConnectWithoutAnnClientsInput'] | null; // ClientCreateOrConnectWithoutAnnClientsInput
-    create?: NexusGenInputs['ClientCreateWithoutAnnClientsInput'] | null; // ClientCreateWithoutAnnClientsInput
-    delete?: boolean | null; // Boolean
-    disconnect?: boolean | null; // Boolean
-    update?: NexusGenInputs['ClientUpdateWithoutAnnClientsInput'] | null; // ClientUpdateWithoutAnnClientsInput
-    upsert?: NexusGenInputs['ClientUpsertWithoutAnnClientsInput'] | null; // ClientUpsertWithoutAnnClientsInput
+    connectOrCreate?: NexusGenInputs['ClientCreateOrConnectWithoutCartsInput'] | null; // ClientCreateOrConnectWithoutCartsInput
+    create?: NexusGenInputs['ClientCreateWithoutCartsInput'] | null; // ClientCreateWithoutCartsInput
+    update?: NexusGenInputs['ClientUpdateWithoutCartsInput'] | null; // ClientUpdateWithoutCartsInput
+    upsert?: NexusGenInputs['ClientUpsertWithoutCartsInput'] | null; // ClientUpsertWithoutCartsInput
   }
-  ClientUpdateWithoutAnnClientsInput: { // input type
+  ClientUpdateOneRequiredWithoutOrdersInput: { // input type
+    connect?: NexusGenInputs['ClientWhereUniqueInput'] | null; // ClientWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ClientCreateOrConnectWithoutOrdersInput'] | null; // ClientCreateOrConnectWithoutOrdersInput
+    create?: NexusGenInputs['ClientCreateWithoutOrdersInput'] | null; // ClientCreateWithoutOrdersInput
+    update?: NexusGenInputs['ClientUpdateWithoutOrdersInput'] | null; // ClientUpdateWithoutOrdersInput
+    upsert?: NexusGenInputs['ClientUpsertWithoutOrdersInput'] | null; // ClientUpsertWithoutOrdersInput
+  }
+  ClientUpdateWithoutCartsInput: { // input type
+    clientNames?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    clientPhoneNumb?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    orders?: NexusGenInputs['OrderUpdateManyWithoutClientInput'] | null; // OrderUpdateManyWithoutClientInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  ClientUpdateWithoutOrdersInput: { // input type
+    carts?: NexusGenInputs['CartUpdateManyWithoutClientInput'] | null; // CartUpdateManyWithoutClientInput
     clientNames?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     clientPhoneNumb?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
-  ClientUpsertWithoutAnnClientsInput: { // input type
-    create: NexusGenInputs['ClientCreateWithoutAnnClientsInput']; // ClientCreateWithoutAnnClientsInput!
-    update: NexusGenInputs['ClientUpdateWithoutAnnClientsInput']; // ClientUpdateWithoutAnnClientsInput!
+  ClientUpsertWithoutCartsInput: { // input type
+    create: NexusGenInputs['ClientCreateWithoutCartsInput']; // ClientCreateWithoutCartsInput!
+    update: NexusGenInputs['ClientUpdateWithoutCartsInput']; // ClientUpdateWithoutCartsInput!
+  }
+  ClientUpsertWithoutOrdersInput: { // input type
+    create: NexusGenInputs['ClientCreateWithoutOrdersInput']; // ClientCreateWithoutOrdersInput!
+    update: NexusGenInputs['ClientUpdateWithoutOrdersInput']; // ClientUpdateWithoutOrdersInput!
   }
   ClientWhereUniqueInput: { // input type
     clientPhoneNumb?: number | null; // Int
@@ -1249,24 +450,44 @@ export interface NexusGenInputs {
     notIn?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
   }
   EmployeeCreateInput: { // input type
-    branchEmpls?: NexusGenInputs['BranchEmployeeCreateNestedManyWithoutEmployeeInput'] | null; // BranchEmployeeCreateNestedManyWithoutEmployeeInput
+    carts?: NexusGenInputs['CartCreateNestedManyWithoutEmployeeInput'] | null; // CartCreateNestedManyWithoutEmployeeInput
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     employeeCode: string; // String!
     employeeNames: string; // String!
     employeePhoneNumb: number; // Int!
     id?: string | null; // String
+    orders?: NexusGenInputs['OrderCreateNestedManyWithoutEmployeeInput'] | null; // OrderCreateNestedManyWithoutEmployeeInput
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
-  EmployeeCreateNestedOneWithoutBranchEmplsInput: { // input type
+  EmployeeCreateNestedOneWithoutCartsInput: { // input type
     connect?: NexusGenInputs['EmployeeWhereUniqueInput'] | null; // EmployeeWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['EmployeeCreateOrConnectWithoutBranchEmplsInput'] | null; // EmployeeCreateOrConnectWithoutBranchEmplsInput
-    create?: NexusGenInputs['EmployeeCreateWithoutBranchEmplsInput'] | null; // EmployeeCreateWithoutBranchEmplsInput
+    connectOrCreate?: NexusGenInputs['EmployeeCreateOrConnectWithoutCartsInput'] | null; // EmployeeCreateOrConnectWithoutCartsInput
+    create?: NexusGenInputs['EmployeeCreateWithoutCartsInput'] | null; // EmployeeCreateWithoutCartsInput
   }
-  EmployeeCreateOrConnectWithoutBranchEmplsInput: { // input type
-    create: NexusGenInputs['EmployeeCreateWithoutBranchEmplsInput']; // EmployeeCreateWithoutBranchEmplsInput!
+  EmployeeCreateNestedOneWithoutOrdersInput: { // input type
+    connect?: NexusGenInputs['EmployeeWhereUniqueInput'] | null; // EmployeeWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['EmployeeCreateOrConnectWithoutOrdersInput'] | null; // EmployeeCreateOrConnectWithoutOrdersInput
+    create?: NexusGenInputs['EmployeeCreateWithoutOrdersInput'] | null; // EmployeeCreateWithoutOrdersInput
+  }
+  EmployeeCreateOrConnectWithoutCartsInput: { // input type
+    create: NexusGenInputs['EmployeeCreateWithoutCartsInput']; // EmployeeCreateWithoutCartsInput!
     where: NexusGenInputs['EmployeeWhereUniqueInput']; // EmployeeWhereUniqueInput!
   }
-  EmployeeCreateWithoutBranchEmplsInput: { // input type
+  EmployeeCreateOrConnectWithoutOrdersInput: { // input type
+    create: NexusGenInputs['EmployeeCreateWithoutOrdersInput']; // EmployeeCreateWithoutOrdersInput!
+    where: NexusGenInputs['EmployeeWhereUniqueInput']; // EmployeeWhereUniqueInput!
+  }
+  EmployeeCreateWithoutCartsInput: { // input type
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    employeeCode: string; // String!
+    employeeNames: string; // String!
+    employeePhoneNumb: number; // Int!
+    id?: string | null; // String
+    orders?: NexusGenInputs['OrderCreateNestedManyWithoutEmployeeInput'] | null; // OrderCreateNestedManyWithoutEmployeeInput
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  EmployeeCreateWithoutOrdersInput: { // input type
+    carts?: NexusGenInputs['CartCreateNestedManyWithoutEmployeeInput'] | null; // CartCreateNestedManyWithoutEmployeeInput
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     employeeCode: string; // String!
     employeeNames: string; // String!
@@ -1275,71 +496,55 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
   EmployeeStatusCreateInput: { // input type
-    branchEmpls?: NexusGenInputs['BranchEmployeeCreateNestedManyWithoutEmployeeStatusInput'] | null; // BranchEmployeeCreateNestedManyWithoutEmployeeStatusInput
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    status: string; // String!
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  EmployeeStatusCreateNestedOneWithoutBranchEmplsInput: { // input type
-    connect?: NexusGenInputs['EmployeeStatusWhereUniqueInput'] | null; // EmployeeStatusWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['EmployeeStatusCreateOrConnectWithoutBranchEmplsInput'] | null; // EmployeeStatusCreateOrConnectWithoutBranchEmplsInput
-    create?: NexusGenInputs['EmployeeStatusCreateWithoutBranchEmplsInput'] | null; // EmployeeStatusCreateWithoutBranchEmplsInput
-  }
-  EmployeeStatusCreateOrConnectWithoutBranchEmplsInput: { // input type
-    create: NexusGenInputs['EmployeeStatusCreateWithoutBranchEmplsInput']; // EmployeeStatusCreateWithoutBranchEmplsInput!
-    where: NexusGenInputs['EmployeeStatusWhereUniqueInput']; // EmployeeStatusWhereUniqueInput!
-  }
-  EmployeeStatusCreateWithoutBranchEmplsInput: { // input type
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: string | null; // String
     status: string; // String!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
   EmployeeStatusUpdateInput: { // input type
-    branchEmpls?: NexusGenInputs['BranchEmployeeUpdateManyWithoutEmployeeStatusInput'] | null; // BranchEmployeeUpdateManyWithoutEmployeeStatusInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     status?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  EmployeeStatusUpdateOneRequiredWithoutBranchEmplsInput: { // input type
-    connect?: NexusGenInputs['EmployeeStatusWhereUniqueInput'] | null; // EmployeeStatusWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['EmployeeStatusCreateOrConnectWithoutBranchEmplsInput'] | null; // EmployeeStatusCreateOrConnectWithoutBranchEmplsInput
-    create?: NexusGenInputs['EmployeeStatusCreateWithoutBranchEmplsInput'] | null; // EmployeeStatusCreateWithoutBranchEmplsInput
-    update?: NexusGenInputs['EmployeeStatusUpdateWithoutBranchEmplsInput'] | null; // EmployeeStatusUpdateWithoutBranchEmplsInput
-    upsert?: NexusGenInputs['EmployeeStatusUpsertWithoutBranchEmplsInput'] | null; // EmployeeStatusUpsertWithoutBranchEmplsInput
-  }
-  EmployeeStatusUpdateWithoutBranchEmplsInput: { // input type
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    status?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  EmployeeStatusUpsertWithoutBranchEmplsInput: { // input type
-    create: NexusGenInputs['EmployeeStatusCreateWithoutBranchEmplsInput']; // EmployeeStatusCreateWithoutBranchEmplsInput!
-    update: NexusGenInputs['EmployeeStatusUpdateWithoutBranchEmplsInput']; // EmployeeStatusUpdateWithoutBranchEmplsInput!
   }
   EmployeeStatusWhereUniqueInput: { // input type
     id?: string | null; // String
   }
   EmployeeUpdateInput: { // input type
-    branchEmpls?: NexusGenInputs['BranchEmployeeUpdateManyWithoutEmployeeInput'] | null; // BranchEmployeeUpdateManyWithoutEmployeeInput
+    carts?: NexusGenInputs['CartUpdateManyWithoutEmployeeInput'] | null; // CartUpdateManyWithoutEmployeeInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     employeeCode?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     employeeNames?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     employeePhoneNumb?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    orders?: NexusGenInputs['OrderUpdateManyWithoutEmployeeInput'] | null; // OrderUpdateManyWithoutEmployeeInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
-  EmployeeUpdateOneRequiredWithoutBranchEmplsInput: { // input type
+  EmployeeUpdateOneRequiredWithoutCartsInput: { // input type
     connect?: NexusGenInputs['EmployeeWhereUniqueInput'] | null; // EmployeeWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['EmployeeCreateOrConnectWithoutBranchEmplsInput'] | null; // EmployeeCreateOrConnectWithoutBranchEmplsInput
-    create?: NexusGenInputs['EmployeeCreateWithoutBranchEmplsInput'] | null; // EmployeeCreateWithoutBranchEmplsInput
-    update?: NexusGenInputs['EmployeeUpdateWithoutBranchEmplsInput'] | null; // EmployeeUpdateWithoutBranchEmplsInput
-    upsert?: NexusGenInputs['EmployeeUpsertWithoutBranchEmplsInput'] | null; // EmployeeUpsertWithoutBranchEmplsInput
+    connectOrCreate?: NexusGenInputs['EmployeeCreateOrConnectWithoutCartsInput'] | null; // EmployeeCreateOrConnectWithoutCartsInput
+    create?: NexusGenInputs['EmployeeCreateWithoutCartsInput'] | null; // EmployeeCreateWithoutCartsInput
+    update?: NexusGenInputs['EmployeeUpdateWithoutCartsInput'] | null; // EmployeeUpdateWithoutCartsInput
+    upsert?: NexusGenInputs['EmployeeUpsertWithoutCartsInput'] | null; // EmployeeUpsertWithoutCartsInput
   }
-  EmployeeUpdateWithoutBranchEmplsInput: { // input type
+  EmployeeUpdateOneRequiredWithoutOrdersInput: { // input type
+    connect?: NexusGenInputs['EmployeeWhereUniqueInput'] | null; // EmployeeWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['EmployeeCreateOrConnectWithoutOrdersInput'] | null; // EmployeeCreateOrConnectWithoutOrdersInput
+    create?: NexusGenInputs['EmployeeCreateWithoutOrdersInput'] | null; // EmployeeCreateWithoutOrdersInput
+    update?: NexusGenInputs['EmployeeUpdateWithoutOrdersInput'] | null; // EmployeeUpdateWithoutOrdersInput
+    upsert?: NexusGenInputs['EmployeeUpsertWithoutOrdersInput'] | null; // EmployeeUpsertWithoutOrdersInput
+  }
+  EmployeeUpdateWithoutCartsInput: { // input type
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    employeeCode?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    employeeNames?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    employeePhoneNumb?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    orders?: NexusGenInputs['OrderUpdateManyWithoutEmployeeInput'] | null; // OrderUpdateManyWithoutEmployeeInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  EmployeeUpdateWithoutOrdersInput: { // input type
+    carts?: NexusGenInputs['CartUpdateManyWithoutEmployeeInput'] | null; // CartUpdateManyWithoutEmployeeInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     employeeCode?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     employeeNames?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
@@ -1347,9 +552,13 @@ export interface NexusGenInputs {
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
-  EmployeeUpsertWithoutBranchEmplsInput: { // input type
-    create: NexusGenInputs['EmployeeCreateWithoutBranchEmplsInput']; // EmployeeCreateWithoutBranchEmplsInput!
-    update: NexusGenInputs['EmployeeUpdateWithoutBranchEmplsInput']; // EmployeeUpdateWithoutBranchEmplsInput!
+  EmployeeUpsertWithoutCartsInput: { // input type
+    create: NexusGenInputs['EmployeeCreateWithoutCartsInput']; // EmployeeCreateWithoutCartsInput!
+    update: NexusGenInputs['EmployeeUpdateWithoutCartsInput']; // EmployeeUpdateWithoutCartsInput!
+  }
+  EmployeeUpsertWithoutOrdersInput: { // input type
+    create: NexusGenInputs['EmployeeCreateWithoutOrdersInput']; // EmployeeCreateWithoutOrdersInput!
+    update: NexusGenInputs['EmployeeUpdateWithoutOrdersInput']; // EmployeeUpdateWithoutOrdersInput!
   }
   EmployeeWhereUniqueInput: { // input type
     employeeCode?: string | null; // String
@@ -1448,92 +657,16 @@ export interface NexusGenInputs {
     id?: string | null; // String
   }
   FinancialYearCreateInput: { // input type
-    annBranchEmpls?: NexusGenInputs['AnnualBranchEmployeeCreateNestedManyWithoutFinancialYearInput'] | null; // AnnualBranchEmployeeCreateNestedManyWithoutFinancialYearInput
-    annClients?: NexusGenInputs['AnnualClientCreateNestedManyWithoutFinancialYearInput'] | null; // AnnualClientCreateNestedManyWithoutFinancialYearInput
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    yearName: number; // Int!
-  }
-  FinancialYearCreateNestedOneWithoutAnnBranchEmplsInput: { // input type
-    connect?: NexusGenInputs['FinancialYearWhereUniqueInput'] | null; // FinancialYearWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['FinancialYearCreateOrConnectWithoutAnnBranchEmplsInput'] | null; // FinancialYearCreateOrConnectWithoutAnnBranchEmplsInput
-    create?: NexusGenInputs['FinancialYearCreateWithoutAnnBranchEmplsInput'] | null; // FinancialYearCreateWithoutAnnBranchEmplsInput
-  }
-  FinancialYearCreateNestedOneWithoutAnnClientsInput: { // input type
-    connect?: NexusGenInputs['FinancialYearWhereUniqueInput'] | null; // FinancialYearWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['FinancialYearCreateOrConnectWithoutAnnClientsInput'] | null; // FinancialYearCreateOrConnectWithoutAnnClientsInput
-    create?: NexusGenInputs['FinancialYearCreateWithoutAnnClientsInput'] | null; // FinancialYearCreateWithoutAnnClientsInput
-  }
-  FinancialYearCreateOrConnectWithoutAnnBranchEmplsInput: { // input type
-    create: NexusGenInputs['FinancialYearCreateWithoutAnnBranchEmplsInput']; // FinancialYearCreateWithoutAnnBranchEmplsInput!
-    where: NexusGenInputs['FinancialYearWhereUniqueInput']; // FinancialYearWhereUniqueInput!
-  }
-  FinancialYearCreateOrConnectWithoutAnnClientsInput: { // input type
-    create: NexusGenInputs['FinancialYearCreateWithoutAnnClientsInput']; // FinancialYearCreateWithoutAnnClientsInput!
-    where: NexusGenInputs['FinancialYearWhereUniqueInput']; // FinancialYearWhereUniqueInput!
-  }
-  FinancialYearCreateWithoutAnnBranchEmplsInput: { // input type
-    annClients?: NexusGenInputs['AnnualClientCreateNestedManyWithoutFinancialYearInput'] | null; // AnnualClientCreateNestedManyWithoutFinancialYearInput
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    yearName: number; // Int!
-  }
-  FinancialYearCreateWithoutAnnClientsInput: { // input type
-    annBranchEmpls?: NexusGenInputs['AnnualBranchEmployeeCreateNestedManyWithoutFinancialYearInput'] | null; // AnnualBranchEmployeeCreateNestedManyWithoutFinancialYearInput
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: string | null; // String
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
     yearName: number; // Int!
   }
   FinancialYearUpdateInput: { // input type
-    annBranchEmpls?: NexusGenInputs['AnnualBranchEmployeeUpdateManyWithoutFinancialYearInput'] | null; // AnnualBranchEmployeeUpdateManyWithoutFinancialYearInput
-    annClients?: NexusGenInputs['AnnualClientUpdateManyWithoutFinancialYearInput'] | null; // AnnualClientUpdateManyWithoutFinancialYearInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     yearName?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
-  }
-  FinancialYearUpdateOneWithoutAnnBranchEmplsInput: { // input type
-    connect?: NexusGenInputs['FinancialYearWhereUniqueInput'] | null; // FinancialYearWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['FinancialYearCreateOrConnectWithoutAnnBranchEmplsInput'] | null; // FinancialYearCreateOrConnectWithoutAnnBranchEmplsInput
-    create?: NexusGenInputs['FinancialYearCreateWithoutAnnBranchEmplsInput'] | null; // FinancialYearCreateWithoutAnnBranchEmplsInput
-    delete?: boolean | null; // Boolean
-    disconnect?: boolean | null; // Boolean
-    update?: NexusGenInputs['FinancialYearUpdateWithoutAnnBranchEmplsInput'] | null; // FinancialYearUpdateWithoutAnnBranchEmplsInput
-    upsert?: NexusGenInputs['FinancialYearUpsertWithoutAnnBranchEmplsInput'] | null; // FinancialYearUpsertWithoutAnnBranchEmplsInput
-  }
-  FinancialYearUpdateOneWithoutAnnClientsInput: { // input type
-    connect?: NexusGenInputs['FinancialYearWhereUniqueInput'] | null; // FinancialYearWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['FinancialYearCreateOrConnectWithoutAnnClientsInput'] | null; // FinancialYearCreateOrConnectWithoutAnnClientsInput
-    create?: NexusGenInputs['FinancialYearCreateWithoutAnnClientsInput'] | null; // FinancialYearCreateWithoutAnnClientsInput
-    delete?: boolean | null; // Boolean
-    disconnect?: boolean | null; // Boolean
-    update?: NexusGenInputs['FinancialYearUpdateWithoutAnnClientsInput'] | null; // FinancialYearUpdateWithoutAnnClientsInput
-    upsert?: NexusGenInputs['FinancialYearUpsertWithoutAnnClientsInput'] | null; // FinancialYearUpsertWithoutAnnClientsInput
-  }
-  FinancialYearUpdateWithoutAnnBranchEmplsInput: { // input type
-    annClients?: NexusGenInputs['AnnualClientUpdateManyWithoutFinancialYearInput'] | null; // AnnualClientUpdateManyWithoutFinancialYearInput
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    yearName?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
-  }
-  FinancialYearUpdateWithoutAnnClientsInput: { // input type
-    annBranchEmpls?: NexusGenInputs['AnnualBranchEmployeeUpdateManyWithoutFinancialYearInput'] | null; // AnnualBranchEmployeeUpdateManyWithoutFinancialYearInput
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    yearName?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
-  }
-  FinancialYearUpsertWithoutAnnBranchEmplsInput: { // input type
-    create: NexusGenInputs['FinancialYearCreateWithoutAnnBranchEmplsInput']; // FinancialYearCreateWithoutAnnBranchEmplsInput!
-    update: NexusGenInputs['FinancialYearUpdateWithoutAnnBranchEmplsInput']; // FinancialYearUpdateWithoutAnnBranchEmplsInput!
-  }
-  FinancialYearUpsertWithoutAnnClientsInput: { // input type
-    create: NexusGenInputs['FinancialYearCreateWithoutAnnClientsInput']; // FinancialYearCreateWithoutAnnClientsInput!
-    update: NexusGenInputs['FinancialYearUpdateWithoutAnnClientsInput']; // FinancialYearUpdateWithoutAnnClientsInput!
   }
   FinancialYearWhereUniqueInput: { // input type
     id?: string | null; // String
@@ -1571,21 +704,6 @@ export interface NexusGenInputs {
     lte?: number | null; // Int
     not?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
     notIn?: number[] | null; // [Int!]
-  }
-  InventoryCreateInput: { // input type
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    qttyInHand: number; // Int!
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  InventoryUpdateInput: { // input type
-    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    qttyInHand?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
-    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  InventoryWhereUniqueInput: { // input type
-    id?: string | null; // String
   }
   NestedDateTimeFilter: { // input type
     equals?: NexusGenScalars['DateTime'] | null; // DateTime
@@ -1630,22 +748,9 @@ export interface NexusGenInputs {
     notIn?: string[] | null; // [String!]
     startsWith?: string | null; // String
   }
-  NestedStringNullableFilter: { // input type
-    contains?: string | null; // String
-    endsWith?: string | null; // String
-    equals?: string | null; // String
-    gt?: string | null; // String
-    gte?: string | null; // String
-    in?: string[] | null; // [String!]
-    lt?: string | null; // String
-    lte?: string | null; // String
-    not?: NexusGenInputs['NestedStringNullableFilter'] | null; // NestedStringNullableFilter
-    notIn?: string[] | null; // [String!]
-    startsWith?: string | null; // String
-  }
   OrderCreateInput: { // input type
-    AnnualBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput'] | null; // AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput
-    AnnualClient?: NexusGenInputs['AnnualClientCreateNestedOneWithoutOrdersInput'] | null; // AnnualClientCreateNestedOneWithoutOrdersInput
+    Client: NexusGenInputs['ClientCreateNestedOneWithoutOrdersInput']; // ClientCreateNestedOneWithoutOrdersInput!
+    Employee: NexusGenInputs['EmployeeCreateNestedOneWithoutOrdersInput']; // EmployeeCreateNestedOneWithoutOrdersInput!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     finances?: NexusGenInputs['FinanceCreateNestedManyWithoutOrderInput'] | null; // FinanceCreateNestedManyWithoutOrderInput
     id?: string | null; // String
@@ -1656,8 +761,22 @@ export interface NexusGenInputs {
     totalPaid: number; // Int!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
-  OrderCreateManyAnnualBranchEmployeeInput: { // input type
-    annualClientId?: string | null; // String
+  OrderCreateManyClientInput: { // input type
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    employeeId: string; // String!
+    id?: string | null; // String
+    orderDate?: NexusGenScalars['DateTime'] | null; // DateTime
+    orderNumber: string; // String!
+    orderTotal: number; // Int!
+    totalPaid: number; // Int!
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  OrderCreateManyClientInputEnvelope: { // input type
+    data?: NexusGenInputs['OrderCreateManyClientInput'][] | null; // [OrderCreateManyClientInput!]
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  OrderCreateManyEmployeeInput: { // input type
+    clientId: string; // String!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: string | null; // String
     orderDate?: NexusGenScalars['DateTime'] | null; // DateTime
@@ -1666,35 +785,21 @@ export interface NexusGenInputs {
     totalPaid: number; // Int!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
-  OrderCreateManyAnnualBranchEmployeeInputEnvelope: { // input type
-    data?: NexusGenInputs['OrderCreateManyAnnualBranchEmployeeInput'][] | null; // [OrderCreateManyAnnualBranchEmployeeInput!]
+  OrderCreateManyEmployeeInputEnvelope: { // input type
+    data?: NexusGenInputs['OrderCreateManyEmployeeInput'][] | null; // [OrderCreateManyEmployeeInput!]
     skipDuplicates?: boolean | null; // Boolean
   }
-  OrderCreateManyAnnualClientInput: { // input type
-    annualBranchEmployeeId?: string | null; // String
-    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    id?: string | null; // String
-    orderDate?: NexusGenScalars['DateTime'] | null; // DateTime
-    orderNumber: string; // String!
-    orderTotal: number; // Int!
-    totalPaid: number; // Int!
-    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
-  }
-  OrderCreateManyAnnualClientInputEnvelope: { // input type
-    data?: NexusGenInputs['OrderCreateManyAnnualClientInput'][] | null; // [OrderCreateManyAnnualClientInput!]
-    skipDuplicates?: boolean | null; // Boolean
-  }
-  OrderCreateNestedManyWithoutAnnualBranchEmployeeInput: { // input type
+  OrderCreateNestedManyWithoutClientInput: { // input type
     connect?: NexusGenInputs['OrderWhereUniqueInput'][] | null; // [OrderWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['OrderCreateOrConnectWithoutAnnualBranchEmployeeInput'][] | null; // [OrderCreateOrConnectWithoutAnnualBranchEmployeeInput!]
-    create?: NexusGenInputs['OrderCreateWithoutAnnualBranchEmployeeInput'][] | null; // [OrderCreateWithoutAnnualBranchEmployeeInput!]
-    createMany?: NexusGenInputs['OrderCreateManyAnnualBranchEmployeeInputEnvelope'] | null; // OrderCreateManyAnnualBranchEmployeeInputEnvelope
+    connectOrCreate?: NexusGenInputs['OrderCreateOrConnectWithoutClientInput'][] | null; // [OrderCreateOrConnectWithoutClientInput!]
+    create?: NexusGenInputs['OrderCreateWithoutClientInput'][] | null; // [OrderCreateWithoutClientInput!]
+    createMany?: NexusGenInputs['OrderCreateManyClientInputEnvelope'] | null; // OrderCreateManyClientInputEnvelope
   }
-  OrderCreateNestedManyWithoutAnnualClientInput: { // input type
+  OrderCreateNestedManyWithoutEmployeeInput: { // input type
     connect?: NexusGenInputs['OrderWhereUniqueInput'][] | null; // [OrderWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['OrderCreateOrConnectWithoutAnnualClientInput'][] | null; // [OrderCreateOrConnectWithoutAnnualClientInput!]
-    create?: NexusGenInputs['OrderCreateWithoutAnnualClientInput'][] | null; // [OrderCreateWithoutAnnualClientInput!]
-    createMany?: NexusGenInputs['OrderCreateManyAnnualClientInputEnvelope'] | null; // OrderCreateManyAnnualClientInputEnvelope
+    connectOrCreate?: NexusGenInputs['OrderCreateOrConnectWithoutEmployeeInput'][] | null; // [OrderCreateOrConnectWithoutEmployeeInput!]
+    create?: NexusGenInputs['OrderCreateWithoutEmployeeInput'][] | null; // [OrderCreateWithoutEmployeeInput!]
+    createMany?: NexusGenInputs['OrderCreateManyEmployeeInputEnvelope'] | null; // OrderCreateManyEmployeeInputEnvelope
   }
   OrderCreateNestedOneWithoutFinancesInput: { // input type
     connect?: NexusGenInputs['OrderWhereUniqueInput'] | null; // OrderWhereUniqueInput
@@ -1706,12 +811,12 @@ export interface NexusGenInputs {
     connectOrCreate?: NexusGenInputs['OrderCreateOrConnectWithoutOrderDetailsInput'] | null; // OrderCreateOrConnectWithoutOrderDetailsInput
     create?: NexusGenInputs['OrderCreateWithoutOrderDetailsInput'] | null; // OrderCreateWithoutOrderDetailsInput
   }
-  OrderCreateOrConnectWithoutAnnualBranchEmployeeInput: { // input type
-    create: NexusGenInputs['OrderCreateWithoutAnnualBranchEmployeeInput']; // OrderCreateWithoutAnnualBranchEmployeeInput!
+  OrderCreateOrConnectWithoutClientInput: { // input type
+    create: NexusGenInputs['OrderCreateWithoutClientInput']; // OrderCreateWithoutClientInput!
     where: NexusGenInputs['OrderWhereUniqueInput']; // OrderWhereUniqueInput!
   }
-  OrderCreateOrConnectWithoutAnnualClientInput: { // input type
-    create: NexusGenInputs['OrderCreateWithoutAnnualClientInput']; // OrderCreateWithoutAnnualClientInput!
+  OrderCreateOrConnectWithoutEmployeeInput: { // input type
+    create: NexusGenInputs['OrderCreateWithoutEmployeeInput']; // OrderCreateWithoutEmployeeInput!
     where: NexusGenInputs['OrderWhereUniqueInput']; // OrderWhereUniqueInput!
   }
   OrderCreateOrConnectWithoutFinancesInput: { // input type
@@ -1722,8 +827,8 @@ export interface NexusGenInputs {
     create: NexusGenInputs['OrderCreateWithoutOrderDetailsInput']; // OrderCreateWithoutOrderDetailsInput!
     where: NexusGenInputs['OrderWhereUniqueInput']; // OrderWhereUniqueInput!
   }
-  OrderCreateWithoutAnnualBranchEmployeeInput: { // input type
-    AnnualClient?: NexusGenInputs['AnnualClientCreateNestedOneWithoutOrdersInput'] | null; // AnnualClientCreateNestedOneWithoutOrdersInput
+  OrderCreateWithoutClientInput: { // input type
+    Employee: NexusGenInputs['EmployeeCreateNestedOneWithoutOrdersInput']; // EmployeeCreateNestedOneWithoutOrdersInput!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     finances?: NexusGenInputs['FinanceCreateNestedManyWithoutOrderInput'] | null; // FinanceCreateNestedManyWithoutOrderInput
     id?: string | null; // String
@@ -1734,8 +839,8 @@ export interface NexusGenInputs {
     totalPaid: number; // Int!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
-  OrderCreateWithoutAnnualClientInput: { // input type
-    AnnualBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput'] | null; // AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput
+  OrderCreateWithoutEmployeeInput: { // input type
+    Client: NexusGenInputs['ClientCreateNestedOneWithoutOrdersInput']; // ClientCreateNestedOneWithoutOrdersInput!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     finances?: NexusGenInputs['FinanceCreateNestedManyWithoutOrderInput'] | null; // FinanceCreateNestedManyWithoutOrderInput
     id?: string | null; // String
@@ -1747,8 +852,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
   OrderCreateWithoutFinancesInput: { // input type
-    AnnualBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput'] | null; // AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput
-    AnnualClient?: NexusGenInputs['AnnualClientCreateNestedOneWithoutOrdersInput'] | null; // AnnualClientCreateNestedOneWithoutOrdersInput
+    Client: NexusGenInputs['ClientCreateNestedOneWithoutOrdersInput']; // ClientCreateNestedOneWithoutOrdersInput!
+    Employee: NexusGenInputs['EmployeeCreateNestedOneWithoutOrdersInput']; // EmployeeCreateNestedOneWithoutOrdersInput!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: string | null; // String
     orderDate?: NexusGenScalars['DateTime'] | null; // DateTime
@@ -1759,8 +864,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
   OrderCreateWithoutOrderDetailsInput: { // input type
-    AnnualBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput'] | null; // AnnualBranchEmployeeCreateNestedOneWithoutOrdersInput
-    AnnualClient?: NexusGenInputs['AnnualClientCreateNestedOneWithoutOrdersInput'] | null; // AnnualClientCreateNestedOneWithoutOrdersInput
+    Client: NexusGenInputs['ClientCreateNestedOneWithoutOrdersInput']; // ClientCreateNestedOneWithoutOrdersInput!
+    Employee: NexusGenInputs['EmployeeCreateNestedOneWithoutOrdersInput']; // EmployeeCreateNestedOneWithoutOrdersInput!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     finances?: NexusGenInputs['FinanceCreateNestedManyWithoutOrderInput'] | null; // FinanceCreateNestedManyWithoutOrderInput
     id?: string | null; // String
@@ -1962,9 +1067,9 @@ export interface NexusGenInputs {
     AND?: NexusGenInputs['OrderScalarWhereInput'][] | null; // [OrderScalarWhereInput!]
     NOT?: NexusGenInputs['OrderScalarWhereInput'][] | null; // [OrderScalarWhereInput!]
     OR?: NexusGenInputs['OrderScalarWhereInput'][] | null; // [OrderScalarWhereInput!]
-    annualBranchEmployeeId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    annualClientId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    clientId?: NexusGenInputs['StringFilter'] | null; // StringFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    employeeId?: NexusGenInputs['StringFilter'] | null; // StringFilter
     id?: NexusGenInputs['StringFilter'] | null; // StringFilter
     orderDate?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     orderNumber?: NexusGenInputs['StringFilter'] | null; // StringFilter
@@ -1972,9 +1077,26 @@ export interface NexusGenInputs {
     totalPaid?: NexusGenInputs['IntFilter'] | null; // IntFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
   }
+  OrderTypeCreateInput: { // input type
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: string | null; // String
+    orderTypeCode: string; // String!
+    orderTypeName: string; // String!
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  OrderTypeUpdateInput: { // input type
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    orderTypeCode?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    orderTypeName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  OrderTypeWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
   OrderUpdateInput: { // input type
-    AnnualBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeUpdateOneWithoutOrdersInput'] | null; // AnnualBranchEmployeeUpdateOneWithoutOrdersInput
-    AnnualClient?: NexusGenInputs['AnnualClientUpdateOneWithoutOrdersInput'] | null; // AnnualClientUpdateOneWithoutOrdersInput
+    Client?: NexusGenInputs['ClientUpdateOneRequiredWithoutOrdersInput'] | null; // ClientUpdateOneRequiredWithoutOrdersInput
+    Employee?: NexusGenInputs['EmployeeUpdateOneRequiredWithoutOrdersInput'] | null; // EmployeeUpdateOneRequiredWithoutOrdersInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     finances?: NexusGenInputs['FinanceUpdateManyWithoutOrderInput'] | null; // FinanceUpdateManyWithoutOrderInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
@@ -1994,39 +1116,39 @@ export interface NexusGenInputs {
     totalPaid?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
-  OrderUpdateManyWithWhereWithoutAnnualBranchEmployeeInput: { // input type
+  OrderUpdateManyWithWhereWithoutClientInput: { // input type
     data: NexusGenInputs['OrderUpdateManyMutationInput']; // OrderUpdateManyMutationInput!
     where: NexusGenInputs['OrderScalarWhereInput']; // OrderScalarWhereInput!
   }
-  OrderUpdateManyWithWhereWithoutAnnualClientInput: { // input type
+  OrderUpdateManyWithWhereWithoutEmployeeInput: { // input type
     data: NexusGenInputs['OrderUpdateManyMutationInput']; // OrderUpdateManyMutationInput!
     where: NexusGenInputs['OrderScalarWhereInput']; // OrderScalarWhereInput!
   }
-  OrderUpdateManyWithoutAnnualBranchEmployeeInput: { // input type
+  OrderUpdateManyWithoutClientInput: { // input type
     connect?: NexusGenInputs['OrderWhereUniqueInput'][] | null; // [OrderWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['OrderCreateOrConnectWithoutAnnualBranchEmployeeInput'][] | null; // [OrderCreateOrConnectWithoutAnnualBranchEmployeeInput!]
-    create?: NexusGenInputs['OrderCreateWithoutAnnualBranchEmployeeInput'][] | null; // [OrderCreateWithoutAnnualBranchEmployeeInput!]
-    createMany?: NexusGenInputs['OrderCreateManyAnnualBranchEmployeeInputEnvelope'] | null; // OrderCreateManyAnnualBranchEmployeeInputEnvelope
+    connectOrCreate?: NexusGenInputs['OrderCreateOrConnectWithoutClientInput'][] | null; // [OrderCreateOrConnectWithoutClientInput!]
+    create?: NexusGenInputs['OrderCreateWithoutClientInput'][] | null; // [OrderCreateWithoutClientInput!]
+    createMany?: NexusGenInputs['OrderCreateManyClientInputEnvelope'] | null; // OrderCreateManyClientInputEnvelope
     delete?: NexusGenInputs['OrderWhereUniqueInput'][] | null; // [OrderWhereUniqueInput!]
     deleteMany?: NexusGenInputs['OrderScalarWhereInput'][] | null; // [OrderScalarWhereInput!]
     disconnect?: NexusGenInputs['OrderWhereUniqueInput'][] | null; // [OrderWhereUniqueInput!]
     set?: NexusGenInputs['OrderWhereUniqueInput'][] | null; // [OrderWhereUniqueInput!]
-    update?: NexusGenInputs['OrderUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput'][] | null; // [OrderUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput!]
-    updateMany?: NexusGenInputs['OrderUpdateManyWithWhereWithoutAnnualBranchEmployeeInput'][] | null; // [OrderUpdateManyWithWhereWithoutAnnualBranchEmployeeInput!]
-    upsert?: NexusGenInputs['OrderUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput'][] | null; // [OrderUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput!]
+    update?: NexusGenInputs['OrderUpdateWithWhereUniqueWithoutClientInput'][] | null; // [OrderUpdateWithWhereUniqueWithoutClientInput!]
+    updateMany?: NexusGenInputs['OrderUpdateManyWithWhereWithoutClientInput'][] | null; // [OrderUpdateManyWithWhereWithoutClientInput!]
+    upsert?: NexusGenInputs['OrderUpsertWithWhereUniqueWithoutClientInput'][] | null; // [OrderUpsertWithWhereUniqueWithoutClientInput!]
   }
-  OrderUpdateManyWithoutAnnualClientInput: { // input type
+  OrderUpdateManyWithoutEmployeeInput: { // input type
     connect?: NexusGenInputs['OrderWhereUniqueInput'][] | null; // [OrderWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['OrderCreateOrConnectWithoutAnnualClientInput'][] | null; // [OrderCreateOrConnectWithoutAnnualClientInput!]
-    create?: NexusGenInputs['OrderCreateWithoutAnnualClientInput'][] | null; // [OrderCreateWithoutAnnualClientInput!]
-    createMany?: NexusGenInputs['OrderCreateManyAnnualClientInputEnvelope'] | null; // OrderCreateManyAnnualClientInputEnvelope
+    connectOrCreate?: NexusGenInputs['OrderCreateOrConnectWithoutEmployeeInput'][] | null; // [OrderCreateOrConnectWithoutEmployeeInput!]
+    create?: NexusGenInputs['OrderCreateWithoutEmployeeInput'][] | null; // [OrderCreateWithoutEmployeeInput!]
+    createMany?: NexusGenInputs['OrderCreateManyEmployeeInputEnvelope'] | null; // OrderCreateManyEmployeeInputEnvelope
     delete?: NexusGenInputs['OrderWhereUniqueInput'][] | null; // [OrderWhereUniqueInput!]
     deleteMany?: NexusGenInputs['OrderScalarWhereInput'][] | null; // [OrderScalarWhereInput!]
     disconnect?: NexusGenInputs['OrderWhereUniqueInput'][] | null; // [OrderWhereUniqueInput!]
     set?: NexusGenInputs['OrderWhereUniqueInput'][] | null; // [OrderWhereUniqueInput!]
-    update?: NexusGenInputs['OrderUpdateWithWhereUniqueWithoutAnnualClientInput'][] | null; // [OrderUpdateWithWhereUniqueWithoutAnnualClientInput!]
-    updateMany?: NexusGenInputs['OrderUpdateManyWithWhereWithoutAnnualClientInput'][] | null; // [OrderUpdateManyWithWhereWithoutAnnualClientInput!]
-    upsert?: NexusGenInputs['OrderUpsertWithWhereUniqueWithoutAnnualClientInput'][] | null; // [OrderUpsertWithWhereUniqueWithoutAnnualClientInput!]
+    update?: NexusGenInputs['OrderUpdateWithWhereUniqueWithoutEmployeeInput'][] | null; // [OrderUpdateWithWhereUniqueWithoutEmployeeInput!]
+    updateMany?: NexusGenInputs['OrderUpdateManyWithWhereWithoutEmployeeInput'][] | null; // [OrderUpdateManyWithWhereWithoutEmployeeInput!]
+    upsert?: NexusGenInputs['OrderUpsertWithWhereUniqueWithoutEmployeeInput'][] | null; // [OrderUpsertWithWhereUniqueWithoutEmployeeInput!]
   }
   OrderUpdateOneRequiredWithoutFinancesInput: { // input type
     connect?: NexusGenInputs['OrderWhereUniqueInput'] | null; // OrderWhereUniqueInput
@@ -2042,16 +1164,16 @@ export interface NexusGenInputs {
     update?: NexusGenInputs['OrderUpdateWithoutOrderDetailsInput'] | null; // OrderUpdateWithoutOrderDetailsInput
     upsert?: NexusGenInputs['OrderUpsertWithoutOrderDetailsInput'] | null; // OrderUpsertWithoutOrderDetailsInput
   }
-  OrderUpdateWithWhereUniqueWithoutAnnualBranchEmployeeInput: { // input type
-    data: NexusGenInputs['OrderUpdateWithoutAnnualBranchEmployeeInput']; // OrderUpdateWithoutAnnualBranchEmployeeInput!
+  OrderUpdateWithWhereUniqueWithoutClientInput: { // input type
+    data: NexusGenInputs['OrderUpdateWithoutClientInput']; // OrderUpdateWithoutClientInput!
     where: NexusGenInputs['OrderWhereUniqueInput']; // OrderWhereUniqueInput!
   }
-  OrderUpdateWithWhereUniqueWithoutAnnualClientInput: { // input type
-    data: NexusGenInputs['OrderUpdateWithoutAnnualClientInput']; // OrderUpdateWithoutAnnualClientInput!
+  OrderUpdateWithWhereUniqueWithoutEmployeeInput: { // input type
+    data: NexusGenInputs['OrderUpdateWithoutEmployeeInput']; // OrderUpdateWithoutEmployeeInput!
     where: NexusGenInputs['OrderWhereUniqueInput']; // OrderWhereUniqueInput!
   }
-  OrderUpdateWithoutAnnualBranchEmployeeInput: { // input type
-    AnnualClient?: NexusGenInputs['AnnualClientUpdateOneWithoutOrdersInput'] | null; // AnnualClientUpdateOneWithoutOrdersInput
+  OrderUpdateWithoutClientInput: { // input type
+    Employee?: NexusGenInputs['EmployeeUpdateOneRequiredWithoutOrdersInput'] | null; // EmployeeUpdateOneRequiredWithoutOrdersInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     finances?: NexusGenInputs['FinanceUpdateManyWithoutOrderInput'] | null; // FinanceUpdateManyWithoutOrderInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
@@ -2062,8 +1184,8 @@ export interface NexusGenInputs {
     totalPaid?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
-  OrderUpdateWithoutAnnualClientInput: { // input type
-    AnnualBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeUpdateOneWithoutOrdersInput'] | null; // AnnualBranchEmployeeUpdateOneWithoutOrdersInput
+  OrderUpdateWithoutEmployeeInput: { // input type
+    Client?: NexusGenInputs['ClientUpdateOneRequiredWithoutOrdersInput'] | null; // ClientUpdateOneRequiredWithoutOrdersInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     finances?: NexusGenInputs['FinanceUpdateManyWithoutOrderInput'] | null; // FinanceUpdateManyWithoutOrderInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
@@ -2075,8 +1197,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
   OrderUpdateWithoutFinancesInput: { // input type
-    AnnualBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeUpdateOneWithoutOrdersInput'] | null; // AnnualBranchEmployeeUpdateOneWithoutOrdersInput
-    AnnualClient?: NexusGenInputs['AnnualClientUpdateOneWithoutOrdersInput'] | null; // AnnualClientUpdateOneWithoutOrdersInput
+    Client?: NexusGenInputs['ClientUpdateOneRequiredWithoutOrdersInput'] | null; // ClientUpdateOneRequiredWithoutOrdersInput
+    Employee?: NexusGenInputs['EmployeeUpdateOneRequiredWithoutOrdersInput'] | null; // EmployeeUpdateOneRequiredWithoutOrdersInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     orderDate?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
@@ -2087,8 +1209,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
   OrderUpdateWithoutOrderDetailsInput: { // input type
-    AnnualBranchEmployee?: NexusGenInputs['AnnualBranchEmployeeUpdateOneWithoutOrdersInput'] | null; // AnnualBranchEmployeeUpdateOneWithoutOrdersInput
-    AnnualClient?: NexusGenInputs['AnnualClientUpdateOneWithoutOrdersInput'] | null; // AnnualClientUpdateOneWithoutOrdersInput
+    Client?: NexusGenInputs['ClientUpdateOneRequiredWithoutOrdersInput'] | null; // ClientUpdateOneRequiredWithoutOrdersInput
+    Employee?: NexusGenInputs['EmployeeUpdateOneRequiredWithoutOrdersInput'] | null; // EmployeeUpdateOneRequiredWithoutOrdersInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     finances?: NexusGenInputs['FinanceUpdateManyWithoutOrderInput'] | null; // FinanceUpdateManyWithoutOrderInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
@@ -2098,14 +1220,14 @@ export interface NexusGenInputs {
     totalPaid?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
-  OrderUpsertWithWhereUniqueWithoutAnnualBranchEmployeeInput: { // input type
-    create: NexusGenInputs['OrderCreateWithoutAnnualBranchEmployeeInput']; // OrderCreateWithoutAnnualBranchEmployeeInput!
-    update: NexusGenInputs['OrderUpdateWithoutAnnualBranchEmployeeInput']; // OrderUpdateWithoutAnnualBranchEmployeeInput!
+  OrderUpsertWithWhereUniqueWithoutClientInput: { // input type
+    create: NexusGenInputs['OrderCreateWithoutClientInput']; // OrderCreateWithoutClientInput!
+    update: NexusGenInputs['OrderUpdateWithoutClientInput']; // OrderUpdateWithoutClientInput!
     where: NexusGenInputs['OrderWhereUniqueInput']; // OrderWhereUniqueInput!
   }
-  OrderUpsertWithWhereUniqueWithoutAnnualClientInput: { // input type
-    create: NexusGenInputs['OrderCreateWithoutAnnualClientInput']; // OrderCreateWithoutAnnualClientInput!
-    update: NexusGenInputs['OrderUpdateWithoutAnnualClientInput']; // OrderUpdateWithoutAnnualClientInput!
+  OrderUpsertWithWhereUniqueWithoutEmployeeInput: { // input type
+    create: NexusGenInputs['OrderCreateWithoutEmployeeInput']; // OrderCreateWithoutEmployeeInput!
+    update: NexusGenInputs['OrderUpdateWithoutEmployeeInput']; // OrderUpdateWithoutEmployeeInput!
     where: NexusGenInputs['OrderWhereUniqueInput']; // OrderWhereUniqueInput!
   }
   OrderUpsertWithoutFinancesInput: { // input type
@@ -2120,13 +1242,14 @@ export interface NexusGenInputs {
     id?: string | null; // String
   }
   ProductCreateInput: { // input type
-    Category?: NexusGenInputs['CategoryCreateNestedOneWithoutProductsInput'] | null; // CategoryCreateNestedOneWithoutProductsInput
+    Category: NexusGenInputs['CategoryCreateNestedOneWithoutProductsInput']; // CategoryCreateNestedOneWithoutProductsInput!
     carts?: NexusGenInputs['CartCreateNestedManyWithoutProductInput'] | null; // CartCreateNestedManyWithoutProductInput
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: string | null; // String
     orderDetails?: NexusGenInputs['OrderDetailCreateNestedManyWithoutProductInput'] | null; // OrderDetailCreateNestedManyWithoutProductInput
     pdtCode: string; // String!
     pdtName: string; // String!
+    qttyInHand: number; // Int!
     unitPrice: number; // Int!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
@@ -2135,6 +1258,7 @@ export interface NexusGenInputs {
     id?: string | null; // String
     pdtCode: string; // String!
     pdtName: string; // String!
+    qttyInHand: number; // Int!
     unitPrice: number; // Int!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
@@ -2171,12 +1295,13 @@ export interface NexusGenInputs {
     where: NexusGenInputs['ProductWhereUniqueInput']; // ProductWhereUniqueInput!
   }
   ProductCreateWithoutCartsInput: { // input type
-    Category?: NexusGenInputs['CategoryCreateNestedOneWithoutProductsInput'] | null; // CategoryCreateNestedOneWithoutProductsInput
+    Category: NexusGenInputs['CategoryCreateNestedOneWithoutProductsInput']; // CategoryCreateNestedOneWithoutProductsInput!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: string | null; // String
     orderDetails?: NexusGenInputs['OrderDetailCreateNestedManyWithoutProductInput'] | null; // OrderDetailCreateNestedManyWithoutProductInput
     pdtCode: string; // String!
     pdtName: string; // String!
+    qttyInHand: number; // Int!
     unitPrice: number; // Int!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
@@ -2187,16 +1312,18 @@ export interface NexusGenInputs {
     orderDetails?: NexusGenInputs['OrderDetailCreateNestedManyWithoutProductInput'] | null; // OrderDetailCreateNestedManyWithoutProductInput
     pdtCode: string; // String!
     pdtName: string; // String!
+    qttyInHand: number; // Int!
     unitPrice: number; // Int!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
   ProductCreateWithoutOrderDetailsInput: { // input type
-    Category?: NexusGenInputs['CategoryCreateNestedOneWithoutProductsInput'] | null; // CategoryCreateNestedOneWithoutProductsInput
+    Category: NexusGenInputs['CategoryCreateNestedOneWithoutProductsInput']; // CategoryCreateNestedOneWithoutProductsInput!
     carts?: NexusGenInputs['CartCreateNestedManyWithoutProductInput'] | null; // CartCreateNestedManyWithoutProductInput
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: string | null; // String
     pdtCode: string; // String!
     pdtName: string; // String!
+    qttyInHand: number; // Int!
     unitPrice: number; // Int!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
@@ -2204,22 +1331,24 @@ export interface NexusGenInputs {
     AND?: NexusGenInputs['ProductScalarWhereInput'][] | null; // [ProductScalarWhereInput!]
     NOT?: NexusGenInputs['ProductScalarWhereInput'][] | null; // [ProductScalarWhereInput!]
     OR?: NexusGenInputs['ProductScalarWhereInput'][] | null; // [ProductScalarWhereInput!]
-    categoryId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    categoryId?: NexusGenInputs['StringFilter'] | null; // StringFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null; // StringFilter
     pdtCode?: NexusGenInputs['StringFilter'] | null; // StringFilter
     pdtName?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    qttyInHand?: NexusGenInputs['IntFilter'] | null; // IntFilter
     unitPrice?: NexusGenInputs['IntFilter'] | null; // IntFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
   }
   ProductUpdateInput: { // input type
-    Category?: NexusGenInputs['CategoryUpdateOneWithoutProductsInput'] | null; // CategoryUpdateOneWithoutProductsInput
+    Category?: NexusGenInputs['CategoryUpdateOneRequiredWithoutProductsInput'] | null; // CategoryUpdateOneRequiredWithoutProductsInput
     carts?: NexusGenInputs['CartUpdateManyWithoutProductInput'] | null; // CartUpdateManyWithoutProductInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     orderDetails?: NexusGenInputs['OrderDetailUpdateManyWithoutProductInput'] | null; // OrderDetailUpdateManyWithoutProductInput
     pdtCode?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     pdtName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    qttyInHand?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     unitPrice?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
@@ -2228,6 +1357,7 @@ export interface NexusGenInputs {
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     pdtCode?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     pdtName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    qttyInHand?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     unitPrice?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
@@ -2267,12 +1397,13 @@ export interface NexusGenInputs {
     where: NexusGenInputs['ProductWhereUniqueInput']; // ProductWhereUniqueInput!
   }
   ProductUpdateWithoutCartsInput: { // input type
-    Category?: NexusGenInputs['CategoryUpdateOneWithoutProductsInput'] | null; // CategoryUpdateOneWithoutProductsInput
+    Category?: NexusGenInputs['CategoryUpdateOneRequiredWithoutProductsInput'] | null; // CategoryUpdateOneRequiredWithoutProductsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     orderDetails?: NexusGenInputs['OrderDetailUpdateManyWithoutProductInput'] | null; // OrderDetailUpdateManyWithoutProductInput
     pdtCode?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     pdtName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    qttyInHand?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     unitPrice?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
@@ -2283,16 +1414,18 @@ export interface NexusGenInputs {
     orderDetails?: NexusGenInputs['OrderDetailUpdateManyWithoutProductInput'] | null; // OrderDetailUpdateManyWithoutProductInput
     pdtCode?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     pdtName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    qttyInHand?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     unitPrice?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
   ProductUpdateWithoutOrderDetailsInput: { // input type
-    Category?: NexusGenInputs['CategoryUpdateOneWithoutProductsInput'] | null; // CategoryUpdateOneWithoutProductsInput
+    Category?: NexusGenInputs['CategoryUpdateOneRequiredWithoutProductsInput'] | null; // CategoryUpdateOneRequiredWithoutProductsInput
     carts?: NexusGenInputs['CartUpdateManyWithoutProductInput'] | null; // CartUpdateManyWithoutProductInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     pdtCode?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     pdtName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    qttyInHand?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     unitPrice?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
@@ -2329,20 +1462,6 @@ export interface NexusGenInputs {
     notIn?: string[] | null; // [String!]
     startsWith?: string | null; // String
   }
-  StringNullableFilter: { // input type
-    contains?: string | null; // String
-    endsWith?: string | null; // String
-    equals?: string | null; // String
-    gt?: string | null; // String
-    gte?: string | null; // String
-    in?: string[] | null; // [String!]
-    lt?: string | null; // String
-    lte?: string | null; // String
-    mode?: NexusGenEnums['QueryMode'] | null; // QueryMode
-    not?: NexusGenInputs['NestedStringNullableFilter'] | null; // NestedStringNullableFilter
-    notIn?: string[] | null; // [String!]
-    startsWith?: string | null; // String
-  }
 }
 
 export interface NexusGenEnums {
@@ -2359,30 +1478,7 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
-  AnnualBranchEmployee: { // root type
-    id: string; // String!
-  }
-  AnnualClient: { // root type
-    clientId?: string | null; // String
-    financialYearId?: string | null; // String
-    id: string; // String!
-  }
-  Bonus: { // root type
-    bonusName: string; // String!
-    id: string; // String!
-  }
-  Branch: { // root type
-    branchCode: string; // String!
-    branchName: string; // String!
-    id: string; // String!
-  }
-  BranchEmployee: { // root type
-    endDate: NexusGenScalars['DateTime']; // DateTime!
-    id: string; // String!
-    startDate: NexusGenScalars['DateTime']; // DateTime!
-  }
   Cart: { // root type
-    annualBranchEmployeeId?: string | null; // String
     id: string; // String!
     orderDate: NexusGenScalars['DateTime']; // DateTime!
     pdtCost: number; // Int!
@@ -2418,14 +1514,8 @@ export interface NexusGenObjects {
     id: string; // String!
     yearName: number; // Int!
   }
-  Inventory: { // root type
-    id: string; // String!
-    qttyInHand: number; // Int!
-  }
   Mutation: {};
   Order: { // root type
-    annualBranchEmployeeId?: string | null; // String
-    annualClientId?: string | null; // String
     id: string; // String!
     orderDate: NexusGenScalars['DateTime']; // DateTime!
     orderNumber: string; // String!
@@ -2440,8 +1530,13 @@ export interface NexusGenObjects {
     qtty: number; // Float!
     salesPrice: number; // Int!
   }
+  OrderType: { // root type
+    id: string; // String!
+    orderTypeCode: string; // String!
+    orderTypeName: string; // String!
+  }
   Product: { // root type
-    categoryId?: string | null; // String
+    categoryId: string; // String!
     id: string; // String!
     pdtCode: string; // String!
     pdtName: string; // String!
@@ -2461,44 +1556,8 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars & NexusGenEnums
 
 export interface NexusGenFieldTypes {
-  AnnualBranchEmployee: { // field return type
-    BranchEmployee: NexusGenRootTypes['BranchEmployee'] | null; // BranchEmployee
-    FinancialYear: NexusGenRootTypes['FinancialYear'] | null; // FinancialYear
-    id: string; // String!
-    orders: NexusGenRootTypes['Order'][]; // [Order!]!
-  }
-  AnnualClient: { // field return type
-    Client: NexusGenRootTypes['Client'] | null; // Client
-    FinancialYear: NexusGenRootTypes['FinancialYear'] | null; // FinancialYear
-    carts: NexusGenRootTypes['Cart'][]; // [Cart!]!
-    clientId: string | null; // String
-    financialYearId: string | null; // String
-    id: string; // String!
-    orders: NexusGenRootTypes['Order'][]; // [Order!]!
-  }
-  Bonus: { // field return type
-    bonusName: string; // String!
-    id: string; // String!
-  }
-  Branch: { // field return type
-    branchCode: string; // String!
-    branchEmpls: NexusGenRootTypes['BranchEmployee'][]; // [BranchEmployee!]!
-    branchName: string; // String!
-    id: string; // String!
-  }
-  BranchEmployee: { // field return type
-    Branch: NexusGenRootTypes['Branch']; // Branch!
-    Employee: NexusGenRootTypes['Employee']; // Employee!
-    EmployeeStatus: NexusGenRootTypes['EmployeeStatus']; // EmployeeStatus!
-    endDate: NexusGenScalars['DateTime']; // DateTime!
-    id: string; // String!
-    startDate: NexusGenScalars['DateTime']; // DateTime!
-  }
   Cart: { // field return type
-    AnnualBranchEmployee: NexusGenRootTypes['AnnualBranchEmployee'] | null; // AnnualBranchEmployee
-    AnnualClient: NexusGenRootTypes['AnnualClient'] | null; // AnnualClient
     Product: NexusGenRootTypes['Product']; // Product!
-    annualBranchEmployeeId: string | null; // String
     id: string; // String!
     orderDate: NexusGenScalars['DateTime']; // DateTime!
     pdtCost: number; // Int!
@@ -2517,7 +1576,6 @@ export interface NexusGenFieldTypes {
     id: string; // String!
   }
   Employee: { // field return type
-    branchEmpls: NexusGenRootTypes['BranchEmployee'][]; // [BranchEmployee!]!
     employeeCode: string; // String!
     employeeNames: string; // String!
     employeePhoneNumb: number; // Int!
@@ -2534,21 +1592,10 @@ export interface NexusGenFieldTypes {
     orderId: string; // String!
   }
   FinancialYear: { // field return type
-    annBranchEmpls: NexusGenRootTypes['AnnualBranchEmployee'][]; // [AnnualBranchEmployee!]!
-    annClients: NexusGenRootTypes['AnnualClient'][]; // [AnnualClient!]!
     id: string; // String!
     yearName: number; // Int!
   }
-  Inventory: { // field return type
-    id: string; // String!
-    qttyInHand: number; // Int!
-  }
   Mutation: { // field return type
-    createAnnualBranchEmployee: NexusGenRootTypes['AnnualBranchEmployee'] | null; // AnnualBranchEmployee
-    createAnnualClient: NexusGenRootTypes['AnnualClient'] | null; // AnnualClient
-    createBonus: NexusGenRootTypes['Bonus'] | null; // Bonus
-    createBranch: NexusGenRootTypes['Branch'] | null; // Branch
-    createBranchEmployee: NexusGenRootTypes['BranchEmployee'] | null; // BranchEmployee
     createCart: NexusGenRootTypes['Cart'] | null; // Cart
     createCategory: NexusGenRootTypes['Category'] | null; // Category
     createClient: NexusGenRootTypes['Client'] | null; // Client
@@ -2556,12 +1603,6 @@ export interface NexusGenFieldTypes {
     createEmployeeStatus: NexusGenRootTypes['EmployeeStatus'] | null; // EmployeeStatus
     createFinance: NexusGenRootTypes['Finance'] | null; // Finance
     createFinancialYear: NexusGenRootTypes['FinancialYear'] | null; // FinancialYear
-    createInventory: NexusGenRootTypes['Inventory'] | null; // Inventory
-    createOneAnnualBranchEmployee: NexusGenRootTypes['AnnualBranchEmployee']; // AnnualBranchEmployee!
-    createOneAnnualClient: NexusGenRootTypes['AnnualClient']; // AnnualClient!
-    createOneBonus: NexusGenRootTypes['Bonus']; // Bonus!
-    createOneBranch: NexusGenRootTypes['Branch']; // Branch!
-    createOneBranchEmployee: NexusGenRootTypes['BranchEmployee']; // BranchEmployee!
     createOneCart: NexusGenRootTypes['Cart']; // Cart!
     createOneCategory: NexusGenRootTypes['Category']; // Category!
     createOneClient: NexusGenRootTypes['Client']; // Client!
@@ -2569,18 +1610,14 @@ export interface NexusGenFieldTypes {
     createOneEmployeeStatus: NexusGenRootTypes['EmployeeStatus']; // EmployeeStatus!
     createOneFinance: NexusGenRootTypes['Finance']; // Finance!
     createOneFinancialYear: NexusGenRootTypes['FinancialYear']; // FinancialYear!
-    createOneInventory: NexusGenRootTypes['Inventory']; // Inventory!
     createOneOrder: NexusGenRootTypes['Order']; // Order!
     createOneOrderDetail: NexusGenRootTypes['OrderDetail']; // OrderDetail!
+    createOneOrderType: NexusGenRootTypes['OrderType']; // OrderType!
     createOneProduct: NexusGenRootTypes['Product']; // Product!
     createOrder: NexusGenRootTypes['Order'] | null; // Order
     createOrderDetail: NexusGenRootTypes['OrderDetail'] | null; // OrderDetail
+    createOrderType: NexusGenRootTypes['OrderType'] | null; // OrderType
     createProduct: NexusGenRootTypes['Product'] | null; // Product
-    deleteAnnualBranchEmployee: NexusGenRootTypes['AnnualBranchEmployee'] | null; // AnnualBranchEmployee
-    deleteAnnualClient: NexusGenRootTypes['AnnualClient'] | null; // AnnualClient
-    deleteBonus: NexusGenRootTypes['Bonus'] | null; // Bonus
-    deleteBranch: NexusGenRootTypes['Branch'] | null; // Branch
-    deleteBranchEmployee: NexusGenRootTypes['BranchEmployee'] | null; // BranchEmployee
     deleteCart: NexusGenRootTypes['Cart'] | null; // Cart
     deleteCategory: NexusGenRootTypes['Category'] | null; // Category
     deleteClient: NexusGenRootTypes['Client'] | null; // Client
@@ -2588,12 +1625,6 @@ export interface NexusGenFieldTypes {
     deleteEmployeeStatus: NexusGenRootTypes['EmployeeStatus'] | null; // EmployeeStatus
     deleteFinance: NexusGenRootTypes['Finance'] | null; // Finance
     deleteFinancialYear: NexusGenRootTypes['FinancialYear'] | null; // FinancialYear
-    deleteInventory: NexusGenRootTypes['Inventory'] | null; // Inventory
-    deleteOneAnnualBranchEmployee: NexusGenRootTypes['AnnualBranchEmployee'] | null; // AnnualBranchEmployee
-    deleteOneAnnualClient: NexusGenRootTypes['AnnualClient'] | null; // AnnualClient
-    deleteOneBonus: NexusGenRootTypes['Bonus'] | null; // Bonus
-    deleteOneBranch: NexusGenRootTypes['Branch'] | null; // Branch
-    deleteOneBranchEmployee: NexusGenRootTypes['BranchEmployee'] | null; // BranchEmployee
     deleteOneCart: NexusGenRootTypes['Cart'] | null; // Cart
     deleteOneCategory: NexusGenRootTypes['Category'] | null; // Category
     deleteOneClient: NexusGenRootTypes['Client'] | null; // Client
@@ -2601,18 +1632,14 @@ export interface NexusGenFieldTypes {
     deleteOneEmployeeStatus: NexusGenRootTypes['EmployeeStatus'] | null; // EmployeeStatus
     deleteOneFinance: NexusGenRootTypes['Finance'] | null; // Finance
     deleteOneFinancialYear: NexusGenRootTypes['FinancialYear'] | null; // FinancialYear
-    deleteOneInventory: NexusGenRootTypes['Inventory'] | null; // Inventory
     deleteOneOrder: NexusGenRootTypes['Order'] | null; // Order
     deleteOneOrderDetail: NexusGenRootTypes['OrderDetail'] | null; // OrderDetail
+    deleteOneOrderType: NexusGenRootTypes['OrderType'] | null; // OrderType
     deleteOneProduct: NexusGenRootTypes['Product'] | null; // Product
     deleteOrder: NexusGenRootTypes['Order'] | null; // Order
     deleteOrderDetail: NexusGenRootTypes['OrderDetail'] | null; // OrderDetail
+    deleteOrderType: NexusGenRootTypes['OrderType'] | null; // OrderType
     deleteProduct: NexusGenRootTypes['Product'] | null; // Product
-    updateOneAnnualBranchEmployee: NexusGenRootTypes['AnnualBranchEmployee'] | null; // AnnualBranchEmployee
-    updateOneAnnualClient: NexusGenRootTypes['AnnualClient'] | null; // AnnualClient
-    updateOneBonus: NexusGenRootTypes['Bonus'] | null; // Bonus
-    updateOneBranch: NexusGenRootTypes['Branch'] | null; // Branch
-    updateOneBranchEmployee: NexusGenRootTypes['BranchEmployee'] | null; // BranchEmployee
     updateOneCart: NexusGenRootTypes['Cart'] | null; // Cart
     updateOneCategory: NexusGenRootTypes['Category'] | null; // Category
     updateOneClient: NexusGenRootTypes['Client'] | null; // Client
@@ -2620,16 +1647,12 @@ export interface NexusGenFieldTypes {
     updateOneEmployeeStatus: NexusGenRootTypes['EmployeeStatus'] | null; // EmployeeStatus
     updateOneFinance: NexusGenRootTypes['Finance'] | null; // Finance
     updateOneFinancialYear: NexusGenRootTypes['FinancialYear'] | null; // FinancialYear
-    updateOneInventory: NexusGenRootTypes['Inventory'] | null; // Inventory
     updateOneOrder: NexusGenRootTypes['Order'] | null; // Order
     updateOneOrderDetail: NexusGenRootTypes['OrderDetail'] | null; // OrderDetail
+    updateOneOrderType: NexusGenRootTypes['OrderType'] | null; // OrderType
     updateOneProduct: NexusGenRootTypes['Product'] | null; // Product
   }
   Order: { // field return type
-    AnnualBranchEmployee: NexusGenRootTypes['AnnualBranchEmployee'] | null; // AnnualBranchEmployee
-    AnnualClient: NexusGenRootTypes['AnnualClient'] | null; // AnnualClient
-    annualBranchEmployeeId: string | null; // String
-    annualClientId: string | null; // String
     finances: NexusGenRootTypes['Finance'][]; // [Finance!]!
     id: string; // String!
     orderDate: NexusGenScalars['DateTime']; // DateTime!
@@ -2648,10 +1671,15 @@ export interface NexusGenFieldTypes {
     qtty: number; // Float!
     salesPrice: number; // Int!
   }
+  OrderType: { // field return type
+    id: string; // String!
+    orderTypeCode: string; // String!
+    orderTypeName: string; // String!
+  }
   Product: { // field return type
-    Category: NexusGenRootTypes['Category'] | null; // Category
+    Category: NexusGenRootTypes['Category']; // Category!
     carts: NexusGenRootTypes['Cart'][]; // [Cart!]!
-    categoryId: string | null; // String
+    categoryId: string; // String!
     id: string; // String!
     orderDetails: NexusGenRootTypes['OrderDetail'][]; // [OrderDetail!]!
     pdtCode: string; // String!
@@ -2659,28 +1687,8 @@ export interface NexusGenFieldTypes {
     unitPrice: number; // Int!
   }
   Query: { // field return type
-    annualBranchEmployee: NexusGenRootTypes['AnnualBranchEmployee'] | null; // AnnualBranchEmployee
-    annualBranchEmployeeByBranchEmployeeAndYear: NexusGenRootTypes['AnnualBranchEmployee'] | null; // AnnualBranchEmployee
-    annualBranchEmployeeById: NexusGenRootTypes['AnnualBranchEmployee'] | null; // AnnualBranchEmployee
-    annualBranchEmployees: NexusGenRootTypes['AnnualBranchEmployee'][]; // [AnnualBranchEmployee!]!
-    annualClient: NexusGenRootTypes['AnnualClient'] | null; // AnnualClient
-    annualClientById: NexusGenRootTypes['AnnualClient'] | null; // AnnualClient
-    annualClientByPhoneAndYear: NexusGenRootTypes['AnnualClient'] | null; // AnnualClient
-    annualClientByYearClient: NexusGenRootTypes['AnnualClient'] | null; // AnnualClient
-    annualClients: NexusGenRootTypes['AnnualClient'][]; // [AnnualClient!]!
-    bonus: NexusGenRootTypes['Bonus'] | null; // Bonus
-    bonusById: NexusGenRootTypes['Bonus'] | null; // Bonus
-    bonuses: NexusGenRootTypes['Bonus'][]; // [Bonus!]!
-    branch: NexusGenRootTypes['Branch'] | null; // Branch
-    branchByBranchCode: NexusGenRootTypes['Branch'] | null; // Branch
-    branchById: NexusGenRootTypes['Branch'] | null; // Branch
-    branchEmployee: NexusGenRootTypes['BranchEmployee'] | null; // BranchEmployee
-    branchEmployeeByEmplIdAndBranchId: NexusGenRootTypes['BranchEmployee'] | null; // BranchEmployee
-    branchEmployeeById: NexusGenRootTypes['BranchEmployee'] | null; // BranchEmployee
-    branchEmployees: NexusGenRootTypes['BranchEmployee'][]; // [BranchEmployee!]!
-    branches: NexusGenRootTypes['Branch'][]; // [Branch!]!
     cart: NexusGenRootTypes['Cart'] | null; // Cart
-    cartByAnnualClientIdAndEmplId: Array<NexusGenRootTypes['Cart'] | null> | null; // [Cart]
+    cartByClientIdAndEmplId: Array<NexusGenRootTypes['Cart'] | null> | null; // [Cart]
     cartById: NexusGenRootTypes['Cart'] | null; // Cart
     carts: NexusGenRootTypes['Cart'][]; // [Cart!]!
     categories: NexusGenRootTypes['Category'][]; // [Category!]!
@@ -2704,13 +1712,13 @@ export interface NexusGenFieldTypes {
     financialYear: NexusGenRootTypes['FinancialYear'] | null; // FinancialYear
     financialYearById: NexusGenRootTypes['FinancialYear'] | null; // FinancialYear
     financialYears: NexusGenRootTypes['FinancialYear'] | null; // FinancialYear
-    inventories: NexusGenRootTypes['Inventory'][]; // [Inventory!]!
-    inventory: NexusGenRootTypes['Inventory'] | null; // Inventory
-    inventoryById: NexusGenRootTypes['Inventory'] | null; // Inventory
     order: NexusGenRootTypes['Order'] | null; // Order
     orderById: NexusGenRootTypes['Order'] | null; // Order
     orderDetail: NexusGenRootTypes['OrderDetail'] | null; // OrderDetail
     orderDetails: NexusGenRootTypes['OrderDetail'][]; // [OrderDetail!]!
+    orderType: NexusGenRootTypes['OrderType'] | null; // OrderType
+    orderTypeById: NexusGenRootTypes['OrderType'] | null; // OrderType
+    orderTypes: NexusGenRootTypes['OrderType'][]; // [OrderType!]!
     orders: Array<NexusGenRootTypes['Order'] | null> | null; // [Order]
     product: NexusGenRootTypes['Product'] | null; // Product
     productById: NexusGenRootTypes['Product'] | null; // Product
@@ -2721,44 +1729,8 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
-  AnnualBranchEmployee: { // field return type name
-    BranchEmployee: 'BranchEmployee'
-    FinancialYear: 'FinancialYear'
-    id: 'String'
-    orders: 'Order'
-  }
-  AnnualClient: { // field return type name
-    Client: 'Client'
-    FinancialYear: 'FinancialYear'
-    carts: 'Cart'
-    clientId: 'String'
-    financialYearId: 'String'
-    id: 'String'
-    orders: 'Order'
-  }
-  Bonus: { // field return type name
-    bonusName: 'String'
-    id: 'String'
-  }
-  Branch: { // field return type name
-    branchCode: 'String'
-    branchEmpls: 'BranchEmployee'
-    branchName: 'String'
-    id: 'String'
-  }
-  BranchEmployee: { // field return type name
-    Branch: 'Branch'
-    Employee: 'Employee'
-    EmployeeStatus: 'EmployeeStatus'
-    endDate: 'DateTime'
-    id: 'String'
-    startDate: 'DateTime'
-  }
   Cart: { // field return type name
-    AnnualBranchEmployee: 'AnnualBranchEmployee'
-    AnnualClient: 'AnnualClient'
     Product: 'Product'
-    annualBranchEmployeeId: 'String'
     id: 'String'
     orderDate: 'DateTime'
     pdtCost: 'Int'
@@ -2777,7 +1749,6 @@ export interface NexusGenFieldTypeNames {
     id: 'String'
   }
   Employee: { // field return type name
-    branchEmpls: 'BranchEmployee'
     employeeCode: 'String'
     employeeNames: 'String'
     employeePhoneNumb: 'Int'
@@ -2794,21 +1765,10 @@ export interface NexusGenFieldTypeNames {
     orderId: 'String'
   }
   FinancialYear: { // field return type name
-    annBranchEmpls: 'AnnualBranchEmployee'
-    annClients: 'AnnualClient'
     id: 'String'
     yearName: 'Int'
   }
-  Inventory: { // field return type name
-    id: 'String'
-    qttyInHand: 'Int'
-  }
   Mutation: { // field return type name
-    createAnnualBranchEmployee: 'AnnualBranchEmployee'
-    createAnnualClient: 'AnnualClient'
-    createBonus: 'Bonus'
-    createBranch: 'Branch'
-    createBranchEmployee: 'BranchEmployee'
     createCart: 'Cart'
     createCategory: 'Category'
     createClient: 'Client'
@@ -2816,12 +1776,6 @@ export interface NexusGenFieldTypeNames {
     createEmployeeStatus: 'EmployeeStatus'
     createFinance: 'Finance'
     createFinancialYear: 'FinancialYear'
-    createInventory: 'Inventory'
-    createOneAnnualBranchEmployee: 'AnnualBranchEmployee'
-    createOneAnnualClient: 'AnnualClient'
-    createOneBonus: 'Bonus'
-    createOneBranch: 'Branch'
-    createOneBranchEmployee: 'BranchEmployee'
     createOneCart: 'Cart'
     createOneCategory: 'Category'
     createOneClient: 'Client'
@@ -2829,18 +1783,14 @@ export interface NexusGenFieldTypeNames {
     createOneEmployeeStatus: 'EmployeeStatus'
     createOneFinance: 'Finance'
     createOneFinancialYear: 'FinancialYear'
-    createOneInventory: 'Inventory'
     createOneOrder: 'Order'
     createOneOrderDetail: 'OrderDetail'
+    createOneOrderType: 'OrderType'
     createOneProduct: 'Product'
     createOrder: 'Order'
     createOrderDetail: 'OrderDetail'
+    createOrderType: 'OrderType'
     createProduct: 'Product'
-    deleteAnnualBranchEmployee: 'AnnualBranchEmployee'
-    deleteAnnualClient: 'AnnualClient'
-    deleteBonus: 'Bonus'
-    deleteBranch: 'Branch'
-    deleteBranchEmployee: 'BranchEmployee'
     deleteCart: 'Cart'
     deleteCategory: 'Category'
     deleteClient: 'Client'
@@ -2848,12 +1798,6 @@ export interface NexusGenFieldTypeNames {
     deleteEmployeeStatus: 'EmployeeStatus'
     deleteFinance: 'Finance'
     deleteFinancialYear: 'FinancialYear'
-    deleteInventory: 'Inventory'
-    deleteOneAnnualBranchEmployee: 'AnnualBranchEmployee'
-    deleteOneAnnualClient: 'AnnualClient'
-    deleteOneBonus: 'Bonus'
-    deleteOneBranch: 'Branch'
-    deleteOneBranchEmployee: 'BranchEmployee'
     deleteOneCart: 'Cart'
     deleteOneCategory: 'Category'
     deleteOneClient: 'Client'
@@ -2861,18 +1805,14 @@ export interface NexusGenFieldTypeNames {
     deleteOneEmployeeStatus: 'EmployeeStatus'
     deleteOneFinance: 'Finance'
     deleteOneFinancialYear: 'FinancialYear'
-    deleteOneInventory: 'Inventory'
     deleteOneOrder: 'Order'
     deleteOneOrderDetail: 'OrderDetail'
+    deleteOneOrderType: 'OrderType'
     deleteOneProduct: 'Product'
     deleteOrder: 'Order'
     deleteOrderDetail: 'OrderDetail'
+    deleteOrderType: 'OrderType'
     deleteProduct: 'Product'
-    updateOneAnnualBranchEmployee: 'AnnualBranchEmployee'
-    updateOneAnnualClient: 'AnnualClient'
-    updateOneBonus: 'Bonus'
-    updateOneBranch: 'Branch'
-    updateOneBranchEmployee: 'BranchEmployee'
     updateOneCart: 'Cart'
     updateOneCategory: 'Category'
     updateOneClient: 'Client'
@@ -2880,16 +1820,12 @@ export interface NexusGenFieldTypeNames {
     updateOneEmployeeStatus: 'EmployeeStatus'
     updateOneFinance: 'Finance'
     updateOneFinancialYear: 'FinancialYear'
-    updateOneInventory: 'Inventory'
     updateOneOrder: 'Order'
     updateOneOrderDetail: 'OrderDetail'
+    updateOneOrderType: 'OrderType'
     updateOneProduct: 'Product'
   }
   Order: { // field return type name
-    AnnualBranchEmployee: 'AnnualBranchEmployee'
-    AnnualClient: 'AnnualClient'
-    annualBranchEmployeeId: 'String'
-    annualClientId: 'String'
     finances: 'Finance'
     id: 'String'
     orderDate: 'DateTime'
@@ -2908,6 +1844,11 @@ export interface NexusGenFieldTypeNames {
     qtty: 'Float'
     salesPrice: 'Int'
   }
+  OrderType: { // field return type name
+    id: 'String'
+    orderTypeCode: 'String'
+    orderTypeName: 'String'
+  }
   Product: { // field return type name
     Category: 'Category'
     carts: 'Cart'
@@ -2919,28 +1860,8 @@ export interface NexusGenFieldTypeNames {
     unitPrice: 'Int'
   }
   Query: { // field return type name
-    annualBranchEmployee: 'AnnualBranchEmployee'
-    annualBranchEmployeeByBranchEmployeeAndYear: 'AnnualBranchEmployee'
-    annualBranchEmployeeById: 'AnnualBranchEmployee'
-    annualBranchEmployees: 'AnnualBranchEmployee'
-    annualClient: 'AnnualClient'
-    annualClientById: 'AnnualClient'
-    annualClientByPhoneAndYear: 'AnnualClient'
-    annualClientByYearClient: 'AnnualClient'
-    annualClients: 'AnnualClient'
-    bonus: 'Bonus'
-    bonusById: 'Bonus'
-    bonuses: 'Bonus'
-    branch: 'Branch'
-    branchByBranchCode: 'Branch'
-    branchById: 'Branch'
-    branchEmployee: 'BranchEmployee'
-    branchEmployeeByEmplIdAndBranchId: 'BranchEmployee'
-    branchEmployeeById: 'BranchEmployee'
-    branchEmployees: 'BranchEmployee'
-    branches: 'Branch'
     cart: 'Cart'
-    cartByAnnualClientIdAndEmplId: 'Cart'
+    cartByClientIdAndEmplId: 'Cart'
     cartById: 'Cart'
     carts: 'Cart'
     categories: 'Category'
@@ -2964,13 +1885,13 @@ export interface NexusGenFieldTypeNames {
     financialYear: 'FinancialYear'
     financialYearById: 'FinancialYear'
     financialYears: 'FinancialYear'
-    inventories: 'Inventory'
-    inventory: 'Inventory'
-    inventoryById: 'Inventory'
     order: 'Order'
     orderById: 'Order'
     orderDetail: 'OrderDetail'
     orderDetails: 'OrderDetail'
+    orderType: 'OrderType'
+    orderTypeById: 'OrderType'
+    orderTypes: 'OrderType'
     orders: 'Order'
     product: 'Product'
     productById: 'Product'
@@ -2981,36 +1902,6 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
-  AnnualBranchEmployee: {
-    orders: { // args
-      after?: NexusGenInputs['OrderWhereUniqueInput'] | null; // OrderWhereUniqueInput
-      before?: NexusGenInputs['OrderWhereUniqueInput'] | null; // OrderWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
-    }
-  }
-  AnnualClient: {
-    carts: { // args
-      after?: NexusGenInputs['CartWhereUniqueInput'] | null; // CartWhereUniqueInput
-      before?: NexusGenInputs['CartWhereUniqueInput'] | null; // CartWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
-    }
-    orders: { // args
-      after?: NexusGenInputs['OrderWhereUniqueInput'] | null; // OrderWhereUniqueInput
-      before?: NexusGenInputs['OrderWhereUniqueInput'] | null; // OrderWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
-    }
-  }
-  Branch: {
-    branchEmpls: { // args
-      after?: NexusGenInputs['BranchEmployeeWhereUniqueInput'] | null; // BranchEmployeeWhereUniqueInput
-      before?: NexusGenInputs['BranchEmployeeWhereUniqueInput'] | null; // BranchEmployeeWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
-    }
-  }
   Category: {
     products: { // args
       after?: NexusGenInputs['ProductWhereUniqueInput'] | null; // ProductWhereUniqueInput
@@ -3019,44 +1910,7 @@ export interface NexusGenArgTypes {
       last?: number | null; // Int
     }
   }
-  Employee: {
-    branchEmpls: { // args
-      after?: NexusGenInputs['BranchEmployeeWhereUniqueInput'] | null; // BranchEmployeeWhereUniqueInput
-      before?: NexusGenInputs['BranchEmployeeWhereUniqueInput'] | null; // BranchEmployeeWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
-    }
-  }
-  FinancialYear: {
-    annBranchEmpls: { // args
-      after?: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput'] | null; // AnnualBranchEmployeeWhereUniqueInput
-      before?: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput'] | null; // AnnualBranchEmployeeWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
-    }
-    annClients: { // args
-      after?: NexusGenInputs['AnnualClientWhereUniqueInput'] | null; // AnnualClientWhereUniqueInput
-      before?: NexusGenInputs['AnnualClientWhereUniqueInput'] | null; // AnnualClientWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
-    }
-  }
   Mutation: {
-    createAnnualBranchEmployee: { // args
-      data: NexusGenInputs['AnnualBranchEmployeeCreateInput']; // AnnualBranchEmployeeCreateInput!
-    }
-    createAnnualClient: { // args
-      data: NexusGenInputs['AnnualClientCreateInput']; // AnnualClientCreateInput!
-    }
-    createBonus: { // args
-      data: NexusGenInputs['BonusCreateInput']; // BonusCreateInput!
-    }
-    createBranch: { // args
-      data: NexusGenInputs['BranchCreateInput']; // BranchCreateInput!
-    }
-    createBranchEmployee: { // args
-      data: NexusGenInputs['BranchEmployeeCreateInput']; // BranchEmployeeCreateInput!
-    }
     createCart: { // args
       data: NexusGenInputs['CartCreateInput']; // CartCreateInput!
     }
@@ -3077,24 +1931,6 @@ export interface NexusGenArgTypes {
     }
     createFinancialYear: { // args
       data: NexusGenInputs['FinancialYearCreateInput']; // FinancialYearCreateInput!
-    }
-    createInventory: { // args
-      data: NexusGenInputs['InventoryCreateInput']; // InventoryCreateInput!
-    }
-    createOneAnnualBranchEmployee: { // args
-      data: NexusGenInputs['AnnualBranchEmployeeCreateInput']; // AnnualBranchEmployeeCreateInput!
-    }
-    createOneAnnualClient: { // args
-      data: NexusGenInputs['AnnualClientCreateInput']; // AnnualClientCreateInput!
-    }
-    createOneBonus: { // args
-      data: NexusGenInputs['BonusCreateInput']; // BonusCreateInput!
-    }
-    createOneBranch: { // args
-      data: NexusGenInputs['BranchCreateInput']; // BranchCreateInput!
-    }
-    createOneBranchEmployee: { // args
-      data: NexusGenInputs['BranchEmployeeCreateInput']; // BranchEmployeeCreateInput!
     }
     createOneCart: { // args
       data: NexusGenInputs['CartCreateInput']; // CartCreateInput!
@@ -3117,14 +1953,14 @@ export interface NexusGenArgTypes {
     createOneFinancialYear: { // args
       data: NexusGenInputs['FinancialYearCreateInput']; // FinancialYearCreateInput!
     }
-    createOneInventory: { // args
-      data: NexusGenInputs['InventoryCreateInput']; // InventoryCreateInput!
-    }
     createOneOrder: { // args
       data: NexusGenInputs['OrderCreateInput']; // OrderCreateInput!
     }
     createOneOrderDetail: { // args
       data: NexusGenInputs['OrderDetailCreateInput']; // OrderDetailCreateInput!
+    }
+    createOneOrderType: { // args
+      data: NexusGenInputs['OrderTypeCreateInput']; // OrderTypeCreateInput!
     }
     createOneProduct: { // args
       data: NexusGenInputs['ProductCreateInput']; // ProductCreateInput!
@@ -3135,23 +1971,11 @@ export interface NexusGenArgTypes {
     createOrderDetail: { // args
       data: NexusGenInputs['OrderDetailCreateInput']; // OrderDetailCreateInput!
     }
+    createOrderType: { // args
+      data: NexusGenInputs['OrderTypeCreateInput']; // OrderTypeCreateInput!
+    }
     createProduct: { // args
       data: NexusGenInputs['ProductCreateInput']; // ProductCreateInput!
-    }
-    deleteAnnualBranchEmployee: { // args
-      where: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput']; // AnnualBranchEmployeeWhereUniqueInput!
-    }
-    deleteAnnualClient: { // args
-      where: NexusGenInputs['AnnualClientWhereUniqueInput']; // AnnualClientWhereUniqueInput!
-    }
-    deleteBonus: { // args
-      where: NexusGenInputs['BonusWhereUniqueInput']; // BonusWhereUniqueInput!
-    }
-    deleteBranch: { // args
-      where: NexusGenInputs['BranchWhereUniqueInput']; // BranchWhereUniqueInput!
-    }
-    deleteBranchEmployee: { // args
-      where: NexusGenInputs['BranchEmployeeWhereUniqueInput']; // BranchEmployeeWhereUniqueInput!
     }
     deleteCart: { // args
       where: NexusGenInputs['CartWhereUniqueInput']; // CartWhereUniqueInput!
@@ -3174,24 +1998,6 @@ export interface NexusGenArgTypes {
     deleteFinancialYear: { // args
       where: NexusGenInputs['FinancialYearWhereUniqueInput']; // FinancialYearWhereUniqueInput!
     }
-    deleteInventory: { // args
-      where: NexusGenInputs['InventoryWhereUniqueInput']; // InventoryWhereUniqueInput!
-    }
-    deleteOneAnnualBranchEmployee: { // args
-      where: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput']; // AnnualBranchEmployeeWhereUniqueInput!
-    }
-    deleteOneAnnualClient: { // args
-      where: NexusGenInputs['AnnualClientWhereUniqueInput']; // AnnualClientWhereUniqueInput!
-    }
-    deleteOneBonus: { // args
-      where: NexusGenInputs['BonusWhereUniqueInput']; // BonusWhereUniqueInput!
-    }
-    deleteOneBranch: { // args
-      where: NexusGenInputs['BranchWhereUniqueInput']; // BranchWhereUniqueInput!
-    }
-    deleteOneBranchEmployee: { // args
-      where: NexusGenInputs['BranchEmployeeWhereUniqueInput']; // BranchEmployeeWhereUniqueInput!
-    }
     deleteOneCart: { // args
       where: NexusGenInputs['CartWhereUniqueInput']; // CartWhereUniqueInput!
     }
@@ -3213,14 +2019,14 @@ export interface NexusGenArgTypes {
     deleteOneFinancialYear: { // args
       where: NexusGenInputs['FinancialYearWhereUniqueInput']; // FinancialYearWhereUniqueInput!
     }
-    deleteOneInventory: { // args
-      where: NexusGenInputs['InventoryWhereUniqueInput']; // InventoryWhereUniqueInput!
-    }
     deleteOneOrder: { // args
       where: NexusGenInputs['OrderWhereUniqueInput']; // OrderWhereUniqueInput!
     }
     deleteOneOrderDetail: { // args
       where: NexusGenInputs['OrderDetailWhereUniqueInput']; // OrderDetailWhereUniqueInput!
+    }
+    deleteOneOrderType: { // args
+      where: NexusGenInputs['OrderTypeWhereUniqueInput']; // OrderTypeWhereUniqueInput!
     }
     deleteOneProduct: { // args
       where: NexusGenInputs['ProductWhereUniqueInput']; // ProductWhereUniqueInput!
@@ -3231,28 +2037,11 @@ export interface NexusGenArgTypes {
     deleteOrderDetail: { // args
       where: NexusGenInputs['OrderDetailWhereUniqueInput']; // OrderDetailWhereUniqueInput!
     }
+    deleteOrderType: { // args
+      where: NexusGenInputs['OrderTypeWhereUniqueInput']; // OrderTypeWhereUniqueInput!
+    }
     deleteProduct: { // args
       where: NexusGenInputs['ProductWhereUniqueInput']; // ProductWhereUniqueInput!
-    }
-    updateOneAnnualBranchEmployee: { // args
-      data: NexusGenInputs['AnnualBranchEmployeeUpdateInput']; // AnnualBranchEmployeeUpdateInput!
-      where: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput']; // AnnualBranchEmployeeWhereUniqueInput!
-    }
-    updateOneAnnualClient: { // args
-      data: NexusGenInputs['AnnualClientUpdateInput']; // AnnualClientUpdateInput!
-      where: NexusGenInputs['AnnualClientWhereUniqueInput']; // AnnualClientWhereUniqueInput!
-    }
-    updateOneBonus: { // args
-      data: NexusGenInputs['BonusUpdateInput']; // BonusUpdateInput!
-      where: NexusGenInputs['BonusWhereUniqueInput']; // BonusWhereUniqueInput!
-    }
-    updateOneBranch: { // args
-      data: NexusGenInputs['BranchUpdateInput']; // BranchUpdateInput!
-      where: NexusGenInputs['BranchWhereUniqueInput']; // BranchWhereUniqueInput!
-    }
-    updateOneBranchEmployee: { // args
-      data: NexusGenInputs['BranchEmployeeUpdateInput']; // BranchEmployeeUpdateInput!
-      where: NexusGenInputs['BranchEmployeeWhereUniqueInput']; // BranchEmployeeWhereUniqueInput!
     }
     updateOneCart: { // args
       data: NexusGenInputs['CartUpdateInput']; // CartUpdateInput!
@@ -3282,10 +2071,6 @@ export interface NexusGenArgTypes {
       data: NexusGenInputs['FinancialYearUpdateInput']; // FinancialYearUpdateInput!
       where: NexusGenInputs['FinancialYearWhereUniqueInput']; // FinancialYearWhereUniqueInput!
     }
-    updateOneInventory: { // args
-      data: NexusGenInputs['InventoryUpdateInput']; // InventoryUpdateInput!
-      where: NexusGenInputs['InventoryWhereUniqueInput']; // InventoryWhereUniqueInput!
-    }
     updateOneOrder: { // args
       data: NexusGenInputs['OrderUpdateInput']; // OrderUpdateInput!
       where: NexusGenInputs['OrderWhereUniqueInput']; // OrderWhereUniqueInput!
@@ -3293,6 +2078,10 @@ export interface NexusGenArgTypes {
     updateOneOrderDetail: { // args
       data: NexusGenInputs['OrderDetailUpdateInput']; // OrderDetailUpdateInput!
       where: NexusGenInputs['OrderDetailWhereUniqueInput']; // OrderDetailWhereUniqueInput!
+    }
+    updateOneOrderType: { // args
+      data: NexusGenInputs['OrderTypeUpdateInput']; // OrderTypeUpdateInput!
+      where: NexusGenInputs['OrderTypeWhereUniqueInput']; // OrderTypeWhereUniqueInput!
     }
     updateOneProduct: { // args
       data: NexusGenInputs['ProductUpdateInput']; // ProductUpdateInput!
@@ -3328,90 +2117,12 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
-    annualBranchEmployee: { // args
-      where: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput']; // AnnualBranchEmployeeWhereUniqueInput!
-    }
-    annualBranchEmployeeByBranchEmployeeAndYear: { // args
-      branchEmployeeId?: string | null; // String
-      financialYearId?: string | null; // String
-    }
-    annualBranchEmployeeById: { // args
-      id?: string | null; // String
-    }
-    annualBranchEmployees: { // args
-      after?: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput'] | null; // AnnualBranchEmployeeWhereUniqueInput
-      before?: NexusGenInputs['AnnualBranchEmployeeWhereUniqueInput'] | null; // AnnualBranchEmployeeWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
-    }
-    annualClient: { // args
-      where: NexusGenInputs['AnnualClientWhereUniqueInput']; // AnnualClientWhereUniqueInput!
-    }
-    annualClientById: { // args
-      id?: string | null; // String
-    }
-    annualClientByPhoneAndYear: { // args
-      clientId?: string | null; // String
-      financialYearId?: string | null; // String
-    }
-    annualClientByYearClient: { // args
-      yearClient?: string | null; // String
-    }
-    annualClients: { // args
-      after?: NexusGenInputs['AnnualClientWhereUniqueInput'] | null; // AnnualClientWhereUniqueInput
-      before?: NexusGenInputs['AnnualClientWhereUniqueInput'] | null; // AnnualClientWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
-    }
-    bonus: { // args
-      where: NexusGenInputs['BonusWhereUniqueInput']; // BonusWhereUniqueInput!
-    }
-    bonusById: { // args
-      id?: string | null; // String
-    }
-    bonuses: { // args
-      after?: NexusGenInputs['BonusWhereUniqueInput'] | null; // BonusWhereUniqueInput
-      before?: NexusGenInputs['BonusWhereUniqueInput'] | null; // BonusWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
-    }
-    branch: { // args
-      where: NexusGenInputs['BranchWhereUniqueInput']; // BranchWhereUniqueInput!
-    }
-    branchByBranchCode: { // args
-      branchCode?: string | null; // String
-    }
-    branchById: { // args
-      id?: string | null; // String
-    }
-    branchEmployee: { // args
-      where: NexusGenInputs['BranchEmployeeWhereUniqueInput']; // BranchEmployeeWhereUniqueInput!
-    }
-    branchEmployeeByEmplIdAndBranchId: { // args
-      branchId?: string | null; // String
-      employeeId?: string | null; // String
-    }
-    branchEmployeeById: { // args
-      id?: string | null; // String
-    }
-    branchEmployees: { // args
-      after?: NexusGenInputs['BranchEmployeeWhereUniqueInput'] | null; // BranchEmployeeWhereUniqueInput
-      before?: NexusGenInputs['BranchEmployeeWhereUniqueInput'] | null; // BranchEmployeeWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
-    }
-    branches: { // args
-      after?: NexusGenInputs['BranchWhereUniqueInput'] | null; // BranchWhereUniqueInput
-      before?: NexusGenInputs['BranchWhereUniqueInput'] | null; // BranchWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
-    }
     cart: { // args
       where: NexusGenInputs['CartWhereUniqueInput']; // CartWhereUniqueInput!
     }
-    cartByAnnualClientIdAndEmplId: { // args
-      annualBranchEmployeeId?: string | null; // String
-      annualClientId?: string | null; // String
+    cartByClientIdAndEmplId: { // args
+      clientId?: string | null; // String
+      employeeId?: string | null; // String
     }
     cartById: { // args
       id?: string | null; // String
@@ -3494,18 +2205,6 @@ export interface NexusGenArgTypes {
     financialYears: { // args
       id?: string | null; // String
     }
-    inventories: { // args
-      after?: NexusGenInputs['InventoryWhereUniqueInput'] | null; // InventoryWhereUniqueInput
-      before?: NexusGenInputs['InventoryWhereUniqueInput'] | null; // InventoryWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
-    }
-    inventory: { // args
-      where: NexusGenInputs['InventoryWhereUniqueInput']; // InventoryWhereUniqueInput!
-    }
-    inventoryById: { // args
-      id?: string | null; // String
-    }
     order: { // args
       where: NexusGenInputs['OrderWhereUniqueInput']; // OrderWhereUniqueInput!
     }
@@ -3518,6 +2217,18 @@ export interface NexusGenArgTypes {
     orderDetails: { // args
       after?: NexusGenInputs['OrderDetailWhereUniqueInput'] | null; // OrderDetailWhereUniqueInput
       before?: NexusGenInputs['OrderDetailWhereUniqueInput'] | null; // OrderDetailWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    orderType: { // args
+      where: NexusGenInputs['OrderTypeWhereUniqueInput']; // OrderTypeWhereUniqueInput!
+    }
+    orderTypeById: { // args
+      id?: string | null; // String
+    }
+    orderTypes: { // args
+      after?: NexusGenInputs['OrderTypeWhereUniqueInput'] | null; // OrderTypeWhereUniqueInput
+      before?: NexusGenInputs['OrderTypeWhereUniqueInput'] | null; // OrderTypeWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
     }

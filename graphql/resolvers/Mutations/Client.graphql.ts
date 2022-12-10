@@ -15,11 +15,7 @@ export const client = extendType({
         data: nonNull(arg({ type: 'ClientCreateInput' }))
       },
 
-      resolve: async (_, { data }, { prisma, userId }) => {
-        console.log({ userId });
-        const currentYear = await prisma.financialYear.findFirst({
-          orderBy: [{ yearName: 'desc' }]
-        });
+      resolve: async (_, { data }, { prisma }) => {
         const wasRegistered = (
           await prisma.client.findMany({
             where: {
@@ -31,16 +27,7 @@ export const client = extendType({
           throw new ApolloError('Client present');
         }
 
-        return await prisma.client.create({
-          data: {
-            ...data,
-            annClients: {
-              create: {
-                financialYearId: currentYear?.id
-              }
-            }
-          }
-        });
+        return await prisma.client.create({ data });
       }
     });
 

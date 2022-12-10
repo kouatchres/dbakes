@@ -3,13 +3,11 @@ import {
   AllProductsByCategoryIdDocument,
   CartCreateInput,
   RecentSingleFinancialYearDocument,
-  SingleAnnualClientByPhoneAndYearDocument,
   SingleClientByPhoneNumberDocument,
   useAllCategoriesLazyQuery,
   useAllProductsByCategoryIdLazyQuery,
   useCreateACartMutation,
   useRecentSingleFinancialYearLazyQuery,
-  useSingleAnnualClientByPhoneAndYearLazyQuery,
   useSingleClientByPhoneNumberLazyQuery
 } from '@/graphql';
 import {
@@ -23,7 +21,7 @@ import {
 } from '@material-ui/core';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { Select, TextField } from 'material-ui-formik-components';
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import DisplayError from '../../ErrorMessage';
@@ -39,7 +37,9 @@ const validationSchema = Yup.object().shape({
   // pdtCost: Yup.number().required('Amount of the supplierProduct bought required')
 });
 
-const CreateCart = (props: any) => {
+const CreateCart = (
+  props: InferGetServerSidePropsType<typeof getServerSideProps>
+) => {
   // const classes = useStyles();
 
   const initialState = {
@@ -47,7 +47,7 @@ const CreateCart = (props: any) => {
     categoryID: ''
   };
 
-  const { annualBranchEmployeeID } = props;
+  const { employeeID } = props;
   const { inputValues, handleInputChange } = useForm(initialState);
 
   const [notify, setNotify] = useState({
@@ -62,8 +62,8 @@ const CreateCart = (props: any) => {
     pdtCost: 0.0,
     salesPrice: 0,
     Product: {},
-    AnnualClient: {},
-    AnnualBranchEmployee: {}
+    Client: {},
+    Employee: {}
   };
 
   const [RecentSingleFinancialYearQuery, { data: recentYearData }] =
@@ -94,20 +94,6 @@ const CreateCart = (props: any) => {
   const { id: yearID } = recentYearData?.recentFinancialYear ?? {
     id: ''
   };
-
-  const [SingleAnnualClientByPhoneAndYearQuery, { data: singleAnnualClient }] =
-    useSingleAnnualClientByPhoneAndYearLazyQuery({
-      query: SingleAnnualClientByPhoneAndYearDocument
-    });
-
-  useEffect(() => {
-    SingleAnnualClientByPhoneAndYearQuery({
-      variables: {
-        clientId: clientID,
-        financialYearId: yearID
-      }
-    });
-  }, [clientID, yearID]);
 
   const [AllProductsByCategoryIdQuery, { data: pdtsByCategoryData }] =
     useAllProductsByCategoryIdLazyQuery({
@@ -155,14 +141,14 @@ const CreateCart = (props: any) => {
               orderDate: new Date(),
               qtty: values?.salesPrice / constPdtCost,
               pdtCost: constPdtCost, // cost of supplierProduct as bought from the supplier
-              AnnualClient: {
+              Client: {
                 connect: {
-                  id: singleAnnualClient?.annualClientByPhoneAndYear?.id
+                  id: clientData?.clientByPhoneNumber?.id
                 }
               },
-              AnnualBranchEmployee: {
+              Employee: {
                 connect: {
-                  id: annualBranchEmployeeID
+                  id: employeeID
                 }
               },
               Product: { connect: { id: getPdtCost[0] } }
@@ -359,9 +345,8 @@ const CreateCart = (props: any) => {
                               pathname: '/components/cart/cartItemList',
                               query: {
                                 annualClientId:
-                                  singleAnnualClient?.annualClientByPhoneAndYear
-                                    ?.id,
-                                annualBranchEmployeeId: annualBranchEmployeeID
+                                  clientData?.clientByPhoneNumber?.id,
+                                employeeId: employeeID
                               }
                             }}
                             passHref

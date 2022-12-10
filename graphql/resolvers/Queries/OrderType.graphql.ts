@@ -1,18 +1,18 @@
 import { extendType, stringArg } from 'nexus';
 
-export const bonus = extendType({
+export const orderType = extendType({
   type: 'Query',
   definition(t) {
-    t.crud.bonus();
-    t.crud.bonuses();
+    t.crud.orderType();
+    t.crud.orderTypes();
 
-    t.field('bonusById', {
-      type: 'Bonus',
+    t.field('orderTypeById', {
+      type: 'OrderType',
       args: {
         id: stringArg()
       },
       resolve: async (_parent, { id }, { prisma }) => {
-        return await prisma.bonus.findUnique({
+        return await prisma.orderType.findUnique({
           where: { id: String(id) }
         });
       }

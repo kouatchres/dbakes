@@ -4,11 +4,12 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit';
 import { PrismaClient } from '@prisma/client';
 import { useMemo, useState } from 'react';
+
 import safeJsonStringify from 'safe-json-stringify';
 import GlassCard from '../utils/GlassCard';
-import BranchEnhancedTable from './BranchEnhancedTable';
+import CategoryEnhancedTable from './categoryEnhancedTable';
 
-const BranchList = ({ branches }) => {
+const CategoryList = ({ categories }) => {
   const [isAddPopupOpen, setIsAddPopupOpen] = useState(false);
   const [isUpdatePopupOpen, setIsUpdatePopupOpen] = useState({
     isOpen: false,
@@ -19,21 +20,21 @@ const BranchList = ({ branches }) => {
     id: ''
   });
 
-  // console.log({ branches });
-  // const getBranches = branches?.map(branch => ({ ...branch }));
+  console.log({ categories });
+  const getCategories = categories?.map(category => ({ ...category }));
 
-  // console.log({ getBranches });
+  console.log({ getCategories });
 
-  const branchCols = [
+  const categoryCols = [
     {
-      Header: 'Branch Name',
-      accessor: 'branchName',
+      Header: 'Category Name',
+      accessor: 'categoryName',
       width: '70rem'
     },
 
     {
-      Header: 'Branch Code',
-      accessor: 'branchCode',
+      Header: 'Phone',
+      accessor: 'categoryCode',
       width: '10rem'
     },
 
@@ -52,13 +53,13 @@ const BranchList = ({ branches }) => {
               gridGap: '1rem'
             }}
           >
-            <Tooltip title="Update Branch">
+            <Tooltip title="Update Category">
               <IconButton onClick={() => handleUpdatePopupOpen(rowIdx)}>
                 <EditIcon />
               </IconButton>
             </Tooltip>
 
-            <Tooltip title="Delete Branch">
+            <Tooltip title="Delete Category">
               <IconButton onClick={() => handleDeletePopupOpen(rowIdx)}>
                 <DeleteForeverIcon />
               </IconButton>
@@ -69,8 +70,8 @@ const BranchList = ({ branches }) => {
     }
   ];
 
-  const columns = useMemo(() => branchCols, []);
-  const branchData = useMemo(() => branches, []);
+  const columns = useMemo(() => categoryCols, []);
+  const categoryData = useMemo(() => getCategories, []);
 
   const handleChangePage = (event, newPage) => {
     gotoPage(newPage);
@@ -103,10 +104,10 @@ const BranchList = ({ branches }) => {
   return (
     <div>
       <GlassCard blur={3} minWidth="15rem" maxWidth="50rem">
-        <BranchEnhancedTable
+        <CategoryEnhancedTable
           columns={columns}
-          data={branchData}
-          title="List of Branches"
+          data={categoryData}
+          title="List of Categorys"
           handleUpdatePopupChange={handleUpdatePopupChange}
           isUpdatePopupOpen={isUpdatePopupOpen}
           isDeletePopupOpen={isDeletePopupOpen}
@@ -120,18 +121,13 @@ const BranchList = ({ branches }) => {
 const prisma = new PrismaClient();
 
 export const getStaticProps = async () => {
-  //  const apolloClient = initializeApollo();
-  // const getAllBranches = await apolloClient.query({
-  //   query: AllBranchesDocument
-  // });
-  // console.log({ getAllBranches });
-  const allBranches = await prisma.branch.findMany({
-    orderBy: [{ branchName: 'asc' }, {branchCode: 'asc'}]
+  const allCategories = await prisma.category.findMany({
+    orderBy: [{ categoryName: 'asc' }]
   });
 
-  const stringifiedData = safeJsonStringify(allBranches);
-  const branches = JSON.parse(stringifiedData);
-  return { props: { branches } };
+  const stringifiedData = safeJsonStringify(allCategories);
+  const categories = JSON.parse(stringifiedData);
+  return { props: { categories } };
 };
 
-export default BranchList;
+export default CategoryList;

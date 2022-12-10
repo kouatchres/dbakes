@@ -1,6 +1,0 @@
-#import * from "./ProductFragment.gql"
-
-fragment InventoryFragment on Inventory {
-  qttyInHand
-  id
-}

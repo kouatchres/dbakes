@@ -127,8 +127,8 @@ const CartEnhancedTable = ({
   title,
   calcClientTotal,
   totalQttySold,
-  annualBranchEmployeeId,
-  annualClientId
+  employeeId,
+  clientId
 }) => {
   const classes = useStyles();
   const [isAddPopupOpen, setIsAddPopupOpen] = useState(false);
@@ -240,8 +240,8 @@ const CartEnhancedTable = ({
               href={{
                 pathname: '/components/cart/moreToCart',
                 query: {
-                  annualClientId: annualClientId,
-                  annualBranchEmployeeId: annualBranchEmployeeId
+                  clientId: clientId,
+                  employeeId: employeeId
                 }
               }}
               passHref
@@ -267,8 +267,8 @@ const CartEnhancedTable = ({
               href={{
                 pathname: '/components/order/createOrder',
                 query: {
-                  annualClientId: annualClientId,
-                  annualBranchEmployeeId: annualBranchEmployeeId
+                  clientId: clientId,
+                  employeeId: employeeId
                 }
               }}
               passHref
